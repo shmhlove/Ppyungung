@@ -17,8 +17,10 @@ public class SHGoogleService : SHSingleton<SHGoogleService>
     #region Virtual Functions
     public override void OnInitialize()
     {
+#if UNITY_EDITOR
         PlayGamesPlatform.DebugLogEnabled = true;
         PlayGamesPlatform.Activate();
+#endif
     }
     public override void OnFinalize()
     {
@@ -35,30 +37,42 @@ public class SHGoogleService : SHSingleton<SHGoogleService>
 
 #if UNITY_EDITOR
         pCallback(true);
-        return;
 #else
-            if (true == IsLogin())
-            {
-                pCallback(true);
-                return;
-            }
-
+        Action pFunction = () => 
+        {
             Social.localUser.Authenticate((bIsSuccess, strMessage) => 
             {
                 if (false == string.IsNullOrEmpty(strMessage))
                     Debug.LogError(strMessage);
-
+            
                 pCallback(bIsSuccess);
             });
+        };
+
+        Login((bIsSuccess) =>
+        {
+            if (false == bIsSuccess)
+                pCallback(false);
+            else
+                pFunction();
+        });
 #endif
     }
     public void Logout()
     {
+#if UNITY_EDITOR
+
+#else
         ((PlayGamesPlatform)Social.Active).SignOut();
+#endif
     }
     public bool IsLogin()
     {
+#if UNITY_EDITOR
+        return true;
+#else
         return Social.localUser.authenticated;
+#endif
     }
     #endregion
 
@@ -96,21 +110,20 @@ public class SHGoogleService : SHSingleton<SHGoogleService>
 
 #if UNITY_EDITOR
         pCallback(true);
-        return;
 #else
-            Action pFunction = () =>
-            {
-                Social.Active.ReportScore(
-                    lScore, GetLeaderBoardType(eType), pCallback);
-            };
-
-            Login((bIsSuccess) =>
-            {
-                if (false == bIsSuccess)
-                    pCallback(false);
-                else
-                    pFunction();
-            });
+        Action pFunction = () =>
+        {
+            Social.Active.ReportScore(
+                lScore, GetLeaderBoardType(eType), pCallback);
+        };
+        
+        Login((bIsSuccess) =>
+        {
+            if (false == bIsSuccess)
+                pCallback(false);
+            else
+                pFunction();
+        });
 #endif
     }
     public void ShowLeaderboard()
@@ -118,16 +131,16 @@ public class SHGoogleService : SHSingleton<SHGoogleService>
 #if UNITY_EDITOR
         return;
 #else
-            Action pFunction = () =>
-            {
-                Social.Active.ShowLeaderboardUI();
-            };
-
-            Login((bIsSuccess) =>
-            {
-                if (true == bIsSuccess)
-                    pFunction();
-            });
+        Action pFunction = () =>
+        {
+            Social.Active.ShowLeaderboardUI();
+        };
+        
+        Login((bIsSuccess) =>
+        {
+            if (true == bIsSuccess)
+                pFunction();
+        });
 #endif
     }
     #endregion

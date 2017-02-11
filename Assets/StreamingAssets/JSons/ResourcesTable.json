@@ -4,8 +4,8 @@
 			"s_Name": "Local_Common",
 			"s_FileName": "Local_Common.csv",
 			"s_Extension": ".csv",
-			"s_Size": "215",
-			"s_Hash": "F92F9A854F689316BD0A4C887014D142",
+			"s_Size": "322",
+			"s_Hash": "375F16A8776C2001CD3E618A8018CC3C",
 			"s_Path": "Localization/Local_Common"
 		},
 		{
@@ -269,7 +269,7 @@
 			"s_FileName": "UIRoot_Global.prefab",
 			"s_Extension": ".prefab",
 			"s_Size": "10552",
-			"s_Hash": "11A4DFC706CA591C31EAA78440F10DE0",
+			"s_Hash": "346A180F706FC3BBE33155F132703B53",
 			"s_Path": "Prefab/UI/UIRoot_Global"
 		},
 		{

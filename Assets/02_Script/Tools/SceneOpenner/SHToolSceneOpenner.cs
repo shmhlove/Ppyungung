@@ -63,10 +63,10 @@ public class SHToolSceneOpenner : Editor
         OpenScene(strScenePath);
     }
 
-    [MenuItem("SHSceneOpener/01_Intro")]
-    static void LoadScene_Intro()
+    [MenuItem("SHSceneOpener/01_Entry")]
+    static void LoadScene_Entry()
     {
-        SHToolSceneOpenner.LoadScene("Assets/01_Scene/Intro.unity");
+        SHToolSceneOpenner.LoadScene("Assets/01_Scene/Entry.unity");
     }
     [MenuItem("SHSceneOpener/02_Patch")]
     static void LoadScene_Patch()

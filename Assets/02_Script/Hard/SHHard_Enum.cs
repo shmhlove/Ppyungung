@@ -11,7 +11,7 @@ public static partial class SHHard
     {
         switch(strType.ToLower())
         {
-            case "intro":       return eSceneType.Intro;
+            case "entry":       return eSceneType.Entry;
             case "loading":     return eSceneType.Loading;
             case "ingame":      return eSceneType.InGame;
                 

@@ -47,7 +47,7 @@ public enum eBundlePackType
 public enum eSceneType
 {
     None,
-    Intro,
+    Entry,
     Loading,
     InGame,
 }

@@ -2,7 +2,7 @@
 using System;
 using System.Collections;
 
-public class SHSceneMainToIntro : SHMonoWrapper
+public class SHSceneMainToEntry : SHMonoWrapper
 {
     #region Members
     #endregion
@@ -13,7 +13,7 @@ public class SHSceneMainToIntro : SHMonoWrapper
     {
         base.Start();
         Single.AppInfo.CreateSingleton();
-        Single.UI.Show("Panel_Intro", (Action)OnEventToNextScene);
+        Single.UI.Show("Panel_Entry", (Action)OnEventToNextScene);
 	}
     #endregion
     

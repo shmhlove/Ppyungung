@@ -2,7 +2,7 @@
 using System;
 using System.Collections;
 
-public class SHUIPanel_Intro : SHUIBasePanel
+public class SHUIPanel_Entry : SHUIBasePanel
 {
     #region Members : Inspector
     [Header("IntroInfo")]

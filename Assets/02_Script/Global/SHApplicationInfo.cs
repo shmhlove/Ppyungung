@@ -75,7 +75,7 @@ public partial class SHApplicationInfo : SHSingleton<SHApplicationInfo>
         CheckServiceState((eResult) =>
         {
             if (eServiceState.Run != eResult)
-                Single.Scene.GoTo(eSceneType.Intro);
+                Single.Scene.GoTo(eSceneType.Entry);
         });
     }
 

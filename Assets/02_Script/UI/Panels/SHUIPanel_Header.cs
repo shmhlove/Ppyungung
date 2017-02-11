@@ -38,22 +38,22 @@ public class SHUIPanel_Header : SHUIBasePanel
         if (null == m_pLabel_ID)
             return;
 
-        // var strID = Single.Google.GetUserID();
-        // if (true == string.IsNullOrEmpty(strID))
-        //     m_pLabel_ID.text = "Not Login";
-        // else
-        //     m_pLabel_ID.text = strID;
+        var strID = Single.Google.GetUserID();
+        if (true == string.IsNullOrEmpty(strID))
+            m_pLabel_ID.text = "Not Login";
+        else
+            m_pLabel_ID.text = strID;
     }
     void SetGoogleUserName()
     {
         if (null == m_pLabel_UserName)
             return;
 
-        // var strUserName = Single.Google.GetUserName();
-        // if (true == string.IsNullOrEmpty(strUserName))
-        //     m_pLabel_UserName.text = "Not Login";
-        // else
-        //     m_pLabel_UserName.text = strUserName;
+        var strUserName = Single.Google.GetUserName();
+        if (true == string.IsNullOrEmpty(strUserName))
+            m_pLabel_UserName.text = "Not Login";
+        else
+            m_pLabel_UserName.text = strUserName;
     }
     #endregion
 
