@@ -1,0 +1,324 @@
+{
+	"ResourcesList": [
+		{
+			"s_Name": "Local_Common",
+			"s_FileName": "Local_Common.csv",
+			"s_Extension": ".csv",
+			"s_Size": "215",
+			"s_Hash": "F92F9A854F689316BD0A4C887014D142",
+			"s_Path": "Localization/Local_Common"
+		},
+		{
+			"s_Name": "Dmg_Coin",
+			"s_FileName": "Dmg_Coin.prefab",
+			"s_Extension": ".prefab",
+			"s_Size": "16324",
+			"s_Hash": "FD8CB79253340E88809F84606B5D47C9",
+			"s_Path": "Prefab/Damage/Dmg_Coin"
+		},
+		{
+			"s_Name": "Dmg_Sample",
+			"s_FileName": "Dmg_Sample.prefab",
+			"s_Extension": ".prefab",
+			"s_Size": "13844",
+			"s_Hash": "299122AA5FBED397AF75BA0F0C7C53C7",
+			"s_Path": "Prefab/Damage/Dmg_Sample"
+		},
+		{
+			"s_Name": "Particle_Crash_Dust_Big",
+			"s_FileName": "Particle_Crash_Dust_Big.prefab",
+			"s_Extension": ".prefab",
+			"s_Size": "69536",
+			"s_Hash": "11060850B465EF8BDA9A30A7EE4412B0",
+			"s_Path": "Prefab/Effect/Particle_Crash_Dust_Big"
+		},
+		{
+			"s_Name": "Particle_Crash_Dust_Small",
+			"s_FileName": "Particle_Crash_Dust_Small.prefab",
+			"s_Extension": ".prefab",
+			"s_Size": "69544",
+			"s_Hash": "22C66A324FB78100F3815705A22DAD81",
+			"s_Path": "Prefab/Effect/Particle_Crash_Dust_Small"
+		},
+		{
+			"s_Name": "Monster_1",
+			"s_FileName": "Monster_1.prefab",
+			"s_Extension": ".prefab",
+			"s_Size": "12740",
+			"s_Hash": "890D5E3A622E1088B0E3FFC2C1450A88",
+			"s_Path": "Prefab/Monster/Monster_1"
+		},
+		{
+			"s_Name": "Monster_10",
+			"s_FileName": "Monster_10.prefab",
+			"s_Extension": ".prefab",
+			"s_Size": "17056",
+			"s_Hash": "1E80F5097110B6B537CC2345A3C2AF62",
+			"s_Path": "Prefab/Monster/Monster_10"
+		},
+		{
+			"s_Name": "Monster_11",
+			"s_FileName": "Monster_11.prefab",
+			"s_Extension": ".prefab",
+			"s_Size": "17056",
+			"s_Hash": "EA94EBFB597A834C42226B098C8C5143",
+			"s_Path": "Prefab/Monster/Monster_11"
+		},
+		{
+			"s_Name": "Monster_12",
+			"s_FileName": "Monster_12.prefab",
+			"s_Extension": ".prefab",
+			"s_Size": "17056",
+			"s_Hash": "4716786866FC7035E1D712EB9865E939",
+			"s_Path": "Prefab/Monster/Monster_12"
+		},
+		{
+			"s_Name": "Monster_2",
+			"s_FileName": "Monster_2.prefab",
+			"s_Extension": ".prefab",
+			"s_Size": "12740",
+			"s_Hash": "946C1B7461BA06D62653E028449DA996",
+			"s_Path": "Prefab/Monster/Monster_2"
+		},
+		{
+			"s_Name": "Monster_3",
+			"s_FileName": "Monster_3.prefab",
+			"s_Extension": ".prefab",
+			"s_Size": "12740",
+			"s_Hash": "4B6B0764057D9DA9B9A0A33CD558F385",
+			"s_Path": "Prefab/Monster/Monster_3"
+		},
+		{
+			"s_Name": "Monster_4",
+			"s_FileName": "Monster_4.prefab",
+			"s_Extension": ".prefab",
+			"s_Size": "12740",
+			"s_Hash": "5D3A0F77660EB18C869901123B7DC79A",
+			"s_Path": "Prefab/Monster/Monster_4"
+		},
+		{
+			"s_Name": "Monster_5",
+			"s_FileName": "Monster_5.prefab",
+			"s_Extension": ".prefab",
+			"s_Size": "17056",
+			"s_Hash": "D8DB2CB24D228E72D41F1DFB3FAB0560",
+			"s_Path": "Prefab/Monster/Monster_5"
+		},
+		{
+			"s_Name": "Monster_6",
+			"s_FileName": "Monster_6.prefab",
+			"s_Extension": ".prefab",
+			"s_Size": "17056",
+			"s_Hash": "C7E585A07A16CE55ED8CC39807675702",
+			"s_Path": "Prefab/Monster/Monster_6"
+		},
+		{
+			"s_Name": "Monster_7",
+			"s_FileName": "Monster_7.prefab",
+			"s_Extension": ".prefab",
+			"s_Size": "17056",
+			"s_Hash": "A5852B04DD5230242EED4F409711ADCB",
+			"s_Path": "Prefab/Monster/Monster_7"
+		},
+		{
+			"s_Name": "Monster_8",
+			"s_FileName": "Monster_8.prefab",
+			"s_Extension": ".prefab",
+			"s_Size": "17056",
+			"s_Hash": "37436E01B66A854863D6BF1E466B588A",
+			"s_Path": "Prefab/Monster/Monster_8"
+		},
+		{
+			"s_Name": "Monster_9",
+			"s_FileName": "Monster_9.prefab",
+			"s_Extension": ".prefab",
+			"s_Size": "17056",
+			"s_Hash": "46256043C512CAA18CB628A2C135B6F3",
+			"s_Path": "Prefab/Monster/Monster_9"
+		},
+		{
+			"s_Name": "Monster_Bonus",
+			"s_FileName": "Monster_Bonus.prefab",
+			"s_Extension": ".prefab",
+			"s_Size": "12740",
+			"s_Hash": "BFEC969C10B77194BB39A30B3D6DF300",
+			"s_Path": "Prefab/Monster/Monster_Bonus"
+		},
+		{
+			"s_Name": "Stick_1",
+			"s_FileName": "Stick_1.prefab",
+			"s_Extension": ".prefab",
+			"s_Size": "9320",
+			"s_Hash": "6F69CF090DD9DAC9FD8FCA299485C4D3",
+			"s_Path": "Prefab/Stick/Stick_1"
+		},
+		{
+			"s_Name": "Stick_10",
+			"s_FileName": "Stick_10.prefab",
+			"s_Extension": ".prefab",
+			"s_Size": "9352",
+			"s_Hash": "DADFC04DA7F287D40C925E5BDC932A9E",
+			"s_Path": "Prefab/Stick/Stick_10"
+		},
+		{
+			"s_Name": "Stick_11",
+			"s_FileName": "Stick_11.prefab",
+			"s_Extension": ".prefab",
+			"s_Size": "9352",
+			"s_Hash": "D165F702F1B519501DD328D219AB70DF",
+			"s_Path": "Prefab/Stick/Stick_11"
+		},
+		{
+			"s_Name": "Stick_12",
+			"s_FileName": "Stick_12.prefab",
+			"s_Extension": ".prefab",
+			"s_Size": "9352",
+			"s_Hash": "622EF746163B404AD2350DA71EB52E99",
+			"s_Path": "Prefab/Stick/Stick_12"
+		},
+		{
+			"s_Name": "Stick_13",
+			"s_FileName": "Stick_13.prefab",
+			"s_Extension": ".prefab",
+			"s_Size": "9352",
+			"s_Hash": "E7A969C4C3B99A8ACA24914A7CF89D0D",
+			"s_Path": "Prefab/Stick/Stick_13"
+		},
+		{
+			"s_Name": "Stick_14",
+			"s_FileName": "Stick_14.prefab",
+			"s_Extension": ".prefab",
+			"s_Size": "9352",
+			"s_Hash": "73E0101D0CBD622C9FF777750E2A5C2C",
+			"s_Path": "Prefab/Stick/Stick_14"
+		},
+		{
+			"s_Name": "Stick_15",
+			"s_FileName": "Stick_15.prefab",
+			"s_Extension": ".prefab",
+			"s_Size": "9352",
+			"s_Hash": "861DB8339B328C8E7C7CA8202F2487EF",
+			"s_Path": "Prefab/Stick/Stick_15"
+		},
+		{
+			"s_Name": "Stick_2",
+			"s_FileName": "Stick_2.prefab",
+			"s_Extension": ".prefab",
+			"s_Size": "9360",
+			"s_Hash": "A16F1379CA91618BCEE6145043A485FD",
+			"s_Path": "Prefab/Stick/Stick_2"
+		},
+		{
+			"s_Name": "Stick_3",
+			"s_FileName": "Stick_3.prefab",
+			"s_Extension": ".prefab",
+			"s_Size": "9360",
+			"s_Hash": "68D453EB0EBC80F51DA2041A99ADD32B",
+			"s_Path": "Prefab/Stick/Stick_3"
+		},
+		{
+			"s_Name": "Stick_4",
+			"s_FileName": "Stick_4.prefab",
+			"s_Extension": ".prefab",
+			"s_Size": "9360",
+			"s_Hash": "B3B6AE30468B7386828E81F44B362206",
+			"s_Path": "Prefab/Stick/Stick_4"
+		},
+		{
+			"s_Name": "Stick_5",
+			"s_FileName": "Stick_5.prefab",
+			"s_Extension": ".prefab",
+			"s_Size": "9360",
+			"s_Hash": "F95AF098425D36B6EB015107BC640C8D",
+			"s_Path": "Prefab/Stick/Stick_5"
+		},
+		{
+			"s_Name": "Stick_6",
+			"s_FileName": "Stick_6.prefab",
+			"s_Extension": ".prefab",
+			"s_Size": "9360",
+			"s_Hash": "DB5267FADF8EDC3C26D2CA40DD1EA9E5",
+			"s_Path": "Prefab/Stick/Stick_6"
+		},
+		{
+			"s_Name": "Stick_7",
+			"s_FileName": "Stick_7.prefab",
+			"s_Extension": ".prefab",
+			"s_Size": "9360",
+			"s_Hash": "0DBD7E894898FD3E27F5D111F4019D31",
+			"s_Path": "Prefab/Stick/Stick_7"
+		},
+		{
+			"s_Name": "Stick_8",
+			"s_FileName": "Stick_8.prefab",
+			"s_Extension": ".prefab",
+			"s_Size": "9360",
+			"s_Hash": "C99214072B1170AC0C5C686A854FD99A",
+			"s_Path": "Prefab/Stick/Stick_8"
+		},
+		{
+			"s_Name": "Stick_9",
+			"s_FileName": "Stick_9.prefab",
+			"s_Extension": ".prefab",
+			"s_Size": "9352",
+			"s_Hash": "7D32E3F26BBCFF0AEA664313A145B112",
+			"s_Path": "Prefab/Stick/Stick_9"
+		},
+		{
+			"s_Name": "UIRoot_Global",
+			"s_FileName": "UIRoot_Global.prefab",
+			"s_Extension": ".prefab",
+			"s_Size": "10552",
+			"s_Hash": "11A4DFC706CA591C31EAA78440F10DE0",
+			"s_Path": "Prefab/UI/UIRoot_Global"
+		},
+		{
+			"s_Name": "Panel_FadeIn",
+			"s_FileName": "Panel_FadeIn.prefab",
+			"s_Extension": ".prefab",
+			"s_Size": "12392",
+			"s_Hash": "741097947E7D2A401343A2A869B4E4F0",
+			"s_Path": "Prefab/UI/Panel/Panel_FadeIn"
+		},
+		{
+			"s_Name": "Panel_FadeOut",
+			"s_FileName": "Panel_FadeOut.prefab",
+			"s_Extension": ".prefab",
+			"s_Size": "12400",
+			"s_Hash": "0E92BC73E11F4BF0B36728393B43715C",
+			"s_Path": "Prefab/UI/Panel/Panel_FadeOut"
+		},
+		{
+			"s_Name": "Panel_Notice",
+			"s_FileName": "Panel_Notice.prefab",
+			"s_Extension": ".prefab",
+			"s_Size": "41908",
+			"s_Hash": "7C282A67EB1B8F6F16E1D78C6E0DD070",
+			"s_Path": "Prefab/UI/Panel/Panel_Notice"
+		},
+		{
+			"s_Name": "Audio_BGM_GameOver",
+			"s_FileName": "Audio_BGM_GameOver.wav",
+			"s_Extension": ".wav",
+			"s_Size": "360852",
+			"s_Hash": "83ACDDE38C731E8FC3216C1F282F2AA3",
+			"s_Path": "Sound/BGM/Audio_BGM_GameOver"
+		},
+		{
+			"s_Name": "Audio_BGM_Pineapple",
+			"s_FileName": "Audio_BGM_Pineapple.ogg",
+			"s_Extension": ".ogg",
+			"s_Size": "423938",
+			"s_Hash": "B1AA4ABDFB1BCDDEF73E0844D9FA7A40",
+			"s_Path": "Sound/BGM/Audio_BGM_Pineapple"
+		},
+		{
+			"s_Name": "Audio_Effect_Crash",
+			"s_FileName": "Audio_Effect_Crash.wav",
+			"s_Extension": ".wav",
+			"s_Size": "31116",
+			"s_Hash": "C586D3C03B5012C6E13C3E69B4EDCAD5",
+			"s_Path": "Sound/Effect/Audio_Effect_Crash"
+		}
+	]
+}

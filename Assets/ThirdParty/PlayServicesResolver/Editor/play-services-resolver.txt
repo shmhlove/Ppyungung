@@ -1,0 +1,3 @@
+Assets/ThirdParty/PlayServicesResolver/Editor/Google.IOSResolver.dll
+Assets/ThirdParty/PlayServicesResolver/Editor/Google.JarResolver.dll
+Assets/ThirdParty/PlayServicesResolver/Editor/Google.VersionHandler.dll
