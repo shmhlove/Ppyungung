@@ -127,6 +127,11 @@ class SHBuildScript
             case BuildTarget.Android:
                 // 텍스쳐 압축모드
                 EditorUserBuildSettings.androidBuildSubtarget = MobileTextureSubtarget.ETC;
+                // Google Keystore 처리
+                PlayerSettings.Android.keyaliasName = Application.productName.ToLower();
+                PlayerSettings.Android.keyaliasPass = "lee35235";
+                PlayerSettings.Android.keystoreName = SHPath.GetPathToKeystore();
+                PlayerSettings.Android.keystorePass = "lee35235";
                 break;
             case BuildTarget.iOS:
                 // 텍스쳐 압축모드

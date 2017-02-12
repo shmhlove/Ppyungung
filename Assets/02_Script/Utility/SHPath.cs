@@ -73,8 +73,14 @@ public static partial class SHPath
         return string.Format("{0}{1}", GetPathToBuild(), "/AssetBundles");
     }
 
+    // 경로 : (Root : Build/Keystore)
+    public static string GetPathToKeystore()
+    {
+        return string.Format("{0}{1}{2}", GetPathToRoot(), "/Keystore", "/user.keystore");
+    }
+
 #if UNITY_EDITOR
-    // 경로 : (Root : Root/GetPathToAssetBundlesMakeInfo/플랫폼/)
+    // 경로 : (Root : Root/AssetBundlesInfo/플랫폼/)
     public static string GetPathToAssetBundlesMakeInfo(BuildTarget eTarget)
     {
         return string.Format("{0}/{1}/{2}", GetPathToRoot(), "AssetBundlesInfo", SHHard.GetStrToPlatform(eTarget));
