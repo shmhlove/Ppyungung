@@ -4,7 +4,7 @@
 //  Lunar Unity Mobile Console
 //  https://github.com/SpaceMadness/lunar-unity-console
 //
-//  Copyright 2016 Alex Lementuev, SpaceMadness.
+//  Copyright 2017 Alex Lementuev, SpaceMadness.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -26,11 +26,10 @@ using System.Collections;
 using System.IO;
 
 using LunarConsolePlugin;
+using LunarConsolePluginInternal;
 
-namespace LunarConsolePluginInternal
+namespace LunarConsoleEditorInternal
 {
-    using Editor = LunarConsolePlugin.Editor;
-
     public static class Installer
     {
         public static void Install(bool silent = true)
@@ -86,7 +85,7 @@ namespace LunarConsolePluginInternal
         static void SetLunarConsoleEnabled(bool enabled)
         {
             AndroidPlugin.UpdateFiles(enabled); // we need to update plugin files first
-            Editor.SetLunarConsoleEnabled(enabled); // then modify preprocessor's define
+            LunarConsolePluginEditorHelper.SetLunarConsoleEnabled(enabled); // then modify preprocessor's define
         }
     }
 }

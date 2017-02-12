@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout style="@style/lunar_console_move_resize_view_style"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <!-- Top left -->
+    <ImageView
+        android:id="@+id/lunar_console_resize_bar_top_left"
+        style="@style/lunar_console_move_resize_corner_handle_style"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        />
+
+    <!-- Top right -->
+    <ImageView
+        android:id="@+id/lunar_console_resize_bar_top_right"
+        style="@style/lunar_console_move_resize_corner_handle_style"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        />
+
+    <!-- Top -->
+    <ImageView
+        android:id="@+id/lunar_console_resize_bar_top"
+        style="@style/lunar_console_move_resize_horizontal_handle_style"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/lunar_console_resize_bar_top_right"
+        android:layout_toRightOf="@+id/lunar_console_resize_bar_top_left"
+        />
+
+    <!-- Left -->
+    <ImageView
+        android:id="@+id/lunar_console_resize_bar_left"
+        style="@style/lunar_console_move_resize_vertical_handle_style"
+        android:layout_above="@+id/lunar_console_resize_bar_bottom_left"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/lunar_console_resize_bar_top_left"
+        />
+
+    <!-- Right -->
+    <ImageView
+        android:id="@+id/lunar_console_resize_bar_right"
+        style="@style/lunar_console_move_resize_vertical_handle_style"
+        android:layout_above="@+id/lunar_console_resize_button_close"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/lunar_console_resize_bar_top_right"/>
+
+    <!-- Bottom left -->
+    <ImageView
+        android:id="@+id/lunar_console_resize_bar_bottom_left"
+        style="@style/lunar_console_move_resize_corner_handle_style"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        />
+
+    <!-- Close button -->
+    <ImageButton
+        android:id="@+id/lunar_console_resize_button_close"
+        style="@style/lunar_console_base_button_style"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/lunar_console_icon_button_close"/>
+
+    <!-- Bottom -->
+    <ImageView
+        android:id="@+id/lunar_console_resize_bar_bottom"
+        style="@style/lunar_console_move_resize_horizontal_handle_style"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/lunar_console_resize_button_close"
+        android:layout_toRightOf="@+id/lunar_console_resize_bar_bottom_left"
+        />
+
+    <TextView
+        style="@style/lunar_console_move_resize_hint_style"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="@string/lunar_console_move_resize_hint"
+        />
+
+</RelativeLayout>

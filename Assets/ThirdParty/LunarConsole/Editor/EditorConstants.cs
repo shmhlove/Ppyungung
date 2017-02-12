@@ -4,7 +4,7 @@
 //  Lunar Unity Mobile Console
 //  https://github.com/SpaceMadness/lunar-unity-console
 //
-//  Copyright 2016 Alex Lementuev, SpaceMadness.
+//  Copyright 2017 Alex Lementuev, SpaceMadness.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -22,15 +22,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace LunarConsolePluginInternal
+using LunarConsolePluginInternal;
+
+namespace LunarConsoleEditorInternal
 {
     static class EditorConstants
     {
-        public static readonly string PrefabPath = "Assets/ThirdParty/" + Constants.PluginName + "/Scripts/" + Constants.PluginName + ".prefab";
-        public static readonly string EditorPath = "Assets/ThirdParty/" + Constants.PluginName + "/Editor";
+		public static readonly string PrefabPath = "Assets/ThirdParty/" + Constants.PluginName + "/Scripts/" + Constants.PluginName + ".prefab";
+		public static readonly string EditorPath = "Assets/ThirdParty/" + Constants.PluginName + "/Editor";
         public static readonly string EditorPathIOS = EditorPath + "/iOS";
         public static readonly string EditorPathAndroid = EditorPath + "/Android";
 
-        public static readonly string PluginAndroidPath = "Assets/Plugins/Android/" + Constants.PluginName;
+		public static readonly string PluginAndroidPath = "Assets/Plugins/Android/" + Constants.PluginName;
     }
 }
