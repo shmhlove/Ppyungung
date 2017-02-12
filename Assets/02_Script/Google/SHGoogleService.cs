@@ -18,9 +18,10 @@ public class SHGoogleService : SHSingleton<SHGoogleService>
     public override void OnInitialize()
     {
 #if UNITY_EDITOR
-#else
+#elif UNITY_ANDROID
         PlayGamesPlatform.DebugLogEnabled = true;
         PlayGamesPlatform.Activate();
+#else
 #endif
     }
     public override void OnFinalize()
@@ -38,8 +39,7 @@ public class SHGoogleService : SHSingleton<SHGoogleService>
 
 #if UNITY_EDITOR
         pCallback(true);
-        return;
-#else
+#elif UNITY_ANDROID
         if (true == IsLogin())
         {
             pCallback(true);
@@ -53,16 +53,19 @@ public class SHGoogleService : SHSingleton<SHGoogleService>
         
             pCallback(bIsSuccess);
         });
+#else
+        pCallback(false);
 #endif
     }
     public void Logout()
     {
 #if UNITY_EDITOR
-#else
+#elif UNITY_ANDROID
         if (false == IsLogin())
             return;
 
         ((PlayGamesPlatform)Social.Active).SignOut();
+#else
 #endif
     }
     public bool IsLogin()
@@ -105,8 +108,7 @@ public class SHGoogleService : SHSingleton<SHGoogleService>
 
 #if UNITY_EDITOR
         pCallback(true);
-        return;
-#else
+#elif UNITY_ANDROID
         Action pFunction = () =>
         {
             Social.Active.ReportScore(
@@ -120,18 +122,20 @@ public class SHGoogleService : SHSingleton<SHGoogleService>
             else
                 pFunction();
         });
+#else
+        pCallback(false);
 #endif
     }
     public void ShowLeaderboard()
     {
 #if UNITY_EDITOR
-        return;
-#else
+#elif UNITY_ANDROID
         Login((bIsSuccess) =>
         {
             if (true == bIsSuccess)
                 Social.Active.ShowLeaderboardUI();
         });
+#else
 #endif
     }
     #endregion
