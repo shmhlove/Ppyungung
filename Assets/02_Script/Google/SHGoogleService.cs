@@ -18,7 +18,6 @@ public class SHGoogleService : SHSingleton<SHGoogleService>
     public override void OnInitialize()
     {
 #if UNITY_EDITOR
-
 #else
         PlayGamesPlatform.DebugLogEnabled = true;
         PlayGamesPlatform.Activate();
@@ -39,31 +38,26 @@ public class SHGoogleService : SHSingleton<SHGoogleService>
 
 #if UNITY_EDITOR
         pCallback(true);
+        return;
 #else
-        Action pFunction = () => 
+        if (true == IsLogin())
         {
-            Social.localUser.Authenticate((bIsSuccess, strMessage) => 
-            {
-                if (false == string.IsNullOrEmpty(strMessage))
-                    Debug.LogError(strMessage);
-            
-                pCallback(bIsSuccess);
-            });
-        };
-
-        Login((bIsSuccess) =>
+            pCallback(true);
+            return;
+        }
+        
+        Social.localUser.Authenticate((bIsSuccess, strMessage) => 
         {
-            if (false == bIsSuccess)
-                pCallback(false);
-            else
-                pFunction();
+            if (false == string.IsNullOrEmpty(strMessage))
+                Debug.LogError(strMessage);
+        
+            pCallback(bIsSuccess);
         });
 #endif
     }
     public void Logout()
     {
 #if UNITY_EDITOR
-
 #else
         if (false == IsLogin())
             return;
@@ -73,11 +67,7 @@ public class SHGoogleService : SHSingleton<SHGoogleService>
     }
     public bool IsLogin()
     {
-#if UNITY_EDITOR
-        return true;
-#else
         return Social.localUser.authenticated;
-#endif
     }
     #endregion
 
@@ -115,6 +105,7 @@ public class SHGoogleService : SHSingleton<SHGoogleService>
 
 #if UNITY_EDITOR
         pCallback(true);
+        return;
 #else
         Action pFunction = () =>
         {
