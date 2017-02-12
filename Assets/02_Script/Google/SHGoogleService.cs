@@ -18,6 +18,8 @@ public class SHGoogleService : SHSingleton<SHGoogleService>
     public override void OnInitialize()
     {
 #if UNITY_EDITOR
+
+#else
         PlayGamesPlatform.DebugLogEnabled = true;
         PlayGamesPlatform.Activate();
 #endif
