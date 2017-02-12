@@ -65,6 +65,9 @@ public class SHGoogleService : SHSingleton<SHGoogleService>
 #if UNITY_EDITOR
 
 #else
+        if (false == IsLogin())
+            return;
+
         ((PlayGamesPlatform)Social.Active).SignOut();
 #endif
     }
@@ -133,15 +136,10 @@ public class SHGoogleService : SHSingleton<SHGoogleService>
 #if UNITY_EDITOR
         return;
 #else
-        Action pFunction = () =>
-        {
-            Social.Active.ShowLeaderboardUI();
-        };
-        
         Login((bIsSuccess) =>
         {
             if (true == bIsSuccess)
-                pFunction();
+                Social.Active.ShowLeaderboardUI();
         });
 #endif
     }
