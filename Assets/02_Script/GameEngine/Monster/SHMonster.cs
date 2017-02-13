@@ -19,7 +19,7 @@ public class SHMonster : SHBaseEngine
 
     #region Members : Constants
     private readonly float MIN_CREATE_POS_Y = 50;
-    private readonly float MAX_CREATE_POS_Y = 320;
+    private readonly float MAX_CREATE_POS_Y = 250;
     #endregion
 
 
