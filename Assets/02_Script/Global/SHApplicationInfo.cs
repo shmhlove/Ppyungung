@@ -161,6 +161,9 @@ public partial class SHApplicationInfo : SHSingleton<SHApplicationInfo>
         SetCacheInfo(pClientInfo.GetCacheSize(), 30);
         SetSleepMode();
         SetCrittercism();
+
+		UnityEngine.Debug.LogFormat ("ProcessID : {0}", GetProcessID());
+		UnityEngine.Debug.LogFormat ("DebugPort : {0}", GetDebugPort());
     }
 
     // 인터페이스 : 화면 회전모드 확인
@@ -331,6 +334,17 @@ public partial class SHApplicationInfo : SHSingleton<SHApplicationInfo>
     {
         m_dicRealLoadInfo.Clear();
     }
+    [FuncButton]
+    public int GetProcessID()
+    {
+        var pProcess = System.Diagnostics.Process.GetCurrentProcess ();
+        return pProcess.Id;
+    }
+    [FuncButton]
+    public int GetDebugPort()
+	{
+		return 56000 + (GetProcessID() % 1000);
+	}
     #endregion
 
 
