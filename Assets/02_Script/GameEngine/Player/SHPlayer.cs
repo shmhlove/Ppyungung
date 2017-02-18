@@ -10,6 +10,13 @@ public class SHPlayer : SHBaseEngine
 
 
     #region System Functions
+    public override void OnInitialize()
+    {
+        var pJoyStick = Single.UI.GetPanel<SHUIPanel_CtrlPad>("Panel_CtrlPad").m_pJoystick;
+        if (null != pJoyStick)
+            pJoyStick.m_pEventToDrag = OnEventToDrag;
+    }
+    public override void OnFinalize() { }
     #endregion
 
 
@@ -67,6 +74,13 @@ public class SHPlayer : SHBaseEngine
         m_pStick.Shoot(pEventToPass);
         SHCoroutine.Instance.WaitTime(() => CreateStick(), m_pStick.m_fReCreateTime);
         m_pStick = null;
+    }
+    public void OnEventToDrag(Vector3 vCenterPos, Vector3 vThumbPos, Vector3 vMovePos)
+    {
+        if (null == m_pStick)
+            return;
+
+        m_pStick.SetMovePosForIdle(vMovePos);
     }
     #endregion
 }

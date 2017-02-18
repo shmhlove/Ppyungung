@@ -106,6 +106,22 @@ public class SHMonoWrapper : MonoBehaviour
         vPos.y = fY;
         SetPosition(vPos);
     }
+    public void AddPosition(Vector3 vPos)
+    {
+        gameObject.transform.position = (GetPosition() + vPos);
+    }
+    public void AddPositionX(float fX)
+    {
+        Vector3 vPos = GetPosition();
+        vPos.x += fX;
+        SetPosition(vPos);
+    }
+    public void AddPositionY(float fY)
+    {
+        Vector3 vPos = GetPosition();
+        vPos.y += fY;
+        SetPosition(vPos);
+    }
     public void SetLocalPosition(Vector3 vPos)
     {
         if (true == SHUtils.IsNan(vPos))

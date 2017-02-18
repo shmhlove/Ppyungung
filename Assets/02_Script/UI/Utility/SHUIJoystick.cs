@@ -2,220 +2,189 @@
 using System;
 using System.Collections;
 
-public class SHUIJoystick : MonoBehaviour
+public class SHUIJoystick : SHMonoWrapper
 {
-    //#region Members : Inspector
-    //[SerializeField] private Transform    m_pStick             = null;
-    //[SerializeField] private Vector3      m_vScale             = Vector3.one;
-    //[SerializeField] private float        m_fm_fRadius         = 40.0f;
-    //[SerializeField] private bool         m_bIsCenterOnToPress = true;
-
-    ////Joystick vars
-    //public bool normalize = false; 							// Normalize output after the dead-zone?
-    //public float deadZone = 2f;								// Control when position is output
-    //public float fadeOutAlpha = 0.2f;
-    //public float fadeOutDelay = 1f;
-    //public UIWidget[] widgetsToFade;						// UIWidgets that should fadeIn/Out when centerOnPress = true
-    //public Transform[] widgetsToCenter;						// GameObjects to Center under users thumb when centerOnPress = true
-    //public float doubleTapTimeWindow = 0.5f;				// time in Seconds to recognize a double tab
-    //public GameObject doubleTapMessageTarget;
-    //public string doubleTabMethodeName;
-
-    //// by blueasa
-    //public float damping = 1.0f;
-    //public Vector3 m_vOldPos = Vector2.zero;
-    //public Vector3 m_vCurrentPos = Vector2.zero;
-
-    //// by shmhlove
-    //private Vector3 m_vSpringSpeed = Vector3.zero;
-    //public UIWidget m_pWidget = null;
-    //#endregion
+    #region Members : Inspector
+    [SerializeField] private Transform     m_pThumb             = null;
+    [SerializeField] private float         m_fMoveRadius        = 80.0f;
+    [SerializeField] private bool          m_bIsCenterOnToPress = false;
+    #endregion
 
 
-    //#region Members : Info
-    //private Vector3 m_vStartTouchPos = Vector3.zero;
-    //#endregion
+    #region Members : Info
+    private bool        m_bIsPressOn     = false;
+    private Vector3     m_vBeforePos     = Vector2.zero;
+    private Vector3     m_vCurrentPos    = Vector2.zero;
+    private Vector3     m_vSpringSpeed   = Vector3.zero;
+    #endregion
 
 
-    //#region System Functions
-    //void Start()
-    //{
-    //    m_vStartTouchPos = m_pStick.position;
-    //}
-
-    //void Update()
-    //{
-    //    SetSpringStick();
-    //}
-
-    //void OnEnable()
-    //{
-    //    if (false == this.gameObject.activeInHierarchy)
-    //        return;
-
-    //    m_pStick.position = m_vStartTouchPos;
-    //    SetPosToWidget(m_vStartTouchPos);
-
-    //    m_vOldPos = Vector2.zero;
-    //    m_vCurrentPos = Vector2.zero;
-    //}
-
-    //void OnDisable()
-    //{
-    //    m_pStick.position = m_vStartTouchPos;
-    //    SetPosToWidget(m_vStartTouchPos);
-    //}
-
-    //public void OnPress(bool bPressed)
-    //{
-    //    if (m_pStick == null)
-    //        return;
-
-    //    if (true == bPressed)
-    //        SetPressToOn();
-    //    else
-    //        SetPressToOff();
-    //}
-
-    //void OnDrag(Vector2 delta)
-    //{
-    //    if (m_pStick == null)
-    //        return;
-
-    //    if (0.0f == delta.magnitude)
-    //        return;
-
-    //    m_vOldPos = m_vCurrentPos;
-    //    m_vCurrentPos = GetPosToTouch();
-
-    //    // OldPos가 Zero(초기화 상태)이면 갑자기 조이스틱이 확 튀어가기 때문에 아래처럼 보완해줌
-    //    if (Vector3.zero == m_vOldPos)
-    //        m_vOldPos = m_vCurrentPos;
-
-    //    // SGUtil.Log("Delta : {0}, Magnitude : {1}, OldPos : {2}, CurPos : {3}", delta, delta.magnitude, m_vOldPos, m_vCurrentPos);
-
-    //    Vector3 vGap = GetConvertPosToTouchPos(m_vOldPos, m_vCurrentPos);
-    //    SetTargetDragging(vGap);
-    //}
+    #region Members : Event
+    public Action                            m_pEventToPressOn  = null;
+    public Action                            m_pEventToPressOff = null;
+    public Action<Vector3, Vector3, Vector3> m_pEventToDrag     = null;
+    #endregion
 
 
-    //// ------------------------------------------------------------
-    //// 내부 유틸함수들
-    //void SetPressToOn()
-    //{
-    //    StopAllCoroutines();
-    //    SendMsgToDoubleTabMethode();
-    //    TweenColorToFadeWidgets(Color.white, 1.0f, 0.1f, UITweener.Method.EaseIn);
+    #region System Functions
+    public override void Start()
+    {
+    }
+    public override void Update()
+    {
+        UpdateSpring();
+        UpdateDrag();
+    }
+    public override void OnEnable()
+    {
+        SetThumbLocalPos(Vector3.zero);
+    }
+    public override void OnDisable()
+    {
+        SetThumbLocalPos(Vector3.zero);
+    }
+    #endregion
 
-    //    Vector3 vTouchPos = GetPosToTouch();
 
-    //    if (true == m_bIsCenterOnToPress)
-    //        m_vStartTouchPos = vTouchPos;
+    #region Utility Functions
+    void UpdateDrag()
+    {
+        if (false == m_bIsPressOn)
+            return;
 
-    //    m_vOldPos = vTouchPos;
-    //    m_vCurrentPos = vTouchPos;
+        CallEventToDrag(m_vStartPosition, GetThumbWorldPos(),
+            GetConvertPosToTouchPos(m_vBeforePos, m_vCurrentPos));
+    }
+    void UpdateSpring()
+    {
+        if (true == m_bIsPressOn)
+            return;
 
-    //    SetPosToWidget(m_vStartTouchPos);
-    //}
+        if (SHMath.EPSILON > SHMath.GetMagnitude(GetPosition(), GetThumbWorldPos()))
+            return;
+        
+        SetThumbWorldPos(SHPhysics.CalculationSpring(GetPosition(), GetThumbWorldPos(), ref m_vSpringSpeed, 1000.0f, 20.0f));
+    }
+    void SetThumbWorldPos(Vector3 vPos)
+    {
+        if (null == m_pThumb)
+            return;
 
-    //void SetPressToOff()
-    //{
-    //    // Release the finger control and set the joystick back to the default position
-    //    // target.position = userInitTouchPos;
-    //    SetPosToWidget(m_vStartTouchPos);
+        m_pThumb.position = vPos;
+    }
+    Vector3 GetThumbWorldPos()
+    {
+        if (null == m_pThumb)
+            return Vector3.zero;
 
-    //    m_vOldPos = Vector3.zero;
-    //    m_vCurrentPos = Vector3.zero;
-    //}
+        return m_pThumb.position;
+    }
+    void SetThumbLocalPos(Vector3 vPos)
+    {
+        if (null == m_pThumb)
+            return;
 
-    //void SetTargetDragging(Vector3 vGap)
-    //{
-    //    m_pStick.position += vGap;
+        m_pThumb.localPosition = vPos;
+    }
+    Vector3 GetThumbLocalPos()
+    {
+        if (null == m_pThumb)
+            return Vector3.zero;
 
-    //    // Calculate the length. This involves a squareroot operation,
-    //    // so it's slightly expensive. We re-use this length for multiple
-    //    // things below to avoid doing the square-root more than one.
-    //    Vector3 vLocalPos = m_pStick.localPosition;
-    //    float fLength = vLocalPos.magnitude;
+        return m_pThumb.localPosition;
+    }
+    void SetThumbDragPos(Vector3 vMovePos)
+    {
+        if (null == m_pThumb)
+            return;
 
-    //    // If the length of the vector is smaller than the deadZone m_fRadius,
-    //    // set the position to the origin.
-    //    if (fLength < deadZone)
-    //        vLocalPos = Vector2.zero;
-    //    else if (fLength > m_fRadius)
-    //        vLocalPos = Vector3.ClampMagnitude(vLocalPos, m_fRadius);
+        SetThumbWorldPos(GetThumbWorldPos() + vMovePos);
 
-    //    m_pStick.localPosition = vLocalPos;
-    //}
+        var vLocalPos = m_pThumb.localPosition;
+        if (vLocalPos.magnitude > m_fMoveRadius)
+            vLocalPos = Vector3.ClampMagnitude(vLocalPos, m_fMoveRadius);
 
-    //void SetSpringStick()
-    //{
-    //    if (false == IsZeroToTouchPos())
-    //        return;
+        SetThumbLocalPos(vLocalPos);
+    }
+    Vector3 GetTouchPos()
+    {
+        var pRay      = UICamera.currentCamera.ScreenPointToRay(UICamera.lastEventPosition);
+        var vTouchPos = pRay.GetPoint(0.0f);
+        vTouchPos.z   = 0.0f;
+        return vTouchPos;
+    }
+    Vector3 GetConvertPosToTouchPos(Vector3 vOldPos, Vector3 vCurPos)
+    {
+        if (null == m_pThumb)
+            return Vector3.zero;
 
-    //    Vector3 vCenterPos = m_vStartTouchPos;
-    //    Vector3 vTargetPos = m_pStick.position;
-    //    m_pStick.position = SHPhysics.CalculationSpring(vCenterPos, vTargetPos, ref m_vSpringSpeed, 1000.0f, 20.0f);
-    //}
+        var vOffset = (vCurPos - vOldPos);
+        vOffset.z = 0.0f;
 
-    //Vector3 GetConvertPosToTouchPos(Vector3 vOldPos, Vector3 vPos)
-    //{
-    //    Vector3 vOffset = (vPos - vOldPos);
+        if (false == Vector3.zero.Equals(vOffset))
+        {
+            vOffset = m_pThumb.InverseTransformDirection(vOffset);
+            vOffset = m_pThumb.TransformDirection(vOffset);
+        }
+        
+        return vOffset;
+    }
+    #endregion
 
-    //    if (vOffset.x != 0f || vOffset.y != 0f)
-    //    {
-    //        vOffset = m_pStick.InverseTransformDirection(vOffset);
-    //        vOffset.Scale(m_vScale);
-    //        vOffset = m_pStick.TransformDirection(vOffset);
-    //    }
 
-    //    vOffset.z = 0.0f;
-    //    return vOffset;
-    //}
+    #region UI Event Functions
+    void OnPress(bool bPressed)
+    {
+        m_vBeforePos = m_vCurrentPos = GetTouchPos();
+        m_bIsPressOn = bPressed;
+        
+        if (true == bPressed)
+        {
+            if (true == m_bIsCenterOnToPress)
+                SetPosition(m_vCurrentPos);
 
-    //Vector3 GetTargetNormalize()
-    //{
-    //    Vector3 vLocalPos = m_pStick.localPosition;
+            CallEventToPressOn();
+        }   
+        else
+        {
+            CallEventToPressOff();
+        }
+    }
+    void OnDrag(Vector2 vDelta)
+    {
+        if (true == Vector2.zero.Equals(vDelta))
+            return;
+        
+        var vTouchPos = GetTouchPos();
+        if (0.01f > SHMath.GetMagnitude(vTouchPos, m_vCurrentPos))
+            return;
+        
+        m_vBeforePos  = m_vCurrentPos;
+        m_vCurrentPos = vTouchPos;
+        
+        SetThumbDragPos(
+            GetConvertPosToTouchPos(m_vBeforePos, m_vCurrentPos));
+    }
+    void CallEventToPressOn()
+    {
+        if (null == m_pEventToPressOn)
+            return;
 
-    //    if (false == normalize)
-    //        return vLocalPos;
-    //    else
-    //        return vLocalPos / m_fRadius * Mathf.InverseLerp(m_fRadius, deadZone, 1);
-    //}
+        m_pEventToPressOn();
+    }
+    void CallEventToPressOff()
+    {
+        if (null == m_pEventToPressOff)
+            return;
 
-    //Vector3 GetPosToTouch()
-    //{
-    //    //set Joystick to finger touchposition
-    //    Ray ray = UICamera.currentCamera.ScreenPointToRay(UICamera.lastEventPosition);
-    //    Vector3 vTouchPos = ray.GetPoint(0.0f);
-    //    vTouchPos.z = 0.0f;
-    //    return vTouchPos;
-    //}
+        m_pEventToPressOff();
+    }
+    void CallEventToDrag(Vector3 vCenterPos, Vector3 vThumbPos, Vector3 vMovePos)
+    {
+        if (null == m_pEventToDrag)
+            return;
 
-    //void SetPosToWidget(Vector3 vPos)
-    //{
-    //    foreach (Transform pWidget in widgetsToCenter)
-    //    {
-    //        pWidget.position = vPos;
-    //    }
-    //}
-
-    //bool IsZeroToTouchPos()
-    //{
-    //    return (Vector3.zero == m_vOldPos && Vector3.zero == m_vCurrentPos);
-    //}
-
-    //void SendMsgToDoubleTabMethode()
-    //{
-    //    if (Time.deltaTime >= doubleTapTimeWindow)
-    //        return;
-
-    //    if (null == doubleTapMessageTarget)
-    //        return;
-
-    //    if ("" == doubleTabMethodeName)
-    //        return;
-
-    //    doubleTapMessageTarget.SendMessage(doubleTabMethodeName, SendMessageOptions.DontRequireReceiver);
-    //}
+        m_pEventToDrag(vCenterPos, vThumbPos, vMovePos);
+    }
+    #endregion
 }

@@ -6,6 +6,8 @@ using System.Collections.Generic;
 
 public static class SHMath
 {
+    public static float EPSILON = 0.0001f;
+
     // 소수점 자르기
     public static float Round(float fValue, int iOmit)
     {
@@ -59,8 +61,14 @@ public static class SHMath
         return Vector3.Reflect(GetDirection(vFrom, vTo), vNormal).normalized;
     }
 
+    // 벡터 : 두 벡터의 길이 구하기
+    public static float GetMagnitude(Vector3 vFrom, Vector3 vTo)
+    {
+        return (vTo - vFrom).magnitude;
+    }
+
     // 보간 : 두 지점 사이의 X비율에 해당하는 값 구하기
-	public static int Lerp(int iMin, int iMax, float fRatio)
+    public static int Lerp(int iMin, int iMax, float fRatio)
 	{
 		if (iMax < iMin)
 			Swap(ref iMin, ref iMax);

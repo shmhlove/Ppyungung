@@ -4,6 +4,12 @@ using System.Collections;
 
 public class SHUIPanel_CtrlPad : SHUIBasePanel
 {
+    #region Members : Inspector
+    [Header("Ctrl Widgets")]
+    [SerializeField] public SHUIJoystick m_pJoystick = null;
+    #endregion
+
+
     #region Members
     private Action m_pEventToPress = null;
     #endregion
@@ -18,7 +24,7 @@ public class SHUIPanel_CtrlPad : SHUIBasePanel
         m_pEventToPress = (Action)pArgs[0];
     }
     #endregion
-    
+
 
     #region Event Handler
     public void OnPressToTouchPad()
