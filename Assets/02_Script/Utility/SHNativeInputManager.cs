@@ -9,29 +9,33 @@ using DicTouch = System.Collections.Generic.Dictionary<int, UnityEngine.Vector2>
 public class SHNativeInputManager : SHSingleton<SHNativeInputManager>
 {
     #region Member : TouchInfo
-    public DicTouch m_dicTouchEnter       = new DicTouch();
-    public DicTouch m_dicTouchEnd         = new DicTouch();
-    public DicTouch m_dicCurrentTouchMove = new DicTouch();
-    public DicTouch m_dicBeforeTouchMove  = new DicTouch();
+    [HideInInspector] public DicTouch m_dicTouchEnter       = new DicTouch();
+    [HideInInspector] public DicTouch m_dicTouchEnd         = new DicTouch();
+    [HideInInspector] public DicTouch m_dicCurrentTouchMove = new DicTouch();
+    [HideInInspector] public DicTouch m_dicBeforeTouchMove  = new DicTouch();
     #endregion
 
 
     #region Member : TouchOrder
-    public List<int> m_pTouchOrders = new List<int>();
+    [HideInInspector] public List<int> m_pTouchOrders = new List<int>();
+    #endregion
+
+
+    #region Member : Constants
+    [HideInInspector] public float MOVE_SENSITIVITY   = 5.0f;
     #endregion
 
 
     #region Member : Event
-    public Action<int, Vector2> m_pEventToEnter = null;
-    public Action<int, Vector2> m_pEventToDrag  = null;
-    public Action<int, Vector2> m_pEventToEnd   = null;
+    [HideInInspector] public Action<int, Vector2> m_pEventToEnter = null;
+    [HideInInspector] public Action<int, Vector2> m_pEventToDrag  = null;
+    [HideInInspector] public Action<int, Vector2> m_pEventToEnd   = null;
     #endregion
 
 
     #region System Functions
     public override void OnInitialize() { }
     public override void OnFinalize() { }
-
     public override void Update()
     {
         base.Update();
@@ -78,7 +82,6 @@ public class SHNativeInputManager : SHSingleton<SHNativeInputManager>
 
         return m_pTouchOrders[0];
     }
-
     public int GetLastFingerID()
     {
         if (0 == m_pTouchOrders.Count)
@@ -86,7 +89,6 @@ public class SHNativeInputManager : SHSingleton<SHNativeInputManager>
 
         return m_pTouchOrders[(m_pTouchOrders.Count - 1)];
     }
-
     public Vector2 GetBeforeDragPosition(int iFingerID)
     {
         if (false == m_dicBeforeTouchMove.ContainsKey(iFingerID))
@@ -123,7 +125,6 @@ public class SHNativeInputManager : SHSingleton<SHNativeInputManager>
         if (null != m_pEventToEnter)
             m_pEventToEnter(iFingerID, vTouchPos);
     }
-
     void SetTouchEnd(int iFingerID, Vector2 vTouchPos)
     {
         m_dicTouchEnd[iFingerID]        = vTouchPos;
@@ -135,11 +136,10 @@ public class SHNativeInputManager : SHSingleton<SHNativeInputManager>
         if (null != m_pEventToEnter)
             m_pEventToEnd(iFingerID, vTouchPos);
     }
-
     void SetTouchMove(int iFingerID, Vector2 vTouchPos)
     {
         var vCurrentPos = m_dicCurrentTouchMove[iFingerID];
-        if (SHMath.EPSILON > SHMath.GetMagnitude(vTouchPos, vCurrentPos))
+        if (MOVE_SENSITIVITY > SHMath.GetMagnitude(vTouchPos, vCurrentPos))
             return;
 
         m_dicBeforeTouchMove[iFingerID]  = vCurrentPos;
@@ -147,11 +147,6 @@ public class SHNativeInputManager : SHSingleton<SHNativeInputManager>
 
         if (null != m_pEventToEnter)
             m_pEventToDrag(iFingerID, vTouchPos);
-
-        //Debug.LogFormat("Input - {0} : ({1}/{2})", 
-        //    iFingerID,
-        //    m_dicBeforeTouchMove[iFingerID],
-        //    m_dicCurrentTouchMove[iFingerID]);
     }
     #endregion
 }

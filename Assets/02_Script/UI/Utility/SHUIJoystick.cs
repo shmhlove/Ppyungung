@@ -57,11 +57,6 @@ public class SHUIJoystick : SHMonoWrapper
         var vBeforePos  = Single.Input.GetBeforeDragPosition(m_iTouchID);
         var vCurrentPos = Single.Input.GetCurrentDragPosition(m_iTouchID);
 
-        Debug.LogFormat("Input - {0} : ({1}/{2})",
-            m_iTouchID,
-            vBeforePos,
-            vCurrentPos);
-
         CallEventToDrag(m_vStartPosition, GetThumbWorldPos(), (vCurrentPos - vBeforePos));
     }
     void UpdateSpring()
