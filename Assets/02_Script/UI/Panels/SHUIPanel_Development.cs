@@ -86,10 +86,12 @@ public class SHUIPanel_Development : SHUIBasePanel
     public void OnClickToDragUp()
     {
         Single.Input.DRAG_SENSITIVITY += 1.0f;
+        SetDragValue();
     }
     public void OnClickToDragDown()
     {
         Single.Input.DRAG_SENSITIVITY -= 1.0f;
+        SetDragValue();
     }
     #endregion
 }
