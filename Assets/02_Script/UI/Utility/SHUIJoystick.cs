@@ -7,6 +7,7 @@ public class SHUIJoystick : SHMonoWrapper
     #region Members : Inspector
     [SerializeField] private Transform     m_pThumb             = null;
     [SerializeField] private float         m_fMoveRadius        = 80.0f;
+    [SerializeField] private float         m_fSensitivity       = 0.01f;
     [SerializeField] private bool          m_bIsCenterOnToPress = false;
     #endregion
 
@@ -109,7 +110,7 @@ public class SHUIJoystick : SHMonoWrapper
     Vector3 GetTouchPos()
     {
         var pRay      = UICamera.currentCamera.ScreenPointToRay(UICamera.lastEventPosition);
-        var vTouchPos = pRay.GetPoint(0.0f);
+        var vTouchPos = pRay.origin;//.GetPoint(0.0f);
         vTouchPos.z   = 0.0f;
         return vTouchPos;
     }
@@ -156,14 +157,16 @@ public class SHUIJoystick : SHMonoWrapper
             return;
         
         var vTouchPos = GetTouchPos();
-        if (0.01f > SHMath.GetMagnitude(vTouchPos, m_vCurrentPos))
+        if (m_fSensitivity > SHMath.GetMagnitude(vTouchPos, m_vCurrentPos))
             return;
         
         m_vBeforePos  = m_vCurrentPos;
         m_vCurrentPos = vTouchPos;
-        
-        SetThumbDragPos(
-            GetConvertPosToTouchPos(m_vBeforePos, m_vCurrentPos));
+
+        var vConvertPos = GetConvertPosToTouchPos(m_vBeforePos, m_vCurrentPos);
+        Debug.LogFormat("X:{0}, Y:{1}", vConvertPos.x, vConvertPos.y);
+
+        SetThumbDragPos(vConvertPos);
     }
     void CallEventToPressOn()
     {
