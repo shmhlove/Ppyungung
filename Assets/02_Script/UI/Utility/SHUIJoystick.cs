@@ -54,8 +54,8 @@ public class SHUIJoystick : SHMonoWrapper
         if (false == m_bIsPressOn)
             return;
 
-        var vBeforePos  = Single.Input.GetBeforeDragPosition(m_iTouchID);
-        var vCurrentPos = Single.Input.GetCurrentDragPosition(m_iTouchID);
+        var vBeforePos  = Single.Input.GetBeforeDragPos(m_iTouchID);
+        var vCurrentPos = Single.Input.GetCurrentDragPos(m_iTouchID);
 
         CallEventToDrag(m_vStartPosition, GetThumbWorldPos(), (vCurrentPos - vBeforePos));
     }
@@ -139,9 +139,10 @@ public class SHUIJoystick : SHMonoWrapper
     #region UI Event Functions
     void OnPress(bool bPressed)
     {
-        m_vBeforePos = m_vCurrentPos = GetTouchPos();
-        m_bIsPressOn = bPressed;
-        
+        m_vBeforePos   = m_vCurrentPos = GetTouchPos();
+        m_bIsPressOn   = bPressed;
+        m_vSpringSpeed = Vector3.zero;
+
         if (true == bPressed)
         {
             if (true == m_bIsCenterOnToPress)
@@ -189,4 +190,16 @@ public class SHUIJoystick : SHMonoWrapper
         m_pEventToDrag(vCenterPos, vThumbPos, vMovePos);
     }
     #endregion
+
+    public UILabel m_pLog = null;
+    public void OnClickUp()
+    {
+        Single.Input.MOVE_SENSITIVITY += 1.0f;
+        m_pLog.text = Single.Input.MOVE_SENSITIVITY.ToString();
+    }
+    public void OnClickDown()
+    {
+        Single.Input.MOVE_SENSITIVITY -= 1.0f;
+        m_pLog.text = Single.Input.MOVE_SENSITIVITY.ToString();
+    }
 }

@@ -89,14 +89,14 @@ public class SHNativeInputManager : SHSingleton<SHNativeInputManager>
 
         return m_pTouchOrders[(m_pTouchOrders.Count - 1)];
     }
-    public Vector2 GetBeforeDragPosition(int iFingerID)
+    public Vector2 GetBeforeDragPos(int iFingerID)
     {
         if (false == m_dicBeforeTouchMove.ContainsKey(iFingerID))
             return Vector2.zero;
 
         return m_dicBeforeTouchMove[iFingerID];
     }
-    public Vector2 GetCurrentDragPosition(int iFingerID)
+    public Vector2 GetCurrentDragPos(int iFingerID)
     {
         if (false == m_dicCurrentTouchMove.ContainsKey(iFingerID))
             return Vector2.zero;
