@@ -265,14 +265,6 @@
 			"s_Path": "Prefab/Stick/Stick_9"
 		},
 		{
-			"s_Name": "UIRoot_Global",
-			"s_FileName": "UIRoot_Global.prefab",
-			"s_Extension": ".prefab",
-			"s_Size": "10552",
-			"s_Hash": "573283AD3B037896ABA6827598B5DB53",
-			"s_Path": "Prefab/UI/UIRoot_Global"
-		},
-		{
 			"s_Name": "Panel_Development",
 			"s_FileName": "Panel_Development.prefab",
 			"s_Extension": ".prefab",
@@ -303,6 +295,14 @@
 			"s_Size": "41908",
 			"s_Hash": "7C282A67EB1B8F6F16E1D78C6E0DD070",
 			"s_Path": "Prefab/UI/Panel/Panel_Notice"
+		},
+		{
+			"s_Name": "UIRoot_Global",
+			"s_FileName": "UIRoot_Global.prefab",
+			"s_Extension": ".prefab",
+			"s_Size": "10552",
+			"s_Hash": "573283AD3B037896ABA6827598B5DB53",
+			"s_Path": "Prefab/UI/Root/UIRoot_Global"
 		},
 		{
 			"s_Name": "Audio_BGM_GameOver",
