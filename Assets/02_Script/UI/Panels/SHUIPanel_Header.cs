@@ -6,8 +6,9 @@ public class SHUIPanel_Header : SHUIBasePanel
 {
     #region Members : Inspector
     [Header("Login Info")]
-    [SerializeField] private UILabel m_pLabel_ID       = null;
-    [SerializeField] private UILabel m_pLabel_UserName = null;
+    [SerializeField] private UILabel m_pLabel_ID        = null;
+    [SerializeField] private UILabel m_pLabel_UserName  = null;
+    [SerializeField] private UILabel m_pLabel_DragValue = null;
     #endregion
 
 
@@ -55,6 +56,13 @@ public class SHUIPanel_Header : SHUIBasePanel
         else
             m_pLabel_UserName.text = strUserName;
     }
+    void SetDragValue()
+    {
+        if (null == m_pLabel_DragValue)
+            return;
+
+        m_pLabel_DragValue.text = string.Format("Drag Value : {0}", Single.Input.DRAG_SENSITIVITY);
+    }
     #endregion
 
 
@@ -74,6 +82,14 @@ public class SHUIPanel_Header : SHUIBasePanel
     public void OnClickToLogout()
     {
         Single.Google.Logout();
+    }
+    public void OnClickToDragUp()
+    {
+        Single.Input.DRAG_SENSITIVITY += 1.0f;
+    }
+    public void OnClickToDragDown()
+    {
+        Single.Input.DRAG_SENSITIVITY -= 1.0f;
     }
     #endregion
 }

@@ -22,7 +22,7 @@ public class SHNativeInputManager : SHSingleton<SHNativeInputManager>
 
 
     #region Member : Constants
-    [HideInInspector] public float MOVE_SENSITIVITY   = 7.0f;
+    [HideInInspector] public float DRAG_SENSITIVITY   = 7.0f;
     #endregion
 
 
@@ -139,7 +139,7 @@ public class SHNativeInputManager : SHSingleton<SHNativeInputManager>
     void SetTouchMove(int iFingerID, Vector2 vTouchPos)
     {
         var vCurrentPos = m_dicCurrentTouchMove[iFingerID];
-        if (MOVE_SENSITIVITY > SHMath.GetMagnitude(vTouchPos, vCurrentPos))
+        if (DRAG_SENSITIVITY > SHMath.GetMagnitude(vTouchPos, vCurrentPos))
             return;
 
         m_dicBeforeTouchMove[iFingerID]  = vCurrentPos;
