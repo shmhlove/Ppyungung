@@ -33,9 +33,6 @@ public class SHUIJoystick : SHMonoWrapper
     public override void Update()
     {
         UpdateSpring();
-    }
-    public override void FixedUpdate()
-    {
         UpdateDrag();
     }
     public override void OnEnable()
@@ -54,8 +51,9 @@ public class SHUIJoystick : SHMonoWrapper
     {
         if (false == m_bIsPressOn)
             return;
-        
-        CallEventToDrag(m_vStartPosition, GetThumbWorldPos(), (m_vBeforePos - m_vCurrentPos));
+
+        CallEventToDrag(m_vStartPosition, GetThumbWorldPos(),
+            GetConvertPosToTouchPos(m_vBeforePos, m_vCurrentPos));
     }
     void UpdateSpring()
     {
@@ -95,6 +93,19 @@ public class SHUIJoystick : SHMonoWrapper
 
         return m_pThumb.localPosition;
     }
+    void SetThumbDragPos(Vector3 vMovePos)
+    {
+        if (null == m_pThumb)
+            return;
+
+        SetThumbWorldPos(GetThumbWorldPos() + vMovePos);
+
+        var vLocalPos = m_pThumb.localPosition;
+        if (vLocalPos.magnitude > m_fMoveRadius)
+            vLocalPos = Vector3.ClampMagnitude(vLocalPos, m_fMoveRadius);
+
+        SetThumbLocalPos(vLocalPos);
+    }
     Vector3 GetTouchPos()
     {
         var pRay      = UICamera.currentCamera.ScreenPointToRay(UICamera.lastEventPosition);
@@ -108,43 +119,15 @@ public class SHUIJoystick : SHMonoWrapper
             return Vector3.zero;
 
         var vOffset = (vCurPos - vOldPos);
-        if ((0.0f != vOffset.x) || (0.0f != vOffset.y))
+        vOffset.z = 0.0f;
+
+        if (false == Vector3.zero.Equals(vOffset))
         {
             vOffset = m_pThumb.InverseTransformDirection(vOffset);
             vOffset = m_pThumb.TransformDirection(vOffset);
         }
-
-        vOffset.z = 0.0f;
+        
         return vOffset;
-    }
-    void SetPressToOn()
-    {
-        var vTouchPos = GetTouchPos();
-        if (true == m_bIsCenterOnToPress)
-        {
-            SetPosition(vTouchPos);
-        }
-        
-        m_bIsPressOn  = true;
-        CallEventToPressOn();
-    }
-    void SetPressToOff()
-    {
-        m_bIsPressOn  = false;
-        CallEventToPressOff();
-    }
-    void SetTargetDragging(Vector3 vGap)
-    {
-        if (null == m_pThumb)
-            return;
-
-        SetThumbWorldPos(GetThumbWorldPos() + vGap);
-        
-        var vLocalPos = m_pThumb.localPosition;
-        if (vLocalPos.magnitude > m_fMoveRadius)
-            vLocalPos = Vector3.ClampMagnitude(vLocalPos, m_fMoveRadius);
-
-        SetThumbLocalPos(vLocalPos);
     }
     #endregion
 
@@ -152,26 +135,34 @@ public class SHUIJoystick : SHMonoWrapper
     #region UI Event Functions
     void OnPress(bool bPressed)
     {
-        m_vBeforePos  = Vector3.zero;
-        m_vCurrentPos = Vector3.zero;
-
+        m_vBeforePos = m_vCurrentPos = GetTouchPos();
+        m_bIsPressOn = bPressed;
+        
         if (true == bPressed)
-            SetPressToOn();
-        else
-            SetPressToOff();
-    }
-    void OnDrag(Vector2 delta)
-    {
-        if (true == m_vCurrentPos.Equals(GetTouchPos()))
-            return;
+        {
+            if (true == m_bIsCenterOnToPress)
+                SetPosition(m_vCurrentPos);
 
+            CallEventToPressOn();
+        }   
+        else
+        {
+            CallEventToPressOff();
+        }
+    }
+    void OnDrag(Vector2 vDelta)
+    {
+        if (true == Vector2.zero.Equals(vDelta))
+            return;
+        
+        var vTouchPos = GetTouchPos();
+        if (0.01f > SHMath.GetMagnitude(vTouchPos, m_vCurrentPos))
+            return;
+        
         m_vBeforePos  = m_vCurrentPos;
-        m_vCurrentPos = GetTouchPos();
+        m_vCurrentPos = vTouchPos;
         
-        if (Vector3.zero == m_vBeforePos)
-            m_vBeforePos = m_vCurrentPos;
-        
-        SetTargetDragging(
+        SetThumbDragPos(
             GetConvertPosToTouchPos(m_vBeforePos, m_vCurrentPos));
     }
     void CallEventToPressOn()
