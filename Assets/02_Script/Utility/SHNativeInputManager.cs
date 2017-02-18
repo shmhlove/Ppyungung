@@ -22,7 +22,7 @@ public class SHNativeInputManager : SHSingleton<SHNativeInputManager>
 
 
     #region Member : Constants
-    [HideInInspector] public float DRAG_SENSITIVITY   = 7.0f;
+    [HideInInspector] public float DRAG_SENSITIVITY   = 20.0f;
     #endregion
 
 
