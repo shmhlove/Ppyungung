@@ -26,6 +26,7 @@ public class SHUIJoystick : SHMonoWrapper
     public Action<Vector3, Vector3, Vector3> m_pEventToDrag     = null;
     #endregion
 
+    public UILabel m_pLabelToLog = null;
 
     #region System Functions
     public override void Start()
@@ -190,4 +191,15 @@ public class SHUIJoystick : SHMonoWrapper
         m_pEventToDrag(vCenterPos, vThumbPos, vMovePos);
     }
     #endregion
+
+    public void OnClickToUp()
+    {
+        m_fSensitivity += 0.001f;
+        m_pLabelToLog.text = m_fSensitivity.ToString();
+    }
+    public void OnClickToDown()
+    {
+        m_fSensitivity -= 0.001f;
+        m_pLabelToLog.text = m_fSensitivity.ToString();
+    }
 }
