@@ -114,8 +114,8 @@ public class SHUIWidget_Stick : SHMonoWrapper
 
         vMovePos = vMovePos.normalized;
 
-        AddLocalPositionX(5.0f * vMovePos.x);
-        AddLocalPositionY(5.0f * vMovePos.y);
+        AddLocalPositionX(5.0f * -vMovePos.x);
+        AddLocalPositionY(5.0f * -vMovePos.y);
     }
     #endregion
 
