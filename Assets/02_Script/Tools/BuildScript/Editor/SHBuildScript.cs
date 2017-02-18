@@ -160,8 +160,6 @@ class SHBuildScript
         string strBuildName = GetBuildName(eTarget, Single.AppInfo.GetAppName(), Single.Table.GetClientVersion());
         Debug.LogFormat("** Build Start({0}) -> {1}", strBuildName, DateTime.Now.ToString("yyyy-MM-dd [ HH:mm:ss ]"));
         {
-            LogCommandArgs();
-
             EditorUserBuildSettings.SwitchActiveBuildTarget(eTarget);
 
             var strFileName = string.Format("{0}/{1}", SHPath.GetPathToBuild(), strBuildName);
@@ -192,19 +190,6 @@ class SHBuildScript
             return string.Format("{0}.apk", strAppName);
         else
             return "xcode";
-    }
-    // 유틸 : 커맨드 옵션 로그
-    static void LogCommandArgs()
-    {
-        var pArgs = System.Environment.GetCommandLineArgs();
-        foreach (var strArg in pArgs)
-        {
-            var strSplits = strArg.Split(':');
-            if (2 == strSplits.Length)
-                Debug.LogFormat("Command Option {0}", strArg);
-            else
-                Debug.LogErrorFormat("Error Command Option {0} (format is Key:Value)", strArg);
-        }
     }
     // 유틸 : 커맨드 옵션 얻기
     static string GetCommandArgs(string strKey)
