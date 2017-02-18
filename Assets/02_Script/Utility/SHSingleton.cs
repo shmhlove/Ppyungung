@@ -43,6 +43,7 @@ public static class Single
     public static SHCoroutine               Coroutine           { get { return SHCoroutine.Instance; } }
     public static SHTimer                   Timer               { get { return SHTimer.Instance; } }
     public static SHObjectPool              ObjectPool          { get { return SHObjectPool.Instance; } }
+    public static SHNativeInputManager      Input               { get { return SHNativeInputManager.Instance; } }
 }
 
 public abstract class SHSingleton<T> : SHMonoWrapper where T : SHSingleton<T>

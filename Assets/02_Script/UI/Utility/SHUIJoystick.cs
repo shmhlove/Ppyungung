@@ -7,13 +7,13 @@ public class SHUIJoystick : SHMonoWrapper
     #region Members : Inspector
     [SerializeField] private Transform     m_pThumb             = null;
     [SerializeField] private float         m_fMoveRadius        = 80.0f;
-    [SerializeField] private float         m_fSensitivity       = 0.01f;
     [SerializeField] private bool          m_bIsCenterOnToPress = false;
     #endregion
 
 
     #region Members : Info
     private bool        m_bIsPressOn     = false;
+    private int         m_iTouchID       = -1;
     private Vector3     m_vBeforePos     = Vector2.zero;
     private Vector3     m_vCurrentPos    = Vector2.zero;
     private Vector3     m_vSpringSpeed   = Vector3.zero;
@@ -25,12 +25,12 @@ public class SHUIJoystick : SHMonoWrapper
     public Action                            m_pEventToPressOff = null;
     public Action<Vector3, Vector3, Vector3> m_pEventToDrag     = null;
     #endregion
-
-    public UILabel m_pLabelToLog = null;
+    
 
     #region System Functions
     public override void Start()
     {
+        Single.Input.CreateSingleton();
     }
     public override void Update()
     {
@@ -54,8 +54,15 @@ public class SHUIJoystick : SHMonoWrapper
         if (false == m_bIsPressOn)
             return;
 
-        CallEventToDrag(m_vStartPosition, GetThumbWorldPos(),
-            GetConvertPosToTouchPos(m_vBeforePos, m_vCurrentPos));
+        var vBeforePos  = Single.Input.GetBeforeDragPosition(m_iTouchID);
+        var vCurrentPos = Single.Input.GetCurrentDragPosition(m_iTouchID);
+
+        Debug.LogFormat("Input - {0} : ({1}/{2})",
+            m_iTouchID,
+            vBeforePos,
+            vCurrentPos);
+
+        CallEventToDrag(m_vStartPosition, GetThumbWorldPos(), (vCurrentPos - vBeforePos));
     }
     void UpdateSpring()
     {
@@ -111,7 +118,7 @@ public class SHUIJoystick : SHMonoWrapper
     Vector3 GetTouchPos()
     {
         var pRay      = UICamera.currentCamera.ScreenPointToRay(UICamera.lastEventPosition);
-        var vTouchPos = pRay.origin;//.GetPoint(0.0f);
+        var vTouchPos = pRay.GetPoint(0.0f);
         vTouchPos.z   = 0.0f;
         return vTouchPos;
     }
@@ -145,10 +152,13 @@ public class SHUIJoystick : SHMonoWrapper
             if (true == m_bIsCenterOnToPress)
                 SetPosition(m_vCurrentPos);
 
+            Single.Input.Refash();
+            m_iTouchID = Single.Input.GetLastFingerID();
             CallEventToPressOn();
         }   
         else
         {
+            m_iTouchID = -1;
             CallEventToPressOff();
         }
     }
@@ -157,17 +167,10 @@ public class SHUIJoystick : SHMonoWrapper
         if (true == Vector2.zero.Equals(vDelta))
             return;
         
-        var vTouchPos = GetTouchPos();
-        if (m_fSensitivity > SHMath.GetMagnitude(vTouchPos, m_vCurrentPos))
-            return;
-        
         m_vBeforePos  = m_vCurrentPos;
-        m_vCurrentPos = vTouchPos;
-
-        var vConvertPos = GetConvertPosToTouchPos(m_vBeforePos, m_vCurrentPos);
-        Debug.LogFormat("X:{0}, Y:{1}", vConvertPos.x, vConvertPos.y);
-
-        SetThumbDragPos(vConvertPos);
+        m_vCurrentPos = GetTouchPos();
+        
+        SetThumbDragPos(GetConvertPosToTouchPos(m_vBeforePos, m_vCurrentPos));
     }
     void CallEventToPressOn()
     {
@@ -191,15 +194,4 @@ public class SHUIJoystick : SHMonoWrapper
         m_pEventToDrag(vCenterPos, vThumbPos, vMovePos);
     }
     #endregion
-
-    public void OnClickToUp()
-    {
-        m_fSensitivity += 0.001f;
-        m_pLabelToLog.text = m_fSensitivity.ToString();
-    }
-    public void OnClickToDown()
-    {
-        m_fSensitivity -= 0.001f;
-        m_pLabelToLog.text = m_fSensitivity.ToString();
-    }
 }

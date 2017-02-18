@@ -1,36 +1,34 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
-public struct TouchEventParam
-{
-    public int iTouchPingerID;
-    public Vector2 vScreenTouchPos;
-    public Vector2 vWorldTouchPos;
-}
+using DicTouch = System.Collections.Generic.Dictionary<int, UnityEngine.Vector2>;
+
 
 public class SHNativeInputManager : SHSingleton<SHNativeInputManager>
 {
-    private Dictionary<int, Vector2> m_dicTouchEnter = new Dictionary<int, Vector2>();
-    public Dictionary<int, Vector2> TouchEnter
-    { get { return m_dicTouchEnter; } }
+    #region Member : TouchInfo
+    public DicTouch m_dicTouchEnter       = new DicTouch();
+    public DicTouch m_dicTouchEnd         = new DicTouch();
+    public DicTouch m_dicCurrentTouchMove = new DicTouch();
+    public DicTouch m_dicBeforeTouchMove  = new DicTouch();
+    #endregion
 
-    private Dictionary<int, Vector2> m_dicTouchEnd = new Dictionary<int, Vector2>();
-    public Dictionary<int, Vector2> TouchEnd
-    { get { return m_dicTouchEnd; } }
 
-    private Dictionary<int, Vector2> m_dicTouchMove = new Dictionary<int, Vector2>();
-    public Dictionary<int, Vector2> TouchMove
-    { get { return m_dicTouchMove; } }
+    #region Member : TouchOrder
+    public List<int> m_pTouchOrders = new List<int>();
+    #endregion
 
-    private List<int> m_pTouchOrders = new List<int>();
-    public List<int> TouchOrders
-    { get { return m_pTouchOrders; } }
 
-    public SHEvent EventToEnter = new SHEvent();
-    public SHEvent EventToDrag  = new SHEvent();
-    public SHEvent EventToEnd   = new SHEvent();
+    #region Member : Event
+    public Action<int, Vector2> m_pEventToEnter = null;
+    public Action<int, Vector2> m_pEventToDrag  = null;
+    public Action<int, Vector2> m_pEventToEnd   = null;
+    #endregion
 
+
+    #region System Functions
     public override void OnInitialize() { }
     public override void OnFinalize() { }
 
@@ -44,90 +42,35 @@ public class SHNativeInputManager : SHSingleton<SHNativeInputManager>
             for (int iLoop = 0; iLoop < Input.touchCount; ++iLoop)
             {
                 Touch pTouch = Input.GetTouch(iLoop);
-                if (pTouch.phase.Equals(TouchPhase.Began))
+                switch(pTouch.phase)
                 {
-                    OnTouchEnter(pTouch.fingerId, pTouch.position);
-                }
-                else if (pTouch.phase.Equals(TouchPhase.Ended) ||
-                        pTouch.phase.Equals(TouchPhase.Canceled))
-                {
-                    OnTouchEnd(pTouch.fingerId, pTouch.position);
-                }
-                else if (pTouch.phase.Equals(TouchPhase.Moved))
-                {
-                    OnTouchMove(pTouch.fingerId, pTouch.position);
+                    case TouchPhase.Began:      SetTouchEnter(pTouch.fingerId, pTouch.position); break;
+                    case TouchPhase.Ended: 
+                    case TouchPhase.Canceled:   SetTouchEnd(pTouch.fingerId, pTouch.position);   break;
+                    case TouchPhase.Moved:      SetTouchMove(pTouch.fingerId, pTouch.position);  break;
                 }
             }
         }
         // PC
         else
         {
-            if (Input.GetButtonDown("Fire1"))
+            switch(GetMousePhase())
             {
-                OnTouchEnter(0, new Vector2(Input.mousePosition.x, Input.mousePosition.y));
-            }
-            else if (Input.GetButtonUp("Fire1"))
-            {
-                OnTouchEnd(0, new Vector2(Input.mousePosition.x, Input.mousePosition.y));
-            }
-            else if (Input.GetButton("Fire1"))
-            {
-                OnTouchMove(0, new Vector2(Input.mousePosition.x, Input.mousePosition.y));
+                case TouchPhase.Began:      SetTouchEnter(0, new Vector2(Input.mousePosition.x, Input.mousePosition.y)); break;
+                case TouchPhase.Ended: 
+                case TouchPhase.Canceled:   SetTouchEnd(0, new Vector2(Input.mousePosition.x, Input.mousePosition.y));   break;
+                case TouchPhase.Moved:      SetTouchMove(0, new Vector2(Input.mousePosition.x, Input.mousePosition.y));  break;
             }
         }
     }
+    #endregion
 
-    void OnTouchEnter(int iFingerID, Vector2 vTouchPos)
+
+    #region Interface Functions
+    public void Refash()
     {
-        Vector3 vScreenPos = Vector3.zero;
-        vScreenPos.x = (vTouchPos.x / Screen.width);
-        vScreenPos.y = (vTouchPos.y / Screen.height);
-
-        m_dicTouchEnter[iFingerID] = vScreenPos;
-        m_dicTouchMove[iFingerID] = vScreenPos;
-        m_dicTouchEnd.Remove(iFingerID);
-        m_pTouchOrders.Add(iFingerID);
-
-        TouchEventParam pEventParam;
-        pEventParam.iTouchPingerID = iFingerID;
-        pEventParam.vScreenTouchPos = vScreenPos;
-        pEventParam.vWorldTouchPos = vTouchPos;
-        EventToEnter.Callback<TouchEventParam>(this, pEventParam);
+        Update();
     }
-
-    void OnTouchEnd(int iFingerID, Vector2 vTouchPos)
-    {
-        Vector3 vScreenPos = Vector3.zero;
-        vScreenPos.x = (vTouchPos.x / Screen.width);
-        vScreenPos.y = (vTouchPos.y / Screen.height);
-
-        m_dicTouchEnd[iFingerID] = vScreenPos;
-        m_dicTouchEnter.Remove(iFingerID);
-        m_dicTouchMove.Remove(iFingerID);
-        m_pTouchOrders.Remove(iFingerID);
-
-        TouchEventParam pEventParam;
-        pEventParam.iTouchPingerID = iFingerID;
-        pEventParam.vScreenTouchPos = vScreenPos;
-        pEventParam.vWorldTouchPos = vTouchPos;
-        EventToEnd.Callback<TouchEventParam>(this, pEventParam);
-    }
-
-    void OnTouchMove(int iFingerID, Vector2 vTouchPos)
-    {
-        Vector3 vScreenPos = Vector3.zero;
-        vScreenPos.x = (vTouchPos.x / Screen.width);
-        vScreenPos.y = (vTouchPos.y / Screen.height);
-
-        m_dicTouchMove[iFingerID] = vScreenPos;
-
-        TouchEventParam pEventParam;
-        pEventParam.iTouchPingerID = iFingerID;
-        pEventParam.vScreenTouchPos = vScreenPos;
-        pEventParam.vWorldTouchPos = vTouchPos;
-        EventToDrag.Callback<TouchEventParam>(this, pEventParam);
-    }
-
     public int GetFirstFingerID()
     {
         if (0 == m_pTouchOrders.Count)
@@ -143,4 +86,72 @@ public class SHNativeInputManager : SHSingleton<SHNativeInputManager>
 
         return m_pTouchOrders[(m_pTouchOrders.Count - 1)];
     }
+
+    public Vector2 GetBeforeDragPosition(int iFingerID)
+    {
+        if (false == m_dicBeforeTouchMove.ContainsKey(iFingerID))
+            return Vector2.zero;
+
+        return m_dicBeforeTouchMove[iFingerID];
+    }
+    public Vector2 GetCurrentDragPosition(int iFingerID)
+    {
+        if (false == m_dicCurrentTouchMove.ContainsKey(iFingerID))
+            return Vector2.zero;
+
+        return m_dicCurrentTouchMove[iFingerID];
+    }
+    #endregion
+
+
+    #region Utility Functions
+    TouchPhase GetMousePhase()
+    {
+        if (true == Input.GetButtonDown("Fire1")) return TouchPhase.Began;
+        if (true == Input.GetButtonUp("Fire1"))   return TouchPhase.Canceled;
+        if (true == Input.GetButton("Fire1"))     return TouchPhase.Moved;
+        return TouchPhase.Stationary;
+    }
+    void SetTouchEnter(int iFingerID, Vector2 vTouchPos)
+    {
+        m_dicTouchEnter[iFingerID]       = vTouchPos;
+        m_dicCurrentTouchMove[iFingerID] = vTouchPos;
+        m_dicBeforeTouchMove[iFingerID]  = vTouchPos;
+        m_dicTouchEnd.Remove(iFingerID);
+        m_pTouchOrders.Add(iFingerID);
+        
+        if (null != m_pEventToEnter)
+            m_pEventToEnter(iFingerID, vTouchPos);
+    }
+
+    void SetTouchEnd(int iFingerID, Vector2 vTouchPos)
+    {
+        m_dicTouchEnd[iFingerID]        = vTouchPos;
+        m_dicTouchEnter.Remove(iFingerID);
+        m_dicCurrentTouchMove.Remove(iFingerID);
+        m_dicBeforeTouchMove.Remove(iFingerID);
+        m_pTouchOrders.Remove(iFingerID);
+
+        if (null != m_pEventToEnter)
+            m_pEventToEnd(iFingerID, vTouchPos);
+    }
+
+    void SetTouchMove(int iFingerID, Vector2 vTouchPos)
+    {
+        var vCurrentPos = m_dicCurrentTouchMove[iFingerID];
+        if (SHMath.EPSILON > SHMath.GetMagnitude(vTouchPos, vCurrentPos))
+            return;
+
+        m_dicBeforeTouchMove[iFingerID]  = vCurrentPos;
+        m_dicCurrentTouchMove[iFingerID] = vTouchPos;
+
+        if (null != m_pEventToEnter)
+            m_pEventToDrag(iFingerID, vTouchPos);
+
+        //Debug.LogFormat("Input - {0} : ({1}/{2})", 
+        //    iFingerID,
+        //    m_dicBeforeTouchMove[iFingerID],
+        //    m_dicCurrentTouchMove[iFingerID]);
+    }
+    #endregion
 }
