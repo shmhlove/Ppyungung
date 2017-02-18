@@ -2,7 +2,7 @@
 using System;
 using System.Collections;
 
-public class SHUIPanel_Header : SHUIBasePanel
+public class SHUIPanel_Development : SHUIBasePanel
 {
     #region Members : Inspector
     [Header("Login Info")]

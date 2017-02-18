@@ -11,7 +11,11 @@ public class SHSceneMainToInGame : MonoBehaviour
     #region System Functions
     void Start()
     {
-        Single.AppInfo.CreateSingleton();
+        if (true == Single.AppInfo.IsDevelopment())
+            Single.UI.Show("Panel_Development");
+        else
+            Single.UI.Close("Panel_Development");
+
         Single.Engine.StartEngine();
     }
     void FixedUpdate()

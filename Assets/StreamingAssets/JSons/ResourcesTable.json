@@ -145,14 +145,6 @@
 			"s_Path": "Prefab/Monster/Monster_Bonus"
 		},
 		{
-			"s_Name": "Player",
-			"s_FileName": "Player.prefab",
-			"s_Extension": ".prefab",
-			"s_Size": "6676",
-			"s_Hash": "4FD0055526C635A74E9B2F37CD3CC1DE",
-			"s_Path": "Prefab/Player/Player"
-		},
-		{
 			"s_Name": "Stick_1",
 			"s_FileName": "Stick_1.prefab",
 			"s_Extension": ".prefab",
@@ -279,6 +271,14 @@
 			"s_Size": "10552",
 			"s_Hash": "573283AD3B037896ABA6827598B5DB53",
 			"s_Path": "Prefab/UI/UIRoot_Global"
+		},
+		{
+			"s_Name": "Panel_Development",
+			"s_FileName": "Panel_Development.prefab",
+			"s_Extension": ".prefab",
+			"s_Size": "34240",
+			"s_Hash": "59AA24152AB408D1FF9A189C9FA80FE1",
+			"s_Path": "Prefab/UI/Panel/Panel_Development"
 		},
 		{
 			"s_Name": "Panel_FadeIn",

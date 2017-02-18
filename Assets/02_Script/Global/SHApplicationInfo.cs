@@ -161,6 +161,10 @@ public partial class SHApplicationInfo : SHSingleton<SHApplicationInfo>
         return ((Application.platform == RuntimePlatform.WindowsEditor) ||
                 (Application.platform == RuntimePlatform.OSXEditor));
     }
+    public bool IsDevelopment()
+    {
+        return UnityEngine.Debug.isDebugBuild;
+    }
     public RuntimePlatform GetRuntimePlatform()
     {
         return Application.platform;

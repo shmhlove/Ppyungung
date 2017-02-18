@@ -11,10 +11,13 @@ public class SHSceneMainToEntry : SHMonoWrapper
     #region System Functions
     public override void Start() 
     {
-        base.Start();
-        Single.AppInfo.CreateSingleton();
+        if (true == Single.AppInfo.IsDevelopment())
+            Single.UI.Show("Panel_Development");
+        else
+            Single.UI.Close("Panel_Development");
+
         Single.UI.Show("Panel_Entry", (Action)OnEventToNextScene);
-	}
+    }
     #endregion
     
 
