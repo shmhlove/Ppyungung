@@ -190,16 +190,4 @@ public class SHUIJoystick : SHMonoWrapper
         m_pEventToDrag(vCenterPos, vThumbPos, vMovePos);
     }
     #endregion
-
-    public UILabel m_pLog = null;
-    public void OnClickUp()
-    {
-        Single.Input.MOVE_SENSITIVITY += 1.0f;
-        m_pLog.text = Single.Input.MOVE_SENSITIVITY.ToString();
-    }
-    public void OnClickDown()
-    {
-        Single.Input.MOVE_SENSITIVITY -= 1.0f;
-        m_pLog.text = Single.Input.MOVE_SENSITIVITY.ToString();
-    }
 }
