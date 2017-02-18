@@ -22,7 +22,7 @@ public class SHNativeInputManager : SHSingleton<SHNativeInputManager>
 
 
     #region Member : Constants
-    [HideInInspector] public float MOVE_SENSITIVITY   = 5.0f;
+    [HideInInspector] public float MOVE_SENSITIVITY   = 7.0f;
     #endregion
 
 
