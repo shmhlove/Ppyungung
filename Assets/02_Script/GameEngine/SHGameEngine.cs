@@ -19,26 +19,7 @@ public class SHGameEngine : SHSingleton<SHGameEngine>
     public override void OnInitialize() { }
     public override void OnFinalize()
     {
-        if (null != m_pGameStep)
-            m_pGameStep.OnFinalize();
-
-        if (null != m_pScoreBoard)
-            m_pScoreBoard.OnFinalize();
-
-        if (null != m_pInventory)
-            m_pInventory.OnFinalize();
-
-        if (null != m_pBalance)
-            m_pBalance.OnFinalize();
-        
-        if (null != m_pPlayer)
-            m_pPlayer.OnFinalize();
-
-        if (null != m_pMonster)
-            m_pMonster.OnFinalize();
-
-        if (null != m_pDamage)
-            m_pDamage.OnFinalize();
+        FinalizeEngine();
     }
     #endregion
 
@@ -70,6 +51,29 @@ public class SHGameEngine : SHSingleton<SHGameEngine>
 
         if (null != m_pDamage)
             m_pDamage.OnInitialize();
+    }
+    public void FinalizeEngine()
+    {
+        if (null != m_pGameStep)
+            m_pGameStep.OnFinalize();
+
+        if (null != m_pScoreBoard)
+            m_pScoreBoard.OnFinalize();
+
+        if (null != m_pInventory)
+            m_pInventory.OnFinalize();
+
+        if (null != m_pBalance)
+            m_pBalance.OnFinalize();
+
+        if (null != m_pPlayer)
+            m_pPlayer.OnFinalize();
+
+        if (null != m_pMonster)
+            m_pMonster.OnFinalize();
+
+        if (null != m_pDamage)
+            m_pDamage.OnFinalize();
     }
     public void FrameMove()
     {

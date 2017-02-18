@@ -107,6 +107,16 @@ public class SHUIWidget_Stick : SHMonoWrapper
     {
         return m_iPrice;
     }
+    public void SetMovePosForIdle(Vector3 vMovePos)
+    {
+        if (eState.Idle != m_eState)
+            return;
+
+        vMovePos = vMovePos.normalized;
+
+        AddLocalPositionX(5.0f * vMovePos.x);
+        AddLocalPositionY(5.0f * vMovePos.y);
+    }
     #endregion
 
 
