@@ -1,0 +1,108 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: RingGlowWhite3_2
+  m_Shader: {fileID: 4800000, guid: 7001006ebcdd892498ac36a68a38ad2c, type: 3}
+  m_ShaderKeywords: _USEALPHACHANNEL_ON _USEMAINTEXSCROLL_ON
+  m_LightmapFlags: 5
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+      data:
+        first:
+          name: _MainTex
+        second:
+          m_Texture: {fileID: 2800000, guid: ba2e296f085e5d44b8b54fc40367429a, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Alpha
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _SubTex
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+    m_Floats:
+      data:
+        first:
+          name: _InvFade
+        second: 1
+      data:
+        first:
+          name: _MainTexIntensity
+        second: 2
+      data:
+        first:
+          name: _UseMainTexRotation
+        second: 0
+      data:
+        first:
+          name: _UseSoftOpacity
+        second: 0
+      data:
+        first:
+          name: _OpacitybyHeight
+        second: -1.7
+      data:
+        first:
+          name: _SubTexIntensity
+        second: 1
+      data:
+        first:
+          name: _UseAlphaChannel
+        second: 1
+      data:
+        first:
+          name: _ScrollSpeedbyAlpha
+        second: 0
+      data:
+        first:
+          name: _ScrollVector0U1V
+        second: 1
+      data:
+        first:
+          name: _MainTexRotationValue
+        second: 0
+      data:
+        first:
+          name: _AlphaChannelIntensity
+        second: 4
+      data:
+        first:
+          name: _RemoveBlack
+        second: 0
+      data:
+        first:
+          name: _UseAlphaTex
+        second: 0
+      data:
+        first:
+          name: _UseMainTexScroll
+        second: 1
+      data:
+        first:
+          name: _DontAffectColor
+        second: 0
+    m_Colors:
+      data:
+        first:
+          name: _Color
+        second: {r: 1, g: 1, b: 1, a: 1}
+      data:
+        first:
+          name: _TintColor
+        second: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}

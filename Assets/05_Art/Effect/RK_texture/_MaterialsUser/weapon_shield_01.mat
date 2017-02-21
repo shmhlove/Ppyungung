@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: weapon_shield_01
+  m_Shader: {fileID: 4800000, guid: 996d386c76645764d94b8e705a13491e, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
+  m_CustomRenderQueue: 3000
+  stringTagMap: {}
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+      data:
+        first:
+          name: _MainTex
+        second:
+          m_Texture: {fileID: 2800000, guid: 27d18b8dd8a1a1e47b0dc95d14ce1215, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Alpha
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Cube
+        second:
+          m_Texture: {fileID: 8900000, guid: df3ef59e6f146344889002412b40bcf3, type: 2}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+    m_Floats:
+      data:
+        first:
+          name: _RimPower
+        second: 2.761194
+      data:
+        first:
+          name: _InnerColorPower
+        second: 0.35820895
+      data:
+        first:
+          name: _AlphaPower
+        second: 0.83582115
+      data:
+        first:
+          name: _AllPower
+        second: 2.0597014
+      data:
+        first:
+          name: _AlphPower
+        second: 1.3134328
+      data:
+        first:
+          name: _AlphaMin
+        second: 0
+    m_Colors:
+      data:
+        first:
+          name: _Color
+        second: {r: 1, g: 1, b: 1, a: 1}
+      data:
+        first:
+          name: _TintColor
+        second: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
+      data:
+        first:
+          name: _RimColor
+        second: {r: 0.35074627, g: 0.15181555, b: 0.15181555, a: 1}
+      data:
+        first:
+          name: _InnerColor
+        second: {r: 0.48507464, g: 0, b: 0, a: 0}
+      data:
+        first:
+          name: _ReflColor
+        second: {r: 1, g: 1, b: 1, a: 0}
