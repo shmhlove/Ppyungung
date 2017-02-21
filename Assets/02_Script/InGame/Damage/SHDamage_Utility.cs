@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public partial class SHDamage : SHBaseEngine
+public partial class SHDamage : SHInGame_Component
 {
     #region Utility : Object
     string GetNewDamageID(string strPrefabName)

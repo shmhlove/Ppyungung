@@ -12,8 +12,6 @@ public class SHStep_Play : SHStepBase
     public override void InitialStep()
     {
         Single.UI.Show("Panel_CtrlPad");
-        var pPlayer = Single.ObjectPool.Get<SHPlayer>("Player");
-        pPlayer.SetActive(true);
     }
     public override void FinalStep()
     {

@@ -15,12 +15,13 @@ public static class Single
     // 씬
     public static SHSceneManager            Scene               { get { return SHSceneManager.Instance; } }
 
-    // 게임엔진
-    public static SHGameEngine              Engine              { get { return SHGameEngine.Instance; } }
-    public static SHGameStep                GameStep            { get { return Engine.GetGameStep(); } }
-    public static SHScoreBoard              ScoreBoard          { get { return Engine.GetScoreBoard(); } }
-    public static SHBalance                 Balance             { get { return Engine.GetBalance(); } }
-    public static SHDamage                  Damage              { get { return Engine.GetDamage(); } }
+    // 인게임
+    public static SHInGame                  InGame              { get { return SHInGame.Instance; } }
+    public static SHGameStep                GameStep            { get { return InGame.GetGameStep(); } }
+    public static SHScoreBoard              ScoreBoard          { get { return InGame.GetScoreBoard(); } }
+    public static SHBalance                 Balance             { get { return InGame.GetBalance(); } }
+    public static SHPlayer                  Player              { get { return InGame.GetPlayer(); } }
+    public static SHDamage                  Damage              { get { return InGame.GetDamage(); } }
 
     // UI
     public static SHUIManager               UI                  { get { return SHUIManager.Instance; } }

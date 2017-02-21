@@ -11,11 +11,11 @@ public class SHRnD_Damage : SHMonoWrapper
     #region System Functions
     public override void Start()
     {
-        Single.Engine.CreateSingleton();
+        Single.InGame.CreateSingleton();
     }
     public override void FixedUpdate()
     {
-        Single.Engine.FrameMove();
+        Single.InGame.FrameMove();
     }
     #endregion
 

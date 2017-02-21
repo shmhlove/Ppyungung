@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class SHBalance : SHBaseEngine
+public class SHBalance : SHInGame_Component
 {
     #region Members
     #endregion

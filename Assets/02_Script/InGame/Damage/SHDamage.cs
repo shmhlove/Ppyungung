@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using DicDamages = System.Collections.Generic.Dictionary<string, SHDamageObject>;
 using DicUnits   = System.Collections.Generic.Dictionary<string, System.Collections.Generic.List<SHMonoWrapper>>;
 
-public partial class SHDamage : SHBaseEngine
+public partial class SHDamage : SHInGame_Component
 {
     #region Members : Damages
     private DicDamages m_dicDelDamages = new DicDamages(); // 제거될 데미지들

@@ -2,12 +2,13 @@
 using System;
 using System.Collections;
 
-public class SHGameEngine : SHSingleton<SHGameEngine>
+public class SHInGame : SHSingleton<SHInGame>
 {
     #region Members
     private SHGameStep   m_pGameStep   = new SHGameStep();
     private SHScoreBoard m_pScoreBoard = new SHScoreBoard();
     private SHBalance    m_pBalance    = new SHBalance();
+    private SHPlayer     m_pPlayer     = new SHPlayer();
     private SHDamage     m_pDamage     = new SHDamage();
     #endregion
 
@@ -26,7 +27,7 @@ public class SHGameEngine : SHSingleton<SHGameEngine>
 
 
     #region Interface : System
-    public void StartEngine()
+    public void StartGame()
     {
         if (null != m_pGameStep)
             m_pGameStep.OnInitialize();
@@ -36,7 +37,10 @@ public class SHGameEngine : SHSingleton<SHGameEngine>
         
         if (null != m_pBalance)
             m_pBalance.OnInitialize();
-        
+
+        if (null != m_pPlayer)
+            m_pPlayer.OnInitialize();
+
         if (null != m_pDamage)
             m_pDamage.OnInitialize();
     }
@@ -50,7 +54,10 @@ public class SHGameEngine : SHSingleton<SHGameEngine>
         
         if (null != m_pBalance)
             m_pBalance.OnFinalize();
-        
+
+        if (null != m_pPlayer)
+            m_pPlayer.OnFinalize();
+
         if (null != m_pDamage)
             m_pDamage.OnFinalize();
     }
@@ -64,7 +71,10 @@ public class SHGameEngine : SHSingleton<SHGameEngine>
         
         if (null != m_pBalance)
             m_pBalance.OnFrameMove();
-        
+
+        if (null != m_pPlayer)
+            m_pPlayer.OnFrameMove();
+
         if (null != m_pDamage)
             m_pDamage.OnFrameMove();
     }
@@ -83,6 +93,10 @@ public class SHGameEngine : SHSingleton<SHGameEngine>
     public SHBalance GetBalance()
     {
         return m_pBalance;
+    }
+    public SHPlayer GetPlayer()
+    {
+        return m_pPlayer;
     }
     public SHDamage GetDamage()
     {

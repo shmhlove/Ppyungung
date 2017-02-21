@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SHScoreBoard : SHBaseEngine
+public class SHScoreBoard : SHInGame_Component
 {
     #region Members
     public int  m_iScore     = 0;

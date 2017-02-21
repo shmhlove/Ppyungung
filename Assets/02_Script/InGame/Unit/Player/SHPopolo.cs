@@ -2,7 +2,7 @@
 using System;
 using System.Collections;
 
-public class SHPlayer : SHState
+public class SHPopolo : SHState
 {
     public enum eState
     {

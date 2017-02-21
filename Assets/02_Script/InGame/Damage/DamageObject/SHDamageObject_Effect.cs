@@ -17,7 +17,7 @@ public partial class SHDamageObject : SHMonoWrapper
             return null;
         }
 
-        SHGameObject.SetParent(pEffect, Single.Engine.GetGameObject());
+        SHGameObject.SetParent(pEffect, Single.InGame.GetGameObject());
 
         return pEffect;
     }

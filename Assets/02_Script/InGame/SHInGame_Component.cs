@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SHBaseEngine
+public class SHInGame_Component
 {
     #region Members
     public bool m_bIsPause = false;

@@ -16,11 +16,11 @@ public class SHSceneMainToInGame : MonoBehaviour
         else
             Single.UI.Close("Panel_Development");
 
-        Single.Engine.StartEngine();
+        Single.InGame.StartGame();
     }
     void FixedUpdate()
     {
-        Single.Engine.FrameMove();
+        Single.InGame.FrameMove();
     }
     #endregion
 

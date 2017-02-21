@@ -53,7 +53,7 @@ public class SHStepBase
     #endregion
 }
 
-public class SHGameStep : SHBaseEngine
+public class SHGameStep : SHInGame_Component
 {
     #region Members : Step
     private DicStep         m_dicSteps      = new DicStep();
