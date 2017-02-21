@@ -67,6 +67,23 @@ public static class SHMath
         return (vTo - vFrom).magnitude;
     }
 
+    // 벡터 : 수직벡터의 각도 구하기
+    public static float GetAngleToPosition(Vector3 vAxis, Vector3 vPosition1, Vector3 vPosition2)
+    {
+        Vector3 vDirPos1 = vPosition1.normalized;
+        Vector3 vDirPos2 = vPosition2.normalized;
+
+        float fDot      = Vector3.Dot(vDirPos1, vDirPos2);
+        Vector3 vCross  = Vector3.Cross(vDirPos1, vDirPos2);
+
+        float fAxis = 0.0f;
+        if (0.0f != vAxis.x) fAxis = vCross.x;
+        if (0.0f != vAxis.y) fAxis = vCross.y;
+        if (0.0f != vAxis.z) fAxis = vCross.z;
+
+        return (Mathf.Acos(fDot) * Mathf.Rad2Deg) * ((0.0f > fAxis) ? -1.0f : 1.0f);
+    }
+
     // 보간 : 두 지점 사이의 X비율에 해당하는 값 구하기
     public static int Lerp(int iMin, int iMax, float fRatio)
 	{

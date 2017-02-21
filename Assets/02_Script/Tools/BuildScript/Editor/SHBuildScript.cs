@@ -7,11 +7,11 @@ using System.Collections.Generic;
 class SHBuildScript
 {
     #region Members
-    static string[] SCENES    = FindEnabledEditorScenes();
+    static string[] SCENES = FindEnabledEditorScenes();
     #endregion
 
+
     #region KOR Android Build
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // 인터페이스 : 한국 AOS App빌드 ( 전체 패킹 )
     [MenuItem("SHTools/CI/Korea Android To Full AppBuild")]
 	static void KOR_AndroidToOnlyAppBuild()                             {   OnlyAppBuild(eNationType.Korea, BuildTarget.Android, eServiceMode.DevQA, BuildOptions.None);   }
@@ -31,11 +31,10 @@ class SHBuildScript
     // 인터페이스 : 한국 AOS 번들(Update) 패킹
     [MenuItem("SHTools/CI/Korea Android To Only AssetBundles Of Update")]
 	static void KOR_AndroidToOnlyAssetBundlesOfUpdate()                 {   OnlyBundlePacking(eNationType.Korea, BuildTarget.Android, eBundlePackType.Update);   }
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     #endregion
-
+    
+    
     #region KOR IOS Build
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // 인터페이스 : 한국 IOS App빌드 ( 전체 패킹 )
     [MenuItem("SHTools/CI/Korea IPhone To Full AppBuild")]
 	static void KOR_IPhoneToOnlyAppBuild()                              {   OnlyAppBuild(eNationType.Korea, BuildTarget.iOS, eServiceMode.DevQA, BuildOptions.AcceptExternalModificationsToPlayer);   }
@@ -55,9 +54,9 @@ class SHBuildScript
     // 인터페이스 : 한국 IOS 번들(Update) 패킹
     [MenuItem("SHTools/CI/Korea IPhone To Only AssetBundles Of Update")]
 	static void KOR_IPhoneToOnlyAssetBundlesOfUpdate()                  {   OnlyBundlePacking(eNationType.Korea, BuildTarget.iOS, eBundlePackType.Update);   }
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     #endregion
-
+    
+    
     #region Utility Functions
     // 유틸 : Only App Build
     static void OnlyAppBuild(eNationType eNation, BuildTarget eTarget, eServiceMode eMode, BuildOptions eOption)

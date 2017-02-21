@@ -56,8 +56,8 @@ public class SHUIJoystick : SHMonoWrapper
 
         var vBeforePos  = Single.Input.GetBeforeDragPos(m_iTouchID);
         var vCurrentPos = Single.Input.GetCurrentDragPos(m_iTouchID);
-
-        CallEventToDrag(m_vStartPosition, GetThumbWorldPos(), (vCurrentPos - vBeforePos));
+        
+        CallEventToDrag(transform.position, GetThumbWorldPos(), GetThumbDirection());
     }
     void UpdateSpring()
     {
@@ -109,6 +109,13 @@ public class SHUIJoystick : SHMonoWrapper
             vLocalPos = Vector3.ClampMagnitude(vLocalPos, m_fMoveRadius);
 
         SetThumbLocalPos(vLocalPos);
+    }
+    Vector3 GetThumbDirection()
+    {
+        if (null == m_pThumb)
+            return Vector3.zero;
+        
+        return (GetThumbWorldPos() - transform.position).normalized;
     }
     Vector3 GetTouchPos()
     {
@@ -182,12 +189,12 @@ public class SHUIJoystick : SHMonoWrapper
 
         m_pEventToPressOff();
     }
-    void CallEventToDrag(Vector3 vCenterPos, Vector3 vThumbPos, Vector3 vMovePos)
+    void CallEventToDrag(Vector3 vCenterPos, Vector3 vThumbPos, Vector3 vDirection)
     {
         if (null == m_pEventToDrag)
             return;
 
-        m_pEventToDrag(vCenterPos, vThumbPos, vMovePos);
+        m_pEventToDrag(vCenterPos, vThumbPos, vDirection);
     }
     #endregion
 }

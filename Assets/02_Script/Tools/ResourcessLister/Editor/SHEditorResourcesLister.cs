@@ -18,8 +18,8 @@ public class SHEditorResourcesLister : Editor
 
     #region Interface Functions
     // 인터페이스 : 리소스 폴더 전체파일 리스팅 : ResourcesTable.json, AssetBundleInfo.json, DuplicationResourcesList.txt
-    [MenuItem("SHTools/Resources Listing/All Files In Resources Folder", false, 0)]
-    [MenuItem("Assets/SHTools/Resources Listing/All Files In ResourcesFolder", false, 0)]
+    [MenuItem("SHTools/Resources Listing/All Files", false, 0)]
+    [MenuItem("Assets/SHTools/Resources Listing/All Files", false, 0)]
     static void AllFilsInResourcesFolderWithAssetBundleInfo()
     {
         // 시작팝업
@@ -94,8 +94,8 @@ public class SHEditorResourcesLister : Editor
     }
 
     // 인터페이스 : 선택한 파일 번들포맷으로 리스팅 : SelectFilesBySeparateBundleFormat.txt
-    [MenuItem("Assets/SHTools/Resources Listing/Select Files By Separate BundleFormat", false, 0)]
-    static void SelectFilesBySeparateBundleFormat()
+    [MenuItem("Assets/SHTools/Resources Listing/Select Files By AssetBundleInfo Format", false, 0)]
+    static void SelectFilesByAssetBundleInfoFormat()
     {
         // 시작팝업
         if (false == ShowDialog("[SHTools] Resources Listing",
@@ -126,7 +126,7 @@ public class SHEditorResourcesLister : Editor
             iFileCount += pLister.SetListing(
                 string.Format("{0}/{1}", strAbsolutePath, AssetDatabase.GetAssetPath(pObjects[iLoop])));
         }
-        var strSavePath = string.Format("{0}/{1}", strAbsolutePath, "SelectFilesBySeparateBundleFormat.txt");
+        var strSavePath = string.Format("{0}/{1}", strAbsolutePath, "SelectFilesByAssetBundleInfoFormat.txt");
         SHResourcesLister.SaveToResourcesOfBundleFormat(pLister.m_dicResources, strSavePath);
 
         // 종료팝업

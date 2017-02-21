@@ -6,9 +6,9 @@ public class SHUIPanel_Development : SHUIBasePanel
 {
     #region Members : Inspector
     [Header("Login Info")]
-    [SerializeField] private UILabel m_pLabel_ID        = null;
-    [SerializeField] private UILabel m_pLabel_UserName  = null;
-    [SerializeField] private UILabel m_pLabel_DragValue = null;
+    [SerializeField] private UILabel m_pLabel_ID         = null;
+    [SerializeField] private UILabel m_pLabel_UserName   = null;
+    [SerializeField] private UILabel m_pLabel_SpeedValue = null;
     #endregion
 
 
@@ -56,12 +56,12 @@ public class SHUIPanel_Development : SHUIBasePanel
         else
             m_pLabel_UserName.text = strUserName;
     }
-    void SetDragValue()
+    void SetSpeedValue()
     {
-        if (null == m_pLabel_DragValue)
+        if (null == m_pLabel_SpeedValue)
             return;
 
-        m_pLabel_DragValue.text = string.Format("Drag Value : {0}", Single.Input.DRAG_SENSITIVITY);
+        m_pLabel_SpeedValue.text = string.Format("Player Move Speed : {0}", SHHard.m_fPlayerMoveSpeed);
     }
     #endregion
 
@@ -83,15 +83,15 @@ public class SHUIPanel_Development : SHUIBasePanel
     {
         Single.Google.Logout();
     }
-    public void OnClickToDragUp()
+    public void OnClickToSpeedUp()
     {
-        Single.Input.DRAG_SENSITIVITY += 1.0f;
-        SetDragValue();
+        SHHard.m_fPlayerMoveSpeed += 1.0f;
+        SetSpeedValue();
     }
-    public void OnClickToDragDown()
+    public void OnClickToSpeedDown()
     {
-        Single.Input.DRAG_SENSITIVITY -= 1.0f;
-        SetDragValue();
+        SHHard.m_fPlayerMoveSpeed -= 1.0f;
+        SetSpeedValue();
     }
     #endregion
 }

@@ -8,31 +8,30 @@ public class SHUIPanel_CtrlPad : SHUIBasePanel
     [Header("Ctrl Widgets")]
     [SerializeField] public SHUIJoystick m_pJoystick = null;
     #endregion
+    
 
-
-    #region Members
-    private Action m_pEventToPress = null;
+    #region Virtual Functions
     #endregion
 
-    
-    #region Virtual Functions
-    public override void OnBeforeShow(params object[] pArgs)
+
+    #region Utility : Event
+    public void AddEventToDrag(Action<Vector3,Vector3,Vector3> pEvent)
     {
-        if ((null == pArgs) || (1 != pArgs.Length))
+        if (null == m_pJoystick)
             return;
 
-        m_pEventToPress = (Action)pArgs[0];
+        m_pJoystick.m_pEventToDrag = pEvent;
+    }
+    public void DelEventToDrag()
+    {
+        if (null == m_pJoystick)
+            return;
+
+        m_pJoystick.m_pEventToDrag = null;
     }
     #endregion
 
 
     #region Event Handler
-    public void OnPressToTouchPad()
-    {
-        if (null == m_pEventToPress)
-            return;
-
-        m_pEventToPress();
-    }
     #endregion
 }

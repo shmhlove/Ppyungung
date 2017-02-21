@@ -1,17 +1,17 @@
 using UnityEngine;
 using System.Collections;
 
-// [AddComponentMenu("SHTechnical/Effect/Sprite Animation")]
 public class SHSpriteAnimation : MonoBehaviour
 {
+    #region Members : AnimationType
     public enum eAnimationType 
     { 
         Once,
         ClampForaver, 
         Loop 
     };
-
-    public eAnimationType m_AniType = eAnimationType.Loop;
+    [SerializeField] private eAnimationType m_eAniType = eAnimationType.Loop;
+    #endregion
 
     public float m_FirstStartFrame = 0f;
 
@@ -144,7 +144,7 @@ public class SHSpriteAnimation : MonoBehaviour
 
         }
 
-        switch (m_AniType)
+        switch (m_eAniType)
         {
             case eAnimationType.Once:
                 {

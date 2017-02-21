@@ -9,7 +9,7 @@ public class SHUIPanel_ResultMenu : SHUIBasePanel
 
 
     #region Members : Event
-    private Action m_pEventToResultGame = null;
+    private Action m_pEventToRestart = null;
     #endregion
 
 
@@ -23,7 +23,7 @@ public class SHUIPanel_ResultMenu : SHUIBasePanel
         if ((null == pArgs) || (1 > pArgs.Length))
             return;
 
-        m_pEventToResultGame = (Action)pArgs[0];
+        m_pEventToRestart = (Action)pArgs[0];
     }
     #endregion
 
@@ -39,16 +39,12 @@ public class SHUIPanel_ResultMenu : SHUIBasePanel
     #region Event Handler
     public void OnClickToStartGame()
     {
-        if (null == m_pEventToResultGame)
+        if (null == m_pEventToRestart)
             return;
 
-        m_pEventToResultGame();
+        m_pEventToRestart();
         Close();
     }
-	public void OnClickToStore()
-	{
-		Single.UI.Show ("Panel_Store");
-	}
     public void OnClickToRank()
     {
 #if UNITY_EDITOR
