@@ -72,6 +72,24 @@ public class SHMonoWrapper : MonoBehaviour
 
 
     #region Interface : Active
+    public void SetParent(GameObject pParent)
+    {
+        if (null == pParent)
+            return;
+
+        transform.SetParent(pParent.transform);
+    }
+    public void SetParent(Transform pParent)
+    {
+        if (null == pParent)
+            return;
+
+        transform.SetParent(pParent);
+    }
+    #endregion
+
+
+    #region Interface : Active
     public void SetActive(bool bIsActive)
     {
         if (IsActive() == bIsActive)
@@ -85,7 +103,7 @@ public class SHMonoWrapper : MonoBehaviour
     }
     #endregion
 
-
+    
     #region Interface : Position
     public void SetPosition(Vector3 vPos)
     {

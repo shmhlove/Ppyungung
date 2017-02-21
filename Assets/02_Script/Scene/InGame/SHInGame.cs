@@ -5,7 +5,7 @@ using System.Collections;
 public class SHInGame : SHSingleton<SHInGame>
 {
     #region Members
-    private SHGameStep   m_pGameStep   = new SHGameStep();
+    private SHStep       m_pStep       = new SHStep();
     private SHScoreBoard m_pScoreBoard = new SHScoreBoard();
     private SHBalance    m_pBalance    = new SHBalance();
     private SHPlayer     m_pPlayer     = new SHPlayer();
@@ -29,8 +29,8 @@ public class SHInGame : SHSingleton<SHInGame>
     #region Interface : System
     public void StartGame()
     {
-        if (null != m_pGameStep)
-            m_pGameStep.OnInitialize();
+        if (null != m_pStep)
+            m_pStep.OnInitialize();
 
         if (null != m_pScoreBoard)
             m_pScoreBoard.OnInitialize();
@@ -46,8 +46,8 @@ public class SHInGame : SHSingleton<SHInGame>
     }
     public void FinalizeEngine()
     {
-        if (null != m_pGameStep)
-            m_pGameStep.OnFinalize();
+        if (null != m_pStep)
+            m_pStep.OnFinalize();
 
         if (null != m_pScoreBoard)
             m_pScoreBoard.OnFinalize();
@@ -63,8 +63,8 @@ public class SHInGame : SHSingleton<SHInGame>
     }
     public void FrameMove()
     {
-        if (null != m_pGameStep)
-            m_pGameStep.OnFrameMove();
+        if (null != m_pStep)
+            m_pStep.OnFrameMove();
 
         if (null != m_pScoreBoard)
             m_pScoreBoard.OnFrameMove();
@@ -82,9 +82,9 @@ public class SHInGame : SHSingleton<SHInGame>
 
 
     #region Interface : Helpper
-    public SHGameStep GetGameStep()
+    public SHStep GetStep()
     {
-        return m_pGameStep;
+        return m_pStep;
     }
     public SHScoreBoard GetScoreBoard()
     {

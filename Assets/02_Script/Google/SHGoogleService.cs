@@ -23,6 +23,7 @@ public class SHGoogleService : SHSingleton<SHGoogleService>
         PlayGamesPlatform.Activate();
 #else
 #endif
+        SetDontDestroy();
     }
     public override void OnFinalize()
     {

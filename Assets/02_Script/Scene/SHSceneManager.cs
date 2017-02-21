@@ -32,8 +32,6 @@ public class SHSceneManager : SHSingleton<SHSceneManager>
 
     // 이벤트
     private EventList       m_pEventToChangeScene = new EventList();
-
-    public bool             m_bIsChanging     = false;
     #endregion
 
 

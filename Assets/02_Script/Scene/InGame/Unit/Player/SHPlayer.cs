@@ -12,7 +12,11 @@ public class SHPlayer : SHInGame_Component
 
 
     #region Interface Functions
+    public void StartPlayer()
+    {
+        var pPopolo = Single.ObjectPool.Get<SHPopolo>("Popolo");
+        pPopolo.SetActive(true);
+        pPopolo.SetParent(SH3DRoot.GetRoot());
+    }
     #endregion
-    // var pPlayer = Single.ObjectPool.Get<SHPlayer>("Player");
-    // pPlayer.SetActive(true);
 }

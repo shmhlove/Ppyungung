@@ -2,7 +2,7 @@
 using System;
 using System.Collections;
 
-public class SHStep_Play : SHStepBase
+public class SHStep_Play : SHStep_Component
 {
     #region Members
     #endregion
@@ -12,6 +12,7 @@ public class SHStep_Play : SHStepBase
     public override void InitialStep()
     {
         Single.UI.Show("Panel_CtrlPad");
+        Single.Player.StartPlayer();
     }
     public override void FinalStep()
     {

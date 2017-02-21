@@ -45,7 +45,7 @@
 			"s_FileName": "Panel_Development.prefab",
 			"s_Extension": ".prefab",
 			"s_Size": "34240",
-			"s_Hash": "CC98C292F6B07C0353429C45B6B7D134",
+			"s_Hash": "A8F80B089707EC1D119AFD1485A6868F",
 			"s_Path": "Prefab/UI/Panel/Panel_Development"
 		},
 		{
@@ -81,12 +81,12 @@
 			"s_Path": "Prefab/UI/Root/UIRoot_Global"
 		},
 		{
-			"s_Name": "Player",
-			"s_FileName": "Player.prefab",
+			"s_Name": "Popolo",
+			"s_FileName": "Popolo.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "8820",
-			"s_Hash": "B2F39E221B18D8E2AFEE544DE739C35F",
-			"s_Path": "Prefab/Unit/Player"
+			"s_Size": "8872",
+			"s_Hash": "62B45FC02D57DF50A769AEEDF55200DC",
+			"s_Path": "Prefab/Unit/Popolo"
 		},
 		{
 			"s_Name": "Audio_BGM_GameOver",

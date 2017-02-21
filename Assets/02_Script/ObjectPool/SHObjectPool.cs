@@ -381,7 +381,6 @@ public class SHObjectPool : SHSingleton<SHObjectPool>
             var pRoot = SHGameObject.CreateEmptyObject(string.Format("SHObjectPool_{0}", iLayer));
             pRoot.layer = iLayer;
             pRoot.transform.SetParent(transform);
-            DontDestroyOnLoad(pRoot);
             m_dicRoots.Add(iLayer, pRoot.transform);
         }
 

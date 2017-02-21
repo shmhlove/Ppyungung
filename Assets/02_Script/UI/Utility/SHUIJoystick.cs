@@ -13,7 +13,6 @@ public class SHUIJoystick : SHMonoWrapper
 
     #region Members : Info
     private bool        m_bIsPressOn     = false;
-    private int         m_iTouchID       = -1;
     private Vector3     m_vBeforePos     = Vector2.zero;
     private Vector3     m_vCurrentPos    = Vector2.zero;
     private Vector3     m_vSpringSpeed   = Vector3.zero;
@@ -53,9 +52,6 @@ public class SHUIJoystick : SHMonoWrapper
     {
         if (false == m_bIsPressOn)
             return;
-
-        // var vBeforePos  = Single.Input.GetBeforeDragPos(m_iTouchID);
-        // var vCurrentPos = Single.Input.GetCurrentDragPos(m_iTouchID);
         
         CallEventToDrag(transform.position, GetThumbWorldPos(), GetThumbDirection());
     }
@@ -154,14 +150,11 @@ public class SHUIJoystick : SHMonoWrapper
         {
             if (true == m_bIsCenterOnToPress)
                 SetPosition(m_vCurrentPos);
-
-            Single.Input.Refash();
-            m_iTouchID = Single.Input.GetLastFingerID();
+            
             CallEventToPressOn();
         }   
         else
         {
-            m_iTouchID = -1;
             CallEventToPressOff();
         }
     }

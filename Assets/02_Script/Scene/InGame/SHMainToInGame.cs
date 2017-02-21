@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 
-public class SHSceneMainToLoading : MonoBehaviour
+public class SHMainToInGame : MonoBehaviour 
 {
     #region Members
     #endregion
@@ -10,7 +11,16 @@ public class SHSceneMainToLoading : MonoBehaviour
     #region System Functions
     void Start()
     {
-        Single.AppInfo.CreateSingleton();
+        if (true == Single.AppInfo.IsDevelopment())
+            Single.UI.Show("Panel_Development");
+        else
+            Single.UI.Close("Panel_Development");
+
+        Single.InGame.StartGame();
+    }
+    void FixedUpdate()
+    {
+        Single.InGame.FrameMove();
     }
     #endregion
 

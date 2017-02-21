@@ -2,7 +2,7 @@
 using System;
 using System.Collections;
 
-public class SHStep_Start : SHStepBase
+public class SHStep_Start : SHStep_Component
 {
     #region Members
     #endregion
@@ -12,7 +12,7 @@ public class SHStep_Start : SHStepBase
     public override void InitialStep()
     {
         Single.ScoreBoard.Clear();
-        Single.UI.Show("Panel_StartMenu", (Action)OnEventToTouch);
+        Single.UI.Show("Panel_StartMenu", (Action)(()=> MoveTo(eStep.Play)));
     }
     public override void FinalStep()
     {
@@ -20,11 +20,6 @@ public class SHStep_Start : SHStepBase
     public override void FrameMove(int iCallCnt)
     {
         base.FrameMove(iCallCnt);
-
-        if (true == Input.GetKeyDown(KeyCode.Space))
-        {
-            OnEventToTouch();
-        }
     }
     #endregion
 
@@ -34,9 +29,5 @@ public class SHStep_Start : SHStepBase
 
 
     #region Event Handler
-    public void OnEventToTouch()
-    {
-        MoveTo(eGameStep.Play);
-    }
     #endregion
 }
