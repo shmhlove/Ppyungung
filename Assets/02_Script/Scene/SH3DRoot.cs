@@ -6,7 +6,7 @@ public class SH3DRoot : MonoBehaviour
 {
     #region Members : Singleton
     private static Transform    m_pRoot     = null;
-    private static UICamera     m_pCamera   = null;
+    private static Camera       m_pCamera   = null;
     #endregion
     
 
@@ -14,7 +14,7 @@ public class SH3DRoot : MonoBehaviour
     void Awake()
     {
         m_pRoot   = transform;
-        m_pCamera = m_pRoot.GetComponentInChildren<UICamera>();
+        m_pCamera = m_pRoot.GetComponentInChildren<Camera>();
     }
     void OnDestroy()
     {
@@ -33,9 +33,17 @@ public class SH3DRoot : MonoBehaviour
         return m_pRoot;
     }
 
-    public static UICamera GetCamera()
+    public static Camera GetCamera()
     {
         return m_pCamera;
+    }
+    public static void PlayCameraShake()
+    {
+        var pAnim = m_pCamera.GetComponent<Animation>();
+        if (null == pAnim)
+            return;
+
+        pAnim.Play();
     }
     #endregion
 }

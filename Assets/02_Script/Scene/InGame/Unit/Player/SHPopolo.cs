@@ -50,10 +50,9 @@ public class SHPopolo : SHState
         });
         pCtrlUI.AddEventToShoot(() =>
         {
+            SH3DRoot.PlayCameraShake();
             Single.Damage.AddDamage("Dmg_Bullet",
                             new SHAddDamageParam(m_pShootPos, null, null, null));
-            
-            Debug.Log("Shoot!!");
         });
     }
 
