@@ -51,18 +51,18 @@ public class SHAddDamageParam
 public partial class SHDamageObject : SHMonoWrapper
 {
     #region Members : ParamInfo
-    [SerializeField]  public SHAddDamageParam m_pParam = null;
+    [SerializeField]  private SHAddDamageParam  m_pParam        = null;
     #endregion
 
 
     #region Members : Inspector
     [SerializeField]  private SHDamageObjectInfo m_pSettingInfo = new SHDamageObjectInfo();
-    [SerializeField]  public  SHDamageObjectInfo m_pInfo        = new SHDamageObjectInfo();
+    [HideInInspector] public  SHDamageObjectInfo m_pInfo        = new SHDamageObjectInfo();
     #endregion
 
 
     #region Members : ETC
-    [HideInInspector] public bool   m_bIsDieDamage = false;   // 데미지 라이프가 끝난 상태
+    [HideInInspector] public bool   m_bIsDieDamage  = false;  // 데미지 라이프가 끝난 상태
     [HideInInspector] public int    m_iCrashHitTick = 0;      // 충돌 후 시간체크 (다단히트)
     [HideInInspector] public Bounds m_pBeforeBounds;          // 이전 위치의 Bounds
     #endregion
@@ -82,8 +82,10 @@ public partial class SHDamageObject : SHMonoWrapper
         m_pParam        = pParam;
         m_bIsDieDamage  = false;
 
+        SetupParent();
+        SetupPhysics();
         SetupTransform();
-        SetupPhysicsValue();
+        
         ClearEffect();
 
 		SetActive (false);

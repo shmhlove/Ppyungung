@@ -43,7 +43,7 @@ public class SHMonoWrapper : MonoBehaviour
 
 
     #region Interface : Physics
-    public void InitPhysicsValue()
+    public void InitPhysics()
     {
         m_fSpeed     = 0.0f;
         m_vDirection = Vector3.zero;
@@ -175,6 +175,12 @@ public class SHMonoWrapper : MonoBehaviour
         vPos.y += fY;
         SetLocalPosition(vPos);
     }
+    public void AddLocalPositionZ(float fZ)
+    {
+        Vector3 vPos = GetLocalPosition();
+        vPos.z += fZ;
+        SetLocalPosition(vPos);
+    }
     public Vector3 GetPosition()
     {
         return gameObject.transform.position;
@@ -236,48 +242,48 @@ public class SHMonoWrapper : MonoBehaviour
     {
         gameObject.transform.localRotation = qRotate;
     }
-    public void SetRotateZ(float fValue)
+    public void SetLocalRotateZ(float fValue)
     {
         Quaternion  qRot = GetLocalRotate();
         Vector3     vRet = qRot.eulerAngles;
         vRet.z = fValue;
         SetLocalRotate(vRet);
     }
-    public void AddRotateZ(float fValue)
+    public void AddLocalRotateZ(float fValue)
     {
-        SetRotateZ(GetRotateZ() + fValue);
+        SetLocalRotateZ(GetLocalRotateZ() + fValue);
     }
-    public float GetRotateZ()
+    public float GetLocalRotateZ()
     {
         return GetLocalRotate().eulerAngles.z;
     }
-    public void SetRotateX(float fValue)
+    public void SetLocalRotateX(float fValue)
     {
         Quaternion  qRot = GetLocalRotate();
         Vector3     vRet = qRot.eulerAngles;
         vRet.x = fValue;
         SetLocalRotate(vRet);
     }
-    public void AddRotateX(float fValue)
+    public void AddLocalRotateX(float fValue)
     {
-        SetRotateX(GetRotateX() + fValue);
+        SetLocalRotateX(GetLocalRotateX() + fValue);
     }
-    public float GetRotateX()
+    public float GetLocalRotateX()
     {
         return GetLocalRotate().eulerAngles.x;
     }
-    public void SetRotateY(float fValue)
+    public void SetLocalRotateY(float fValue)
     {
         Quaternion  qRot = GetLocalRotate();
         Vector3     vRet = qRot.eulerAngles;
         vRet.y = fValue;
         SetLocalRotate(vRet);
     }
-    public void AddRotateY(float fValue)
+    public void AddLocalRotateY(float fValue)
     {
-        SetRotateY(GetRotateY() + fValue);
+        SetLocalRotateY(GetLocalRotateY() + fValue);
     }
-    public float GetRotateY()
+    public float GetLocalRotateY()
     {
         return GetLocalRotate().eulerAngles.y;
     }
@@ -291,6 +297,28 @@ public class SHMonoWrapper : MonoBehaviour
     }
     #endregion
 
+
+    #region : Direction
+    public void SetLook(Vector3 vLookPos)
+    {
+        if (Vector3.zero == vLookPos)
+            return;
+        
+        Vector3 vDirection = (vLookPos - GetPosition()).normalized;
+        if (Vector3.zero == vDirection)
+            return;
+
+        SetRotate(vDirection);
+    }
+    public Vector3 GetDirection()
+    {
+        return GetRotate() * Vector3.forward;
+    }
+    public Vector3 GetLocalDirection()
+    {
+        return GetLocalRotate() * Vector3.forward;
+    }
+    #endregion
 
     #region Interface : Animation
     public void PlayAnim(eDirection ePlayDir, GameObject pObject, AnimationClip pClip, Action pEndCallback)

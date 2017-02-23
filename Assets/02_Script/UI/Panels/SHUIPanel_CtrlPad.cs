@@ -8,9 +8,10 @@ public class SHUIPanel_CtrlPad : SHUIBasePanel
     [Header("Ctrl Widgets")]
     [SerializeField] public SHUIJoystick m_pJoystick = null;
     #endregion
-    
+
 
     #region Virtual Functions
+    private Action m_pEventShoot = null;
     #endregion
 
 
@@ -29,9 +30,24 @@ public class SHUIPanel_CtrlPad : SHUIBasePanel
 
         m_pJoystick.m_pEventToDrag = null;
     }
+    public void AddEventToShoot(Action pEvent)
+    {
+        m_pEventShoot = pEvent;
+    }
+    public void DelEventToShoot()
+    {
+        m_pEventShoot = null;
+    }
     #endregion
 
 
     #region Event Handler
+    public void OnClickToShoot()
+    {
+        if (null == m_pEventShoot)
+            return;
+
+        m_pEventShoot();
+    }
     #endregion
 }

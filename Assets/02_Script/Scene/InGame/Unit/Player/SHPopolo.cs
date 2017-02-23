@@ -4,6 +4,12 @@ using System.Collections;
 
 public class SHPopolo : SHState
 {
+    #region Members : Inspector
+    [Header("Player Info")]
+    [SerializeField] private SHMonoWrapper m_pShootPos = null;
+    #endregion
+
+
     public enum eState
     {
         None,
@@ -39,8 +45,15 @@ public class SHPopolo : SHState
         pCtrlUI.AddEventToDrag((vCenter, vThumb, vDirection) => 
         {
             AddLocalPositionX(SHHard.m_fPlayerMoveSpeed * vDirection.x);
-            AddLocalPositionY(SHHard.m_fPlayerMoveSpeed * vDirection.y);
-            SetRotateZ(SHMath.GetAngleToPosition(Vector3.forward, Vector3.up, vDirection));
+            AddLocalPositionZ(SHHard.m_fPlayerMoveSpeed * vDirection.y);
+            SetLocalRotateY(SHMath.GetAngleToPosition(Vector3.forward, -1.0f, Vector3.up, vDirection));
+        });
+        pCtrlUI.AddEventToShoot(() =>
+        {
+            Single.Damage.AddDamage("Dmg_Bullet",
+                            new SHAddDamageParam(m_pShootPos, null, null, null));
+            
+            Debug.Log("Shoot!!");
         });
     }
 

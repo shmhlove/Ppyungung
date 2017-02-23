@@ -15,6 +15,7 @@ public enum eReturnAutoFlow
 public abstract class SHState : SHMonoWrapper
 {
     #region Members : Basic
+    [Header("State Info")]
     [ReadOnlyField] public  int      m_iCurrentStateID  = -1;
     [ReadOnlyField] public  int      m_iBeforeStateID   = -1;
     [ReadOnlyField] public  int      m_iFixedTick       = -1;

@@ -6,35 +6,51 @@ using System.Collections.Generic;
 public partial class SHDamageObject : SHMonoWrapper
 {
     #region Utility : Position
-    void SetupTransform()
+    void SetupParent()
     {
-        var vLocalPosition = m_pInfo.m_vStaticStartPosition;
-        var pParentObject  = Single.UI.GetRootToScene();
-
+        var pParentObject  = (true == m_pInfo.m_bIsParentToUI) ? 
+            Single.UI.GetRootToScene() : SH3DRoot.GetRoot();
+        
         if (null != GetWho())
         {
-            if (true == m_pInfo.m_bIsTraceToCreator)
+            if ((true == m_pInfo.m_bIsParentToCreator) ||
+                (true == m_pInfo.m_bIsTraceToCreator))
             {
                 pParentObject  = GetWho().GetTransform();
-                vLocalPosition = Vector3.zero;
-            }
-            else if (true == m_pInfo.m_bIsStartPosToCreator)
-            {
-                vLocalPosition = GetWho().GetLocalPosition();
             }
         }
 
         SHGameObject.SetParent(GetTransform(), pParentObject);
-        SetStartTransform();
-        SetLocalPosition(vLocalPosition + m_pInfo.m_vPositionOffset);
     }
-    void SetupPhysicsValue()
+    void SetupTransform()
     {
-        InitPhysicsValue();
+        var vPosition = m_pInfo.m_vStaticStartPosition;
+
+        if (null != GetWho())
+        {
+            if ((true == m_pInfo.m_bIsParentToCreator) ||
+                (true == m_pInfo.m_bIsTraceToCreator))
+            {
+                vPosition = Vector3.zero;
+            }
+            else if (true == m_pInfo.m_bIsStartPosToCreator)
+            {
+                vPosition = GetWho().GetPosition();
+            }
+        }
+        
+        SetStartTransform();
+        SetPosition(vPosition + m_pInfo.m_vPositionOffset);
+    }
+    void SetupPhysics()
+    {
+        InitPhysics();
 
         m_fSpeed = m_pInfo.m_fStartSpeed;
 
-        if (true == m_pInfo.m_bIsRandomStartDirection)
+        if (true == m_pInfo.m_bIsStartDirectionToCreator)
+            m_vDirection = GetWho().GetDirection();
+        else if (true == m_pInfo.m_bIsRandomStartDirection)
             m_vDirection = SHMath.RandomDirection();
         else
             m_vDirection = m_pInfo.m_vStartDirection;
@@ -58,9 +74,9 @@ public partial class SHDamageObject : SHMonoWrapper
     {
         var vSpeed = m_vDirection * GetMoveSpeed();
         {
-            SetLocalPosition(
+            SetPosition(
                 SHPhysics.CalculationEuler(
-                    m_pInfo.m_vForce, GetLocalPosition(), ref vSpeed, m_pInfo.m_fMass));
+                    m_pInfo.m_vForce, GetPosition(), ref vSpeed, m_pInfo.m_fMass));
         }
         SetSpeed(vSpeed);
     }
@@ -78,9 +94,9 @@ public partial class SHDamageObject : SHMonoWrapper
 
         var fSpeed = GetMoveSpeed();
         {
-            SetLocalPosition(
+            SetPosition(
                 SHPhysics.GuidedMissile(
-                    GetLocalPosition(), ref m_vDirection, pTarget.transform.localPosition, fAngle, fSpeed));
+                    GetPosition(), ref m_vDirection, pTarget.transform.position, fAngle, fSpeed));
         }
         SetSpeed(fSpeed);
     }

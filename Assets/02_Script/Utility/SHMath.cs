@@ -68,7 +68,7 @@ public static class SHMath
     }
 
     // 벡터 : 수직벡터의 각도 구하기
-    public static float GetAngleToPosition(Vector3 vAxis, Vector3 vPosition1, Vector3 vPosition2)
+    public static float GetAngleToPosition(Vector3 vAxis, float fSign, Vector3 vPosition1, Vector3 vPosition2)
     {
         Vector3 vDirPos1 = vPosition1.normalized;
         Vector3 vDirPos2 = vPosition2.normalized;
@@ -81,7 +81,7 @@ public static class SHMath
         if (0.0f != vAxis.y) fAxis = vCross.y;
         if (0.0f != vAxis.z) fAxis = vCross.z;
 
-        return (Mathf.Acos(fDot) * Mathf.Rad2Deg) * ((0.0f > fAxis) ? -1.0f : 1.0f);
+        return (Mathf.Acos(fDot) * Mathf.Rad2Deg) * ((0.0f > fAxis) ? -fSign : fSign);
     }
 
     // 보간 : 두 지점 사이의 X비율에 해당하는 값 구하기
