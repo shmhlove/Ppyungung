@@ -27,11 +27,7 @@ public partial class SHApplicationInfo : SHSingleton<SHApplicationInfo>
     // 배포제한 시간정보
     [Header("Release")]
     [SerializeField] private SHReleaseTimer     m_pReleaseTime      = new SHReleaseTimer();
-
-    // 컴포넌트(디버그) : 디버그용 정보출력 
-    [Header("Debug")]
-    [SerializeField] private GUIText            m_pDebugText        = null;
-
+    
     // 기타(디버그) : FPS 출력용 델타타임
     [ReadOnlyField]
     [SerializeField] private float              m_fDeltaTime        = 0.0f;
@@ -90,7 +86,6 @@ public partial class SHApplicationInfo : SHSingleton<SHApplicationInfo>
         SetApplicationInfo();
 
         // 디버그 기능
-        PrintGameInfo();
         CheckReleaseTime();
     }
     public override void Update()
@@ -339,23 +334,6 @@ public partial class SHApplicationInfo : SHSingleton<SHApplicationInfo>
 
         GUI.Box(new Rect((Screen.width * 0.5f) - (GetRatioW(120) * 0.5f), (Screen.height - GetRatioH(30)), GetRatioW(120), GetRatioH(30)),
             string.Format("Ver {0}", Single.Table.GetClientVersion()), pStyle);
-    }
-    IEnumerator PrintGameInfo()
-    {
-        if (null == m_pDebugText)
-            yield break;
-
-        yield return new WaitForSeconds(1.0f);
-
-        Profiler.BeginSample("CheckMemory");
-
-        float fMemory            = Profiler.GetTotalAllocatedMemory() / 1024.0f / 1024.0f;
-        m_pDebugText.text        = string.Format("UsedMemory : {0:F2}MB\nFPS : {1:F2}", fMemory, (1.0f / m_fDeltaTime));
-        m_pDebugText.fontSize    = GetRatioW(20);
-        m_pDebugText.pixelOffset = new Vector2(0.0f, Screen.height * 0.7f);
-
-        Profiler.EndSample();
-        StartCoroutine(PrintGameInfo());
     }
     public void SetLoadResource(string strInfo)
     {
