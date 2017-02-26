@@ -298,7 +298,7 @@ public class SHMonoWrapper : MonoBehaviour
     #endregion
 
 
-    #region : Direction
+    #region Interface : Direction
     public void SetLook(Vector3 vLookPos)
     {
         if (Vector3.zero == vLookPos)
@@ -320,27 +320,54 @@ public class SHMonoWrapper : MonoBehaviour
     }
     #endregion
 
-    #region Interface : Animation
-    public void PlayAnim(eDirection ePlayDir, GameObject pObject, AnimationClip pClip, Action pEndCallback)
-    {
-        if (null == pObject)
-            pObject = gameObject;
 
+    #region Interface : Animation
+    Animation GetAnimation(GameObject pAnimObject = null)
+    {
+        if (null != m_pAnim)     return m_pAnim;
+        if (null == pAnimObject) pAnimObject = gameObject;
+
+        return (m_pAnim = SHGameObject.GetComponent<Animation>(pAnimObject));
+    }
+    public AnimationClip GetAnimClip(GameObject pAnimObject, string strClipName)
+    {
+        if (true == string.IsNullOrEmpty(strClipName))
+            return null;
+
+        var pAnimClip = GetAnimation(pAnimObject).GetClip(strClipName);
+        if (null == pAnimClip)
+            pAnimClip = Single.Resource.GetAniamiton(strClipName);
+
+        return pAnimClip;
+    }
+    public bool IsPlaying(string strClipName)
+    {
+        if (null == m_pAnim)
+            return false;
+
+        return m_pAnim.IsPlaying(strClipName);
+    }
+    public bool PlayAnim(eDirection ePlayDir, GameObject pAnimObject, string strClipName, Action pEndCallback)
+    {        
+        return PlayAnim(ePlayDir, pAnimObject, GetAnimClip(pAnimObject, strClipName), pEndCallback);
+    }
+    public bool PlayAnim(eDirection ePlayDir, GameObject pAnimObject, AnimationClip pClip, Action pEndCallback)
+    {
         if (null == pClip)
         {
             if (null != pEndCallback)
                 pEndCallback();
-            return;
+            return false;
         }
 
-        if (false == pObject.activeInHierarchy)
+        var pAnim = GetAnimation(pAnimObject);
+        if (false == pAnim.gameObject.activeInHierarchy)
         {
             if (null != pEndCallback)
                 pEndCallback();
-            return;
+            return false;
         }
-
-        var pAnim = GetAnimation(pObject);
+        
         if (null == pAnim.GetClip(pClip.name))
             pAnim.AddClip(pClip, pClip.name);
 
@@ -361,13 +388,15 @@ public class SHMonoWrapper : MonoBehaviour
             switch (ePlayDir)
             {
                 case eDirection.Front:
-                    StartCoroutine(CoroutinePlayAnim_UnScaledForward(pObject, pAnim[pClip.name], pEndCallback));
+                    StartCoroutine(CoroutinePlayAnim_UnScaledForward(pAnimObject, pAnim[pClip.name], pEndCallback));
                     break;
                 case eDirection.Back:
-                    StartCoroutine(CoroutinePlayAnim_UnScaledBackward(pObject, pAnim[pClip.name], pEndCallback));
+                    StartCoroutine(CoroutinePlayAnim_UnScaledBackward(pAnimObject, pAnim[pClip.name], pEndCallback));
                     break;
             }
         }
+
+        return true;
     }
     private IEnumerator CoroutinePlayAnim_WaitTime(float fSec, Action pCallback)
     {
@@ -469,20 +498,6 @@ public class SHMonoWrapper : MonoBehaviour
         SetLocalPosition(m_vStartPosition);
         SetLocalRotate(m_qStartRotation);
         SetLocalScale(m_vStartScale);
-    }
-    #endregion
-
-
-    #region Utility Functions
-    Animation GetAnimation(GameObject pObject = null)
-    {
-        if (null != m_pAnim)
-            return m_pAnim;
-
-        if (null == pObject)
-            pObject = gameObject;
-        
-        return (m_pAnim = SHGameObject.GetComponent<Animation>(pObject));
     }
     #endregion
 }

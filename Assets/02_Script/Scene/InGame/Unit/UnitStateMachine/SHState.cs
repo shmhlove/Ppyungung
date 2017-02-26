@@ -12,14 +12,20 @@ public enum eReturnAutoFlow
     Next,
 }
 
-public abstract class SHState : SHMonoWrapper
+public partial class SHState : SHMonoWrapper
 {
     #region Members : Basic
     [Header("State Info")]
-    [ReadOnlyField] public  int      m_iCurrentStateID  = -1;
-    [ReadOnlyField] public  int      m_iBeforeStateID   = -1;
-    [ReadOnlyField] public  int      m_iFixedTick       = -1;
-                    private DicState m_dicState         = new DicState();
+    [ReadOnlyField] public  int        m_iCurrentStateID  = -1;
+    [ReadOnlyField] public  int        m_iBeforeStateID   = -1;
+    [ReadOnlyField] public  int        m_iFixedTick       = -1;
+                    private DicState   m_dicState         = new DicState();
+    #endregion
+
+
+    #region Members : Animation
+    [Header("Animation Info")]
+    [SerializeField] public GameObject m_pAnimRoot        = null;
     #endregion
 
 
@@ -32,7 +38,7 @@ public abstract class SHState : SHMonoWrapper
 
 
     #region Virtual Functions
-    public abstract void RegisterState();
+    public virtual void RegisterState() { }
     #endregion
 
 
@@ -53,7 +59,7 @@ public abstract class SHState : SHMonoWrapper
     #endregion
 
 
-    #region Interface Functions
+    #region Interface : State
     public SHStateInfo CreateState(int iStateID)
     {
         AddStateInfo(iStateID, new SHStateInfo()
@@ -92,11 +98,20 @@ public abstract class SHState : SHMonoWrapper
         if (null != pCurrentState)
             pCurrentState.OnExitState(iChangeStateID);
         
-        m_iBeforeStateID  = m_iCurrentStateID;
-        m_iCurrentStateID = iChangeStateID;
+        m_iBeforeStateID          = m_iCurrentStateID;
+        m_iCurrentStateID         = iChangeStateID;
         pChangeState.m_iFixedTick = (m_iFixedTick = -1);
         pChangeState.OnEnterState(m_iBeforeStateID);
+        PlayAnimation(pChangeState);
     }
+    public bool IsState(int iStateID)
+    {
+        return (m_iCurrentStateID == iStateID);
+    }
+    #endregion
+
+
+    #region Interface : AutoFlow
     public bool IsExistAutoFlowState()
     {
         return (0 != m_pAutoFlowState.Count);
@@ -104,40 +119,6 @@ public abstract class SHState : SHMonoWrapper
     public void AddAutoFlowState(Func<int, eReturnAutoFlow> pStateFunc)
     {
         m_pAutoFlowState.Add(pStateFunc);
-    }
-    #endregion
-
-
-    #region Utility : Update Functions
-    void CallToAutoFlow()
-    {
-        if (false == IsExistAutoFlowState())
-            return;
-
-        var pFunc = m_pAutoFlowState[0];
-        switch(pFunc(m_iCurrentStateID))
-        {
-            case eReturnAutoFlow.Next:
-                m_pAutoFlowState.Remove(pFunc);
-                break;
-        }
-    }
-    void CallToFixedUpdate()
-    {
-        var pState = GetCurrentState();
-        if (null == pState)
-            return;
-
-        pState.m_iFixedTick = ++m_iFixedTick;
-        pState.OnFixedUpdate();
-    }
-    #endregion
-
-
-    #region Utility : Helpper Functions
-    SHStateInfo GetCurrentState()
-    {
-        return GetStateInfo(m_iCurrentStateID);
     }
     #endregion
 }
