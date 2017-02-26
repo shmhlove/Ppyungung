@@ -110,7 +110,11 @@ public class SHUIJoystick : SHMonoWrapper
     {
         if (null == m_pThumb)
             return Vector3.zero;
-        
+
+        var pGap = (GetThumbWorldPos() - transform.position);
+        if (0.01f >= pGap.magnitude)
+            return Vector3.zero;
+
         return (GetThumbWorldPos() - transform.position).normalized;
     }
     Vector3 GetTouchPos()
