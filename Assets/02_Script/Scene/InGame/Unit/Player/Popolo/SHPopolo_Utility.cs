@@ -14,9 +14,9 @@ public partial class SHPopolo : SHState
         base.ChangeState((int)eType);
     }
     #endregion
-    
 
-    #region Utility : ETC
+
+    #region Utility : Behaviour
     bool SetLookDirection()
     {
         if (Vector3.zero == m_vLookDirection)

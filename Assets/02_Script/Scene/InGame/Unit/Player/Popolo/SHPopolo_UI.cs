@@ -13,7 +13,22 @@ public partial class SHPopolo : SHState
         pCtrlUI.AddEventToMove((vDirection) => m_vMoveDirection = vDirection);
         pCtrlUI.AddEventToDirection((vDirection) => m_vLookDirection = vDirection);
         pCtrlUI.AddEventToShoot(() => m_bIsShoot = true);
+        pCtrlUI.AddEventToDash(() => 
+        {
+            if (false == m_bIsDash)
+                return;
 
+            SH3DRoot.SetActiveBlurCamera(true);
+            SHCoroutine.Instance.WaitTime(() =>
+            {
+                SH3DRoot.SetActiveBlurCamera(false);
+            }, m_fDashTime);
+            SHCoroutine.Instance.WaitTime(() =>
+            {
+                m_bIsDash = true;
+            }, m_fDashCoolTime);
+        });
+        
         return true;
     }
 

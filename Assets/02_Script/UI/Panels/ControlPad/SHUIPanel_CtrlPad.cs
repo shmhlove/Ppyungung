@@ -28,6 +28,7 @@ public class SHUIPanel_CtrlPad : SHUIBasePanel
     private Action<Vector3> m_pEventMove      = null;
     private Action<Vector3> m_pEventDirection = null;
     private Action          m_pEventShoot     = null;
+    private Action          m_pEventDash      = null;
     #endregion
 
 
@@ -63,11 +64,16 @@ public class SHUIPanel_CtrlPad : SHUIBasePanel
     {
         m_pEventShoot = pEvent;
     }
+    public void AddEventToDash(Action pEvent)
+    {
+        m_pEventDash = pEvent;
+    }
     public void Clear()
     {
         m_pEventMove      = null;
         m_pEventDirection = null;
         m_pEventShoot     = null;
+        m_pEventDash      = null;
     }
     #endregion
 
@@ -86,35 +92,35 @@ public class SHUIPanel_CtrlPad : SHUIBasePanel
             case eControlType.Type_0:
                 if (null != m_pCtrlType0)
                 {
-                    m_pCtrlType0.Initialize(OnEventToMove, OnEventToDirection, OnEventToShoot);
+                    m_pCtrlType0.Initialize(OnEventToMove, OnEventToDirection, OnEventToShoot, OnEventToDash);
                     Activer(m_pCtrlType0, true);
                 }
                 break;
             case eControlType.Type_1:
                 if (null != m_pCtrlType1)
                 {
-                    m_pCtrlType1.Initialize(OnEventToMove, OnEventToDirection, OnEventToShoot);
+                    m_pCtrlType1.Initialize(OnEventToMove, OnEventToDirection, OnEventToShoot, OnEventToDash);
                     Activer(m_pCtrlType1, true);
                 }
                 break;
             case eControlType.Type_2:
                 if (null != m_pCtrlType2)
                 {
-                    m_pCtrlType2.Initialize(OnEventToMove, OnEventToDirection, OnEventToShoot);
+                    m_pCtrlType2.Initialize(OnEventToMove, OnEventToDirection, OnEventToShoot, OnEventToDash);
                     Activer(m_pCtrlType2, true);
                 }
                 break;
             case eControlType.Type_3:
                 if (null != m_pCtrlType3)
                 {
-                    m_pCtrlType3.Initialize(OnEventToMove, OnEventToDirection, OnEventToShoot);
+                    m_pCtrlType3.Initialize(OnEventToMove, OnEventToDirection, OnEventToShoot, OnEventToDash);
                     Activer(m_pCtrlType3, true);
                 }
                 break;
             case eControlType.Type_4:
                 if (null != m_pCtrlType4)
                 {
-                    m_pCtrlType4.Initialize(OnEventToMove, OnEventToDirection, OnEventToShoot);
+                    m_pCtrlType4.Initialize(OnEventToMove, OnEventToDirection, OnEventToShoot, OnEventToDash);
                     Activer(m_pCtrlType4, true);
                 }
                 break;
@@ -151,6 +157,13 @@ public class SHUIPanel_CtrlPad : SHUIBasePanel
             return;
 
         m_pEventShoot();
+    }
+    public void OnEventToDash()
+    {
+        if (null == m_pEventDash)
+            return;
+
+        m_pEventDash();
     }
     #endregion
 }

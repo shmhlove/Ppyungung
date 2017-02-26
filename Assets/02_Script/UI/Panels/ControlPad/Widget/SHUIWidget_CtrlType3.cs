@@ -14,6 +14,7 @@ public class SHUIWidget_CtrlType3 : SHMonoWrapper
     private Action<Vector3> m_pEventMove      = null;
     private Action<Vector3> m_pEventDirection = null;
     private Action          m_pEventShoot     = null;
+    private Action          m_pEventDash      = null;
     #endregion
 
 
@@ -37,17 +38,19 @@ public class SHUIWidget_CtrlType3 : SHMonoWrapper
 
 
     #region Interface Functions
-    public void Initialize(Action<Vector3> m_pMove, Action<Vector3> m_pDirection, Action m_pShoot)
+    public void Initialize(Action<Vector3> pMove, Action<Vector3> pDirection, Action pShoot, Action pDash)
     {
-        m_pEventMove      = m_pMove;
-        m_pEventDirection = m_pDirection;
-        m_pEventShoot     = m_pShoot;
+        m_pEventMove      = pMove;
+        m_pEventDirection = pDirection;
+        m_pEventShoot     = pShoot;
+        m_pEventDash      = pDash;
     }
     public void Clear()
     {
         m_pEventMove      = null;
         m_pEventDirection = null;
         m_pEventShoot     = null;
+        m_pEventDash      = null;
     }
     #endregion
 
@@ -75,7 +78,6 @@ public class SHUIWidget_CtrlType3 : SHMonoWrapper
         if (null != m_pEventDirection)
             m_pEventDirection(vDirection);
     }
-    
     public void OnEventToPressOn()
     {
         StartCoroutine(CoroutineToShoot());
@@ -83,6 +85,11 @@ public class SHUIWidget_CtrlType3 : SHMonoWrapper
     public void OnEventToPressOff()
     {
         StopAllCoroutines();
+    }
+    public void OnEventToDoubleTouch()
+    {
+        if (null != m_pEventDash)
+            m_pEventDash();
     }
     #endregion
 }

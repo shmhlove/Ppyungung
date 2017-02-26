@@ -44,7 +44,7 @@ public partial class SHPopolo : SHState
     void OnFixedUpdateToIdle(int iCurrentState, int iFixedTick)
     {
         SetLookDirection();
-        
+
         if (true == m_bIsShoot)
         {
             ChangeState(eState.Attack);

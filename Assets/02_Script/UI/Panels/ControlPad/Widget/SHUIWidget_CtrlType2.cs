@@ -15,6 +15,7 @@ public class SHUIWidget_CtrlType2 : SHMonoWrapper
     private Action<Vector3> m_pEventMove      = null;
     private Action<Vector3> m_pEventDirection = null;
     private Action          m_pEventShoot     = null;
+    private Action          m_pEventDash      = null;
     #endregion
 
 
@@ -43,22 +44,24 @@ public class SHUIWidget_CtrlType2 : SHMonoWrapper
 
 
     #region Interface Functions
-    public void Initialize(Action<Vector3> m_pMove, Action<Vector3> m_pDirection, Action m_pShoot)
+    public void Initialize(Action<Vector3> pMove, Action<Vector3> pDirection, Action pShoot, Action pDash)
     {
-        m_pEventMove      = m_pMove;
-        m_pEventDirection = m_pDirection;
-        m_pEventShoot     = m_pShoot;
+        m_pEventMove      = pMove;
+        m_pEventDirection = pDirection;
+        m_pEventShoot     = pShoot;
+        m_pEventDash      = pDash;
     }
     public void Clear()
     {
         m_pEventMove      = null;
         m_pEventDirection = null;
         m_pEventShoot     = null;
+        m_pEventDash      = null;
     }
-#endregion
+    #endregion
 
 
-#region Coroutine Functions
+    #region Coroutine Functions
     IEnumerator CoroutineToShoot()
     {
         while (true)
@@ -69,22 +72,20 @@ public class SHUIWidget_CtrlType2 : SHMonoWrapper
             yield return new WaitForSeconds(SHHard.m_fPlayerAutoShoot);
         }
     }
-#endregion
+    #endregion
 
 
-#region UI Event Functions
+    #region UI Event Functions
     public void OnEventToDragLeft(Vector3 vCenter, Vector3 vThumb, Vector3 vDirection)
     {
         if (null != m_pEventMove)
             m_pEventMove(vDirection);
     }
-
     public void OnEventToDragRight(Vector3 vCenter, Vector3 vThumb, Vector3 vDirection)
     {
         if (null != m_pEventDirection)
             m_pEventDirection(vDirection);
     }
-
     public void OnEventToPressOnRight()
     {
         StartCoroutine(CoroutineToShoot());
@@ -93,5 +94,10 @@ public class SHUIWidget_CtrlType2 : SHMonoWrapper
     {
         StopAllCoroutines();
     }
-#endregion
+    public void OnEventToDoubleTouch()
+    {
+        if (null != m_pEventDash)
+            m_pEventDash();
+    }
+    #endregion
 }

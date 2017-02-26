@@ -15,12 +15,15 @@ public partial class SHPopolo : SHState
 {
     #region Members : Inspector
     [Header("Player Info")]
-    [SerializeField] private SHMonoWrapper m_pShootPos  = null;
-    [SerializeField] private float         m_fMoveSpeed = 50.0f;
+    [SerializeField] private SHMonoWrapper m_pShootPos     = null;
+    [SerializeField] private float         m_fMoveSpeed    = 50.0f;
+    [SerializeField] private float         m_fDashTime     = 1.0f;
+    [SerializeField] private float         m_fDashCoolTime = 3.0f;
     #endregion
 
 
     #region Members : User Interaction Data
+    private bool    m_bIsDash        = true;
     private bool    m_bIsShoot       = false;
     private Vector3 m_vMoveDirection = Vector3.zero;
     private Vector3 m_vLookDirection = Vector3.zero;
