@@ -22,6 +22,7 @@ public partial class SHPopolo : SHState
         if (Vector3.zero == m_vLookDirection)
             return false;
 
+        m_vDirection = m_vLookDirection;
         SetLocalRotateY(SHMath.GetAngleToPosition(Vector3.forward, -1.0f, Vector3.up, m_vLookDirection));
         m_vLookDirection = Vector3.zero;
         return true;
@@ -35,6 +36,11 @@ public partial class SHPopolo : SHState
         AddLocalPositionZ(SHHard.m_fPlayerMoveSpeed * m_vMoveDirection.y);
         m_vMoveDirection = Vector3.zero;
         return true;
+    }
+    void SetDash()
+    {
+        AddLocalPositionX(m_fDashSpeed * m_vDashDirection.x);
+        AddLocalPositionZ(m_fDashSpeed * m_vDashDirection.y);
     }
     bool SetAttack()
     {

@@ -10,6 +10,11 @@ public class SHUIWidget_CtrlType3 : SHMonoWrapper
     #endregion
 
 
+    #region Members : Info
+    private DateTime        m_pPressTime;
+    #endregion
+
+
     #region Members : Event
     private Action<Vector3> m_pEventMove      = null;
     private Action<Vector3> m_pEventDirection = null;
@@ -80,16 +85,20 @@ public class SHUIWidget_CtrlType3 : SHMonoWrapper
     }
     public void OnEventToPressOn()
     {
+        float fTimeGap = (float)(DateTime.Now - m_pPressTime).TotalMilliseconds / 1000.0f;
+        if (fTimeGap < 0.5f)
+        {
+            if (null != m_pEventDash)
+                m_pEventDash();
+        }
+
+        m_pPressTime = DateTime.Now;
+
         StartCoroutine(CoroutineToShoot());
     }
     public void OnEventToPressOff()
     {
         StopAllCoroutines();
-    }
-    public void OnEventToDoubleTouch()
-    {
-        if (null != m_pEventDash)
-            m_pEventDash();
     }
     #endregion
 }

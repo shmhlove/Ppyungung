@@ -15,17 +15,21 @@ public partial class SHPopolo : SHState
         pCtrlUI.AddEventToShoot(() => m_bIsShoot = true);
         pCtrlUI.AddEventToDash(() => 
         {
-            if (false == m_bIsDash)
+            if (false == m_bIsDashReady)
                 return;
+
+            m_bIsDash       = true;
+            m_bIsDashReady  = false;
 
             SH3DRoot.SetActiveBlurCamera(true);
             SHCoroutine.Instance.WaitTime(() =>
             {
+                m_bIsDash = false;
                 SH3DRoot.SetActiveBlurCamera(false);
             }, m_fDashTime);
             SHCoroutine.Instance.WaitTime(() =>
             {
-                m_bIsDash = true;
+                m_bIsDashReady = true;
             }, m_fDashCoolTime);
         });
         

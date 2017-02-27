@@ -104,13 +104,11 @@ public class SHUIWidget_CtrlType2 : SHMonoWrapper
     }
     public void OnEventToPressOffRight()
     {
-        m_bIsRightPress = false;
-        StopAllCoroutines();
-    }
-    public void OnEventToDoubleTouch()
-    {
         if (null != m_pEventDash)
             m_pEventDash();
+
+        m_bIsRightPress = false;
+        StopAllCoroutines();
     }
     #endregion
 }

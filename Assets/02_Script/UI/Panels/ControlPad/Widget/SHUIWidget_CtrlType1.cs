@@ -9,6 +9,11 @@ public class SHUIWidget_CtrlType1 : SHMonoWrapper
     #endregion
 
 
+    #region Members : Info
+    private DateTime        m_pPressTime;
+    #endregion
+
+
     #region Members : Event
     private Action<Vector3> m_pEventMove      = null;
     private Action<Vector3> m_pEventDirection = null;
@@ -21,7 +26,10 @@ public class SHUIWidget_CtrlType1 : SHMonoWrapper
     public override void Start()
     {
         if (null != m_pJoyStick)
-            m_pJoyStick.m_pEventToDrag = OnEventToDrag;
+        {
+            m_pJoyStick.m_pEventToDrag    = OnEventToDrag;
+            m_pJoyStick.m_pEventToPressOn = OnEventToPressOn;
+        }
     }
     #endregion
 
@@ -53,15 +61,21 @@ public class SHUIWidget_CtrlType1 : SHMonoWrapper
         if (null != m_pEventDirection)
             m_pEventDirection(vDirection);
     }
+    public void OnEventToPressOn()
+    {
+        float fTimeGap = (float)(DateTime.Now - m_pPressTime).TotalMilliseconds / 1000.0f;
+        if (fTimeGap < 0.5f)
+        {
+            if (null != m_pEventDash)
+                m_pEventDash();
+        }
+
+        m_pPressTime = DateTime.Now;
+    }
     public void OnClickToRightButton()
     {
         if (null != m_pEventShoot)
             m_pEventShoot();
-    }
-    public void OnEventToDoubleTouch()
-    {
-        if (null != m_pEventDash)
-            m_pEventDash();
     }
     #endregion
 }

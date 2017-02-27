@@ -10,6 +10,7 @@ public partial class SHPopolo : SHState
         Idle,
         Move,
         Attack,
+        Dash,
     }
 
 
@@ -31,10 +32,17 @@ public partial class SHPopolo : SHState
         pState = CreateState(eState.Attack);
         {
             pState.m_strAnimClip   = "Anim_Char_Attack";
-            pState.m_OnEnter       = OnEnterStateToAttack;
+            pState.m_OnEnter       = OnEnterToAttack;
             pState.m_OnFixedUpdate = OnFixedUpdateToAttack;
         }
         
+        pState = CreateState(eState.Dash);
+        {
+            pState.m_strAnimClip   = "Anim_Char_Move";
+            pState.m_OnEnter       = OnEnterToDash;
+            pState.m_OnFixedUpdate = OnFixedUpdateToDash;
+        }
+
         ChangeState(eState.Idle);
     }
     #endregion
@@ -44,6 +52,12 @@ public partial class SHPopolo : SHState
     void OnFixedUpdateToIdle(int iCurrentState, int iFixedTick)
     {
         SetLookDirection();
+
+        if (true == m_bIsDash)
+        {
+            ChangeState(eState.Dash);
+            return;
+        }
 
         if (true == m_bIsShoot)
         {
@@ -66,6 +80,12 @@ public partial class SHPopolo : SHState
         bool bIsMoved  = SetMove();
         bool bIsLooked = SetLookDirection();
 
+        if (true == m_bIsDash)
+        {
+            ChangeState(eState.Dash);
+            return;
+        }
+
         if (true == m_bIsShoot)
         {
             ChangeState(eState.Attack);
@@ -82,7 +102,7 @@ public partial class SHPopolo : SHState
 
 
     #region State : Attack
-    void OnEnterStateToAttack(int iBeforeState, int iCurrentState)
+    void OnEnterToAttack(int iBeforeState, int iCurrentState)
     {
         SetAttack();
     }
@@ -90,6 +110,12 @@ public partial class SHPopolo : SHState
     {
         bool bMoved  = SetMove();
         bool bLooked = SetLookDirection();
+
+        if (true == m_bIsDash)
+        {
+            ChangeState(eState.Dash);
+            return;
+        }
 
         if (true == m_bIsShoot)
         {
@@ -103,6 +129,27 @@ public partial class SHPopolo : SHState
                 ChangeState(eState.Move);
             else
                 ChangeState(eState.Idle);
+        }
+    }
+    #endregion
+
+
+    #region State : Dash
+    void OnEnterToDash(int iBeforeState, int iCurrentState)
+    {
+        if (Vector3.zero == m_vDirection)
+            m_vDirection = Vector3.up;
+
+        m_vDashDirection = m_vDirection;
+    }
+    void OnFixedUpdateToDash(int iCurrentState, int iFixedTick)
+    {
+        SetDash();
+
+        if (false == m_bIsDash)
+        {
+            ChangeState(eState.Idle);
+            return;
         }
     }
     #endregion
