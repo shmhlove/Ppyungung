@@ -83,9 +83,7 @@ public class SHUIWidget_CtrlType0 : SHMonoWrapper
     public void OnEventToPressOff()
     {
         StopAllCoroutines();
-    }
-    public void OnEventToDoubleTouch()
-    {
+
         if (null != m_pEventDash)
             m_pEventDash();
     }

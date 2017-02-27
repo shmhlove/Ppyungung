@@ -11,6 +11,11 @@ public class SHUIWidget_CtrlType2 : SHMonoWrapper
     #endregion
 
 
+    #region Members : Info
+    private bool m_bIsRightPress = false;
+    #endregion
+
+
     #region Members : Event
     private Action<Vector3> m_pEventMove      = null;
     private Action<Vector3> m_pEventDirection = null;
@@ -80,6 +85,12 @@ public class SHUIWidget_CtrlType2 : SHMonoWrapper
     {
         if (null != m_pEventMove)
             m_pEventMove(vDirection);
+
+        if (false == m_bIsRightPress)
+        {
+            if (null != m_pEventDirection)
+                m_pEventDirection(vDirection);
+        }
     }
     public void OnEventToDragRight(Vector3 vCenter, Vector3 vThumb, Vector3 vDirection)
     {
@@ -88,10 +99,12 @@ public class SHUIWidget_CtrlType2 : SHMonoWrapper
     }
     public void OnEventToPressOnRight()
     {
+        m_bIsRightPress = true;
         StartCoroutine(CoroutineToShoot());
     }
     public void OnEventToPressOffRight()
     {
+        m_bIsRightPress = false;
         StopAllCoroutines();
     }
     public void OnEventToDoubleTouch()
