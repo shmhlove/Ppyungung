@@ -90,7 +90,7 @@ public class SHUIWidget_CtrlType2 : SHMonoWrapper
         if (null != m_pEventMove)
             m_pEventMove(vDirection);
 
-        if (false == m_bIsRightPress)
+        if (false == m_bIsRightDrag)
         {
             if (null != m_pEventDirection)
                 m_pEventDirection(vDirection);
