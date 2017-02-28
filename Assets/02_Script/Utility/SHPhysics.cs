@@ -5,6 +5,7 @@ public static class SHPhysics
 {
     public static Vector3 m_vGravity = new Vector3(0.0f, -9.81f, 0.0f);
 
+
     #region Move Physics
     // Spring 알고리즘(Runge-Kutta Method) : 중심점을 기준으로 포인트위치가 스프링처럼 움직인다.
     // 단, 속도는 누적 갱신되는 값이므로 호출하는 곳에서 멤버변수로 가지고 있어야한다.
@@ -90,6 +91,27 @@ public static class SHPhysics
     }
     #endregion
 
+
     #region Collision Physics
+
+    // Bound안에 Point가 포함되는지 확인
+    public static bool IsInBoundToPoint(Bounds pBound, Vector3 vPoint)
+    {
+        return ((pBound.min.x <= vPoint.x && vPoint.x <= pBound.max.x) &&
+                (pBound.min.y <= vPoint.y && vPoint.y <= pBound.max.y) &&
+                (pBound.min.z <= vPoint.z && vPoint.z <= pBound.max.z));
+    }
+
+    // 포인트를 사각형안에 포함시켜줌
+    public static Vector3 IncludePointInRect(Vector4 vRect, Vector3 vPos)
+    {
+        if (vPos.x < vRect.x) vPos.x = vRect.x;
+        if (vPos.y < vRect.y) vPos.y = vRect.y;
+        if (vPos.x > vRect.z) vPos.x = vRect.z;
+        if (vPos.y > vRect.w) vPos.y = vRect.w;
+
+        return vPos;
+    }
+
     #endregion
 }

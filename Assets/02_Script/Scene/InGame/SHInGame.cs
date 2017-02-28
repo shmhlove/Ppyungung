@@ -10,6 +10,7 @@ public class SHInGame : SHSingleton<SHInGame>
     private SHBalance    m_pBalance    = new SHBalance();
     private SHPlayer     m_pPlayer     = new SHPlayer();
     private SHDamage     m_pDamage     = new SHDamage();
+    private SHBackGround m_pBackground = new SHBackGround();
     #endregion
 
 
@@ -43,6 +44,9 @@ public class SHInGame : SHSingleton<SHInGame>
 
         if (null != m_pDamage)
             m_pDamage.OnInitialize();
+
+        if (null != m_pBackground)
+            m_pBackground.OnInitialize();
     }
     public void FinalizeEngine()
     {
@@ -60,6 +64,9 @@ public class SHInGame : SHSingleton<SHInGame>
 
         if (null != m_pDamage)
             m_pDamage.OnFinalize();
+
+        if (null != m_pBackground)
+            m_pBackground.OnFinalize();
     }
     public void FrameMove()
     {
@@ -77,6 +84,9 @@ public class SHInGame : SHSingleton<SHInGame>
 
         if (null != m_pDamage)
             m_pDamage.OnFrameMove();
+
+        if (null != m_pBackground)
+            m_pBackground.OnFrameMove();
     }
     #endregion
 
@@ -101,6 +111,10 @@ public class SHInGame : SHSingleton<SHInGame>
     public SHDamage GetDamage()
     {
         return m_pDamage;
+    }
+    public SHBackGround GetBackground()
+    {
+        return m_pBackground;
     }
     #endregion
 

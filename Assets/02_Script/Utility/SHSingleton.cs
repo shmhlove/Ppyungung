@@ -22,6 +22,7 @@ public static class Single
     public static SHBalance                 Balance             { get { return InGame.GetBalance(); } }
     public static SHPlayer                  Player              { get { return InGame.GetPlayer(); } }
     public static SHDamage                  Damage              { get { return InGame.GetDamage(); } }
+    public static SHBackGround              Backgroun           { get { return InGame.GetBackground(); } }
 
     // UI
     public static SHUIManager               UI                  { get { return SHUIManager.Instance; } }

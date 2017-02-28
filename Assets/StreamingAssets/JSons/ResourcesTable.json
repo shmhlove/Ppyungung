@@ -9,11 +9,19 @@
 			"s_Path": "Localization/Local_Common"
 		},
 		{
+			"s_Name": "BGSpace",
+			"s_FileName": "BGSpace.prefab",
+			"s_Extension": ".prefab",
+			"s_Size": "8768",
+			"s_Hash": "5F758CA0DEA52E10D3019AEAD52B8AD8",
+			"s_Path": "Prefab/Background/BGSpace"
+		},
+		{
 			"s_Name": "Dmg_Bullet",
 			"s_FileName": "Dmg_Bullet.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "16588",
-			"s_Hash": "EE90A2566E4A955AD7B0944436AF15D4",
+			"s_Size": "16676",
+			"s_Hash": "2F8DDE461FFD562729A9958E47D8BAAC",
 			"s_Path": "Prefab/Damage/Dmg_Bullet"
 		},
 		{
@@ -44,8 +52,8 @@
 			"s_Name": "Panel_Development",
 			"s_FileName": "Panel_Development.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "34240",
-			"s_Hash": "A8F80B089707EC1D119AFD1485A6868F",
+			"s_Size": "57152",
+			"s_Hash": "FD484E9560101A52456A15833EEBB904",
 			"s_Path": "Prefab/UI/Panel/Panel_Development"
 		},
 		{
@@ -84,8 +92,8 @@
 			"s_Name": "Popolo",
 			"s_FileName": "Popolo.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "8820",
-			"s_Hash": "905E693862AAE0FA30D38F3BD09BC374",
+			"s_Size": "15776",
+			"s_Hash": "2A0388099F9DCB218F32F040E3AB9F94",
 			"s_Path": "Prefab/Unit/Popolo"
 		},
 		{
