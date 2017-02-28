@@ -107,7 +107,7 @@ public class SHUIPanel_Development : SHUIBasePanel
     #region Event : Log
     public void OnClickToConsole()
     {
-        LunarConsole.s_instance.ShowConsole();
+        LunarConsole.Show();
     }
     public void OnClickToShowLogInfo()
     {
