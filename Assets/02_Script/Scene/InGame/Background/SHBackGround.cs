@@ -63,7 +63,6 @@ public class SHBackGround : SHInGame_Component
                 (true == SHPhysics.IsInBoundToPoint(pObject.GetBounds(), vCenter)))
             {
                 pCenter = pObject;
-                Debug.Log(pCenter.m_iBlockID);
                 continue;
             }
 

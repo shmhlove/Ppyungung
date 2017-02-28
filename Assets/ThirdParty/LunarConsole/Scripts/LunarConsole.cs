@@ -762,14 +762,14 @@ namespace LunarConsolePlugin
             }
             else
             {
-                Debug.LogError("Can't show console: instance is not initialized. Make sure you've installed it correctly");
+                Log.w("Can't show console: instance is not initialized. Make sure you've installed it correctly");
             }
-#else
-            Debug.LogError("Can't show console: plugin is disabled");
-#endif
-#else
-            Debug.LogError("Can't show console: current platform is not supported");
-#endif
+            #else
+            Log.w("Can't show console: plugin is disabled");
+            #endif
+            #else
+            Log.w("Can't show console: current platform is not supported");
+            #endif
         }
 
         /// <summary>
