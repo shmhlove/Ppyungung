@@ -107,8 +107,7 @@ public class SHUIPanel_Development : SHUIBasePanel
     #region Event : Log
     public void OnClickToConsole()
     {
-        LunarConsole.Hide();
-        SHCoroutine.Instance.WaitTime(LunarConsole.Show, 0.1f);
+        LunarConsole.s_instance.ShowConsole();
     }
     public void OnClickToShowLogInfo()
     {

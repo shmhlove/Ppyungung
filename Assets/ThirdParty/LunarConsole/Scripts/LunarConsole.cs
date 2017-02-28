@@ -81,7 +81,7 @@ namespace LunarConsolePlugin
         [SerializeField]
         bool m_removeRichTextTags;
 
-        static LunarConsole s_instance;
+        public static LunarConsole s_instance;
 
         #pragma warning restore 0649
         #pragma warning restore 0414
@@ -917,7 +917,7 @@ namespace LunarConsolePlugin
 
         #if LUNAR_CONSOLE_ENABLED
 
-        void ShowConsole()
+        public void ShowConsole()
         {
             if (m_platform != null)
             {
@@ -925,7 +925,7 @@ namespace LunarConsolePlugin
             }
         }
 
-        void HideConsole()
+        public void HideConsole()
         {
             if (m_platform != null)
             {
