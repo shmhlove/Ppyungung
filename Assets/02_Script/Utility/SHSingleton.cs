@@ -21,6 +21,7 @@ public static class Single
     public static SHScoreBoard              ScoreBoard          { get { return InGame.GetScoreBoard(); } }
     public static SHBalance                 Balance             { get { return InGame.GetBalance(); } }
     public static SHPlayer                  Player              { get { return InGame.GetPlayer(); } }
+    public static SHMonster                 Monster             { get { return InGame.GetMonster(); } }
     public static SHDamage                  Damage              { get { return InGame.GetDamage(); } }
     public static SHBackGround              Backgroun           { get { return InGame.GetBackground(); } }
 

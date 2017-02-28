@@ -9,6 +9,7 @@ public class SHInGame : SHSingleton<SHInGame>
     private SHScoreBoard m_pScoreBoard = new SHScoreBoard();
     private SHBalance    m_pBalance    = new SHBalance();
     private SHPlayer     m_pPlayer     = new SHPlayer();
+    private SHMonster    m_pMonster    = new SHMonster();
     private SHDamage     m_pDamage     = new SHDamage();
     private SHBackGround m_pBackground = new SHBackGround();
     #endregion
@@ -42,6 +43,9 @@ public class SHInGame : SHSingleton<SHInGame>
         if (null != m_pPlayer)
             m_pPlayer.OnInitialize();
 
+        if (null != m_pMonster)
+            m_pMonster.OnInitialize();
+        
         if (null != m_pDamage)
             m_pDamage.OnInitialize();
 
@@ -62,6 +66,9 @@ public class SHInGame : SHSingleton<SHInGame>
         if (null != m_pPlayer)
             m_pPlayer.OnFinalize();
 
+        if (null != m_pMonster)
+            m_pMonster.OnFinalize();
+
         if (null != m_pDamage)
             m_pDamage.OnFinalize();
 
@@ -81,6 +88,9 @@ public class SHInGame : SHSingleton<SHInGame>
 
         if (null != m_pPlayer)
             m_pPlayer.OnFrameMove();
+
+        if (null != m_pMonster)
+            m_pMonster.OnFrameMove();
 
         if (null != m_pDamage)
             m_pDamage.OnFrameMove();
@@ -107,6 +117,10 @@ public class SHInGame : SHSingleton<SHInGame>
     public SHPlayer GetPlayer()
     {
         return m_pPlayer;
+    }
+    public SHMonster GetMonster()
+    {
+        return m_pMonster;
     }
     public SHDamage GetDamage()
     {
