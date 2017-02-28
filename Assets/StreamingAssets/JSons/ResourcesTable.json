@@ -9,12 +9,12 @@
 			"s_Path": "Localization/Local_Common"
 		},
 		{
-			"s_Name": "BGSpace",
-			"s_FileName": "BGSpace.prefab",
+			"s_Name": "BGBlock",
+			"s_FileName": "BGBlock.prefab",
 			"s_Extension": ".prefab",
 			"s_Size": "8768",
 			"s_Hash": "5F758CA0DEA52E10D3019AEAD52B8AD8",
-			"s_Path": "Prefab/Background/BGSpace"
+			"s_Path": "Prefab/Background/BGBlock"
 		},
 		{
 			"s_Name": "Dmg_Bullet",

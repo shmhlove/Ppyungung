@@ -14,7 +14,7 @@ public class SHBackGround : SHInGame_Component
     {
         SHUtils.For(0, 4, (iIndex) =>
         {
-            var pSpace = Single.ObjectPool.Get<SHBGBlock>("BGSpace");
+            var pSpace = Single.ObjectPool.Get<SHBGBlock>("BGBlock");
             pSpace.SetActive(true);
             pSpace.SetParent(SH3DRoot.GetRoot());
             pSpace.m_iBlockID = iIndex;
