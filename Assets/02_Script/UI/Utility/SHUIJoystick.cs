@@ -52,7 +52,10 @@ public class SHUIJoystick : SHMonoWrapper
     {
         if (false == m_bIsPressOn)
             return;
-        
+
+        if (Vector3.zero == GetThumbDirection())
+            return;
+
         CallEventToDrag(transform.position, GetThumbWorldPos(), GetThumbDirection());
     }
     void UpdateSpring()

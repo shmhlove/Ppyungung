@@ -13,6 +13,7 @@ public class SHUIWidget_CtrlType2 : SHMonoWrapper
 
     #region Members : Info
     private bool m_bIsRightPress = false;
+    private bool m_bIsRightDrag  = false;
     #endregion
 
 
@@ -71,8 +72,11 @@ public class SHUIWidget_CtrlType2 : SHMonoWrapper
     {
         while (true)
         {
-            if (null != m_pEventShoot)
-                m_pEventShoot();
+            if (true == m_bIsRightDrag)
+            {
+                if (null != m_pEventShoot)
+                    m_pEventShoot();
+            }
 
             yield return new WaitForSeconds(SHHard.m_fPlayerAutoShoot);
         }
@@ -94,20 +98,29 @@ public class SHUIWidget_CtrlType2 : SHMonoWrapper
     }
     public void OnEventToDragRight(Vector3 vCenter, Vector3 vThumb, Vector3 vDirection)
     {
+        m_bIsRightDrag = true;
+
         if (null != m_pEventDirection)
             m_pEventDirection(vDirection);
     }
     public void OnEventToPressOnRight()
     {
+        m_bIsRightDrag  = false;
         m_bIsRightPress = true;
+
         StartCoroutine(CoroutineToShoot());
     }
     public void OnEventToPressOffRight()
     {
-        if (null != m_pEventDash)
-            m_pEventDash();
+        if (false == m_bIsRightDrag)
+        {
+            if (null != m_pEventDash)
+                m_pEventDash();
+        }
 
+        m_bIsRightDrag  = false;
         m_bIsRightPress = false;
+
         StopAllCoroutines();
     }
     #endregion
