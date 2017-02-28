@@ -10,6 +10,11 @@ public class SHBGBlock : SHMonoWrapper
     #endregion
 
 
+    #region Members : Inspector
+    [ReadOnlyField] public int m_iBlockID = 0;
+    #endregion
+
+
     #region Interface Functions
     public float GetHalfWidth()
     {

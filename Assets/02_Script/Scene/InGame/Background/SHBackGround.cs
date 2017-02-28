@@ -5,7 +5,7 @@ using UnityEngine;
 public class SHBackGround : SHInGame_Component
 {
     #region Members
-    private List<SHBGBlock> m_pBlocks = new List<SHBGBlock>();
+    private List<SHBGBlock> m_pBlocks      = new List<SHBGBlock>();
     #endregion
 
 
@@ -17,9 +17,9 @@ public class SHBackGround : SHInGame_Component
             var pSpace = Single.ObjectPool.Get<SHBGBlock>("BGSpace");
             pSpace.SetActive(true);
             pSpace.SetParent(SH3DRoot.GetRoot());
+            pSpace.m_iBlockID = iIndex;
             m_pBlocks.Add(pSpace);
         });
-        Repositioning(Vector3.zero);
     }
     public override void OnFinalize()
     {
@@ -34,33 +34,26 @@ public class SHBackGround : SHInGame_Component
     #region Utility Functions
     void Repositioning(Vector3 vCenter)
     {
-        SHBGBlock       pCenter     = null;
+        SHBGBlock       pCenterBlock = null;
         List<SHBGBlock> pRemainders = new List<SHBGBlock>();
-        GetDecompositionBlocks(vCenter, ref pCenter, ref pRemainders);
+        GetDecompositionBlocks(vCenter, ref pCenterBlock, ref pRemainders);
         
-        if (null == pCenter)
+        if (null == pCenterBlock)
             return;
-
-        if (3 != pRemainders.Count)
-            return;
-
-        var vCenterBlock  = pCenter.GetLocalPosition();
-        var vCenterWidth  = pCenter.GetHalfWidth();
-        var vCenterHeight = pCenter.GetHalfHeight();
+        
+        var vCenterBlock  = pCenterBlock.GetLocalPosition();
+        var vCenterWidth  = pCenterBlock.GetHalfWidth();
+        var vCenterHeight = pCenterBlock.GetHalfHeight();
         var vDirection    = (vCenter - vCenterBlock).normalized;
-        var vSignX        = SHMath.Sign(vDirection.x);
-        var vSignZ        = SHMath.Sign(vDirection.z);
+        var fSignX        = SHMath.Sign(vDirection.x);
+        var fSignZ        = SHMath.Sign(vDirection.z);
 
         pRemainders[0].SetLocalPosition(
-            new Vector3(vCenterBlock.x + (vCenterWidth * vSignX), 0.0f, vCenterBlock.z));
-
+            new Vector3(vCenterBlock.x + (vCenterWidth * fSignX), 0.0f, vCenterBlock.z));
         pRemainders[1].SetLocalPosition(
-            new Vector3(vCenterBlock.x, 0.0f, vCenterBlock.z + (vCenterHeight * vSignZ)));
-
-        pRemainders[2].SetLocalPosition(new Vector3(
-                vCenterBlock.x + (vCenterWidth * vSignX),
-                0.0f,
-                vCenterBlock.z + (vCenterHeight * vSignZ)));
+            new Vector3(vCenterBlock.x, 0.0f, vCenterBlock.z + (vCenterHeight * fSignZ)));
+        pRemainders[2].SetLocalPosition(
+            new Vector3(vCenterBlock.x + (vCenterWidth * fSignX), 0.0f, vCenterBlock.z + (vCenterHeight * fSignZ)));
     }
     void GetDecompositionBlocks(Vector3 vCenter, ref SHBGBlock pCenter, ref List<SHBGBlock> pRemainders)
     {
@@ -70,6 +63,7 @@ public class SHBackGround : SHInGame_Component
                 (true == SHPhysics.IsInBoundToPoint(pObject.GetBounds(), vCenter)))
             {
                 pCenter = pObject;
+                Debug.Log(pCenter.m_iBlockID);
                 continue;
             }
 

@@ -6,14 +6,16 @@ public class SH3DRoot : MonoBehaviour
 {
     #region Members : Singleton
     private static Transform    m_pRoot       = null;
+    private static Transform    m_pCameraRoot = null;
     private static Camera       m_pCamera     = null;
     private static Camera       m_pBlurCamera = null;
     #endregion
 
 
     #region Members : Inspector
-    public Camera m_pLocalMainCamera = null;
-    public Camera m_pLocalBlurCamera = null;
+    public Transform    m_pLocalCameraRoot = null;
+    public Camera       m_pLocalMainCamera = null;
+    public Camera       m_pLocalBlurCamera = null;
     #endregion
 
 
@@ -21,6 +23,7 @@ public class SH3DRoot : MonoBehaviour
     void Awake()
     {
         m_pRoot         = transform;
+        m_pCameraRoot   = m_pLocalCameraRoot;
         m_pCamera       = m_pLocalMainCamera;
         m_pBlurCamera   = m_pLocalBlurCamera;
     }
@@ -32,6 +35,12 @@ public class SH3DRoot : MonoBehaviour
         m_pRoot       = null;
         m_pCamera     = null;
         m_pBlurCamera = null;
+    }
+    void Update()
+    {
+        var vPlayerPos = Single.Player.GetLocalPosition();
+        SetCameraPosX(vPlayerPos.x);
+        SetCameraPosZ(vPlayerPos.z);
     }
     #endregion
 
@@ -67,6 +76,28 @@ public class SH3DRoot : MonoBehaviour
             return;
 
         m_pBlurCamera.gameObject.SetActive(bIsActive);
+    }
+    #endregion
+
+
+    #region Utility Functions
+    void SetCameraPosX(float fX)
+    {
+        if (null == m_pCameraRoot)
+            return;
+
+        var vLocalPos = m_pCameraRoot.localPosition;
+        vLocalPos.x = fX;
+        m_pCameraRoot.localPosition = vLocalPos;
+    }
+    void SetCameraPosZ(float fZ)
+    {
+        if (null == m_pCameraRoot)
+            return;
+
+        var vLocalPos = m_pCameraRoot.localPosition;
+        vLocalPos.z = fZ;
+        m_pCameraRoot.localPosition = vLocalPos;
     }
     #endregion
 }
