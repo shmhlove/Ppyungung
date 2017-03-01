@@ -40,11 +40,20 @@ public partial class SHCharPopolo : SHState
     {
         SHHard.m_fCharMoveSpeed = m_fMoveSpeed;
         SHHard.m_fCharDashSpeed = m_fDashSpeed;
-        SHHard.m_fCharDashTime  = m_fDashTime;
-        SHHard.m_fCharDashCool  = m_fDashCoolTime;
-        Single.Damage.AddUnit(this);
+        SHHard.m_fCharDashTime = m_fDashTime;
+        SHHard.m_fCharDashCool = m_fDashCoolTime;
 
         base.Start();
+    }
+    public override void OnEnable()
+    {
+        Single.Damage.AddUnit(this);
+        base.OnEnable();
+    }
+    public override void OnDisable()
+    {
+        Single.Damage.DelUnit(this);
+        base.OnDisable();
     }
     public override void OnDestroy()
     {

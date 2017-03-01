@@ -37,6 +37,8 @@ public partial class SHMonMouse : SHState
         var pDamage = Single.Damage.AddDamage("Dmg_Mon_Bullet",
                         new SHAddDamageParam(m_pShootPos, null, null, null));
 
+        pDamage.SetSpeed(SHHard.m_fMonDamageSpeed);
+        
         if (Vector3.zero != vDirection)
             pDamage.m_vDirection = vDirection;
     }

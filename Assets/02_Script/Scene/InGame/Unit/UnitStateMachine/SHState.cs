@@ -20,6 +20,7 @@ public partial class SHState : SHMonoWrapper
     [ReadOnlyField] public  int        m_iBeforeStateID   = -1;
     [ReadOnlyField] public  int        m_iFixedTick       = -1;
                     private DicState   m_dicState         = new DicState();
+    [ReadOnlyField] public  bool       m_bIsStop          = false;
     #endregion
 
 
@@ -48,9 +49,16 @@ public partial class SHState : SHMonoWrapper
         base.Awake();
         RegisterState();
     }
+    public override void OnEnable()
+    {
+        m_bIsStop = false;
+    }
     public void FrameMove()
     {
         if (false == IsActive())
+            return;
+
+        if (true == m_bIsStop)
             return;
 
         CallToAutoFlow();

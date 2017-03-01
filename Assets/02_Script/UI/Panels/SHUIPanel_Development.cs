@@ -135,20 +135,14 @@ public class SHUIPanel_Development : SHUIBasePanel
     public void OnSubmitToMoveSpeed(string strValue)
     {
         SHHard.m_fCharMoveSpeed = float.Parse(strValue);
-
-#if UNITY_EDITOR
-#else
-        SHPlayerPrefs.SetFloat("Player_MoveSpeed", SHHard.m_fCharMoveSpeed);
-#endif
+    }
+    public void OnSubmitToDamageSpeed(string strValue)
+    {
+        SHHard.m_fCharDamageSpeed = float.Parse(strValue);
     }
     public void OnSubmitToShootSpeed(string strValue)
     {
         SHHard.m_fCharAutoShoot = float.Parse(strValue);
-
-#if UNITY_EDITOR
-#else
-        SHPlayerPrefs.SetFloat("Player_ShootSpeed", SHHard.m_fCharAutoShoot);
-#endif
     }
     public void OnSelectToCtrlType(string strType)
     {
@@ -158,11 +152,34 @@ public class SHUIPanel_Development : SHUIBasePanel
 
         var eType = SHUtils.GetStringToEnum<eControlType>(strType);
         pCtrlUI.SetCtrlType(eType);
+    }
+    #endregion
 
-#if UNITY_EDITOR
-#else
-        SHPlayerPrefs.SetInt("Player_CtrlType", (int)eType);
-#endif
+
+    #region Event : Monster
+    public void OnClickToStartMonster()
+    {
+        Single.Monster.StartMonster();
+    }
+    public void OnClickToStopMonster()
+    {
+        Single.Monster.StopMonster();
+    }
+    public void OnClickToAllKillMonster()
+    {
+        Single.Monster.AllKillMonster();
+    }
+    public void OnSubmitToMonMaxSummon(string strValue)
+    {
+        SHHard.m_iMonMaxCount = int.Parse(strValue);
+    }
+    public void OnSubmitToMonMoveSpeed(string strValue)
+    {
+        SHHard.m_fMonMoveSpeed = float.Parse(strValue);
+    }
+    public void OnSubmitToMonDamageSpeed(string strValue)
+    {
+        SHHard.m_fMonDamageSpeed = float.Parse(strValue);
     }
     #endregion
 }

@@ -32,10 +32,25 @@ public class SHMonster : SHInGame_Component
     public void StartMonster()
     {
         SHCoroutine.Instance.StartRoutine(m_pCorOnCheckGen = OnCoroutineToCheckGen());
+        SHUtils.ForToList(m_pMonsters, (pMonster) =>
+        {
+            pMonster.m_bIsStop = false;
+        });
     }
     public void StopMonster()
     {
         SHCoroutine.Instance.StopRoutine(m_pCorOnCheckGen);
+        SHUtils.ForToList(m_pMonsters, (pMonster) =>
+        {
+            pMonster.m_bIsStop = true;
+        });
+    }
+    public void AllKillMonster()
+    {
+        SHUtils.ForToList(m_pMonsters, (pMonster) =>
+        {
+            pMonster.ChangeState(4);
+        });
     }
     public void DeleteMonster(SHState pMonster)
     {

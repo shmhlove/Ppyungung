@@ -37,9 +37,18 @@ public partial class SHMonMouse : SHState
     public override void Start()
     {
         SHHard.m_fMonMoveSpeed = m_fMoveSpeed;
-        Single.Damage.AddUnit(this);
 
         base.Start();
+    }
+    public override void OnEnable()
+    {
+        Single.Damage.AddUnit(this);
+        base.OnEnable();
+    }
+    public override void OnDisable()
+    {
+        Single.Damage.DelUnit(this);
+        base.OnDisable();
     }
     public override void OnDestroy()
     {

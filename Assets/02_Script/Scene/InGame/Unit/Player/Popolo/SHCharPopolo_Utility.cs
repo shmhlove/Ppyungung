@@ -48,13 +48,15 @@ public partial class SHCharPopolo : SHState
             return false;
 
         SH3DRoot.PlayCameraShake();
-        Single.Damage.AddDamage("Dmg_Char_Bullet",
+        var pDamage = Single.Damage.AddDamage("Dmg_Char_Bullet",
                         new SHAddDamageParam(m_pShootPos, null, null, (pTarget) => 
                         {
                             Single.ScoreBoard.AddScore(1);
                         }));
 
+        pDamage.SetSpeed(SHHard.m_fCharDamageSpeed);
         m_bIsShoot = false;
+
         return true;
     }
     #endregion

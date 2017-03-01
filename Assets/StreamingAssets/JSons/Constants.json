@@ -2,12 +2,14 @@
 	"Constants": 
 	{
         "m_fCharMoveSpeed": 50.0,
+        "m_fCharDamageSpeed": 5000.0,
         "m_fCharAutoShoot": 0.2,
         "m_fCharDashSpeed": 150.0,
         "m_fCharDashTime": 0.5,
         "m_fCharDashCool": 0.0,
 
         "m_fMonMoveSpeed": 30.0,
+        "m_fMonDamageSpeed": 5000.0,
         "m_fMonGenDaly": 2.0,
         "m_iMonMaxGen": 2,
         "m_iMonMaxCount": 4
