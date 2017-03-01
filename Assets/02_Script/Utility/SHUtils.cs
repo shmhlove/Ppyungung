@@ -150,6 +150,13 @@ public static partial class SHUtils
             pCallback(iLoop);
         }
     }
+    public static void For(int iStartIndex, int iMaxIndex, int iAccIndex, Action<int> pCallback)
+    {
+        for (int iLoop = iStartIndex; iLoop < iMaxIndex; iLoop += iAccIndex)
+        {
+            pCallback(iLoop);
+        }
+    }
     public static void For(int iStartIndex, int iMaxIndex, Func<int, bool> pCallback)
     {
         for (int iLoop = iStartIndex; iLoop < iMaxIndex; ++iLoop)

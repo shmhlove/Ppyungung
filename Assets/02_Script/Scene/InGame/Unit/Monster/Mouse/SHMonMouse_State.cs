@@ -80,7 +80,7 @@ public partial class SHMonMouse : SHState
     #region State : Attack
     void OnEnterToAttack(int iBeforeState, int iCurrentState)
     {
-        SetAttack();
+        SetAttack(Vector3.zero);
     }
     void OnEndAnimToAttack(int iCurrentState)
     {
@@ -105,6 +105,13 @@ public partial class SHMonMouse : SHState
     void OnEnterToDie(int iBeforeState, int iCurrentState)
     {
         PlayParticle("Particle_Crash_Dust_Big");
+        SHUtils.For(0, 360, 36, (iValue) =>
+        {
+            var vDirection = Vector3.zero;
+            vDirection.x   = Mathf.Cos(iValue * Mathf.Deg2Rad);
+            vDirection.z   = Mathf.Sin(iValue * Mathf.Deg2Rad);
+            SetAttack(vDirection);
+        });
     }
     void OnFixedUpdateToDie(int iCurrentState, int iFixedTick)
     {
