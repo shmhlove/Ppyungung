@@ -409,7 +409,6 @@ public static partial class SHUtils
         FileInfo pFile = new FileInfo(strFilePath);
         pFile.Attributes = FileAttributes.Normal;
         File.Delete(strFilePath);
-        
     }
     public static void CopyFile(string strSource, string strDest)
     {

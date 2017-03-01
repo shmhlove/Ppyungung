@@ -101,7 +101,7 @@
 			"s_FileName": "MonMouse.prefab",
 			"s_Extension": ".prefab",
 			"s_Size": "15120",
-			"s_Hash": "B8A43D7888E4F507EFBA345F2BFE8DC5",
+			"s_Hash": "E1D212AA92A1FE6A2B9F784E26B5C3CB",
 			"s_Path": "Prefab/Unit/MonMouse"
 		},
 		{
@@ -127,6 +127,22 @@
 			"s_Size": "31116",
 			"s_Hash": "C586D3C03B5012C6E13C3E69B4EDCAD5",
 			"s_Path": "Sound/Effect/Audio_Effect_Crash"
+		},
+		{
+			"s_Name": "",
+			"s_FileName": ".bytes",
+			"s_Extension": ".bytes",
+			"s_Size": "36",
+			"s_Hash": "EE5614781651DAC2282AAF14A782CDE8",
+			"s_Path": "Table/Bytes/"
+		},
+		{
+			"s_Name": "Constants",
+			"s_FileName": "Constants.bytes",
+			"s_Extension": ".bytes",
+			"s_Size": "36",
+			"s_Hash": "EE5614781651DAC2282AAF14A782CDE8",
+			"s_Path": "Table/Bytes/Constants"
 		}
 	]
 }

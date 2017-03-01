@@ -389,22 +389,39 @@ public class SHMonoWrapper : MonoBehaviour
             pAnim.Play(pClip.name);
 
             if (WrapMode.Loop != pState.wrapMode)
-                StartCoroutine(CoroutinePlayAnim_WaitTime(pState.length, pEndCallback));
+                StartCoroutine(m_pCorToAnimWaitTime = CoroutinePlayAnim_WaitTime(pState.length, pEndCallback));
         }
         else
         {
             switch (ePlayDir)
             {
                 case eDirection.Front:
-                    StartCoroutine(CoroutinePlayAnim_UnScaledForward(pAnimObject, pAnim[pClip.name], pEndCallback));
+                    StartCoroutine(m_pCorToAnimUnScaledForward = CoroutinePlayAnim_UnScaledForward(pAnimObject, pAnim[pClip.name], pEndCallback));
                     break;
                 case eDirection.Back:
-                    StartCoroutine(CoroutinePlayAnim_UnScaledBackward(pAnimObject, pAnim[pClip.name], pEndCallback));
+                    StartCoroutine(m_pCorToAnimUnScaledBackward = CoroutinePlayAnim_UnScaledBackward(pAnimObject, pAnim[pClip.name], pEndCallback));
                     break;
             }
         }
 
         return true;
+    }
+    // Anim Coroutine
+    IEnumerator m_pCorToAnimWaitTime         = null;
+    IEnumerator m_pCorToAnimUnScaledForward  = null;
+    IEnumerator m_pCorToAnimUnScaledBackward = null;
+    public void StopAnimCoroutine()
+    {
+        if (null != m_pCorToAnimWaitTime)
+            StopCoroutine(m_pCorToAnimWaitTime);
+        if (null != m_pCorToAnimUnScaledForward)
+            StopCoroutine(m_pCorToAnimUnScaledForward);
+        if (null != m_pCorToAnimUnScaledBackward)
+            StopCoroutine(m_pCorToAnimUnScaledBackward);
+
+        m_pCorToAnimWaitTime         = null;
+        m_pCorToAnimUnScaledForward  = null;
+        m_pCorToAnimUnScaledBackward = null;
     }
     private IEnumerator CoroutinePlayAnim_WaitTime(float fSec, Action pCallback)
     {

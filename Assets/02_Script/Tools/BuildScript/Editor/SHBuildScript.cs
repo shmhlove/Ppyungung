@@ -67,8 +67,11 @@ class SHBuildScript
         // 빌드타겟 별 설정 처리
         SetBuildTargetInfo(eTarget);
 
+        // 테이블 컨버팅
+        ConvertToByte();
+
         // App Build
-		BuildApplication(SCENES, eTarget, eOption);
+        BuildApplication(SCENES, eTarget, eOption);
 
         // 후처리
         PostProcessor();
@@ -82,6 +85,9 @@ class SHBuildScript
 
         // 빌드타겟 별 설정 처리
         SetBuildTargetInfo(eTarget);
+
+        // 테이블 컨버팅
+        ConvertToByte();
 
         // Asset Bundle Packing
         PackingAssetBundles(eTarget, ePackType, true);
@@ -98,6 +104,9 @@ class SHBuildScript
     {
         // 빌드타겟 별 설정 처리
         SetBuildTargetInfo(eTarget);
+
+        // 테이블 컨버팅
+        ConvertToByte();
 
         // Asset Bundle Packing
         PackingAssetBundles(eTarget, ePackType, false);
@@ -182,6 +191,7 @@ class SHBuildScript
         }
         Debug.LogFormat("** Build End({0}) -> {1}", strBuildName, DateTime.Now.ToString("yyyy-MM-dd [ HH:mm:ss ]"));
     }
+
     // 유틸 : 빌드이름
     static string GetBuildName(BuildTarget eTarget, string strAppName, string strVersion)
     {
@@ -190,6 +200,7 @@ class SHBuildScript
         else
             return "xcode";
     }
+
     // 유틸 : 커맨드 옵션 얻기
     static string GetCommandArgs(string strKey)
     {
@@ -206,6 +217,7 @@ class SHBuildScript
 
         return string.Empty;
     }
+
     // 유틸 : PackingAssetBundles 패킹
     static void PackingAssetBundles(BuildTarget eTarget, eBundlePackType eType, bool bIsDelOriginal)
     {
@@ -233,11 +245,17 @@ class SHBuildScript
         return string.Format("{0}/{1}", "http://blueasa.synology.me/home/shmhlove/KOR", Application.productName);
     }
     
+    // 유틸 : Byte Convert
+    static void ConvertToByte()
+    {
+        SHEditorConvertToByte.Run(true);
+    }
+
     // 후처리
     static void PostProcessor()
     {
-        SHGameObject.DestoryObject(GameObject.Find("SHSingletons(Destroy)"));
-        SHGameObject.DestoryObject(GameObject.Find("SHSingletons(DontDestroy)"));
+        GameObject.DestroyImmediate(GameObject.Find("SHSingletons(Destroy)"));
+        GameObject.DestroyImmediate(GameObject.Find("SHSingletons(DontDestroy)"));
     }
     #endregion
 }
