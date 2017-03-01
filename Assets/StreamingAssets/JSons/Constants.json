@@ -9,7 +9,7 @@
 
         "m_fMonMoveSpeed": 30.0,
         "m_fMonGenDaly": 2.0,
-        "m_iMonMaxGen": 4,
-        "m_iMonMaxCount": 12
+        "m_iMonMaxGen": 2,
+        "m_iMonMaxCount": 4
 	}
 }
