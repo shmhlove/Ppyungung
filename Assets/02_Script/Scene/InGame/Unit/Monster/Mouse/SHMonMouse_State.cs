@@ -40,9 +40,8 @@ public partial class SHMonMouse : SHState
 
         pState = CreateState(eState.Die);
         {
-            pState.m_strAnimClip   = "Anim_Char_Attack";
+            pState.m_strAnimClip   = "Anim_Char_Die";
             pState.m_OnEnter       = OnEnterToDie;
-            pState.m_OnEndAnim     = OnEndAnimToDie;
             pState.m_OnFixedUpdate = OnFixedUpdateToDie;
         }
 
@@ -105,14 +104,15 @@ public partial class SHMonMouse : SHState
     #region State : Die
     void OnEnterToDie(int iBeforeState, int iCurrentState)
     {
-    }
-    void OnEndAnimToDie(int iCurrentState)
-    {
-        Single.Monster.DeleteMonster(this);
-        SetActive(false);
+        PlayParticle("Particle_Crash_Dust_Big");
     }
     void OnFixedUpdateToDie(int iCurrentState, int iFixedTick)
     {
+        if (250 < iFixedTick)
+        {
+            Single.Monster.DeleteMonster(this);
+            SetActive(false);
+        }
     }
     #endregion
 }

@@ -46,11 +46,14 @@ public partial class SHDamage : SHInGame_Component
         
         SHUtils.ForToList(GetTargets(pDamage), (pTarget) => 
         {
+            if (true == pTarget.IsOffDamage())
+                return;
+
             var pDamageCollider = pDamage.GetCollider();
             var pTargetCollider = pTarget.GetCollider();
             if ((null == pDamageCollider) || (null == pTargetCollider))
                 return;
-
+            
             var bIsCollistion = false;
             var bBounds       = pDamage.m_pBeforeBounds;
             for(float fRatio = 0.0f; fRatio <= 1.0f; fRatio += 0.1f)

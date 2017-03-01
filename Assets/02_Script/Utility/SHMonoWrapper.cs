@@ -23,7 +23,7 @@ public class SHMonoWrapper : MonoBehaviour
     [HideInInspector] public bool        m_bIsAnimPlaying    = false;
     #endregion
 
-    
+
     #region System Functions
     public virtual void Awake()
     {
@@ -38,6 +38,7 @@ public class SHMonoWrapper : MonoBehaviour
     public virtual void Update() { }
     public virtual void FixedUpdate() { }
     public virtual void LateUpdate() { }
+    public virtual bool IsOffDamage() { return false; }
     public virtual void OnCrashDamage(SHMonoWrapper pCrashObject) { }
     #endregion
 
@@ -501,6 +502,18 @@ public class SHMonoWrapper : MonoBehaviour
             pEndCallback();
 
         m_bIsAnimPlaying = false;
+    }
+    #endregion
+
+
+    #region Interface : Particle
+    public void PlayParticle(string strPrefabName)
+    {
+        var pEffect = Single.ObjectPool.Get(strPrefabName);
+        pEffect.transform.SetParent(transform);
+        pEffect.transform.localPosition = Vector3.zero;
+        pEffect.transform.localScale    = Vector3.one;
+        pEffect.SetActive(true);
     }
     #endregion
 

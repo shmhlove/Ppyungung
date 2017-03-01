@@ -36,8 +36,10 @@ public partial class SHMonMouse : SHState
     #region System Functions
     public override void Start()
     {
-        base.Start();
         SHHard.m_fMonMoveSpeed = m_fMoveSpeed;
+        Single.Damage.AddUnit(this);
+
+        base.Start();
     }
     public override void OnDestroy()
     {
@@ -47,6 +49,17 @@ public partial class SHMonMouse : SHState
     {
         base.FrameMove();
         m_strState = ((eState)m_iCurrentStateID).ToString();
+    }
+    public override bool IsOffDamage()
+    {
+        return IsState((int)eState.Die);
+    }
+    public override void OnCrashDamage(SHMonoWrapper pDamage)
+    {
+        if (null == pDamage)
+            return;
+
+        ChangeState(eState.Die);
     }
     #endregion
 

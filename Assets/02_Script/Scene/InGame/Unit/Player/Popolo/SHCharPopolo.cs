@@ -42,6 +42,7 @@ public partial class SHCharPopolo : SHState
         SHHard.m_fCharDashSpeed = m_fDashSpeed;
         SHHard.m_fCharDashTime  = m_fDashTime;
         SHHard.m_fCharDashCool  = m_fDashCoolTime;
+        Single.Damage.AddUnit(this);
 
         base.Start();
     }
@@ -54,6 +55,18 @@ public partial class SHCharPopolo : SHState
     {
         base.FrameMove();
         m_strState = ((eState)m_iCurrentStateID).ToString();
+    }
+    public override bool IsOffDamage()
+    {
+        return IsState((int)eState.Die);
+    }
+    public override void OnCrashDamage(SHMonoWrapper pDamage)
+    {
+        if (null == pDamage)
+            return;
+
+        PlayParticle("Particle_Crash_Dust_Big");
+        // ChangeState(eState.Die);
     }
     #endregion
 

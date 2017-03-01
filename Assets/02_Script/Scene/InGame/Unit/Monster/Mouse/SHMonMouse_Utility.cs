@@ -34,7 +34,7 @@ public partial class SHMonMouse : SHState
     #region Utility : AttackState
     void SetAttack()
     {
-        Single.Damage.AddDamage("Dmg_Bullet",
+        Single.Damage.AddDamage("Dmg_Mon_Bullet",
                         new SHAddDamageParam(m_pShootPos, null, null, null));
     }
     bool IsAttackDelay()

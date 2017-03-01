@@ -17,12 +17,20 @@
 			"s_Path": "Prefab/Background/BGBlock"
 		},
 		{
-			"s_Name": "Dmg_Bullet",
-			"s_FileName": "Dmg_Bullet.prefab",
+			"s_Name": "Dmg_Char_Bullet",
+			"s_FileName": "Dmg_Char_Bullet.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "16676",
-			"s_Hash": "2F8DDE461FFD562729A9958E47D8BAAC",
-			"s_Path": "Prefab/Damage/Dmg_Bullet"
+			"s_Size": "16692",
+			"s_Hash": "FF9C30D5ACF71759535FC3E2B4530DF8",
+			"s_Path": "Prefab/Damage/Dmg_Char_Bullet"
+		},
+		{
+			"s_Name": "Dmg_Mon_Bullet",
+			"s_FileName": "Dmg_Mon_Bullet.prefab",
+			"s_Extension": ".prefab",
+			"s_Size": "16692",
+			"s_Hash": "80B05442416026036CA0FC0C1B52F0F6",
+			"s_Path": "Prefab/Damage/Dmg_Mon_Bullet"
 		},
 		{
 			"s_Name": "Dmg_Sample",
@@ -37,7 +45,7 @@
 			"s_FileName": "Particle_Crash_Dust_Big.prefab",
 			"s_Extension": ".prefab",
 			"s_Size": "69536",
-			"s_Hash": "11060850B465EF8BDA9A30A7EE4412B0",
+			"s_Hash": "4F74203AFA4E556306686B78D36D6DEB",
 			"s_Path": "Prefab/Effect/Particle_Crash_Dust_Big"
 		},
 		{
@@ -45,7 +53,7 @@
 			"s_FileName": "Particle_Crash_Dust_Small.prefab",
 			"s_Extension": ".prefab",
 			"s_Size": "69544",
-			"s_Hash": "22C66A324FB78100F3815705A22DAD81",
+			"s_Hash": "05AF19A0BB5F86CED39756B79D2F9EBC",
 			"s_Path": "Prefab/Effect/Particle_Crash_Dust_Small"
 		},
 		{
@@ -92,16 +100,16 @@
 			"s_Name": "CharPopolo",
 			"s_FileName": "CharPopolo.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "15872",
-			"s_Hash": "ED60E03C29B3453579515478F99AD6D2",
+			"s_Size": "16720",
+			"s_Hash": "AD7F6BD2DBA41A1AFCD272DF081C7D65",
 			"s_Path": "Prefab/Unit/CharPopolo"
 		},
 		{
 			"s_Name": "MonMouse",
 			"s_FileName": "MonMouse.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "15120",
-			"s_Hash": "E1D212AA92A1FE6A2B9F784E26B5C3CB",
+			"s_Size": "15960",
+			"s_Hash": "FF10639BCCD76C4CFC4583AEC470780E",
 			"s_Path": "Prefab/Unit/MonMouse"
 		},
 		{

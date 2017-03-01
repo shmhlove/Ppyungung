@@ -48,8 +48,11 @@ public partial class SHCharPopolo : SHState
             return false;
 
         SH3DRoot.PlayCameraShake();
-        Single.Damage.AddDamage("Dmg_Bullet",
-                        new SHAddDamageParam(m_pShootPos, null, null, null));
+        Single.Damage.AddDamage("Dmg_Char_Bullet",
+                        new SHAddDamageParam(m_pShootPos, null, null, (pTarget) => 
+                        {
+                            Single.ScoreBoard.AddScore(1);
+                        }));
 
         m_bIsShoot = false;
         return true;

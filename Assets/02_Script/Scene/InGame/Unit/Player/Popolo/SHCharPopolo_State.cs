@@ -11,6 +11,7 @@ public partial class SHCharPopolo : SHState
         Move,
         Attack,
         Dash,
+        Die,
     }
 
 
@@ -41,6 +42,12 @@ public partial class SHCharPopolo : SHState
             pState.m_strAnimClip   = "Anim_Char_Move";
             pState.m_OnEnter       = OnEnterToDash;
             pState.m_OnFixedUpdate = OnFixedUpdateToDash;
+        }
+
+        pState = CreateState(eState.Die);
+        {
+            pState.m_strAnimClip   = "Anim_Char_Die";
+            pState.m_OnEnter       = OnEnterToDie;
         }
 
         ChangeState(eState.Idle);
@@ -151,6 +158,14 @@ public partial class SHCharPopolo : SHState
             ChangeState(eState.Idle);
             return;
         }
+    }
+    #endregion
+
+
+    #region State : Die
+    void OnEnterToDie(int iBeforeState, int iCurrentState)
+    {
+        PlayParticle("Particle_Crash_Dust_Big");
     }
     #endregion
 }
