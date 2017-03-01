@@ -14,9 +14,13 @@ public partial class SHDamage : SHInGame_Component
     }
     SHDamageObject CreateDamage(string strPrefabName)
     {
+#if UNITY_EDITOR
         var pDamage = Single.ObjectPool.Get<SHDamageObject>(
                 strPrefabName, ePoolReturnType.ChangeScene, ePoolDestroyType.Return);
-
+#else
+        var pDamage = Single.ObjectPool.Get<SHDamageObject>(
+                strPrefabName, ePoolReturnType.ChangeScene, ePoolDestroyType.ChangeScene);
+#endif
         if (null == pDamage)
         {
             Debug.LogErrorFormat("SHDamage::AddDamage - Not Found Prefab : {0}", strPrefabName);
@@ -32,10 +36,10 @@ public partial class SHDamage : SHInGame_Component
 
         Single.ObjectPool.Return(pDamage.gameObject);
     }
-    #endregion
+#endregion
 
 
-    #region Utility : Collision
+#region Utility : Collision
     void CheckCollision(SHDamageObject pDamage)
     {
         if (null == pDamage)
@@ -73,10 +77,10 @@ public partial class SHDamage : SHInGame_Component
             pDamage.OnCrashDamage(pTarget);
         });
     }
-    #endregion
+#endregion
 
 
-    #region Utility : Helpper
+#region Utility : Helpper
     List<SHMonoWrapper> GetTargets(SHDamageObject pDamage)
     {
         if (null == pDamage)
@@ -96,5 +100,5 @@ public partial class SHDamage : SHInGame_Component
         
         return pTargets;
     }
-    #endregion
+#endregion
 }
