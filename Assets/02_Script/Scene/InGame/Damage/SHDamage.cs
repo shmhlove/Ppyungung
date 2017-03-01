@@ -41,8 +41,8 @@ public partial class SHDamage : SHInGame_Component
         if (true == m_bIsPause)
             return;
 
-        OnAddUnits();
         OnDelUnits();
+        OnAddUnits();
         OnAddDamage();
         OnDelDamage();
 
@@ -169,7 +169,7 @@ public partial class SHDamage : SHInGame_Component
             return;
 
         if (false == m_dicDelUnits.ContainsKey(pUnit.tag))
-            m_dicAddUnits.Add(pUnit.tag, new List<SHMonoWrapper>());
+            m_dicDelUnits.Add(pUnit.tag, new List<SHMonoWrapper>());
 
         m_dicDelUnits[pUnit.tag].Add(pUnit);
     }

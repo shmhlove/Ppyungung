@@ -43,11 +43,14 @@ public partial class SHMonMouse : SHState
     public override void OnEnable()
     {
         Single.Damage.AddUnit(this);
+
         base.OnEnable();
     }
     public override void OnDisable()
     {
-        Single.Damage.DelUnit(this);
+        if (true == SHInGame.IsExists)
+            Single.Damage.DelUnit(this);
+
         base.OnDisable();
     }
     public override void OnDestroy()
