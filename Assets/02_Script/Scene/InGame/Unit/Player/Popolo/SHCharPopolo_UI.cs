@@ -2,7 +2,7 @@
 using System;
 using System.Collections;
 
-public partial class SHPopolo : SHState
+public partial class SHCharPopolo : SHState
 {
     bool ConnectControllerUI()
     {
@@ -20,17 +20,18 @@ public partial class SHPopolo : SHState
 
             m_bIsDash       = true;
             m_bIsDashReady  = false;
-
             SH3DRoot.SetActiveBlurCamera(true);
+
             SHCoroutine.Instance.WaitTime(() =>
             {
                 m_bIsDash = false;
                 SH3DRoot.SetActiveBlurCamera(false);
-            }, m_fDashTime);
+            }, SHHard.m_fCharDashTime);
+
             SHCoroutine.Instance.WaitTime(() =>
             {
                 m_bIsDashReady = true;
-            }, m_fDashCoolTime);
+            }, SHHard.m_fCharDashTime + SHHard.m_fCharDashCool);
         });
         
         return true;

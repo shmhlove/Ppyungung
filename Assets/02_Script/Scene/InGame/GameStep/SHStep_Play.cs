@@ -13,9 +13,12 @@ public class SHStep_Play : SHStep_Component
     {
         Single.UI.Show("Panel_CtrlPad");
         Single.Player.StartPlayer();
+        Single.Monster.StartMonster();
     }
     public override void FinalStep()
     {
+        Single.Player.StopPlayer();
+        Single.Monster.StopMonster();
     }
     public override void FrameMove(int iCallCnt)
     {

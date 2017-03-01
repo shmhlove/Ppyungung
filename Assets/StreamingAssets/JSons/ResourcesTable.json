@@ -12,8 +12,8 @@
 			"s_Name": "BGBlock",
 			"s_FileName": "BGBlock.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "8768",
-			"s_Hash": "5F758CA0DEA52E10D3019AEAD52B8AD8",
+			"s_Size": "8804",
+			"s_Hash": "8C147FB160EAB2014688C52D2C90FEDE",
 			"s_Path": "Prefab/Background/BGBlock"
 		},
 		{
@@ -76,8 +76,8 @@
 			"s_Name": "Panel_Notice",
 			"s_FileName": "Panel_Notice.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "41908",
-			"s_Hash": "7C282A67EB1B8F6F16E1D78C6E0DD070",
+			"s_Size": "42628",
+			"s_Hash": "C55D0415C19700B513275AA9B7713FD0",
 			"s_Path": "Prefab/UI/Panel/Panel_Notice"
 		},
 		{
@@ -89,12 +89,20 @@
 			"s_Path": "Prefab/UI/Root/UIRoot_Global"
 		},
 		{
-			"s_Name": "Popolo",
-			"s_FileName": "Popolo.prefab",
+			"s_Name": "CharPopolo",
+			"s_FileName": "CharPopolo.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "15776",
-			"s_Hash": "2A0388099F9DCB218F32F040E3AB9F94",
-			"s_Path": "Prefab/Unit/Popolo"
+			"s_Size": "15872",
+			"s_Hash": "ED60E03C29B3453579515478F99AD6D2",
+			"s_Path": "Prefab/Unit/CharPopolo"
+		},
+		{
+			"s_Name": "MonMouse",
+			"s_FileName": "MonMouse.prefab",
+			"s_Extension": ".prefab",
+			"s_Size": "15120",
+			"s_Hash": "B8A43D7888E4F507EFBA345F2BFE8DC5",
+			"s_Path": "Prefab/Unit/MonMouse"
 		},
 		{
 			"s_Name": "Audio_BGM_GameOver",

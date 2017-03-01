@@ -5,8 +5,8 @@ using UnityEngine;
 public class SHBGBlock : SHMonoWrapper
 {
     #region Members : Inspector
-    public float m_fWidth  = 25600;
-    public float m_fHeight = 14400;
+    public float m_fWidth  = 12800;
+    public float m_fHeight = 7200;
     #endregion
 
 
@@ -16,17 +16,13 @@ public class SHBGBlock : SHMonoWrapper
 
 
     #region Interface Functions
-    public float GetHalfWidth()
+    public void Initialize(int iBlockID)
     {
-        return m_fWidth * 0.5f;
-    }
-    public float GetHalfHeight()
-    {
-        return m_fHeight * 0.5f;
+        m_iBlockID = iBlockID;
     }
     public Bounds GetBounds()
     {
-        return new Bounds(GetLocalPosition(), new Vector3(m_fWidth, 0.0f, m_fHeight));
+        return new Bounds(GetLocalPosition(), new Vector3((m_fWidth*2.0f), 0.0f, (m_fHeight*2.0f)));
     }
     #endregion
 }

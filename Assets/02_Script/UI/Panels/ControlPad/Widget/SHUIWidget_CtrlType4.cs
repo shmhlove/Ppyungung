@@ -35,9 +35,9 @@ public class SHUIWidget_CtrlType4 : SHMonoWrapper
         StartCoroutine(CoroutineToShoot());
 
 #if UNITY_EDITOR
-    SHHard.m_fPlayerAutoShoot = m_fShootDelay;
+    SHHard.m_fCharAutoShoot = m_fShootDelay;
 #else
-        SHHard.m_fPlayerAutoShoot = SHPlayerPrefs.GetFloat("Player_ShootSpeed", m_fShootDelay);
+        SHHard.m_fCharAutoShoot = SHPlayerPrefs.GetFloat("Player_ShootSpeed", m_fShootDelay);
 #endif
     }
     public override void OnDisable()
@@ -73,7 +73,7 @@ public class SHUIWidget_CtrlType4 : SHMonoWrapper
             if (null != m_pEventShoot)
                 m_pEventShoot();
 
-            yield return new WaitForSeconds(SHHard.m_fPlayerAutoShoot);
+            yield return new WaitForSeconds(SHHard.m_fCharAutoShoot);
         }
     }
     #endregion

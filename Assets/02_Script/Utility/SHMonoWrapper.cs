@@ -71,7 +71,7 @@ public class SHMonoWrapper : MonoBehaviour
     #endregion
 
 
-    #region Interface : Active
+    #region Interface : Hierarchy
     public void SetParent(GameObject pParent)
     {
         if (null == pParent)
@@ -85,6 +85,14 @@ public class SHMonoWrapper : MonoBehaviour
             return;
 
         transform.SetParent(pParent);
+    }
+    public void SetName(string strName)
+    {
+        gameObject.name = strName;
+    }
+    public string GetName()
+    {
+        return gameObject.name;
     }
     #endregion
 

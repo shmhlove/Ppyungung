@@ -4,22 +4,24 @@ using System.Collections;
 
 /* partial Information
  * 
- * SHPopolo
- * SHPopolo_State
- * SHPopolo_UI
- * SHPopolo_Utility
+ * SHCharPopolo
+ * SHCharPopolo_State
+ * SHCharPopolo_UI
+ * SHCharPopolo_Utility
  * 
 */
 
-public partial class SHPopolo : SHState
+public partial class SHCharPopolo : SHState
 {
     #region Members : Inspector
-    [Header("Player Info")]
+    [Header("Character State")]
+    [ReadOnlyField]  public  string        m_strState      = string.Empty;
+    [Header("Character Info")]
     [SerializeField] private SHMonoWrapper m_pShootPos     = null;
     [SerializeField] private float         m_fMoveSpeed    = 50.0f;
     [SerializeField] private float         m_fDashSpeed    = 150.0f;
-    [SerializeField] private float         m_fDashTime     = 1.0f;
-    [SerializeField] private float         m_fDashCoolTime = 3.0f;
+    [SerializeField] private float         m_fDashTime     = 0.5f;
+    [SerializeField] private float         m_fDashCoolTime = 0.0f;
     #endregion
 
 
@@ -36,26 +38,34 @@ public partial class SHPopolo : SHState
     #region System Functions
     public override void Start()
     {
-#if UNITY_EDITOR
-        SHHard.m_fPlayerMoveSpeed = m_fMoveSpeed;
-#else
-        SHHard.m_fPlayerMoveSpeed = SHPlayerPrefs.GetFloat("Player_MoveSpeed", m_fMoveSpeed);
-#endif
+        SHHard.m_fCharMoveSpeed = m_fMoveSpeed;
+        SHHard.m_fCharDashSpeed = m_fDashSpeed;
+        SHHard.m_fCharDashTime  = m_fDashTime;
+        SHHard.m_fCharDashCool  = m_fDashCoolTime;
+
         base.Start();
-        ConnectControllerUI();
     }
     public override void OnDestroy()
     {
         base.OnDestroy();
-        DeConnectControllerUI();
+        StopCharacter();
     }
     public override void FixedUpdate()
     {
         base.FrameMove();
+        m_strState = ((eState)m_iCurrentStateID).ToString();
     }
     #endregion
 
 
     #region Interface Functions
+    public void StartCharacter()
+    {
+        ConnectControllerUI();
+    }
+    public void StopCharacter()
+    {
+        DeConnectControllerUI();
+    }
     #endregion
 }

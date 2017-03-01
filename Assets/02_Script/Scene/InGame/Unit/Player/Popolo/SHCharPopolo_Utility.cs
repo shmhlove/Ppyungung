@@ -2,7 +2,7 @@
 using System;
 using System.Collections;
 
-public partial class SHPopolo : SHState
+public partial class SHCharPopolo : SHState
 {
     #region Utility : State
     SHStateInfo CreateState(eState eType)
@@ -32,15 +32,15 @@ public partial class SHPopolo : SHState
         if (Vector3.zero == m_vMoveDirection)
             return false;
 
-        AddLocalPositionX(SHHard.m_fPlayerMoveSpeed * m_vMoveDirection.x);
-        AddLocalPositionZ(SHHard.m_fPlayerMoveSpeed * m_vMoveDirection.y);
+        AddLocalPositionX(SHHard.m_fCharMoveSpeed * m_vMoveDirection.x);
+        AddLocalPositionZ(SHHard.m_fCharMoveSpeed * m_vMoveDirection.y);
         m_vMoveDirection = Vector3.zero;
         return true;
     }
     void SetDash()
     {
-        AddLocalPositionX(m_fDashSpeed * m_vDashDirection.x);
-        AddLocalPositionZ(m_fDashSpeed * m_vDashDirection.y);
+        AddLocalPositionX(SHHard.m_fCharDashSpeed * m_vDashDirection.x);
+        AddLocalPositionZ(SHHard.m_fCharDashSpeed * m_vDashDirection.y);
     }
     bool SetAttack()
     {

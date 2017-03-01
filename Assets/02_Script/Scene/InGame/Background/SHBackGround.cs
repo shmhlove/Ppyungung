@@ -5,7 +5,8 @@ using UnityEngine;
 public class SHBackGround : SHInGame_Component
 {
     #region Members
-    private List<SHBGBlock> m_pBlocks      = new List<SHBGBlock>();
+    private GameObject      m_pBGRoot = null;
+    private List<SHBGBlock> m_pBlocks = new List<SHBGBlock>();
     #endregion
 
 
@@ -16,8 +17,9 @@ public class SHBackGround : SHInGame_Component
         {
             var pSpace = Single.ObjectPool.Get<SHBGBlock>("BGBlock");
             pSpace.SetActive(true);
-            pSpace.SetParent(SH3DRoot.GetRoot());
-            pSpace.m_iBlockID = iIndex;
+            pSpace.SetParent(GetRoot());
+            pSpace.Initialize(iIndex);
+            pSpace.SetName(string.Format("{0}_{1}", pSpace.GetName(), pSpace.m_iBlockID));
             m_pBlocks.Add(pSpace);
         });
     }
@@ -42,8 +44,8 @@ public class SHBackGround : SHInGame_Component
             return;
         
         var vCenterBlock  = pCenterBlock.GetLocalPosition();
-        var vCenterWidth  = pCenterBlock.GetHalfWidth();
-        var vCenterHeight = pCenterBlock.GetHalfHeight();
+        var vCenterWidth  = pCenterBlock.m_fWidth;
+        var vCenterHeight = pCenterBlock.m_fHeight;
         var vDirection    = (vCenter - vCenterBlock).normalized;
         var fSignX        = SHMath.Sign(vDirection.x);
         var fSignZ        = SHMath.Sign(vDirection.z);
@@ -68,6 +70,16 @@ public class SHBackGround : SHInGame_Component
 
             pRemainders.Add(pObject);
         }
+    }
+    GameObject GetRoot()
+    {
+        if (null == m_pBGRoot)
+        {
+            m_pBGRoot = SHGameObject.CreateEmptyObject("Background");
+            m_pBGRoot.transform.SetParent(SH3DRoot.GetRoot());
+        }
+
+        return m_pBGRoot;
     }
     #endregion
 }

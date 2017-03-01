@@ -29,7 +29,6 @@ public class SHUIJoystick : SHMonoWrapper
     #region System Functions
     public override void Start()
     {
-        Single.Input.CreateSingleton();
     }
     public override void Update()
     {

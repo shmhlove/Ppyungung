@@ -23,7 +23,7 @@ public static class Single
     public static SHPlayer                  Player              { get { return InGame.GetPlayer(); } }
     public static SHMonster                 Monster             { get { return InGame.GetMonster(); } }
     public static SHDamage                  Damage              { get { return InGame.GetDamage(); } }
-    public static SHBackGround              Backgroun           { get { return InGame.GetBackground(); } }
+    public static SHBackGround              Background          { get { return InGame.GetBackground(); } }
 
     // UI
     public static SHUIManager               UI                  { get { return SHUIManager.Instance; } }

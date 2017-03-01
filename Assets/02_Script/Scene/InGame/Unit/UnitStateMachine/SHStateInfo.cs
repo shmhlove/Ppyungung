@@ -9,10 +9,10 @@ public class SHStateInfo
     public int              m_iFixedTick    = -1;
 
     public string           m_strAnimClip   = string.Empty;
-    public Action<int, int> m_OnEnter       = null; // <iBeforeState,  iCurrentState>
-    public Action<int, int> m_OnExit        = null; // <iBeforeState,  iCurrentState>
-    public Action<int, int> m_OnFixedUpdate = null; // <iCurrentState, iFixedTick>
-    public Action<int>      m_OnEndAnim     = null; // <iCurrentState>
+    public Action<int, int> m_OnEnter       = null; // (int iBeforeState,  int iCurrentState)
+    public Action<int, int> m_OnExit        = null; // (int iBeforeState,  int iCurrentState)
+    public Action<int, int> m_OnFixedUpdate = null; // (int iCurrentState, int iFixedTick)
+    public Action<int>      m_OnEndAnim     = null; // (int iCurrentState)
     #endregion
 
 

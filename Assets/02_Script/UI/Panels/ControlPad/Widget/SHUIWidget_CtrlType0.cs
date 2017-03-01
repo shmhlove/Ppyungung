@@ -27,9 +27,9 @@ public class SHUIWidget_CtrlType0 : SHMonoWrapper
         }
 
 #if UNITY_EDITOR
-        SHHard.m_fPlayerAutoShoot = m_fShootDelay;
+        SHHard.m_fCharAutoShoot = m_fShootDelay;
 #else
-        SHHard.m_fPlayerAutoShoot = SHPlayerPrefs.GetFloat("Player_ShootSpeed", m_fShootDelay);
+        SHHard.m_fCharAutoShoot = SHPlayerPrefs.GetFloat("Player_ShootSpeed", m_fShootDelay);
 #endif
     }
     #endregion
@@ -61,7 +61,7 @@ public class SHUIWidget_CtrlType0 : SHMonoWrapper
             if (null != m_pEventShoot)
                 m_pEventShoot();
 
-            yield return new WaitForSeconds(SHHard.m_fPlayerAutoShoot);
+            yield return new WaitForSeconds(SHHard.m_fCharAutoShoot);
         }
     }
     #endregion

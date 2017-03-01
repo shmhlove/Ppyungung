@@ -134,20 +134,20 @@ public class SHUIPanel_Development : SHUIBasePanel
     #region Event : Player
     public void OnSubmitToMoveSpeed(string strValue)
     {
-        SHHard.m_fPlayerMoveSpeed = float.Parse(strValue);
+        SHHard.m_fCharMoveSpeed = float.Parse(strValue);
 
 #if UNITY_EDITOR
 #else
-        SHPlayerPrefs.SetFloat("Player_MoveSpeed", SHHard.m_fPlayerMoveSpeed);
+        SHPlayerPrefs.SetFloat("Player_MoveSpeed", SHHard.m_fCharMoveSpeed);
 #endif
     }
     public void OnSubmitToShootSpeed(string strValue)
     {
-        SHHard.m_fPlayerAutoShoot = float.Parse(strValue);
+        SHHard.m_fCharAutoShoot = float.Parse(strValue);
 
 #if UNITY_EDITOR
 #else
-        SHPlayerPrefs.SetFloat("Player_ShootSpeed", SHHard.m_fPlayerAutoShoot);
+        SHPlayerPrefs.SetFloat("Player_ShootSpeed", SHHard.m_fCharAutoShoot);
 #endif
     }
     public void OnSelectToCtrlType(string strType)

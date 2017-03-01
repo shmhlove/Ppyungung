@@ -134,47 +134,30 @@ public class SHCoroutine : SHSingleton<SHCoroutine>
         if (null != pAction)
             pAction.Invoke();
     }
-    
 
-    //yield return StartCoroutine(IEnumerator) : 다른 코루틴이 끝날 때 까지 대기
+
+    // 코루틴 실행
     //-----------------------------------------------
-    public void Routine(Action pAction, IEnumerator pRoutine)
+    List<IEnumerator> m_pRoutines = new List<IEnumerator>();
+    public void StartRoutine(IEnumerator pRoutine)
     {
-        if (null == pAction)
-            return;
-
-        StartCoroutine(InvokeToRoutine(pAction, pRoutine));
-    }
-    IEnumerator InvokeToRoutine(Action pAction, IEnumerator pRoutine)
-    {
-        yield return StartCoroutine(pRoutine);
-        pAction.Invoke();
-    }
-    #endregion
-
-
-    // StartCoroutine(pRoutine) : 코루틴 함수를 실행시켜준다.
-    // Stop 기능이 필요해서 Routine을 저장해두고 Stop처리할 수 있도록
-    //-----------------------------------------------
-    Dictionary<string, IEnumerator> m_pRoutines = new Dictionary<string, IEnumerator>();
-    public void Routine(string strKey, IEnumerator pRoutine)
-    {
-        if (true == IsRunRoutine(strKey))
+        if (true == IsRunRoutine(pRoutine))
             return;
 
         StartCoroutine(pRoutine);
-        m_pRoutines.Add(strKey, pRoutine);
+        m_pRoutines.Add(pRoutine);
     }
-    public void StopRoutine(string strKey)
+    public void StopRoutine(IEnumerator pRoutine)
     {
-        if (false == IsRunRoutine(strKey))
+        if (false == IsRunRoutine(pRoutine))
             return;
         
-        StopCoroutine(m_pRoutines[strKey]);
-        m_pRoutines.Remove(strKey);
+        StopCoroutine(pRoutine);
+        m_pRoutines.Remove(pRoutine);
     }
-    public bool IsRunRoutine(string strKey)
+    public bool IsRunRoutine(IEnumerator pRoutine)
     {
-        return m_pRoutines.ContainsKey(strKey);
+        return m_pRoutines.Contains(pRoutine);
     }
+    #endregion
 }

@@ -2,7 +2,7 @@
 using System;
 using System.Collections;
 
-public partial class SHPopolo : SHState
+public partial class SHCharPopolo : SHState
 {
     public enum eState
     {
@@ -78,7 +78,7 @@ public partial class SHPopolo : SHState
     void OnFixedUpdateToMove(int iCurrentState, int iFixedTick)
     {
         bool bIsMoved  = SetMove();
-        bool bIsLooked = SetLookDirection();
+        SetLookDirection();
 
         if (true == m_bIsDash)
         {
@@ -109,7 +109,7 @@ public partial class SHPopolo : SHState
     void OnFixedUpdateToAttack(int iCurrentState, int iFixedTick)
     {
         bool bMoved  = SetMove();
-        bool bLooked = SetLookDirection();
+        SetLookDirection();
 
         if (true == m_bIsDash)
         {

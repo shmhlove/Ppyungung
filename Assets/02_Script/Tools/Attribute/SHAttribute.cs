@@ -17,4 +17,3 @@ public class ReadOnlyField : PropertyAttribute
 public class SelectOnChildren : PropertyAttribute
 {
 }
-

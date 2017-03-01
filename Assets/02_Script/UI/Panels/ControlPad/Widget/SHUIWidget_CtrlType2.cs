@@ -12,7 +12,6 @@ public class SHUIWidget_CtrlType2 : SHMonoWrapper
 
 
     #region Members : Info
-    private bool m_bIsRightPress = false;
     private bool m_bIsRightDrag  = false;
     #endregion
 
@@ -41,9 +40,9 @@ public class SHUIWidget_CtrlType2 : SHMonoWrapper
         }
 
 #if UNITY_EDITOR
-        SHHard.m_fPlayerAutoShoot = m_fShootDelay;
+        SHHard.m_fCharAutoShoot = m_fShootDelay;
 #else
-        SHHard.m_fPlayerAutoShoot = SHPlayerPrefs.GetFloat("Player_ShootSpeed", m_fShootDelay);
+        SHHard.m_fCharAutoShoot = SHPlayerPrefs.GetFloat("Player_ShootSpeed", m_fShootDelay);
 #endif
     }
     #endregion
@@ -78,7 +77,7 @@ public class SHUIWidget_CtrlType2 : SHMonoWrapper
                     m_pEventShoot();
             }
 
-            yield return new WaitForSeconds(SHHard.m_fPlayerAutoShoot);
+            yield return new WaitForSeconds(SHHard.m_fCharAutoShoot);
         }
     }
     #endregion
@@ -106,7 +105,6 @@ public class SHUIWidget_CtrlType2 : SHMonoWrapper
     public void OnEventToPressOnRight()
     {
         m_bIsRightDrag  = false;
-        m_bIsRightPress = true;
 
         StartCoroutine(CoroutineToShoot());
     }
@@ -119,7 +117,6 @@ public class SHUIWidget_CtrlType2 : SHMonoWrapper
         }
 
         m_bIsRightDrag  = false;
-        m_bIsRightPress = false;
 
         StopAllCoroutines();
     }
