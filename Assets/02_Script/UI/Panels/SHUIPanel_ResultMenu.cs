@@ -45,21 +45,5 @@ public class SHUIPanel_ResultMenu : SHUIBasePanel
         m_pEventToRestart();
         Close();
     }
-    public void OnClickToRank()
-    {
-#if UNITY_EDITOR
-        Single.UI.ShowNotice(
-            Localization.Get("POPUP_TITLE_NOTICE"),
-            Localization.Get("EXCEPTION_ONLY_DEVICE"));
-#else
-        // Single.Google.SetLeaderboard(
-        //     (long)Single.ScoreBoard.GetBestScore(), 
-        //     eLeaderBoardType.BestScore,
-        //     (bIsSuccess) => 
-        //     {
-        //         Single.Google.ShowLeaderboard();
-        //     });
-#endif
-    }
     #endregion
 }

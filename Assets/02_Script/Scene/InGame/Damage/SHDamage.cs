@@ -27,7 +27,10 @@ public partial class SHDamage : SHInGame_Component
 
 
     #region Virtual Functions
-    public override void OnInitialize() { }
+    public override void OnInitialize()
+    {
+        Clear();
+    }
     public override void OnFinalize()
     {
         SHUtils.ForToDic(m_dicDamages, (pKey, pValue) =>
@@ -179,6 +182,12 @@ public partial class SHDamage : SHInGame_Component
             m_dicDelUnits.Add(pUnit.tag, new List<SHMonoWrapper>());
 
         m_dicDelUnits[pUnit.tag].Add(pUnit);
+    }
+    public void Clear()
+    {
+        OnAddDamage();
+        m_dicDelDamages = new DicDamages(m_dicDamages);
+        OnDelDamage();
     }
     #endregion
 

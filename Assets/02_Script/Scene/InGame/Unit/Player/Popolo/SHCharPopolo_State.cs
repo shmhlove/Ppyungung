@@ -48,6 +48,7 @@ public partial class SHCharPopolo : SHState
         {
             pState.m_strAnimClip   = "Anim_Char_Die";
             pState.m_OnEnter       = OnEnterToDie;
+            pState.m_OnFixedUpdate = OnFixedUpdateToDie;
         }
 
         ChangeState(eState.Idle);
@@ -170,6 +171,13 @@ public partial class SHCharPopolo : SHState
         m_pCharDamage = null;
         
         PlayParticle("Particle_Crash_Dust_Big");
+    }
+    void OnFixedUpdateToDie(int iCurrentState, int iFixedTick)
+    {
+        if (100 < iFixedTick)
+        {
+            SetActive(false);
+        }
     }
     #endregion
 }

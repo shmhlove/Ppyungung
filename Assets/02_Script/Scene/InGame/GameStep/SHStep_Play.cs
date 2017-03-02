@@ -24,10 +24,9 @@ public class SHStep_Play : SHStep_Component
     public override void FrameMove(int iCallCnt)
     {
         base.FrameMove(iCallCnt);
+
+        if (true == Single.Player.IsDie())
+            MoveTo(eStep.Result);
     }
-    #endregion
-
-
-    #region Event Handler
     #endregion
 }

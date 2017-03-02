@@ -92,5 +92,9 @@ public partial class SHCharPopolo : SHState
     {
         DeConnectControllerUI();
     }
+    public bool IsDie()
+    {
+        return IsState((int)eState.Die);
+    }
     #endregion
 }

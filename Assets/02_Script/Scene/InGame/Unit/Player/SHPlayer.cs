@@ -47,6 +47,13 @@ public class SHPlayer : SHInGame_Component
 
         return m_pCharacter.GetLocalPosition();
     }
+    public bool IsDie()
+    {
+        if (null == m_pCharacter)
+            return true;
+
+        return m_pCharacter.IsDie();
+    }
     #endregion
 
 
