@@ -69,7 +69,8 @@ public partial class SHCharPopolo : SHState
     }
     public override bool IsOffDamage()
     {
-        return IsState((int)eState.Die);
+        return ((true == IsState((int)eState.Die)) ||
+                (true == IsState((int)eState.Dash)));
     }
     public override void OnCrashDamage(SHMonoWrapper pDamage)
     {
