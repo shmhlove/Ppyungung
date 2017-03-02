@@ -113,7 +113,7 @@ public partial class SHMonMouse : SHState
     }
     void OnFixedUpdateToDie(int iCurrentState, int iFixedTick)
     {
-        if (100 == iFixedTick)
+        if (100 < iFixedTick)
         {
             SHUtils.For(0, 360, 36, (iValue) =>
             {
@@ -122,10 +122,7 @@ public partial class SHMonMouse : SHState
                 vDirection.z = Mathf.Sin(iValue * Mathf.Deg2Rad);
                 SetAttack(vDirection);
             });
-        }
 
-        if (250 < iFixedTick)
-        {
             SetActive(false);
         }
     }
