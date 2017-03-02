@@ -14,6 +14,6 @@
         "m_iMonMaxGen": 2,
         "m_iMonMaxCount": 4,
         
-        "m_fUnitScale": 1.0
+        "m_fUnitScale": 0.5
 	}
 }
