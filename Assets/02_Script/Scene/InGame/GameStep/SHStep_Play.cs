@@ -14,6 +14,7 @@ public class SHStep_Play : SHStep_Component
         Single.UI.Show("Panel_CtrlPad");
         Single.Player.StartPlayer();
         Single.Monster.StartMonster();
+        Single.Sound.PlayBGM("Audio_BGM_InGame");
     }
     public override void FinalStep()
     {

@@ -147,6 +147,7 @@ public partial class SHCharPopolo : SHState
         if (Vector3.zero == m_vDirection)
             m_vDirection = Vector3.up;
 
+        Single.Sound.PlayEffect("Audio_Effect_Dash");
         m_vDashDirection = m_vDirection;
     }
     void OnFixedUpdateToDash(int iCurrentState, int iFixedTick)

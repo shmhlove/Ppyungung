@@ -12,6 +12,7 @@ public class SHStep_Start : SHStep_Component
     public override void InitialStep()
     {
         Single.ScoreBoard.Clear();
+        Single.Sound.PlayBGM("Audio_BGM_OutGame");
         Single.UI.Show("Panel_StartMenu", (Action)(()=> MoveTo(eStep.Play)));
     }
     public override void FinalStep()

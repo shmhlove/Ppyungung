@@ -23,28 +23,60 @@
 			"p_Resources": 
 			[
 				{
-					"s_Name": "Audio_BGM_GameOver",
-					"s_FileName": "Audio_BGM_GameOver.wav",
-					"s_Extension": ".wav",
-					"s_Size": "360852",
-					"s_Hash": "83ACDDE38C731E8FC3216C1F282F2AA3",
-					"s_Path": "Sound/BGM/Audio_BGM_GameOver"
+					"s_Name": "Audio_BGM_InGame",
+					"s_FileName": "Audio_BGM_InGame.mp3",
+					"s_Extension": ".mp3",
+					"s_Size": "4856883",
+					"s_Hash": "ED21050CDF953A6102424F82C5BD92D2",
+					"s_Path": "Sound/BGM/Audio_BGM_InGame"
 				},
 				{
-					"s_Name": "Audio_BGM_Pineapple",
-					"s_FileName": "Audio_BGM_Pineapple.ogg",
-					"s_Extension": ".ogg",
-					"s_Size": "423938",
-					"s_Hash": "B1AA4ABDFB1BCDDEF73E0844D9FA7A40",
-					"s_Path": "Sound/BGM/Audio_BGM_Pineapple"
+					"s_Name": "Audio_BGM_OutGame",
+					"s_FileName": "Audio_BGM_OutGame.mp3",
+					"s_Extension": ".mp3",
+					"s_Size": "10243394",
+					"s_Hash": "01E9490796136C7D30E3B2913DA6B1DD",
+					"s_Path": "Sound/BGM/Audio_BGM_OutGame"
 				},
 				{
-					"s_Name": "Audio_Effect_Crash",
-					"s_FileName": "Audio_Effect_Crash.wav",
+					"s_Name": "Audio_Effect_Dash",
+					"s_FileName": "Audio_Effect_Dash.wav",
 					"s_Extension": ".wav",
-					"s_Size": "31116",
-					"s_Hash": "C586D3C03B5012C6E13C3E69B4EDCAD5",
-					"s_Path": "Sound/Effect/Audio_Effect_Crash"
+					"s_Size": "31072",
+					"s_Hash": "1571CF8F2179C320E766BFD8A3F10F4D",
+					"s_Path": "Sound/Effect/Audio_Effect_Dash"
+				},
+				{
+					"s_Name": "Audio_Effect_Explosion",
+					"s_FileName": "Audio_Effect_Explosion.wav",
+					"s_Extension": ".wav",
+					"s_Size": "12754",
+					"s_Hash": "10D047E54D14236BA63C18BD3C04CC1B",
+					"s_Path": "Sound/Effect/Audio_Effect_Explosion"
+				},
+				{
+					"s_Name": "Audio_Effect_GetCoin",
+					"s_FileName": "Audio_Effect_GetCoin.wav",
+					"s_Extension": ".wav",
+					"s_Size": "96608",
+					"s_Hash": "3C01CD8A43F0FFA7E4236FD46A457C74",
+					"s_Path": "Sound/Effect/Audio_Effect_GetCoin"
+				},
+				{
+					"s_Name": "Audio_Effect_GetItem",
+					"s_FileName": "Audio_Effect_GetItem.wav",
+					"s_Extension": ".wav",
+					"s_Size": "28512",
+					"s_Hash": "4A84C9B463E2DFA29A0127967CBD5BEB",
+					"s_Path": "Sound/Effect/Audio_Effect_GetItem"
+				},
+				{
+					"s_Name": "Audio_Effect_Shoot",
+					"s_FileName": "Audio_Effect_Shoot.wav",
+					"s_Extension": ".wav",
+					"s_Size": "3458",
+					"s_Hash": "BEE3219E8C57EA12A4B14056885A0A24",
+					"s_Path": "Sound/Effect/Audio_Effect_Shoot"
 				}
 			]
 		}

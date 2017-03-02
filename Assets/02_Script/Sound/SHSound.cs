@@ -16,7 +16,11 @@ public enum eSoundBGMChannel
 public enum eSoundEffectChannel
 {
     Main,
-    Sub_1,
+    Sub_Dash,
+    Sub_Explosion,
+    Sub_GetCoin,
+    Sub_GetItem,
+    Sub_Shoot,
 }
 
 public class SHSound : SHSingleton<SHSound>
@@ -119,9 +123,13 @@ public class SHSound : SHSingleton<SHSound>
     void CreateTable()
     {
         m_dicSoundTable.Clear();
-        m_dicSoundTable.Add("Audio_BGM_Pineapple", new SHSound_BGM_Main());
-        m_dicSoundTable.Add("Audio_BGM_GameOver",  new SHSound_BGM_GameOver());
-        m_dicSoundTable.Add("Audio_Effect_Crash",  new SHSound_Effect_Crash());
+        m_dicSoundTable.Add("Audio_BGM_InGame",         new SHSound_BGM_InGame());
+        m_dicSoundTable.Add("Audio_BGM_OutGame",        new SHSound_BGM_OutGame());
+        m_dicSoundTable.Add("Audio_Effect_Dash",        new SHSound_Effect_Dash());
+        m_dicSoundTable.Add("Audio_Effect_Explosion",   new SHSound_Effect_Explosion());
+        m_dicSoundTable.Add("Audio_Effect_GetCoin",     new SHSound_Effect_GetCoin());
+        m_dicSoundTable.Add("Audio_Effect_GetItem",     new SHSound_Effect_GetItem());
+        m_dicSoundTable.Add("Audio_Effect_Shoot",       new SHSound_Effect_Shoot());
     }
     void CreateBGMChannel()
     {
