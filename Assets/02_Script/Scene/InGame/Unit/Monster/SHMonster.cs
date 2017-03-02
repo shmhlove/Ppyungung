@@ -6,8 +6,8 @@ using System.Collections.Generic;
 public class SHMonster : SHInGame_Component
 {
     #region Members
-    private GameObject    m_pMonsterRoot = null;
-    private List<SHState> m_pMonsters    = new List<SHState>();
+    public GameObject    m_pMonsterRoot = null;
+    public List<SHState> m_pMonsters    = new List<SHState>();
     #endregion
 
 
@@ -95,6 +95,7 @@ public class SHMonster : SHInGame_Component
         pMonster.SetActive(true);
         pMonster.SetParent(GetRoot());
         pMonster.SetLocalPosition(GetGenPosition(pMonster));
+        pMonster.SetLocalScale(pMonster.m_vStartScale * SHHard.m_fUnitScale);
         pMonster.SetName(string.Format("{0}_{1}", pMonster.GetName(), pMonster.m_iMonsterID));
         AddMonster(pMonster);
     }

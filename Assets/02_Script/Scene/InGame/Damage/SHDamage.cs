@@ -8,9 +8,9 @@ using DicUnits   = System.Collections.Generic.Dictionary<string, System.Collecti
 public partial class SHDamage : SHInGame_Component
 {
     #region Members : Damages
-    private DicDamages m_dicDelDamages = new DicDamages(); // 제거될 데미지들
-    private DicDamages m_dicAddDamages = new DicDamages(); // 추가될 데미지들
-    private DicDamages m_dicDamages    = new DicDamages(); // 모든 데미지들
+    public DicDamages m_dicDelDamages = new DicDamages(); // 제거될 데미지들
+    public DicDamages m_dicAddDamages = new DicDamages(); // 추가될 데미지들
+    public DicDamages m_dicDamages    = new DicDamages(); // 모든 데미지들
     #endregion
 
 
@@ -132,6 +132,7 @@ public partial class SHDamage : SHInGame_Component
         pParam.AddEventToDelete(OnEventToDeleteDamage);
         pDamage.SetActive(true);
         pDamage.OnInitialize(strID, pParam);
+        pDamage.SetLocalScale(pDamage.m_vStartScale * SHHard.m_fUnitScale);
 
         if (false == m_dicAddDamages.ContainsKey(strID))
             m_dicAddDamages.Add(strID, pDamage);

@@ -23,6 +23,9 @@ public class JsonConstants : SHBaseTable
     public float         m_fMonGenDaly      = 2.0f;
     public int           m_iMonMaxGen       = 4;
     public int           m_iMonMaxCount     = 12;
+
+    // 기타
+    public float         m_fUnitScale       = 1.0f;
     #endregion
 
 
@@ -67,7 +70,11 @@ public class JsonConstants : SHBaseTable
         m_fMonGenDaly      = GetFloatToJson(pDataNode, "m_fMonGenDaly");
         m_iMonMaxGen       = GetIntToJson(pDataNode,   "m_iMonMaxGen");
         m_iMonMaxCount     = GetIntToJson(pDataNode,   "m_iMonMaxCount");
-        
+
+        // 기타
+        m_fUnitScale       = GetFloatToJson(pDataNode, "m_fUnitScale");
+
+
         return (m_bIsLoaded = true);
     }
     public override bool? LoadBytesTable(byte[] pByte)
@@ -92,6 +99,9 @@ public class JsonConstants : SHBaseTable
         m_iMonMaxGen       = pSerializer.DeserializeInt();
         m_iMonMaxCount     = pSerializer.DeserializeInt();
 
+        // 기타
+        m_fUnitScale       = pSerializer.DeserializeFloat();
+
         return (m_bIsLoaded = true);
     }
     public override byte[] GetBytesTable()
@@ -115,6 +125,9 @@ public class JsonConstants : SHBaseTable
         pSerializer.Serialize(m_fMonGenDaly);
         pSerializer.Serialize(m_iMonMaxGen);
         pSerializer.Serialize(m_iMonMaxCount);
+
+        // 기타
+        pSerializer.Serialize(m_fUnitScale);
 
         return pSerializer.ByteArray;
     }

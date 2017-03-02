@@ -8,13 +8,22 @@ public class SHUIPanel_Development : SHUIBasePanel
 {
     #region Members : Inspector
     [Header("Cheat Open")]
-    [SerializeField] private Animation      m_pAnimOpen         = null;
+    [SerializeField] private Animation      m_pAnimOpen              = null;
     [Header("Information")]
-    [SerializeField] private GameObject     m_pInfoRoot         = null;
-    [SerializeField] private UILabel        m_pLabel_ID         = null;
-    [SerializeField] private UILabel        m_pLabel_Name       = null;
+    [SerializeField] private GameObject     m_pInfoRoot              = null;
+    [SerializeField] private UILabel        m_pLabelToID             = null;
+    [SerializeField] private UILabel        m_pLabelToName           = null;
     [Header("Player")]
-    [SerializeField] private UIPopupList    m_pPopupListToCtrl  = null;
+    [SerializeField] private UIPopupList    m_pPopupListToCtrl       = null;
+    [SerializeField] private UIInput        m_pInputToCharMoveSpeed  = null;
+    [SerializeField] private UIInput        m_pInputToCharShootSpeed = null;
+    [SerializeField] private UIInput        m_pInputToCharDMGSpeed   = null;
+    [Header("Monster")]
+    [SerializeField] private UIInput        m_pInputToMonMaxSummon   = null;
+    [SerializeField] private UIInput        m_pInputToMonMoveSpeed   = null;
+    [SerializeField] private UIInput        m_pInputToMonDMGSpeed    = null;
+    [Header("ETC")]
+    [SerializeField] private UIInput        m_pInputToUnitScale      = null;
     #endregion
 
 
@@ -26,7 +35,6 @@ public class SHUIPanel_Development : SHUIBasePanel
     #region System Functions
     public override void Start()
     {
-        SetPlayerCtrlType();
     }
     public override void Update()
     {
@@ -48,25 +56,25 @@ public class SHUIPanel_Development : SHUIBasePanel
     # region Utility Functions
     void SetLogToGoogleID()
     {
-        if (null == m_pLabel_ID)
+        if (null == m_pLabelToID)
             return;
 
         var strID = Single.Google.GetUserID();
         if (true == string.IsNullOrEmpty(strID))
-            m_pLabel_ID.text = "Not Login";
+            m_pLabelToID.text = "Not Login";
         else
-            m_pLabel_ID.text = strID;
+            m_pLabelToID.text = strID;
     }
     void SetLogToGoogleUserName()
     {
-        if (null == m_pLabel_Name)
+        if (null == m_pLabelToName)
             return;
 
         var strUserName = Single.Google.GetUserName();
         if (true == string.IsNullOrEmpty(strUserName))
-            m_pLabel_Name.text = "Not Login";
+            m_pLabelToName.text = "Not Login";
         else
-            m_pLabel_Name.text = strUserName;
+            m_pLabelToName.text = strUserName;
     }
     void SetPlayerCtrlType()
     {
@@ -81,6 +89,25 @@ public class SHUIPanel_Development : SHUIBasePanel
             return;
 
         m_pPopupListToCtrl.Set(pCtrlUI.m_eCtrlType.ToString());
+    }
+    void SetInputInfo()
+    {
+        if ((null == m_pInputToCharMoveSpeed)  ||
+            (null == m_pInputToCharShootSpeed) ||
+            (null == m_pInputToCharDMGSpeed)   ||
+            (null == m_pInputToMonMaxSummon)   ||
+            (null == m_pInputToMonMoveSpeed)   ||
+            (null == m_pInputToMonDMGSpeed)    ||
+            (null == m_pInputToUnitScale))
+            return;
+
+        m_pInputToCharMoveSpeed.value   = SHHard.m_fCharMoveSpeed.ToString();
+        m_pInputToCharShootSpeed.value  = SHHard.m_fCharAutoShoot.ToString();
+        m_pInputToCharDMGSpeed.value    = SHHard.m_fCharDamageSpeed.ToString();
+        m_pInputToMonMaxSummon.value    = SHHard.m_iMonMaxCount.ToString();
+        m_pInputToMonMoveSpeed.value    = SHHard.m_fMonMoveSpeed.ToString();
+        m_pInputToMonDMGSpeed.value     = SHHard.m_fMonDamageSpeed.ToString();
+        m_pInputToUnitScale.value       = SHHard.m_fUnitScale.ToString();
     }
     #endregion
 
@@ -100,6 +127,7 @@ public class SHUIPanel_Development : SHUIBasePanel
             m_pAnimOpen.Play("Anim_Cheat_Close");
 
         SetPlayerCtrlType();
+        SetInputInfo();
     }
     #endregion
 
@@ -180,6 +208,38 @@ public class SHUIPanel_Development : SHUIBasePanel
     public void OnSubmitToMonDamageSpeed(string strValue)
     {
         SHHard.m_fMonDamageSpeed = float.Parse(strValue);
+    }
+    #endregion
+
+
+    #region Event : ETC
+    public void OnSubmitToUnitScale(string strValue)
+    {
+        SHHard.m_fUnitScale = float.Parse(strValue);
+
+        var pPlayer = Single.Player.m_pCharacter;
+        if (null != pPlayer)
+        {
+            pPlayer.SetLocalScale(pPlayer.m_vStartScale * SHHard.m_fUnitScale);
+        }
+
+        var pMosnters = Single.Monster.m_pMonsters;
+        if (null != pMosnters)
+        {
+            foreach(var pMonster in pMosnters)
+            {
+                pMonster.SetLocalScale(pMonster.m_vStartScale * SHHard.m_fUnitScale);
+            }
+        }
+
+        var dicDamages = Single.Damage.m_dicDamages;
+        if (null != dicDamages)
+        {
+            foreach(var kvp in dicDamages)
+            {
+                kvp.Value.SetLocalScale(kvp.Value.m_vStartScale * SHHard.m_fUnitScale);
+            }
+        }
     }
     #endregion
 }

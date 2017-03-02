@@ -62,6 +62,13 @@ public static partial class SHHard
         set { GetTable().m_iMonMaxCount = value; }
     }
 
+    // 기타
+    public static float m_fUnitScale
+    {
+        get { return GetTable().m_fUnitScale; }
+        set { GetTable().m_fUnitScale = value; }
+    }
+
     static JsonConstants GetTable()
     {
         var pTable = Single.Table.GetTable<JsonConstants>();

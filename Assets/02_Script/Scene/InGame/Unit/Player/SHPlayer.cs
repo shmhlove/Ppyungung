@@ -5,8 +5,8 @@ using System.Collections;
 public class SHPlayer : SHInGame_Component
 {
     #region Members
-    private GameObject      m_pPlayerRoot = null;
-    private SHCharPopolo    m_pCharacter  = null;
+    public GameObject      m_pPlayerRoot = null;
+    public SHCharPopolo    m_pCharacter  = null;
     #endregion
     
 
@@ -23,6 +23,7 @@ public class SHPlayer : SHInGame_Component
         m_pCharacter = Single.ObjectPool.Get<SHCharPopolo>("CharPopolo");
         m_pCharacter.SetActive(true);
         m_pCharacter.SetParent(GetRoot());
+        m_pCharacter.SetLocalScale(m_pCharacter.m_vStartScale * SHHard.m_fUnitScale);
         m_pCharacter.StartCharacter();
     }
     public void StopPlayer()
