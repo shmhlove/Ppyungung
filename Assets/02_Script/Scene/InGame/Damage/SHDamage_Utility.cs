@@ -47,7 +47,15 @@ public partial class SHDamage : SHInGame_Component
 
         if (false == pDamage.IsCheckCrash())
             return;
-        
+
+        // pDamageCollider.bounds.center
+        // pDamageCollider.bounds.extents
+        // (pDamageCollider.bounds.center - pDamage.m_pBeforeBounds.center).normalized
+        // pDamage.GetRotate()
+        // (pDamageCollider.bounds.center - pDamage.m_pBeforeBounds.center).magenter
+        // int layermask = (1 << LayerMask.NameToLayer(“Damage”) | (1 << LayerMask.NameToLayer(“Charater”) | (1 << LayerMask.NameToLayer(“Monster”);
+        // Physics.BoxCastAll(Vector3 center, Vector3 halfExtents, Vector3 direction, Quaternion orientation, float maxDistance, int layermask);
+
         SHUtils.ForToList(GetTargets(pDamage), (pTarget) => 
         {
             if (true == pTarget.IsOffDamage())
@@ -57,7 +65,7 @@ public partial class SHDamage : SHInGame_Component
             var pTargetCollider = pTarget.GetCollider();
             if ((null == pDamageCollider) || (null == pTargetCollider))
                 return;
-            
+
             var bIsCollistion = false;
             var bBounds       = pDamage.m_pBeforeBounds;
             for(float fRatio = 0.0f; fRatio <= 1.0f; fRatio += 0.1f)
