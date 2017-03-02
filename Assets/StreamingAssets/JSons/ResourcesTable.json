@@ -17,12 +17,28 @@
 			"s_Path": "Prefab/Background/BGBlock"
 		},
 		{
+			"s_Name": "Dmg_Char",
+			"s_FileName": "Dmg_Char.prefab",
+			"s_Extension": ".prefab",
+			"s_Size": "16684",
+			"s_Hash": "5CA2A11EEC3DC9971258C821598CBD04",
+			"s_Path": "Prefab/Damage/Dmg_Char"
+		},
+		{
 			"s_Name": "Dmg_Char_Bullet",
 			"s_FileName": "Dmg_Char_Bullet.prefab",
 			"s_Extension": ".prefab",
 			"s_Size": "16692",
 			"s_Hash": "FF9C30D5ACF71759535FC3E2B4530DF8",
 			"s_Path": "Prefab/Damage/Dmg_Char_Bullet"
+		},
+		{
+			"s_Name": "Dmg_Mon",
+			"s_FileName": "Dmg_Mon.prefab",
+			"s_Extension": ".prefab",
+			"s_Size": "16684",
+			"s_Hash": "C6F919D420B5437A7AC84365F0A6393F",
+			"s_Path": "Prefab/Damage/Dmg_Mon"
 		},
 		{
 			"s_Name": "Dmg_Mon_Bullet",
@@ -60,8 +76,8 @@
 			"s_Name": "Panel_Development",
 			"s_FileName": "Panel_Development.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "57152",
-			"s_Hash": "FD484E9560101A52456A15833EEBB904",
+			"s_Size": "80444",
+			"s_Hash": "CE7E623B5BC24977F7DA519FECC43E9A",
 			"s_Path": "Prefab/UI/Panel/Panel_Development"
 		},
 		{
@@ -148,8 +164,8 @@
 			"s_Name": "Constants",
 			"s_FileName": "Constants.bytes",
 			"s_Extension": ".bytes",
-			"s_Size": "44",
-			"s_Hash": "26A3C4915C35FDABA73389EEC03A5DC7",
+			"s_Size": "48",
+			"s_Hash": "77C2D6E5F864AA836976F2AC415454BC",
 			"s_Path": "Table/Bytes/Constants"
 		}
 	]

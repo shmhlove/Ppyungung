@@ -18,10 +18,6 @@ public partial class SHCharPopolo : SHState
     [ReadOnlyField]  public  string        m_strState      = string.Empty;
     [Header("Character Info")]
     [SerializeField] private SHMonoWrapper m_pShootPos     = null;
-    [SerializeField] private float         m_fMoveSpeed    = 50.0f;
-    [SerializeField] private float         m_fDashSpeed    = 150.0f;
-    [SerializeField] private float         m_fDashTime     = 0.5f;
-    [SerializeField] private float         m_fDashCoolTime = 0.0f;
     #endregion
 
 
@@ -35,20 +31,23 @@ public partial class SHCharPopolo : SHState
     #endregion
 
 
+    #region Members : ETC
+    private SHDamageObject m_pCharDamage = null;
+    #endregion
+
+
     #region System Functions
     public override void Start()
     {
-        SHHard.m_fCharMoveSpeed = m_fMoveSpeed;
-        SHHard.m_fCharDashSpeed = m_fDashSpeed;
-        SHHard.m_fCharDashTime = m_fDashTime;
-        SHHard.m_fCharDashCool = m_fDashCoolTime;
-
         base.Start();
     }
     public override void OnEnable()
     {
         Single.Damage.AddUnit(this);
 
+        Single.Damage.DelDamage(m_pCharDamage);
+        m_pCharDamage = Single.Damage.AddDamage("Dmg_Char",new SHAddDamageParam(this, null, null, null));
+        
         base.OnEnable();
     }
     public override void OnDisable()

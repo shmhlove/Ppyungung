@@ -105,6 +105,10 @@ public partial class SHMonMouse : SHState
     void OnEnterToDie(int iBeforeState, int iCurrentState)
     {
         Single.Monster.DeleteMonster(this);
+
+        Single.Damage.DelDamage(m_pMonDamage);
+        m_pMonDamage = null;
+
         PlayParticle("Particle_Crash_Dust_Big");
     }
     void OnFixedUpdateToDie(int iCurrentState, int iFixedTick)

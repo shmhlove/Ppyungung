@@ -43,9 +43,9 @@ public partial class SHDamage : SHInGame_Component
 
         OnDelUnits();
         OnAddUnits();
-        OnAddDamage();
         OnDelDamage();
-
+        OnAddDamage();
+        
         OnUpdateDamage();
     }
     #endregion
@@ -96,11 +96,17 @@ public partial class SHDamage : SHInGame_Component
     {
         SHUtils.ForToDic(m_dicDelDamages, (pKey, pValue) =>
         {
-            if (false == m_dicDamages.ContainsKey(pKey))
-                return;
+            if (true == m_dicDamages.ContainsKey(pKey))
+            {
+                ReturnDamage(pValue);
+                m_dicDamages.Remove(pKey);
+            }
 
-            ReturnDamage(pValue);
-            m_dicDamages.Remove(pKey);
+            if (true == m_dicAddDamages.ContainsKey(pKey))
+            {
+                ReturnDamage(pValue);
+                m_dicAddDamages.Remove(pKey);
+            }
         });
         m_dicDelDamages.Clear();
     }

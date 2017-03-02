@@ -18,12 +18,12 @@ public partial class SHMonMouse : SHState
     [ReadOnlyField]  public string         m_strState      = string.Empty;
     [Header("Monster Info")]
     [SerializeField] private SHMonoWrapper m_pShootPos     = null;
-    [SerializeField] private float         m_fMoveSpeed    = 30.0f;
     #endregion
 
 
     #region Members : AI Data
-    private int      m_iAttackCount = 0;
+    private int            m_iAttackCount = 0;
+    private SHDamageObject m_pMonDamage   = null;
     #endregion
 
 
@@ -36,13 +36,14 @@ public partial class SHMonMouse : SHState
     #region System Functions
     public override void Start()
     {
-        SHHard.m_fMonMoveSpeed = m_fMoveSpeed;
-
         base.Start();
     }
     public override void OnEnable()
     {
         Single.Damage.AddUnit(this);
+
+        Single.Damage.DelDamage(m_pMonDamage);
+        m_pMonDamage = Single.Damage.AddDamage("Dmg_Mon", new SHAddDamageParam(this, null, null, null));
 
         base.OnEnable();
     }
