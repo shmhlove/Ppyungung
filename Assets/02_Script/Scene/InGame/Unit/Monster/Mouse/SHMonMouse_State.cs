@@ -104,20 +104,24 @@ public partial class SHMonMouse : SHState
     #region State : Die
     void OnEnterToDie(int iBeforeState, int iCurrentState)
     {
+        Single.Monster.DeleteMonster(this);
         PlayParticle("Particle_Crash_Dust_Big");
-        SHUtils.For(0, 360, 36, (iValue) =>
-        {
-            var vDirection = Vector3.zero;
-            vDirection.x   = Mathf.Cos(iValue * Mathf.Deg2Rad);
-            vDirection.z   = Mathf.Sin(iValue * Mathf.Deg2Rad);
-            SetAttack(vDirection);
-        });
     }
     void OnFixedUpdateToDie(int iCurrentState, int iFixedTick)
     {
+        if (100 == iFixedTick)
+        {
+            SHUtils.For(0, 360, 36, (iValue) =>
+            {
+                var vDirection = Vector3.zero;
+                vDirection.x = Mathf.Cos(iValue * Mathf.Deg2Rad);
+                vDirection.z = Mathf.Sin(iValue * Mathf.Deg2Rad);
+                SetAttack(vDirection);
+            });
+        }
+
         if (250 < iFixedTick)
         {
-            Single.Monster.DeleteMonster(this);
             SetActive(false);
         }
     }
