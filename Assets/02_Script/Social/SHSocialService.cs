@@ -121,7 +121,7 @@ public class SHSocialService : SHSingleton<SHSocialService>
                 });
         };
         
-        Login((bIsSuccess, "") =>
+        Login((bIsSuccess, strMessage) =>
         {
             if (false == bIsSuccess)
                 pCallback(false);
