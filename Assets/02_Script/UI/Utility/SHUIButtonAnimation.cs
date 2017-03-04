@@ -9,11 +9,13 @@ public class SHUIButtonAnimation : SHMonoWrapper
 	[SerializeField] private AnimationClip  m_pAnimClipOnHover  = null;
     [SerializeField] private AnimationClip  m_pAnimClipOnIdle   = null;
     [SerializeField] private AnimationClip  m_pAnimClipOnClick  = null;
+    [SerializeField] private AnimationClip  m_pAnimClipOnPress  = null;
     [SerializeField] private GameObject     m_pAnimTarget       = null;
     #endregion
 
 
     #region Members : Info
+    private bool        m_bIsPress       = false;
     private bool        m_bIsHover       = false;
     private Vector3     m_vScale         = Vector3.one;
     #endregion
@@ -44,10 +46,6 @@ public class SHUIButtonAnimation : SHMonoWrapper
     #endregion
 
 
-    #region Interface Functions
-    #endregion
-
-
     #region Utility Functions
     GameObject GetTarget()
     {
@@ -55,7 +53,7 @@ public class SHUIButtonAnimation : SHMonoWrapper
     }
     bool Play(AnimationClip pClip, bool bForward = true, Action pOnPlayEnd = null)
     {
-        StopAllCoroutines();
+        StopAnimCoroutine();
         PlayAnim((true == bForward) ? eDirection.Front : eDirection.Back, GetTarget(), pClip, pOnPlayEnd);
         return true;
     }
@@ -70,16 +68,31 @@ public class SHUIButtonAnimation : SHMonoWrapper
     }
     #endregion
 
-    
+
+    #region Coroutine Functions
+    IEnumerator CoroutineToPressAnim()
+    {
+        while(true == m_bIsPress)
+        {
+            Play(m_pAnimClipOnPress, pOnPlayEnd: CheckHighlighted);
+            yield return new WaitForSeconds(0.2f);
+        }
+    }
+    #endregion
+
+
     #region Event Handler
     void OnPress(bool bIsPressed)
     {
         if (false == enabled)
             return;
         
-        if (true == bIsPressed)
+        if (true == (m_bIsPress = bIsPressed))
         {
             Play(m_pAnimClipOnTouch, pOnPlayEnd: CheckHighlighted);
+
+            if (null != m_pAnimClipOnPress)
+                StartCoroutine(CoroutineToPressAnim());
         }
         else if (false == m_bIsAnimPlaying)
         {
