@@ -34,8 +34,8 @@ public static class Single
     // 렌더유틸
     public static SHRenderTextureManager    RenderTexture       { get { return SHRenderTextureManager.Instance; } }
 
-    // 구글 서비스
-    public static SHGoogleService           Google              { get { return SHGoogleService.Instance; } }
+    // 소셜 서비스
+    public static SHSocialService           Social              { get { return SHSocialService.Instance; } }
 
     // 유틸리티
     public static SHApplicationInfo         AppInfo             { get { return SHApplicationInfo.Instance; } }

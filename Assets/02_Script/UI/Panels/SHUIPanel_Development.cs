@@ -45,8 +45,8 @@ public class SHUIPanel_Development : SHUIBasePanel
     public override void Update()
     {
         m_bIsUpdated = true;
-        SetLogToGoogleID();
-        SetLogToGoogleUserName();
+        SetLogToID();
+        SetLogToUserName();
     }
     #endregion
 
@@ -60,23 +60,23 @@ public class SHUIPanel_Development : SHUIBasePanel
 
 
     # region Utility Functions
-    void SetLogToGoogleID()
+    void SetLogToID()
     {
         if (null == m_pLabelToID)
             return;
 
-        var strID = Single.Google.GetUserID();
+        var strID = Single.Social.GetUserID();
         if (true == string.IsNullOrEmpty(strID))
             m_pLabelToID.text = "Not Login";
         else
             m_pLabelToID.text = strID;
     }
-    void SetLogToGoogleUserName()
+    void SetLogToUserName()
     {
         if (null == m_pLabelToName)
             return;
 
-        var strUserName = Single.Google.GetUserName();
+        var strUserName = Single.Social.GetUserName();
         if (true == string.IsNullOrEmpty(strUserName))
             m_pLabelToName.text = "Not Login";
         else
@@ -171,14 +171,26 @@ public class SHUIPanel_Development : SHUIBasePanel
     #endregion
 
 
-    #region Event : Google
+    #region Event : Social
     public void OnClickToLogin()
     {
-        Single.Google.Login((bIsSuccess) => { });
+        Single.Social.Login(
+            (bIsSuccess, strMessage) => 
+            {
+                Debug.LogFormat("Login : {0} - {1}", bIsSuccess, strMessage);
+            });
     }
     public void OnClickToLogout()
     {
-        Single.Google.Logout();
+        Single.Social.Logout();
+    }
+    public void OnClickToRank()
+    {
+        Single.Social.SetLeaderboard(235, eLeaderBoardType.BestScore, 
+            (bIsSuccess) => 
+            {
+                Debug.LogFormat("LeaderBoard : {0}", bIsSuccess);
+            });
     }
     #endregion
 

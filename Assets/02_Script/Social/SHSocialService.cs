@@ -2,17 +2,21 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SocialPlatforms;
 
+#if UNITY_ANDROID
 using GooglePlayGames;
 using GooglePlayGames.BasicApi.SavedGame;
 using GooglePlayGames.BasicApi;
+#endif
+
 
 public enum eLeaderBoardType
 {
     BestScore,
 }
 
-public class SHGoogleService : SHSingleton<SHGoogleService>
+public class SHSocialService : SHSingleton<SHSocialService>
 {
     #region Virtual Functions
     public override void OnInitialize()
@@ -33,40 +37,37 @@ public class SHGoogleService : SHSingleton<SHGoogleService>
 
 
     #region Interface : Login
-    public void Login(Action<bool> pCallback)
+    public void Login(Action<bool, string> pCallback)
     {
         if (null == pCallback)
-            pCallback = (bIsSuccess) => { };
+            pCallback = (bIsSuccess, strMessage) => { };
 
-#if UNITY_EDITOR
-        pCallback(true);
-#elif UNITY_ANDROID
         if (true == IsLogin())
         {
-            pCallback(true);
+            pCallback(true, "");
             return;
         }
-        
+
+#if UNITY_EDITOR
+        pCallback(true, "");
+#else
         Social.localUser.Authenticate((bIsSuccess, strMessage) => 
         {
             if (false == string.IsNullOrEmpty(strMessage))
                 Debug.LogError(strMessage);
         
-            pCallback(bIsSuccess);
+            pCallback(bIsSuccess, strMessage);
         });
-#else
-        pCallback(false);
 #endif
     }
     public void Logout()
     {
 #if UNITY_EDITOR
-#elif UNITY_ANDROID
+#else
         if (false == IsLogin())
             return;
 
         ((PlayGamesPlatform)Social.Active).SignOut();
-#else
 #endif
     }
     public bool IsLogin()
@@ -106,14 +107,18 @@ public class SHGoogleService : SHSingleton<SHGoogleService>
     {
         if (null == pCallback)
             pCallback = (bIsSuccess) => { };
-
+        
 #if UNITY_EDITOR
         pCallback(true);
-#elif UNITY_ANDROID
+#else
         Action pFunction = () =>
         {
             Social.Active.ReportScore(
-                lScore, GetLeaderBoardType(eType), pCallback);
+                lScore, GetLeaderBoardType(eType), (bIsSuccess) => 
+                {
+                    ShowLeaderboard();
+                    pCallback(bIsSuccess);
+                });
         };
         
         Login((bIsSuccess) =>
@@ -123,20 +128,15 @@ public class SHGoogleService : SHSingleton<SHGoogleService>
             else
                 pFunction();
         });
-#else
-        pCallback(false);
 #endif
     }
     public void ShowLeaderboard()
     {
 #if UNITY_EDITOR
 #elif UNITY_ANDROID
-        Login((bIsSuccess) =>
-        {
-            if (true == bIsSuccess)
-                Social.Active.ShowLeaderboardUI();
-        });
+        PlayGamesPlatform.Instance.ShowLeaderboardUI(GetLeaderBoardType(eType));
 #else
+        Social.ShowLeaderboardUI();
 #endif
     }
     #endregion
@@ -145,12 +145,21 @@ public class SHGoogleService : SHSingleton<SHGoogleService>
     #region Utility Functions
     string GetLeaderBoardType(eLeaderBoardType eType)
     {
+#if UNITY_ANDROID
         switch (eType)
         {
             case eLeaderBoardType.BestScore:
             default:
                 return GPGSIds.achievement_1;
         }
+#else
+        switch (eType)
+        {
+            case eLeaderBoardType.BestScore:
+            default:
+                return "PPYUNGUNG_HIGHT_SCORE";
+        }
+#endif
     }
     #endregion
 }
