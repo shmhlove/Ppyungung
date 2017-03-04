@@ -93,6 +93,7 @@ public partial class SHMonMouse : SHState
     void OnFixedUpdateToAttack(int iCurrentState, int iFixedTick)
     {
         SetLookPC();
+        SetMove();
     }
     #endregion
 

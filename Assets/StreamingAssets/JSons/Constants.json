@@ -8,8 +8,8 @@
         "m_fCharDashTime": 0.3,
         "m_fCharDashCool": 0.0,
 
-        "m_fMonMoveSpeed": 40.0,
-        "m_fMonDamageSpeed": 2000.0,
+        "m_fMonMoveSpeed": 30.0,
+        "m_fMonDamageSpeed": 3000.0,
         "m_fMonAttackDelay": 1.0,
         "m_fMonShootDelay": 0.3,
         "m_fMonGenDaly": 2.0,
