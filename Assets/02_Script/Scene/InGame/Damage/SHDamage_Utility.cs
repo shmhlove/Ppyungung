@@ -19,7 +19,7 @@ public partial class SHDamage : SHInGame_Component
                 strPrefabName, true, ePoolReturnType.ChangeScene, ePoolDestroyType.Return);
 #else
         var pDamage = Single.ObjectPool.Get<SHDamageObject>(
-                strPrefabName, ePoolReturnType.ChangeScene, ePoolDestroyType.ChangeScene);
+                strPrefabName, true, ePoolReturnType.ChangeScene, ePoolDestroyType.ChangeScene);
 #endif
         if (null == pDamage)
         {
