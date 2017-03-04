@@ -112,14 +112,17 @@ public partial class SHMonMouse : SHState
     {
         if (100 < iFixedTick)
         {
-            SHUtils.For(0, 360, 36, (iValue) =>
-            {
-                var vDirection = Vector3.zero;
-                vDirection.x = Mathf.Cos(iValue * Mathf.Deg2Rad);
-                vDirection.z = Mathf.Sin(iValue * Mathf.Deg2Rad);
-                SetAttack(vDirection);
-            });
+            // SHUtils.For(0, 360, 36, (iValue) =>
+            // {
+            //     var vDirection = Vector3.zero;
+            //     vDirection.x = Mathf.Cos(iValue * Mathf.Deg2Rad);
+            //     vDirection.z = Mathf.Sin(iValue * Mathf.Deg2Rad);
+            //     SetAttack(vDirection);
+            // });
 
+            Single.Damage.AddDamage("Dmg_Mon_Explosion",
+                            new SHAddDamageParam(this, null, null, null));
+            
             SetActive(false);
         }
     }
