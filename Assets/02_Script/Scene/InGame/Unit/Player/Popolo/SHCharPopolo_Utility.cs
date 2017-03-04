@@ -48,6 +48,8 @@ public partial class SHCharPopolo : SHState
         
         AddLocalPositionX(SHHard.m_fCharMoveSpeed * m_vMoveDirection.x);
         AddLocalPositionZ(SHHard.m_fCharMoveSpeed * m_vMoveDirection.y);
+        LimitInCamera();
+        
         m_vMoveDirection = Vector3.zero;
         return true;
     }

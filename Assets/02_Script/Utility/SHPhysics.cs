@@ -106,9 +106,9 @@ public static class SHPhysics
     public static Vector3 IncludePointInRect(Vector4 vRect, Vector3 vPos)
     {
         if (vPos.x < vRect.x) vPos.x = vRect.x;
-        if (vPos.y < vRect.y) vPos.y = vRect.y;
+        if (vPos.z < vRect.y) vPos.z = vRect.y;
         if (vPos.x > vRect.z) vPos.x = vRect.z;
-        if (vPos.y > vRect.w) vPos.y = vRect.w;
+        if (vPos.z > vRect.w) vPos.z = vRect.w;
 
         return vPos;
     }

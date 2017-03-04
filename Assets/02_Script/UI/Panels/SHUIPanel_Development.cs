@@ -26,6 +26,7 @@ public class SHUIPanel_Development : SHUIBasePanel
     [SerializeField] private UIInput        m_pInputToMonShootSpeed  = null;
     [Header("ETC")]
     [SerializeField] private UIInput        m_pInputToUnitScale      = null;
+    [SerializeField] private UIInput        m_pInputToCameraSpeed    = null;
     #endregion
 
 
@@ -102,6 +103,7 @@ public class SHUIPanel_Development : SHUIBasePanel
             (null == m_pInputToMonMoveSpeed)   ||
             (null == m_pInputToMonDMGSpeed)    ||
             (null == m_pInputToUnitScale)      ||
+            (null == m_pInputToCameraSpeed)    ||
             (null == m_pInputToMonShootSpeed))
             return;
 
@@ -114,6 +116,7 @@ public class SHUIPanel_Development : SHUIBasePanel
         m_pInputToMonDMGSpeed.value     = SHHard.m_fMonDamageSpeed.ToString();
         m_pInputToMonShootSpeed.value   = SHHard.m_fMonShootDelay.ToString();
         m_pInputToUnitScale.value       = SHHard.m_fUnitScale.ToString();
+        m_pInputToCameraSpeed.value     = SHHard.m_fCameraMoveSpeed.ToString();
     }
     #endregion
 
@@ -254,6 +257,10 @@ public class SHUIPanel_Development : SHUIBasePanel
                 kvp.Value.SetLocalScale(kvp.Value.m_vStartScale * SHHard.m_fUnitScale);
             }
         }
+    }
+    public void OnSubmitToCameraSpeed(string strValue)
+    {
+        SHHard.m_fCameraMoveSpeed = float.Parse(strValue);
     }
     #endregion
 }

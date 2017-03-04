@@ -47,6 +47,13 @@ public class SHPlayer : SHInGame_Component
 
         return m_pCharacter.GetLocalPosition();
     }
+    public void LimiteInCamera()
+    {
+        if (null == m_pCharacter)
+            return;
+
+        m_pCharacter.LimitInCamera();
+    }
     public bool IsDie()
     {
         if (null == m_pCharacter)

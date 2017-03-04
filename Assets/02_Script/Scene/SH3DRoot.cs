@@ -10,6 +10,7 @@ public class SH3DRoot : MonoBehaviour
     private static Transform    m_pCameraRoot = null;
     private static Camera       m_pMainCamera = null;
     private static Camera       m_pBlurCamera = null;
+    private static bool         m_bIsMove     = false;
     #endregion
 
 
@@ -42,9 +43,22 @@ public class SH3DRoot : MonoBehaviour
     }
     void Update()
     {
-        var vPlayerPos = Single.Player.GetLocalPosition();
-        SetCameraPosX(vPlayerPos.x);
-        SetCameraPosZ(vPlayerPos.z);
+        // 카메라 이동 : 캐릭터 움직임에 따라
+        // var vPlayerPos = Single.Player.GetLocalPosition();
+        // SetCameraPosX(vPlayerPos.x);
+        // SetCameraPosZ(vPlayerPos.z);
+
+        if (true == m_bIsMove)
+        {
+            // 카메라 이동 : 상/하로 흐름
+            SetCameraPosZ(GetCameraPos().z + SHHard.m_fCameraMoveSpeed);
+
+            // 캐릭터 위치 제한
+            Single.Player.LimiteInCamera();
+
+            // 미터 스코어 처리
+            Single.ScoreBoard.SetMeter((GetCameraPos().z * 0.002f));
+        }
     }
     #endregion
 
@@ -88,36 +102,58 @@ public class SH3DRoot : MonoBehaviour
 
         m_pBlurCamera.gameObject.SetActive(bIsActive);
     }
+    public static void StartCameraMove()
+    {
+        m_bIsMove = true;
+    }
+    public static void StopCameraMove()
+    {
+        m_bIsMove = false;
+    }
     #endregion
 
 
     #region Utility Functions
+    Vector3 GetCameraPos()
+    {
+        if (null == m_pCameraRoot)
+            return Vector3.zero;
+
+        return m_pCameraRoot.localPosition;
+    }
+    void SetCameraPos(Vector3 vPos)
+    {
+        if (null == m_pCameraRoot)
+            return;
+
+        m_pCameraRoot.localPosition = vPos;
+    }
     void SetCameraPosX(float fX)
     {
         if (null == m_pCameraRoot)
             return;
 
-        var vLocalPos = m_pCameraRoot.localPosition;
+        var vLocalPos = GetCameraPos();
         vLocalPos.x = fX;
-        m_pCameraRoot.localPosition = vLocalPos;
+        SetCameraPos(vLocalPos);
     }
     void SetCameraPosY(float fY)
     {
         if (null == m_pCameraRoot)
             return;
 
-        var vLocalPos = m_pCameraRoot.localPosition;
+        var vLocalPos = GetCameraPos();
         vLocalPos.y = fY;
-        m_pCameraRoot.localPosition = vLocalPos;
+        SetCameraPos(vLocalPos);
     }
     void SetCameraPosZ(float fZ)
     {
         if (null == m_pCameraRoot)
             return;
 
-        var vLocalPos = m_pCameraRoot.localPosition;
+        var vLocalPos = GetCameraPos();
         vLocalPos.z = fZ;
-        m_pCameraRoot.localPosition = vLocalPos;
+        SetCameraPos(vLocalPos);
     }
     #endregion
 }

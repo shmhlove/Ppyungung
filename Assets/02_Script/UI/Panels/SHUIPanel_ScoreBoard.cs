@@ -5,11 +5,15 @@ using System.Collections;
 public class SHUIPanel_ScoreBoard : SHUIBasePanel
 {
     #region Members : Inspector
+    [Header("Score")]
     public UILabel    m_pLabelCurrent = null;
     public UILabel    m_pLabelAction  = null;
     public UILabel    m_pLabelBest    = null;
     public TweenScale m_pTweenScale   = null;
     public TweenAlpha m_pTweenAlpha   = null;
+    [Header("Meter")]
+    public UILabel    m_pLabelMeter   = null;
+    public UILabel    m_pLabelBestMeter = null;
     #endregion
 
 
@@ -29,8 +33,10 @@ public class SHUIPanel_ScoreBoard : SHUIBasePanel
 
         switch(((string)pArgs[0]).ToLower())
         {
-            case "current":     SetCurrentScore((int)pArgs[1]); break;
-            case "best":        SetBestScore((int)pArgs[1]);    break;
+            case "current":     SetCurrentScore((int)pArgs[1]);     break;
+            case "best":        SetBestScore((int)pArgs[1]);        break;
+            case "meter":       SetCurrentMeter((float)pArgs[1]);   break;
+            case "bestmeter":   SetBestMeter((float)pArgs[1]);      break;
         }
     }
     #endregion
@@ -57,6 +63,14 @@ public class SHUIPanel_ScoreBoard : SHUIBasePanel
     {
         m_pLabelBest.text = string.Format("★ {0} ★", iScore);
         m_pLabelBest.gameObject.SetActive(true);
+    }
+    void SetCurrentMeter(float fMeter)
+    {
+        m_pLabelMeter.text = fMeter.ToString("0.00");
+    }
+    void SetBestMeter(float fBestMeter)
+    {
+        m_pLabelBestMeter.text = fBestMeter.ToString("0.00");
     }
     #endregion
 

@@ -125,17 +125,25 @@ public class SHMonster : SHInGame_Component
             return Vector3.zero;
 
         var vSides       = pMainCamera.GetSides(Mathf.Lerp(pMainCamera.nearClipPlane, pMainCamera.farClipPlane, 0.5f), null);
-        var iRandom      = SHMath.Random(0, 4);
-        var vDirection   = vSides[iRandom].normalized;
-        var vGenPosition = vSides[iRandom] + (vDirection * 700.0f);
-        
-        // Top or Bottom
-        if ((1 == iRandom) || (3 == iRandom))
-            vGenPosition.x = vGenPosition.x + (SHMath.Random(-Math.Abs(vSides[0].x), Math.Abs(vSides[0].x)));
+        ///////////////////////////////////////////////////////////////////////////////
+        // 상단에서만 Gen되도록
+        var vDirection   = vSides[1].normalized;
+        var vGenPosition = vSides[1] + (vDirection * 700.0f);
+        vGenPosition.x   = vGenPosition.x + (SHMath.Random(-Math.Abs(vSides[0].x), Math.Abs(vSides[0].x)));
 
-        // Left of Right
-        if ((0 == iRandom) || (2 == iRandom))
-            vGenPosition.z = vGenPosition.z + (SHMath.Random(-Math.Abs(vSides[1].z), Math.Abs(vSides[1].z)));
+        // ///////////////////////////////////////////////////////////////////////////////
+        // // 사방에서 Gen되도록
+        // var iRandom      = SHMath.Random(0, 4);
+        // var vDirection   = vSides[iRandom].normalized;
+        // var vGenPosition = vSides[iRandom] + (vDirection * 700.0f);
+        // 
+        // // Top or Bottom
+        // if ((1 == iRandom) || (3 == iRandom))
+        //     vGenPosition.x = vGenPosition.x + (SHMath.Random(-Math.Abs(vSides[0].x), Math.Abs(vSides[0].x)));
+        // 
+        // // Left of Right
+        // if ((0 == iRandom) || (2 == iRandom))
+        //     vGenPosition.z = vGenPosition.z + (SHMath.Random(-Math.Abs(vSides[1].z), Math.Abs(vSides[1].z)));
 
         vGenPosition.y = 0.0f;
 

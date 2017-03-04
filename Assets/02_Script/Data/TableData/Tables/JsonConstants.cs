@@ -26,6 +26,7 @@ public class JsonConstants : SHBaseTable
 
     // 기타
     public float         m_fUnitScale       = 1.0f;
+    public float         m_fCameraMoveSpeed = 0.5f;
     #endregion
 
 
@@ -74,6 +75,7 @@ public class JsonConstants : SHBaseTable
 
         // 기타
         m_fUnitScale       = GetFloatToJson(pDataNode, "m_fUnitScale");
+        m_fCameraMoveSpeed = GetFloatToJson(pDataNode, "m_fCameraMoveSpeed");
 
         return (m_bIsLoaded = true);
     }
@@ -102,6 +104,7 @@ public class JsonConstants : SHBaseTable
 
         // 기타
         m_fUnitScale       = pSerializer.DeserializeFloat();
+        m_fCameraMoveSpeed = pSerializer.DeserializeFloat();
 
         return (m_bIsLoaded = true);
     }
@@ -130,6 +133,7 @@ public class JsonConstants : SHBaseTable
 
         // 기타
         pSerializer.Serialize(m_fUnitScale);
+        pSerializer.Serialize(m_fCameraMoveSpeed);
 
         return pSerializer.ByteArray;
     }

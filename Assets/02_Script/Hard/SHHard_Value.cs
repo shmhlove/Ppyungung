@@ -73,6 +73,11 @@ public static partial class SHHard
         get { return GetTable().m_fUnitScale; }
         set { GetTable().m_fUnitScale = value; }
     }
+    public static float m_fCameraMoveSpeed
+    {
+        get { return GetTable().m_fCameraMoveSpeed; }
+        set { GetTable().m_fCameraMoveSpeed = value; }
+    }
 
     static JsonConstants GetTable()
     {
