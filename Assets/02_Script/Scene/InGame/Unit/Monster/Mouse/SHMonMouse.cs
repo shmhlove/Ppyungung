@@ -29,7 +29,6 @@ public partial class SHMonMouse : SHState
 
     #region Members : Constants
     private int      MAX_ATTACK_COUNT  = 5;
-    private float    DELAY_TIME_ATTACK = 3.0f;
     #endregion
 
 

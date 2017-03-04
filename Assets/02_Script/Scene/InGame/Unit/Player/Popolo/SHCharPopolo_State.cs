@@ -41,6 +41,7 @@ public partial class SHCharPopolo : SHState
         {
             pState.m_strAnimClip   = "Anim_Char_Move";
             pState.m_OnEnter       = OnEnterToDash;
+            pState.m_OnExit        = OnExitToDash;
             pState.m_OnFixedUpdate = OnFixedUpdateToDash;
         }
 
@@ -160,9 +161,17 @@ public partial class SHCharPopolo : SHState
     void OnEnterToDash(int iBeforeState, int iCurrentState)
     {
         if (Vector3.zero == m_vDashDirection)
-            m_vDashDirection = Vector3.up;
+            m_vDashDirection = Vector3.forward;
+
+        if (null != m_pCharDamage)
+            m_pCharDamage.m_bIsCrashLock = true;
 
         Single.Sound.PlayEffect("Audio_Effect_Dash");
+    }
+    void OnExitToDash(int iBeforeState, int iCurrentState)
+    {
+        if (null != m_pCharDamage)
+            m_pCharDamage.m_bIsCrashLock = false;
     }
     void OnFixedUpdateToDash(int iCurrentState, int iFixedTick)
     {

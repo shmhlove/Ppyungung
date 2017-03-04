@@ -55,11 +55,11 @@ public partial class SHDamageObject : SHMonoWrapper
         else
             m_vDMGDirection = m_pInfo.m_vStartDirection;
 
-        m_pBeforeBounds = GetDMGCollider().bounds;
+        m_vBeforePosition = GetPosition();
     }
     void MovePosition()
     {
-        m_pBeforeBounds = GetDMGCollider().bounds;
+        m_vBeforePosition = GetPosition();
 
         if (false == m_pInfo.m_bIsTraceToCreator)
         {

@@ -62,9 +62,10 @@ public partial class SHDamageObject : SHMonoWrapper
 
 
     #region Members : ETC
-    [HideInInspector] public bool   m_bIsDieDamage  = false;  // 데미지 라이프가 끝난 상태
-    [HideInInspector] public int    m_iCrashHitTick = 0;      // 충돌 후 시간체크 (다단히트)
-    [HideInInspector] public Bounds m_pBeforeBounds;          // 이전 위치의 Bounds
+    [HideInInspector] public bool    m_bIsDieDamage  = false;  // 데미지 라이프가 끝난 상태
+    [HideInInspector] public bool    m_bIsCrashLock  = false;  // 데미지 충돌체크를 하지 않을 상태
+    [HideInInspector] public int     m_iCrashHitTick = 0;      // 충돌 후 시간체크 (다단히트)
+    [HideInInspector] public Vector3 m_vBeforePosition;        // 이전 위치의 Bounds
     #endregion
     
 
@@ -167,6 +168,9 @@ public partial class SHDamageObject : SHMonoWrapper
     }
     public bool IsCheckCrash()
     {
+        if (true == m_bIsCrashLock)
+            return false;
+
         if (0 < m_iCrashHitTick)
             return false;
 
@@ -177,7 +181,7 @@ public partial class SHDamageObject : SHMonoWrapper
         if ((0 != m_pInfo.m_iCheckDelayTickToLate) &&
             (GetLeftTick() > m_pInfo.m_iCheckDelayTickToLate))
             return false;
-            
+
         return true;
     }
     public void DeleteDamage()

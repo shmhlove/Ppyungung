@@ -19,6 +19,7 @@ public class JsonConstants : SHBaseTable
     // 몬스터 관련
     public float         m_fMonMoveSpeed    = 30.0f;
     public float         m_fMonDamageSpeed  = 5000.0f;
+    public float         m_fMonAttackDelay  = 3.0f;
     public float         m_fMonShootDelay   = 0.2f;
     public float         m_fMonGenDaly      = 2.0f;
     public int           m_iMonMaxGen       = 4;
@@ -68,6 +69,7 @@ public class JsonConstants : SHBaseTable
         // 몬스터 관련
         m_fMonMoveSpeed    = GetFloatToJson(pDataNode, "m_fMonMoveSpeed");
         m_fMonDamageSpeed  = GetFloatToJson(pDataNode, "m_fMonDamageSpeed");
+        m_fMonAttackDelay  = GetFloatToJson(pDataNode, "m_fMonAttackDelay");
         m_fMonShootDelay   = GetFloatToJson(pDataNode, "m_fMonShootDelay");
         m_fMonGenDaly      = GetFloatToJson(pDataNode, "m_fMonGenDaly");
         m_iMonMaxGen       = GetIntToJson(pDataNode,   "m_iMonMaxGen");
@@ -97,6 +99,7 @@ public class JsonConstants : SHBaseTable
         // 몬스터 관련
         m_fMonMoveSpeed    = pSerializer.DeserializeFloat();
         m_fMonDamageSpeed  = pSerializer.DeserializeFloat();
+        m_fMonAttackDelay  = pSerializer.DeserializeFloat();
         m_fMonShootDelay   = pSerializer.DeserializeFloat();
         m_fMonGenDaly      = pSerializer.DeserializeFloat();
         m_iMonMaxGen       = pSerializer.DeserializeInt();
@@ -126,6 +129,7 @@ public class JsonConstants : SHBaseTable
         // 몬스터 관련
         pSerializer.Serialize(m_fMonMoveSpeed);
         pSerializer.Serialize(m_fMonDamageSpeed);
+        pSerializer.Serialize(m_fMonAttackDelay);
         pSerializer.Serialize(m_fMonShootDelay);
         pSerializer.Serialize(m_fMonGenDaly);
         pSerializer.Serialize(m_iMonMaxGen);

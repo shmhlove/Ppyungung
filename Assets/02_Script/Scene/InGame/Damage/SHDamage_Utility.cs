@@ -48,16 +48,17 @@ public partial class SHDamage : SHInGame_Component
         if (false == pDamage.IsCheckCrash())
             return;
 
-        int iLayerMask      = pDamage.GetTargetLayerMask();
+        int iLayerMask = pDamage.GetTargetLayerMask();
         if (0 == iLayerMask)
             return;
 
-        var vCenter         = pDamage.GetDMGCollider().bounds.center;
-        var vBeforeCenter   = pDamage.m_pBeforeBounds.center;
+        var vPosition       = pDamage.GetPosition();
+        var vBeforePosition = pDamage.m_vBeforePosition;
         var vExtents        = pDamage.GetDMGCollider().bounds.extents;
-        var vDist           = Vector3.Distance(vCenter, vBeforeCenter);
-        var vDirection      = (vBeforeCenter - vCenter).normalized;
-        var pHits           = Physics.BoxCastAll(vCenter, vExtents, vDirection, Quaternion.identity, vDist, iLayerMask);
+        var vDist           = Vector3.Distance(vPosition, vBeforePosition);
+        var vDirection      = (vBeforePosition - vPosition).normalized;
+        vDirection          = (Vector3.zero == vDirection) ? Vector3.forward : vDirection;
+        var pHits           = Physics.BoxCastAll(vPosition, vExtents, vDirection, Quaternion.identity, vDist, iLayerMask);
         
         if ((null == pHits) || (0 == pHits.Length))
             return;

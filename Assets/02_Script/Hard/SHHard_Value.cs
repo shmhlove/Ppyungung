@@ -46,6 +46,11 @@ public static partial class SHHard
         get { return GetTable().m_fMonDamageSpeed; }
         set { GetTable().m_fMonDamageSpeed = value; }
     }
+    public static float m_fMonAttackDelay
+    {
+        get { return GetTable().m_fMonAttackDelay; }
+        set { GetTable().m_fMonAttackDelay = value; }
+    }
     public static float m_fMonShootDelay
     {
         get { return GetTable().m_fMonShootDelay; }
