@@ -14,13 +14,13 @@ public partial class SHDamage : SHInGame_Component
     }
     SHDamageObject CreateDamage(string strPrefabName)
     {
-#if UNITY_EDITOR
-        var pDamage = Single.ObjectPool.Get<SHDamageObject>(
-                strPrefabName, true, ePoolReturnType.ChangeScene, ePoolDestroyType.Return);
-#else
+// #if UNITY_EDITOR
+//         var pDamage = Single.ObjectPool.Get<SHDamageObject>(
+//                 strPrefabName, true, ePoolReturnType.ChangeScene, ePoolDestroyType.Return);
+// #else
         var pDamage = Single.ObjectPool.Get<SHDamageObject>(
                 strPrefabName, true, ePoolReturnType.ChangeScene, ePoolDestroyType.ChangeScene);
-#endif
+// #endif
         if (null == pDamage)
         {
             Debug.LogErrorFormat("SHDamage::AddDamage - Not Found Prefab : {0}", strPrefabName);

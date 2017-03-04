@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public partial class SHDamageObject : SHMonoWrapper
 {
-    #region Utility : Position
+    #region Utility : Transform
     void SetupParent()
     {
         var pParentObject  = (true == m_pInfo.m_bIsParentToUI) ? 
@@ -41,6 +41,7 @@ public partial class SHDamageObject : SHMonoWrapper
         
         SetStartTransform();
         SetPosition(vPosition + m_pInfo.m_vPositionOffset);
+        SetupScaleInfo();
     }
     void SetupPhysics()
     {
@@ -56,6 +57,28 @@ public partial class SHDamageObject : SHMonoWrapper
             m_vDMGDirection = m_pInfo.m_vStartDirection;
 
         m_vBeforePosition = GetPosition();
+    }
+    void SetupScaleInfo()
+    {
+        if (null == m_pInfo)
+            return;
+
+        if ((Vector3.zero == m_pInfo.m_vStartScale) || 
+            (Vector3.zero == m_pInfo.m_vEndScale))
+            return;
+
+        SetLocalScale(m_pInfo.m_vStartScale);
+        m_pInfo.m_vScaleValue = m_pInfo.m_vStartScale;
+        m_pInfo.m_vScaleSpeed = (m_pInfo.m_vEndScale - m_pInfo.m_vStartScale);
+
+        if (0 == m_pInfo.m_iScaleLifeTic)
+            m_pInfo.m_iScaleLifeTic = m_pInfo.m_iLifeTick;
+        if (0 == m_pInfo.m_iScaleLifeTic)
+            m_pInfo.m_iScaleLifeTic = 1;
+
+        m_pInfo.m_vScaleSpeed.x = m_pInfo.m_vScaleSpeed.x / m_pInfo.m_iScaleLifeTic;
+        m_pInfo.m_vScaleSpeed.y = m_pInfo.m_vScaleSpeed.y / m_pInfo.m_iScaleLifeTic;
+        m_pInfo.m_vScaleSpeed.z = m_pInfo.m_vScaleSpeed.z / m_pInfo.m_iScaleLifeTic;
     }
     void MovePosition()
     {
@@ -99,6 +122,14 @@ public partial class SHDamageObject : SHMonoWrapper
                     GetPosition(), ref m_vDMGDirection, pTarget.transform.position, fAngle, fSpeed));
         }
         SetDMGSpeed(fSpeed);
+    }
+    void MoveScale()
+    {
+        if (0.1f > (m_pInfo.m_vEndScale - m_pInfo.m_vScaleValue).magnitude)
+            return;
+
+        m_pInfo.m_vScaleValue = m_pInfo.m_vScaleValue + m_pInfo.m_vScaleSpeed;
+        SetLocalScale(m_pInfo.m_vScaleValue);
     }
     #endregion
 

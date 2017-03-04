@@ -108,6 +108,7 @@ public partial class SHDamageObject : SHMonoWrapper
 
         DecreaseCrashHitTick();
         MovePosition();
+        MoveScale();
         PlaySound(eDamageEvent.Tick);
         PlayEffect(eDamageEvent.Tick);
     }
