@@ -50,6 +50,14 @@ public class SHScoreBoard : SHInGame_Component
         Single.UI.Show("Panel_ScoreBoard", "Meter",     m_fMoveMeter);
         Single.UI.Show("Panel_ScoreBoard", "BestMeter", GetBestMeter());
     }
+    public int GetBestScore()
+    {
+        return SHPlayerPrefs.GetInt("BestScore", 0);
+    }
+    public float GetBestMeter()
+    {
+        return SHPlayerPrefs.GetFloat("BestMeter", 0.0f);
+    }
     #endregion
 
 
@@ -65,10 +73,6 @@ public class SHScoreBoard : SHInGame_Component
     {
         SHPlayerPrefs.SetInt("BestScore", iScore);
     }
-    private int GetBestScore()
-    {
-        return SHPlayerPrefs.GetInt("BestScore", 0);
-    }
     private void ShowCurrentScore()
     {
         Single.UI.Show("Panel_ScoreBoard", "Current", m_iScore);
@@ -77,11 +81,6 @@ public class SHScoreBoard : SHInGame_Component
     {
         SHPlayerPrefs.SetFloat("BestMeter", fMeter);
     }
-    private float GetBestMeter()
-    {
-        return SHPlayerPrefs.GetFloat("BestMeter", 0.0f);
-    }
-
     private void CloseScoreBoard()
     {
         Single.UI.Close("Panel_ScoreBoard");

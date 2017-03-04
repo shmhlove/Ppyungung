@@ -186,7 +186,7 @@ public class SHUIPanel_Development : SHUIBasePanel
     }
     public void OnClickToRank()
     {
-        Single.Social.SetLeaderboard(235, eLeaderBoardType.BestScore, 
+        Single.Social.SetLeaderboard((long)Single.ScoreBoard.GetBestMeter(), eLeaderBoardType.BestScore, 
             (bIsSuccess) => 
             {
                 Debug.LogFormat("LeaderBoard : {0}", bIsSuccess);
