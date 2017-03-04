@@ -159,6 +159,12 @@ public class SHUIPanel_Development : SHUIBasePanel
 
         m_pInfoRoot.SetActive(false == m_pInfoRoot.activeInHierarchy);
     }
+    public void OnClickToClear()
+    {
+        Caching.CleanCache();
+        SHPlayerPrefs.DeleteAll();
+        SHUtils.DeleteDirectory(Application.persistentDataPath);
+    }
     #endregion
 
 
