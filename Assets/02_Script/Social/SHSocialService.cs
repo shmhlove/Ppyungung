@@ -62,12 +62,13 @@ public class SHSocialService : SHSingleton<SHSocialService>
     }
     public void Logout()
     {
-#if UNITY_EDITOR
-#else
         if (false == IsLogin())
             return;
 
+#if UNITY_EDITOR
+#elif UNITY_ANDROID            
         ((PlayGamesPlatform)Social.Active).SignOut();
+#else
 #endif
     }
     public bool IsLogin()
