@@ -136,7 +136,7 @@ public partial class SHApplicationInfo : SHSingleton<SHApplicationInfo>
     {
         var pClientInfo = Single.Table.GetTable<JsonClientConfiguration>();
         SetVSync(pClientInfo.GetVSyncCount());
-        SetFrameRate(pClientInfo.GetFrameRate());
+        SetFrameRate(SHHard.m_iFrameRate);//pClientInfo.GetFrameRate());
         SetCacheInfo(pClientInfo.GetCacheSize(), 30);
         SetSleepMode();
         SetCrittercism();
@@ -202,7 +202,7 @@ public partial class SHApplicationInfo : SHSingleton<SHApplicationInfo>
     {
         QualitySettings.vSyncCount = iCount;
     }
-    void SetFrameRate(int iFrame)
+    public void SetFrameRate(int iFrame)
     {
         Application.targetFrameRate = iFrame;
     }

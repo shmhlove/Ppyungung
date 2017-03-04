@@ -26,6 +26,7 @@ public class SHUIPanel_Development : SHUIBasePanel
     [SerializeField] private UIInput        m_pInputToMonShootSpeed  = null;
     [Header("ETC")]
     [SerializeField] private UIInput        m_pInputToUnitScale      = null;
+    [SerializeField] private UIInput        m_pInputToFrameRate      = null;
     [SerializeField] private UIInput        m_pInputToCameraSpeed    = null;
     [SerializeField] private UIInput        m_pInputToCameraOffsetX  = null;
     [SerializeField] private UIInput        m_pInputToCameraOffsetY  = null;
@@ -105,6 +106,7 @@ public class SHUIPanel_Development : SHUIBasePanel
             (null == m_pInputToMonMoveSpeed)   ||
             (null == m_pInputToMonDMGSpeed)    ||
             (null == m_pInputToUnitScale)      ||
+            (null == m_pInputToFrameRate)      ||
             (null == m_pInputToCameraSpeed)    ||
             (null == m_pInputToCameraOffsetX)  ||
             (null == m_pInputToCameraOffsetY) ||
@@ -120,6 +122,7 @@ public class SHUIPanel_Development : SHUIBasePanel
         m_pInputToMonDMGSpeed.value     = SHHard.m_fMonDamageSpeed.ToString();
         m_pInputToMonShootSpeed.value   = SHHard.m_fMonShootDelay.ToString();
         m_pInputToUnitScale.value       = SHHard.m_fUnitScale.ToString();
+        m_pInputToFrameRate.value       = SHHard.m_iFrameRate.ToString();
         m_pInputToCameraSpeed.value     = SHHard.m_fCameraMoveSpeed.ToString();
         m_pInputToCameraOffsetX.value   = SHHard.m_fCameraLimitOffsetX.ToString();
         m_pInputToCameraOffsetY.value   = SHHard.m_fCameraLimitOffsetY.ToString();
@@ -269,6 +272,11 @@ public class SHUIPanel_Development : SHUIBasePanel
                 kvp.Value.SetLocalScale(kvp.Value.m_vStartScale * SHHard.m_fUnitScale);
             }
         }
+    }
+    public void OnSubmitToFrameRage(string strValue)
+    {
+        SHHard.m_iFrameRate = int.Parse(strValue);
+        Single.AppInfo.SetFrameRate(SHHard.m_iFrameRate);
     }
     public void OnSubmitToCameraSpeed(string strValue)
     {

@@ -27,6 +27,7 @@ public class JsonConstants : SHBaseTable
 
     // 기타
     public float         m_fUnitScale       = 1.0f;
+    public int           m_iFrameRate       = 45;
     public float         m_fCameraMoveSpeed = 0.5f;
     public float         m_fCameraLimitOffsetX = 100.0f;
     public float         m_fCameraLimitOffsetY = 100.0f;
@@ -80,6 +81,7 @@ public class JsonConstants : SHBaseTable
 
         // 기타
         m_fUnitScale       = GetFloatToJson(pDataNode, "m_fUnitScale");
+        m_iFrameRate       = GetIntToJson(pDataNode, "m_iFrameRate");
         m_fCameraMoveSpeed = GetFloatToJson(pDataNode, "m_fCameraMoveSpeed");
         m_fCameraLimitOffsetX = GetFloatToJson(pDataNode, "m_fCameraLimitOffsetX");
         m_fCameraLimitOffsetY = GetFloatToJson(pDataNode, "m_fCameraLimitOffsetY");
@@ -112,6 +114,7 @@ public class JsonConstants : SHBaseTable
 
         // 기타
         m_fUnitScale       = pSerializer.DeserializeFloat();
+        m_iFrameRate       = pSerializer.DeserializeInt();
         m_fCameraMoveSpeed = pSerializer.DeserializeFloat();
         m_fCameraLimitOffsetX = pSerializer.DeserializeFloat();
         m_fCameraLimitOffsetY = pSerializer.DeserializeFloat();
@@ -144,6 +147,7 @@ public class JsonConstants : SHBaseTable
 
         // 기타
         pSerializer.Serialize(m_fUnitScale);
+        pSerializer.Serialize(m_iFrameRate);
         pSerializer.Serialize(m_fCameraMoveSpeed);
         pSerializer.Serialize(m_fCameraLimitOffsetX);
         pSerializer.Serialize(m_fCameraLimitOffsetY);

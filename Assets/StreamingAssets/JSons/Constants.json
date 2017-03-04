@@ -17,6 +17,7 @@
         "m_iMonMaxCount": 4,
         
         "m_fUnitScale": 0.5,
+        "m_iFrameRate": 45,
         "m_fCameraMoveSpeed": 10.0,
         "m_fCameraLimitOffsetX": 2500.0,
         "m_fCameraLimitOffsetY": 1000.0
