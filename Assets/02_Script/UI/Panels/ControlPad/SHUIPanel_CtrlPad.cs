@@ -9,6 +9,8 @@ public enum eControlType
     Type_2,
     Type_3,
     Type_4,
+    Type_5,
+    Type_6,
 }
 
 public class SHUIPanel_CtrlPad : SHUIBasePanel
@@ -21,6 +23,8 @@ public class SHUIPanel_CtrlPad : SHUIBasePanel
     [SerializeField] public SHUIWidget_CtrlType2 m_pCtrlType2 = null;
     [SerializeField] public SHUIWidget_CtrlType3 m_pCtrlType3 = null;
     [SerializeField] public SHUIWidget_CtrlType4 m_pCtrlType4 = null;
+    [SerializeField] public SHUIWidget_CtrlType5 m_pCtrlType5 = null;
+    [SerializeField] public SHUIWidget_CtrlType6 m_pCtrlType6 = null;
     #endregion
 
 
@@ -86,6 +90,9 @@ public class SHUIPanel_CtrlPad : SHUIBasePanel
         Activer(m_pCtrlType2, false);
         Activer(m_pCtrlType3, false);
         Activer(m_pCtrlType4, false);
+        Activer(m_pCtrlType5, false);
+        Activer(m_pCtrlType6, false);
+
 
         switch (eType)
         {
@@ -122,6 +129,20 @@ public class SHUIPanel_CtrlPad : SHUIBasePanel
                 {
                     m_pCtrlType4.Initialize(OnEventToMove, OnEventToDirection, OnEventToShoot, OnEventToDash);
                     Activer(m_pCtrlType4, true);
+                }
+                break;
+            case eControlType.Type_5:
+                if (null != m_pCtrlType5)
+                {
+                    m_pCtrlType5.Initialize(OnEventToMove, OnEventToDirection, OnEventToShoot, OnEventToDash);
+                    Activer(m_pCtrlType5, true);
+                }
+                break;
+            case eControlType.Type_6:
+                if (null != m_pCtrlType6)
+                {
+                    m_pCtrlType6.Initialize(OnEventToMove, OnEventToDirection, OnEventToShoot, OnEventToDash);
+                    Activer(m_pCtrlType6, true);
                 }
                 break;
         }

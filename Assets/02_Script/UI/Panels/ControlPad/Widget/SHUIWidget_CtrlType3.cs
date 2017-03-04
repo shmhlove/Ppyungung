@@ -6,7 +6,6 @@ public class SHUIWidget_CtrlType3 : SHMonoWrapper
 {
     #region Members : Inspector
     [SerializeField] private SHUIJoystick m_pJoyStick   = null;
-    [SerializeField] private float        m_fShootDelay = 0.2f;
     #endregion
 
 
@@ -32,12 +31,6 @@ public class SHUIWidget_CtrlType3 : SHMonoWrapper
             m_pJoyStick.m_pEventToPressOn  = OnEventToPressOn;
             m_pJoyStick.m_pEventToPressOff = OnEventToPressOff;
         }
-
-#if UNITY_EDITOR
-        SHHard.m_fCharAutoShoot = m_fShootDelay;
-#else
-        SHHard.m_fCharAutoShoot = SHPlayerPrefs.GetFloat("Player_ShootSpeed", m_fShootDelay);
-#endif
     }
     #endregion
 

@@ -2,16 +2,10 @@
 using System;
 using System.Collections;
 
-public class SHUIWidget_CtrlType2 : SHMonoWrapper
+public class SHUIWidget_CtrlType5 : SHMonoWrapper
 {
     #region Members : Inspector
-    [SerializeField] private SHUIJoystick m_pJoyStick_Left  = null;
-    [SerializeField] private SHUIJoystick m_pJoyStick_Right = null;
-    #endregion
-
-
-    #region Members : Info
-    private bool m_bIsRightDrag  = false;
+    [SerializeField] private SHUIJoystick m_pJoyStick   = null;
     #endregion
 
 
@@ -26,16 +20,9 @@ public class SHUIWidget_CtrlType2 : SHMonoWrapper
     #region System Functions
     public override void Start()
     {
-        if (null != m_pJoyStick_Left)
+        if (null != m_pJoyStick)
         {
-            m_pJoyStick_Left.m_pEventToDrag      = OnEventToDragLeft;
-        }
-
-        if (null != m_pJoyStick_Right)
-        {
-            m_pJoyStick_Right.m_pEventToDrag     = OnEventToDragRight;
-            m_pJoyStick_Right.m_pEventToPressOn  = OnEventToPressOnRight;
-            m_pJoyStick_Right.m_pEventToPressOff = OnEventToPressOffRight;
+            m_pJoyStick.m_pEventToDrag     = OnEventToDrag;
         }
     }
     #endregion
@@ -64,11 +51,8 @@ public class SHUIWidget_CtrlType2 : SHMonoWrapper
     {
         while (true)
         {
-            if (true == m_bIsRightDrag)
-            {
-                if (null != m_pEventShoot)
-                    m_pEventShoot();
-            }
+            if (null != m_pEventShoot)
+                m_pEventShoot();
 
             yield return new WaitForSeconds(SHHard.m_fCharAutoShoot);
         }
@@ -77,41 +61,26 @@ public class SHUIWidget_CtrlType2 : SHMonoWrapper
 
 
     #region UI Event Functions
-    public void OnEventToDragLeft(Vector3 vCenter, Vector3 vThumb, Vector3 vDirection)
+    public void OnEventToDrag(Vector3 vCenter, Vector3 vThumb, Vector3 vDirection)
     {
         if (null != m_pEventMove)
             m_pEventMove(vDirection);
 
-        if (false == m_bIsRightDrag)
-        {
-            if (null != m_pEventDirection)
-                m_pEventDirection(vDirection);
-        }
-    }
-    public void OnEventToDragRight(Vector3 vCenter, Vector3 vThumb, Vector3 vDirection)
-    {
-        m_bIsRightDrag = true;
-
         if (null != m_pEventDirection)
             m_pEventDirection(vDirection);
     }
-    public void OnEventToPressOnRight()
+    public void OnEventToPressOn()
     {
-        m_bIsRightDrag  = false;
-
         StartCoroutine(CoroutineToShoot());
     }
-    public void OnEventToPressOffRight()
+    public void OnEventToPressOff()
     {
-        if (false == m_bIsRightDrag)
-        {
-            if (null != m_pEventDash)
-                m_pEventDash();
-        }
-
-        m_bIsRightDrag  = false;
-
         StopAllCoroutines();
+    }
+    public void OnEventToDash()
+    {
+        if (null != m_pEventDash)
+            m_pEventDash();
     }
     #endregion
 }

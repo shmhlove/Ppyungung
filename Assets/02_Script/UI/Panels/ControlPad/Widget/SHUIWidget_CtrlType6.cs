@@ -2,10 +2,15 @@
 using System;
 using System.Collections;
 
-public class SHUIWidget_CtrlType0 : SHMonoWrapper
+public class SHUIWidget_CtrlType6 : SHMonoWrapper
 {
     #region Members : Inspector
-    [SerializeField] private SHUIJoystick m_pJoyStick   = null;
+    [SerializeField] public SHUIJoystick m_pJoyStick  = null;
+    #endregion
+
+
+    #region Members : Info
+    private DateTime        m_pPressTime;
     #endregion
 
 
@@ -22,7 +27,8 @@ public class SHUIWidget_CtrlType0 : SHMonoWrapper
     {
         if (null != m_pJoyStick)
         {
-            m_pJoyStick.m_pEventToDrag     = OnEventToDrag;
+            m_pJoyStick.m_pEventToDrag    = OnEventToDrag;
+            m_pJoyStick.m_pEventToPressOn = OnEventToPressOn;
         }
     }
     #endregion
@@ -43,20 +49,6 @@ public class SHUIWidget_CtrlType0 : SHMonoWrapper
         m_pEventShoot     = null;
         m_pEventDash      = null;
     }
-#endregion
-
-
-    #region Coroutine Functions
-    IEnumerator CoroutineToShoot()
-    {
-        while (true)
-        {
-            if (null != m_pEventShoot)
-                m_pEventShoot();
-
-            yield return new WaitForSeconds(SHHard.m_fCharAutoShoot);
-        }
-    }
     #endregion
 
 
@@ -71,12 +63,22 @@ public class SHUIWidget_CtrlType0 : SHMonoWrapper
     }
     public void OnEventToPressOn()
     {
-        StartCoroutine(CoroutineToShoot());
-    }
-    public void OnEventToPressOff()
-    {
-        StopAllCoroutines();
+        float fTimeGap = (float)(DateTime.Now - m_pPressTime).TotalMilliseconds / 1000.0f;
+        if (fTimeGap < 0.5f)
+        {
+            if (null != m_pEventDash)
+                m_pEventDash();
+        }
 
+        m_pPressTime = DateTime.Now;
+    }
+    public void OnClickToRightButton()
+    {
+        if (null != m_pEventShoot)
+            m_pEventShoot();
+    }
+    public void OnEventToDash()
+    {
         if (null != m_pEventDash)
             m_pEventDash();
     }

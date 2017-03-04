@@ -21,7 +21,7 @@ public partial class SHCharPopolo : SHState
     {
         if (Vector3.zero == m_vLookDirection)
             return false;
-
+        
         m_vLookDirection.z = m_vLookDirection.y;
         m_vLookDirection.y = 0.0f;
         m_vDashDirection   = m_vLookDirection;
@@ -35,8 +35,11 @@ public partial class SHCharPopolo : SHState
         var pNearMon = Single.Monster.GetNearMonster(GetLocalPosition());
         if (null == pNearMon)
             return;
-        
-        SetLocalLookY((pNearMon.GetLocalPosition() - GetLocalPosition()));
+
+        var vDirection   = (pNearMon.GetLocalPosition() - GetLocalPosition()).normalized;
+        m_vDashDirection = vDirection;
+
+        SetLocalLookY(vDirection);
     }
     bool SetMove()
     {
@@ -51,7 +54,7 @@ public partial class SHCharPopolo : SHState
     void SetDash()
     {
         AddLocalPositionX(SHHard.m_fCharDashSpeed * m_vDashDirection.x);
-        AddLocalPositionZ(SHHard.m_fCharDashSpeed * m_vDashDirection.y);
+        AddLocalPositionZ(SHHard.m_fCharDashSpeed * m_vDashDirection.z);
     }
     bool SetAttack()
     {
