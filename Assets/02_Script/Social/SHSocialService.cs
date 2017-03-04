@@ -121,7 +121,7 @@ public class SHSocialService : SHSingleton<SHSocialService>
                 });
         };
         
-        Login((bIsSuccess) =>
+        Login((bIsSuccess, "") =>
         {
             if (false == bIsSuccess)
                 pCallback(false);
@@ -134,7 +134,7 @@ public class SHSocialService : SHSingleton<SHSocialService>
     {
 #if UNITY_EDITOR
 #elif UNITY_ANDROID
-        PlayGamesPlatform.Instance.ShowLeaderboardUI(GetLeaderBoardType(eType));
+        PlayGamesPlatform.Instance.ShowLeaderboardUI(GetLeaderBoardType(eLeaderBoardType.BestScore));
 #else
         Social.ShowLeaderboardUI();
 #endif
