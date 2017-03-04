@@ -105,7 +105,11 @@ public partial class SHCharPopolo : SHState
             return;
 
         var vSides = pMainCamera.GetSides(Mathf.Lerp(pMainCamera.nearClipPlane, pMainCamera.farClipPlane, 0.5f), null);
-        var vRect = new Vector4(vSides[0].x, vSides[3].z, vSides[2].x, vSides[1].z);
+        var vRect = new Vector4(
+            vSides[0].x + SHHard.m_fCameraLimitOffsetX, 
+            vSides[3].z + SHHard.m_fCameraLimitOffsetY, 
+            vSides[2].x - SHHard.m_fCameraLimitOffsetX, 
+            vSides[1].z - SHHard.m_fCameraLimitOffsetY);
         SetLocalPosition(SHPhysics.IncludePointInRect(vRect, GetLocalPosition()));
     }
     #endregion

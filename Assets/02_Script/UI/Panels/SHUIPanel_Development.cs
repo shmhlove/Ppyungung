@@ -27,6 +27,8 @@ public class SHUIPanel_Development : SHUIBasePanel
     [Header("ETC")]
     [SerializeField] private UIInput        m_pInputToUnitScale      = null;
     [SerializeField] private UIInput        m_pInputToCameraSpeed    = null;
+    [SerializeField] private UIInput        m_pInputToCameraOffsetX  = null;
+    [SerializeField] private UIInput        m_pInputToCameraOffsetY  = null;
     #endregion
 
 
@@ -104,6 +106,8 @@ public class SHUIPanel_Development : SHUIBasePanel
             (null == m_pInputToMonDMGSpeed)    ||
             (null == m_pInputToUnitScale)      ||
             (null == m_pInputToCameraSpeed)    ||
+            (null == m_pInputToCameraOffsetX)  ||
+            (null == m_pInputToCameraOffsetY) ||
             (null == m_pInputToMonShootSpeed))
             return;
 
@@ -117,6 +121,8 @@ public class SHUIPanel_Development : SHUIBasePanel
         m_pInputToMonShootSpeed.value   = SHHard.m_fMonShootDelay.ToString();
         m_pInputToUnitScale.value       = SHHard.m_fUnitScale.ToString();
         m_pInputToCameraSpeed.value     = SHHard.m_fCameraMoveSpeed.ToString();
+        m_pInputToCameraOffsetX.value   = SHHard.m_fCameraLimitOffsetX.ToString();
+        m_pInputToCameraOffsetY.value   = SHHard.m_fCameraLimitOffsetY.ToString();
     }
     #endregion
 
@@ -261,6 +267,14 @@ public class SHUIPanel_Development : SHUIBasePanel
     public void OnSubmitToCameraSpeed(string strValue)
     {
         SHHard.m_fCameraMoveSpeed = float.Parse(strValue);
+    }
+    public void OnSubmitToCameraOffsetX(string strValue)
+    {
+        SHHard.m_fCameraLimitOffsetX = float.Parse(strValue);
+    }
+    public void OnSubmitToCameraOffsetY(string strValue)
+    {
+        SHHard.m_fCameraLimitOffsetY = float.Parse(strValue);
     }
     #endregion
 }

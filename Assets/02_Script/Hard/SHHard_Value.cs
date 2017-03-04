@@ -83,6 +83,16 @@ public static partial class SHHard
         get { return GetTable().m_fCameraMoveSpeed; }
         set { GetTable().m_fCameraMoveSpeed = value; }
     }
+    public static float m_fCameraLimitOffsetX
+    {
+        get { return GetTable().m_fCameraLimitOffsetX; }
+        set { GetTable().m_fCameraLimitOffsetX = value; }
+    }
+    public static float m_fCameraLimitOffsetY
+    {
+        get { return GetTable().m_fCameraLimitOffsetY; }
+        set { GetTable().m_fCameraLimitOffsetY = value; }
+    }
 
     static JsonConstants GetTable()
     {
