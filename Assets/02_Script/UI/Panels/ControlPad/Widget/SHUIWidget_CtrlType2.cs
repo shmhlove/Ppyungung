@@ -64,11 +64,8 @@ public class SHUIWidget_CtrlType2 : SHMonoWrapper
     {
         while (true)
         {
-            if (true == m_bIsRightDrag)
-            {
-                if (null != m_pEventShoot)
-                    m_pEventShoot();
-            }
+            if (null != m_pEventShoot)
+                m_pEventShoot();
 
             yield return new WaitForSeconds(SHHard.m_fCharShootDelay);
         }
@@ -97,21 +94,22 @@ public class SHUIWidget_CtrlType2 : SHMonoWrapper
     }
     public void OnEventToPressOnRight()
     {
-        m_bIsRightDrag  = false;
+        m_bIsRightDrag = false;
 
         StartCoroutine(CoroutineToShoot());
     }
     public void OnEventToPressOffRight()
     {
-        if (false == m_bIsRightDrag)
-        {
-            if (null != m_pEventDash)
-                m_pEventDash();
-        }
-
-        m_bIsRightDrag  = false;
+        m_bIsRightDrag = false;
 
         StopAllCoroutines();
+    }
+    public void OnEventToDash()
+    {
+        if (null == m_pEventDash)
+            return;
+
+        m_pEventDash();
     }
     #endregion
 }
