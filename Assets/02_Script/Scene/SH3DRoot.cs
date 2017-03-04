@@ -101,6 +101,15 @@ public class SH3DRoot : MonoBehaviour
         vLocalPos.x = fX;
         m_pCameraRoot.localPosition = vLocalPos;
     }
+    void SetCameraPosY(float fY)
+    {
+        if (null == m_pCameraRoot)
+            return;
+
+        var vLocalPos = m_pCameraRoot.localPosition;
+        vLocalPos.y = fY;
+        m_pCameraRoot.localPosition = vLocalPos;
+    }
     void SetCameraPosZ(float fZ)
     {
         if (null == m_pCameraRoot)

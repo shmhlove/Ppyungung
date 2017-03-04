@@ -53,6 +53,7 @@ public partial class SHCharPopolo : SHState
     }
     void SetDash()
     {
+        SetLocalLookY(m_vDashDirection);
         AddLocalPositionX(SHHard.m_fCharDashSpeed * m_vDashDirection.x);
         AddLocalPositionZ(SHHard.m_fCharDashSpeed * m_vDashDirection.z);
     }

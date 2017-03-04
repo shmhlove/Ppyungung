@@ -20,7 +20,6 @@ public partial class SHMonMouse : SHState
         var pState = CreateState(eState.Idle);
         {
             pState.m_strAnimClip   = "Anim_Char_Idle";
-            pState.m_OnEnter       = OnEnterToIdle;
             pState.m_OnFixedUpdate = OnFixedUpdateToIdle;
         }
 
@@ -34,7 +33,6 @@ public partial class SHMonMouse : SHState
         {
             pState.m_strAnimClip   = "Anim_Char_Attack";
             pState.m_OnEnter       = OnEnterToAttack;
-            pState.m_OnEndAnim     = OnEndAnimToAttack;
             pState.m_OnFixedUpdate = OnFixedUpdateToAttack;
         }
 
@@ -51,14 +49,11 @@ public partial class SHMonMouse : SHState
 
 
     #region State : Idle
-    void OnEnterToIdle(int iBeforeState, int iCurrentState)
-    {
-        m_iAttackCount = 0;
-    }
+
     void OnFixedUpdateToIdle(int iCurrentState, int iFixedTick)
     {
         if (false == IsAttackDelay())
-            ChangeState(eState.Attack);
+            StartCoroutine(COROUTINE_ATTACK);
         else
             ChangeState(eState.Move);
     }
@@ -72,27 +67,28 @@ public partial class SHMonMouse : SHState
         SetMove();
 
         if (false == IsAttackDelay())
-            ChangeState(eState.Attack);
+            StartCoroutine(COROUTINE_ATTACK);
     }
     #endregion
 
 
     #region State : Attack
+    private string COROUTINE_ATTACK = "CoroutineToAttackDelay";
+    IEnumerator CoroutineToAttackDelay()
+    {
+        for(int iLoop = 0; iLoop < MAX_ATTACK_COUNT; ++iLoop)
+        {
+            ChangeState(eState.Attack);
+
+            yield return new WaitForSeconds(SHHard.m_fMonShootDelay);
+        }
+
+        Single.Timer.StartDeltaTime(GetAttackKey());
+        ChangeState(eState.Idle);
+    }
     void OnEnterToAttack(int iBeforeState, int iCurrentState)
     {
         SetAttack(Vector3.zero);
-    }
-    void OnEndAnimToAttack(int iCurrentState)
-    {
-        if (MAX_ATTACK_COUNT > ++m_iAttackCount)
-        {
-            ChangeState(eState.Attack);
-        }
-        else
-        {
-            Single.Timer.StartDeltaTime(GetAttackKey());
-            ChangeState(eState.Idle);
-        }
     }
     void OnFixedUpdateToAttack(int iCurrentState, int iFixedTick)
     {
@@ -104,8 +100,8 @@ public partial class SHMonMouse : SHState
     #region State : Die
     void OnEnterToDie(int iBeforeState, int iCurrentState)
     {
+        StopCoroutine(COROUTINE_ATTACK);
         Single.Monster.DeleteMonster(this);
-
         Single.Damage.DelDamage(m_pMonDamage);
         m_pMonDamage = null;
 

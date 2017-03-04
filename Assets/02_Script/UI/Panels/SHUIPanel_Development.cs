@@ -20,8 +20,10 @@ public class SHUIPanel_Development : SHUIBasePanel
     [SerializeField] private UIInput        m_pInputToCharDMGSpeed   = null;
     [Header("Monster")]
     [SerializeField] private UIInput        m_pInputToMonMaxSummon   = null;
+    [SerializeField] private UIInput        m_pInputToOneTimeSummon  = null;
     [SerializeField] private UIInput        m_pInputToMonMoveSpeed   = null;
     [SerializeField] private UIInput        m_pInputToMonDMGSpeed    = null;
+    [SerializeField] private UIInput        m_pInputToMonShootSpeed  = null;
     [Header("ETC")]
     [SerializeField] private UIInput        m_pInputToUnitScale      = null;
     #endregion
@@ -96,17 +98,21 @@ public class SHUIPanel_Development : SHUIBasePanel
             (null == m_pInputToCharShootSpeed) ||
             (null == m_pInputToCharDMGSpeed)   ||
             (null == m_pInputToMonMaxSummon)   ||
+            (null == m_pInputToOneTimeSummon)  ||
             (null == m_pInputToMonMoveSpeed)   ||
             (null == m_pInputToMonDMGSpeed)    ||
-            (null == m_pInputToUnitScale))
+            (null == m_pInputToUnitScale)      ||
+            (null == m_pInputToMonShootSpeed))
             return;
 
         m_pInputToCharMoveSpeed.value   = SHHard.m_fCharMoveSpeed.ToString();
-        m_pInputToCharShootSpeed.value  = SHHard.m_fCharAutoShoot.ToString();
+        m_pInputToCharShootSpeed.value  = SHHard.m_fCharShootDelay.ToString();
         m_pInputToCharDMGSpeed.value    = SHHard.m_fCharDamageSpeed.ToString();
         m_pInputToMonMaxSummon.value    = SHHard.m_iMonMaxCount.ToString();
+        m_pInputToOneTimeSummon.value   = SHHard.m_iMonMaxGen.ToString();
         m_pInputToMonMoveSpeed.value    = SHHard.m_fMonMoveSpeed.ToString();
         m_pInputToMonDMGSpeed.value     = SHHard.m_fMonDamageSpeed.ToString();
+        m_pInputToMonShootSpeed.value   = SHHard.m_fMonShootDelay.ToString();
         m_pInputToUnitScale.value       = SHHard.m_fUnitScale.ToString();
     }
     #endregion
@@ -170,7 +176,7 @@ public class SHUIPanel_Development : SHUIBasePanel
     }
     public void OnSubmitToShootSpeed(string strValue)
     {
-        SHHard.m_fCharAutoShoot = float.Parse(strValue);
+        SHHard.m_fCharShootDelay = float.Parse(strValue);
     }
     public void OnSelectToCtrlType(string strType)
     {
@@ -201,6 +207,10 @@ public class SHUIPanel_Development : SHUIBasePanel
     {
         SHHard.m_iMonMaxCount = int.Parse(strValue);
     }
+    public void OnSubmitToMonOneTimeSummon(string strValue)
+    {
+        SHHard.m_iMonMaxGen = int.Parse(strValue);
+    }
     public void OnSubmitToMonMoveSpeed(string strValue)
     {
         SHHard.m_fMonMoveSpeed = float.Parse(strValue);
@@ -208,6 +218,10 @@ public class SHUIPanel_Development : SHUIBasePanel
     public void OnSubmitToMonDamageSpeed(string strValue)
     {
         SHHard.m_fMonDamageSpeed = float.Parse(strValue);
+    }
+    public void OnSubmitToMonShootSpeed(string strValue)
+    {
+        SHHard.m_fMonShootDelay = float.Parse(strValue);
     }
     #endregion
 

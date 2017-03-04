@@ -14,10 +14,10 @@ public static partial class SHHard
         get { return GetTable().m_fCharDamageSpeed; }
         set { GetTable().m_fCharDamageSpeed = value; }
     }
-    public static float m_fCharAutoShoot
+    public static float m_fCharShootDelay
     {
-        get { return GetTable().m_fCharAutoShoot; }
-        set { GetTable().m_fCharAutoShoot = value; }
+        get { return GetTable().m_fCharShootDelay; }
+        set { GetTable().m_fCharShootDelay = value; }
     }
     public static float m_fCharDashSpeed
     {
@@ -45,6 +45,11 @@ public static partial class SHHard
     {
         get { return GetTable().m_fMonDamageSpeed; }
         set { GetTable().m_fMonDamageSpeed = value; }
+    }
+    public static float m_fMonShootDelay
+    {
+        get { return GetTable().m_fMonShootDelay; }
+        set { GetTable().m_fMonShootDelay = value; }
     }
     public static float m_fMonGenDaly
     {

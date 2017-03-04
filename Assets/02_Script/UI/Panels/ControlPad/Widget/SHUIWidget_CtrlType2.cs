@@ -70,7 +70,7 @@ public class SHUIWidget_CtrlType2 : SHMonoWrapper
                     m_pEventShoot();
             }
 
-            yield return new WaitForSeconds(SHHard.m_fCharAutoShoot);
+            yield return new WaitForSeconds(SHHard.m_fCharShootDelay);
         }
     }
     #endregion

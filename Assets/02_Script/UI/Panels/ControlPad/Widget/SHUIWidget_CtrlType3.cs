@@ -61,7 +61,7 @@ public class SHUIWidget_CtrlType3 : SHMonoWrapper
             if (null != m_pEventShoot)
                 m_pEventShoot();
 
-            yield return new WaitForSeconds(SHHard.m_fCharAutoShoot);
+            yield return new WaitForSeconds(SHHard.m_fCharShootDelay);
         }
     }
     #endregion

@@ -11,7 +11,7 @@ public class JsonConstants : SHBaseTable
     // 캐릭터 관련
     public float         m_fCharMoveSpeed   = 50.0f;
     public float         m_fCharDamageSpeed = 5000.0f;
-    public float         m_fCharAutoShoot   = 0.2f;
+    public float         m_fCharShootDelay  = 0.1f;
     public float         m_fCharDashSpeed   = 150.0f;
     public float         m_fCharDashTime    = 0.5f;
     public float         m_fCharDashCool    = 0.0f;
@@ -19,6 +19,7 @@ public class JsonConstants : SHBaseTable
     // 몬스터 관련
     public float         m_fMonMoveSpeed    = 30.0f;
     public float         m_fMonDamageSpeed  = 5000.0f;
+    public float         m_fMonShootDelay   = 0.2f;
     public float         m_fMonGenDaly      = 2.0f;
     public int           m_iMonMaxGen       = 4;
     public int           m_iMonMaxCount     = 12;
@@ -58,7 +59,7 @@ public class JsonConstants : SHBaseTable
         // 캐릭터 관련
         m_fCharMoveSpeed   = GetFloatToJson(pDataNode, "m_fCharMoveSpeed");
         m_fCharDamageSpeed = GetFloatToJson(pDataNode, "m_fCharDamageSpeed");
-        m_fCharAutoShoot   = GetFloatToJson(pDataNode, "m_fCharAutoShoot");
+        m_fCharShootDelay  = GetFloatToJson(pDataNode, "m_fCharShootDelay");
         m_fCharDashSpeed   = GetFloatToJson(pDataNode, "m_fCharDashSpeed");
         m_fCharDashTime    = GetFloatToJson(pDataNode, "m_fCharDashTime");
         m_fCharDashCool    = GetFloatToJson(pDataNode, "m_fCharDashCool");
@@ -66,13 +67,13 @@ public class JsonConstants : SHBaseTable
         // 몬스터 관련
         m_fMonMoveSpeed    = GetFloatToJson(pDataNode, "m_fMonMoveSpeed");
         m_fMonDamageSpeed  = GetFloatToJson(pDataNode, "m_fMonDamageSpeed");
+        m_fMonShootDelay   = GetFloatToJson(pDataNode, "m_fMonShootDelay");
         m_fMonGenDaly      = GetFloatToJson(pDataNode, "m_fMonGenDaly");
         m_iMonMaxGen       = GetIntToJson(pDataNode,   "m_iMonMaxGen");
         m_iMonMaxCount     = GetIntToJson(pDataNode,   "m_iMonMaxCount");
 
         // 기타
         m_fUnitScale       = GetFloatToJson(pDataNode, "m_fUnitScale");
-
 
         return (m_bIsLoaded = true);
     }
@@ -86,7 +87,7 @@ public class JsonConstants : SHBaseTable
         // 캐릭터 관련
         m_fCharMoveSpeed   = pSerializer.DeserializeFloat();
         m_fCharDamageSpeed = pSerializer.DeserializeFloat();
-        m_fCharAutoShoot   = pSerializer.DeserializeFloat();
+        m_fCharShootDelay  = pSerializer.DeserializeFloat();
         m_fCharDashSpeed   = pSerializer.DeserializeFloat();
         m_fCharDashTime    = pSerializer.DeserializeFloat();
         m_fCharDashCool    = pSerializer.DeserializeFloat();
@@ -94,6 +95,7 @@ public class JsonConstants : SHBaseTable
         // 몬스터 관련
         m_fMonMoveSpeed    = pSerializer.DeserializeFloat();
         m_fMonDamageSpeed  = pSerializer.DeserializeFloat();
+        m_fMonShootDelay   = pSerializer.DeserializeFloat();
         m_fMonGenDaly      = pSerializer.DeserializeFloat();
         m_iMonMaxGen       = pSerializer.DeserializeInt();
         m_iMonMaxCount     = pSerializer.DeserializeInt();
@@ -113,7 +115,7 @@ public class JsonConstants : SHBaseTable
         // 캐릭터 관련
         pSerializer.Serialize(m_fCharMoveSpeed);
         pSerializer.Serialize(m_fCharDamageSpeed);
-        pSerializer.Serialize(m_fCharAutoShoot);
+        pSerializer.Serialize(m_fCharShootDelay);
         pSerializer.Serialize(m_fCharDashSpeed);
         pSerializer.Serialize(m_fCharDashTime);
         pSerializer.Serialize(m_fCharDashCool);
@@ -121,6 +123,7 @@ public class JsonConstants : SHBaseTable
         // 몬스터 관련
         pSerializer.Serialize(m_fMonMoveSpeed);
         pSerializer.Serialize(m_fMonDamageSpeed);
+        pSerializer.Serialize(m_fMonShootDelay);
         pSerializer.Serialize(m_fMonGenDaly);
         pSerializer.Serialize(m_iMonMaxGen);
         pSerializer.Serialize(m_iMonMaxCount);
