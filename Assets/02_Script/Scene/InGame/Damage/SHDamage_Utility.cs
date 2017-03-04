@@ -16,7 +16,7 @@ public partial class SHDamage : SHInGame_Component
     {
 #if UNITY_EDITOR
         var pDamage = Single.ObjectPool.Get<SHDamageObject>(
-                strPrefabName, ePoolReturnType.ChangeScene, ePoolDestroyType.Return);
+                strPrefabName, true, ePoolReturnType.ChangeScene, ePoolDestroyType.Return);
 #else
         var pDamage = Single.ObjectPool.Get<SHDamageObject>(
                 strPrefabName, ePoolReturnType.ChangeScene, ePoolDestroyType.ChangeScene);
@@ -48,47 +48,37 @@ public partial class SHDamage : SHInGame_Component
         if (false == pDamage.IsCheckCrash())
             return;
 
-        // pDamageCollider.bounds.center
-        // pDamageCollider.bounds.extents
-        // (pDamageCollider.bounds.center - pDamage.m_pBeforeBounds.center).normalized
-        // pDamage.GetRotate()
-        // (pDamageCollider.bounds.center - pDamage.m_pBeforeBounds.center).magenter
-        // int layermask = (1 << LayerMask.NameToLayer(“Damage”) | (1 << LayerMask.NameToLayer(“Charater”) | (1 << LayerMask.NameToLayer(“Monster”);
-        // Physics.BoxCastAll(Vector3 center, Vector3 halfExtents, Vector3 direction, Quaternion orientation, float maxDistance, int layermask);
+        int iLayerMask      = pDamage.GetTargetLayerMask();
+        if (0 == iLayerMask)
+            return;
 
-        SHUtils.ForToList(GetTargets(pDamage), (pTarget) => 
+        var vCenter         = pDamage.GetDMGCollider().bounds.center;
+        var vBeforeCenter   = pDamage.m_pBeforeBounds.center;
+        var vExtents        = pDamage.GetDMGCollider().bounds.extents;
+        var vDist           = Vector3.Distance(vCenter, vBeforeCenter);
+        var vDirection      = (vBeforeCenter - vCenter).normalized;
+        var pHits           = Physics.BoxCastAll(vCenter, vExtents, vDirection, Quaternion.identity, vDist, iLayerMask);
+        
+        if ((null == pHits) || (0 == pHits.Length))
+            return;
+        
+        foreach(var pHit in pHits)
         {
+            if (false == pDamage.IsTarget(pHit.transform.tag))
+                continue;
+
+            var pTarget = pHit.transform.GetComponent<SHMonoWrapper>();
             if (true == pTarget.IsOffDamage())
-                return;
-
-            var pDamageCollider = pDamage.GetDMGCollider();
-            var pTargetCollider = pTarget.GetDMGCollider();
-            if ((null == pDamageCollider) || (null == pTargetCollider))
-                return;
-
-            var bIsCollistion = false;
-            var bBounds       = pDamage.m_pBeforeBounds;
-            for(float fRatio = 0.0f; fRatio <= 1.0f; fRatio += 0.1f)
-            {
-                bBounds.center = SHMath.Lerp(pDamage.m_pBeforeBounds.center, pDamageCollider.bounds.center, fRatio);
-                if (true == bBounds.Intersects(pTargetCollider.bounds))
-                {
-                    bIsCollistion = true;
-                    break;
-                }
-            }
-
-            if (false == bIsCollistion)
                 return;
 
             pTarget.OnCrashDamage(pDamage);
             pDamage.OnCrashDamage(pTarget);
-        });
+        }
     }
-#endregion
+    #endregion
 
 
-#region Utility : Helpper
+    #region Utility : Helpper
     List<SHMonoWrapper> GetTargets(SHDamageObject pDamage)
     {
         if (null == pDamage)
@@ -108,5 +98,5 @@ public partial class SHDamage : SHInGame_Component
         
         return pTargets;
     }
-#endregion
+    #endregion
 }

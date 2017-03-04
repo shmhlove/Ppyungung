@@ -94,8 +94,8 @@ public partial class SHUIManager : SHSingleton<SHUIManager>
     {
         if (false == m_dicPanels.ContainsKey(strName))
         {
-            AddPanel(Single.ObjectPool.Get<SHUIBasePanel>(strName, 
-                ePoolReturnType.None, ePoolDestroyType.None), false);
+            AddPanel(Single.ObjectPool.Get<SHUIBasePanel>(strName,
+                false, ePoolReturnType.None, ePoolDestroyType.None), false);
         }
 
         if (false == m_dicPanels.ContainsKey(strName))

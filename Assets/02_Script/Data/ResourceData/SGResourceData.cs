@@ -208,7 +208,7 @@ public partial class SHResourceData : SHBaseData
     // 인터페이스 : 오브젝트 복사
     public T Instantiate<T>(T pObject) where T : Object
     {
-        if (true == Single.AppInfo.m_bIsAppQuit)
+        if (true == SHApplicationInfo.m_bIsAppQuit)
             return null;
 
         if (null == pObject)

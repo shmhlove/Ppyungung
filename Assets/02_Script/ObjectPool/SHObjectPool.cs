@@ -141,13 +141,15 @@ public class SHObjectPool : SHSingleton<SHObjectPool>
     #region Interface Functions
     public T Get<T>(
         string           strName, 
+        bool             bIsActive    = false,
         ePoolReturnType  eReturnType  = ePoolReturnType.Disable, 
         ePoolDestroyType eDestroyType = ePoolDestroyType.ChangeScene) where T : Component
     {
-        return SHGameObject.GetComponent<T>(Get(strName, eReturnType, eDestroyType));
+        return SHGameObject.GetComponent<T>(Get(strName, bIsActive, eReturnType, eDestroyType));
     }
     public GameObject Get(
         string           strName, 
+        bool             bIsActive    = false,
         ePoolReturnType  eReturnType  = ePoolReturnType.Disable, 
         ePoolDestroyType eDestroyType = ePoolDestroyType.ChangeScene)
     {
@@ -155,7 +157,7 @@ public class SHObjectPool : SHSingleton<SHObjectPool>
         if (null == pObject)
             return null;
 
-        SetActiveObject(strName, pObject);
+        SetActiveObject(strName, pObject, bIsActive);
         return pObject.m_pObject;
     }
     public void Return(GameObject pObject)
@@ -178,7 +180,7 @@ public class SHObjectPool : SHSingleton<SHObjectPool>
 
 
     #region Utility : Get And Return
-    private void SetActiveObject(string strName, SHObjectInfo pObjectInfo)
+    private void SetActiveObject(string strName, SHObjectInfo pObjectInfo, bool bIsActive)
     {
         CheckDictionary(m_dicActives,   strName);
         CheckDictionary(m_dicInactives, strName);
@@ -188,7 +190,7 @@ public class SHObjectPool : SHSingleton<SHObjectPool>
         
         pObjectInfo.SetParent(GetRoot(pObjectInfo.m_pObject.layer));
         pObjectInfo.SetStartTransform();
-        pObjectInfo.SetActive(false);
+        pObjectInfo.SetActive(bIsActive);
     }
     private void SetReturnObject(string strName, SHObjectInfo pObjectInfo)
     {

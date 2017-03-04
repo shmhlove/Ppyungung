@@ -139,7 +139,6 @@ public partial class SHDamage : SHInGame_Component
         
         var strID = GetNewDamageID(strPrefabName);
         pParam.AddEventToDelete(OnEventToDeleteDamage);
-        pDamage.SetActive(true);
         pDamage.OnInitialize(strID, pParam);
         pDamage.SetLocalScale(pDamage.m_vStartScale * SHHard.m_fUnitScale);
 

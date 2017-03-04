@@ -36,7 +36,7 @@ public partial class SHApplicationInfo : SHSingleton<SHApplicationInfo>
     [HideInInspector] private DicRealLoadInfo   m_dicRealLoadInfo   = new DicRealLoadInfo();
 
     // 기타 : 앱 종료 여부
-    [HideInInspector] public bool               m_bIsAppQuit        = false;
+    [HideInInspector] public static bool        m_bIsAppQuit        = false;
     #endregion
 
 

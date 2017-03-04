@@ -41,6 +41,11 @@ public class SHUIJoystick : SHMonoWrapper
     }
     public override void OnDisable()
     {
+        base.OnDisable();
+
+        if (true == SHApplicationInfo.m_bIsAppQuit)
+            return;
+
         SetThumbLocalPos(Vector3.zero);
     }
     #endregion

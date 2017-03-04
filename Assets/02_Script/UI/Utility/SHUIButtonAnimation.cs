@@ -41,6 +41,9 @@ public class SHUIButtonAnimation : SHMonoWrapper
     {
         base.OnDisable();
 
+        if (true == SHApplicationInfo.m_bIsAppQuit)
+            return;
+
         GetTarget().transform.localScale = m_vScale;
     }
     #endregion

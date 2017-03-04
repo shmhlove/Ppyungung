@@ -35,6 +35,11 @@ public class SHUIWidget_CtrlType4 : SHMonoWrapper
     }
     public override void OnDisable()
     {
+        base.OnDisable();
+
+        if (true == SHApplicationInfo.m_bIsAppQuit)
+            return;
+
         StopAllCoroutines();
     }
     #endregion

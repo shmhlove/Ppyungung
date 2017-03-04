@@ -87,8 +87,7 @@ public partial class SHDamageObject : SHMonoWrapper
         SetupTransform();
         
         ClearEffect();
-
-		SetActive (false);
+        
 		SetActive (true);
         PlayAnimation();
         PlaySound(eDamageEvent.Start);
@@ -115,8 +114,20 @@ public partial class SHDamageObject : SHMonoWrapper
 
 
     #region Virtual Functions
+    public override void OnDisable()
+    {
+        base.OnDisable();
+
+        if (true == SHApplicationInfo.m_bIsAppQuit)
+            return;
+
+        DeleteDamage();
+    }
     public override void OnCrashDamage(SHMonoWrapper pCrashObject)
     {
+        if (true == m_bIsDieDamage)
+            return;
+
         m_iCrashHitTick = m_pInfo.m_iCheckDelayTickToCrash;
 
         PlaySound(eDamageEvent.Crash);
@@ -144,6 +155,15 @@ public partial class SHDamageObject : SHMonoWrapper
         }
 
         return false;
+    }
+    public int GetTargetLayerMask()
+    {
+        int iLayerMask = 0;
+        foreach (var strTarget in m_pInfo.m_pTargetUnitTags)
+        {
+            iLayerMask |= (1 << LayerMask.NameToLayer(strTarget));
+        }
+        return iLayerMask;
     }
     public bool IsCheckCrash()
     {

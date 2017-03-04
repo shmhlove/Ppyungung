@@ -49,10 +49,12 @@ public partial class SHMonMouse : SHState
     }
     public override void OnDisable()
     {
-        if (true == SHInGame.IsExists)
-            Single.Damage.DelUnit(this);
-
         base.OnDisable();
+
+        if (true == SHApplicationInfo.m_bIsAppQuit)
+            return;
+        
+        Single.Damage.DelUnit(this);
     }
     public override void OnDestroy()
     {
