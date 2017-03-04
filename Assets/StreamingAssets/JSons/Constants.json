@@ -1,7 +1,7 @@
 {
 	"Constants": 
 	{
-        "m_fCharMoveSpeed": 50.0,
+        "m_fCharMoveSpeed": 40.0,
         "m_fCharDamageSpeed": 4000.0,
         "m_fCharShootDelay": 0.2,
         "m_fCharDashSpeed": 100.0,

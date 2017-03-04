@@ -47,7 +47,8 @@ public class SHMonster : SHInGame_Component
     }
     public void AllKillMonster()
     {
-        SHUtils.ForToList(m_pMonsters, (pMonster) =>
+        var pMonsters = new List<SHState>(m_pMonsters);
+        SHUtils.ForToList(pMonsters, (pMonster) =>
         {
             pMonster.ChangeState(4);
         });

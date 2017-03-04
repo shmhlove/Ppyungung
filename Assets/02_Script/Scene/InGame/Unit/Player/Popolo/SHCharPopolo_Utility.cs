@@ -53,7 +53,7 @@ public partial class SHCharPopolo : SHState
         if (Vector3.zero == m_vMoveDirection)
             return false;
         
-        AddLocalPositionX(SHHard.m_fCharMoveSpeed * m_vMoveDirection.x);
+        AddLocalPositionX((SHHard.m_fCharMoveSpeed + SHHard.m_fCameraMoveSpeed) * m_vMoveDirection.x);
 
         if (0.0f < m_vMoveDirection.y)
             AddLocalPositionZ((SHHard.m_fCharMoveSpeed + SHHard.m_fCameraMoveSpeed) * m_vMoveDirection.y);

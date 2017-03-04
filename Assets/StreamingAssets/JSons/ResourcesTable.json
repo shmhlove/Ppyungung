@@ -20,40 +20,40 @@
 			"s_Name": "Dmg_Char",
 			"s_FileName": "Dmg_Char.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "13148",
-			"s_Hash": "694D95B3AA2A76ADF69CD3B40593D8A8",
+			"s_Size": "13012",
+			"s_Hash": "4AE727CD40E99848DFE5E7188E2F1B76",
 			"s_Path": "Prefab/Damage/Dmg_Char"
 		},
 		{
 			"s_Name": "Dmg_Char_Bullet",
 			"s_FileName": "Dmg_Char_Bullet.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "16772",
-			"s_Hash": "493534CA3CD85A7B651C1CDB92FA72B3",
+			"s_Size": "16636",
+			"s_Hash": "448752463075643FEC894706616F1E7E",
 			"s_Path": "Prefab/Damage/Dmg_Char_Bullet"
 		},
 		{
 			"s_Name": "Dmg_Mon",
 			"s_FileName": "Dmg_Mon.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "13156",
-			"s_Hash": "100D6FB126DE65952E6B5DF08B8F331B",
+			"s_Size": "13012",
+			"s_Hash": "071ED1C5A79BA9A20D8DB9E2588FB7E2",
 			"s_Path": "Prefab/Damage/Dmg_Mon"
 		},
 		{
 			"s_Name": "Dmg_Mon_Bullet",
 			"s_FileName": "Dmg_Mon_Bullet.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "16780",
-			"s_Hash": "A6F764B936171FAEAC951CF473DB3831",
+			"s_Size": "16636",
+			"s_Hash": "939DFFEF3A4AC595AF6AB9EAA2F446AF",
 			"s_Path": "Prefab/Damage/Dmg_Mon_Bullet"
 		},
 		{
 			"s_Name": "Dmg_Sample",
 			"s_FileName": "Dmg_Sample.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "15532",
-			"s_Hash": "B8F7334C696C266657D1D3941788CE4E",
+			"s_Size": "15396",
+			"s_Hash": "06780137F3862C4FF414E24A4318599F",
 			"s_Path": "Prefab/Damage/Dmg_Sample"
 		},
 		{
@@ -76,8 +76,8 @@
 			"s_Name": "Panel_Development",
 			"s_FileName": "Panel_Development.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "86252",
-			"s_Hash": "B073CE9DAE2AE60120DDA0AB5C4372C5",
+			"s_Size": "89036",
+			"s_Hash": "E6468BD50352FDA5A7A03BC3D6766671",
 			"s_Path": "Prefab/UI/Panel/Panel_Development"
 		},
 		{
@@ -196,8 +196,8 @@
 			"s_Name": "Constants",
 			"s_FileName": "Constants.bytes",
 			"s_Extension": ".bytes",
-			"s_Size": "52",
-			"s_Hash": "E579458BA6A6D6AD22D75FFC79CEFDC3",
+			"s_Size": "60",
+			"s_Hash": "E3BBFCC5AE7301567FB6253DF9EB3E20",
 			"s_Path": "Table/Bytes/Constants"
 		}
 	]
