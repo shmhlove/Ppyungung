@@ -87,6 +87,7 @@ public partial class SHCharPopolo : SHState
     void OnFixedUpdateToMove(int iCurrentState, int iFixedTick)
     {
         bool bIsMoved  = SetMove();
+
         SetLookRotation();
 
         if (true == m_bIsDash)
@@ -111,28 +112,15 @@ public partial class SHCharPopolo : SHState
 
 
     #region State : Attack
-    private bool m_bAttackStateLockRotation = false;
     void OnEnterToAttack(int iBeforeState, int iCurrentState)
     {
-        m_bAttackStateLockRotation = false;
-        {
-            var pCtrlUI = Single.UI.GetPanel<SHUIPanel_CtrlPad>("Panel_CtrlPad");
-            if ((null != pCtrlUI) &&
-                (eControlType.Type_2 != pCtrlUI.m_eCtrlType))
-            {
-                SetLookNearMonster();
-                m_bAttackStateLockRotation = true;
-            }
-        }
-
+        SetLookRotation();
         SetAttack();
     }
     void OnFixedUpdateToAttack(int iCurrentState, int iFixedTick)
     {
         bool bMoved  = SetMove();
-
-        if (false == m_bAttackStateLockRotation)
-            SetLookRotation();
+        SetLookRotation();
 
         if (true == m_bIsDash)
         {

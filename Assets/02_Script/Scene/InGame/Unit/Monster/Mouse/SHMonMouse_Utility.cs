@@ -34,13 +34,13 @@ public partial class SHMonMouse : SHState
     #region Utility : AttackState
     void SetAttack(Vector3 vDirection)
     {
-        // var pDamage = Single.Damage.AddDamage("Dmg_Mon_Bullet",
-        //                 new SHAddDamageParam(m_pShootPos, null, null, null));
-        // 
-        // pDamage.SetDMGSpeed(SHHard.m_fMonDamageSpeed);
-        // 
-        // if (Vector3.zero != vDirection)
-        //     pDamage.m_vDMGDirection = vDirection;
+        var pDamage = Single.Damage.AddDamage("Dmg_Mon_Bullet",
+                        new SHAddDamageParam(m_pShootPos, null, null, null));
+        
+        pDamage.SetDMGSpeed(SHHard.m_fMonDamageSpeed);
+        
+        if (Vector3.zero != vDirection)
+            pDamage.m_vDMGDirection = vDirection;
     }
     bool IsAttackDelay()
     {

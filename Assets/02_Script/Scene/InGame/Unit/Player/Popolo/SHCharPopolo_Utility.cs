@@ -19,9 +19,15 @@ public partial class SHCharPopolo : SHState
     #region Utility : Behaviour
     bool SetLookRotation()
     {
+        if (true == Single.Player.m_bIsAttacking)
+        {
+            if (true == SetLookNearMonster())
+                return true;
+        }
+
         if (Vector3.zero == m_vLookDirection)
             return false;
-        
+
         m_vLookDirection.z = m_vLookDirection.y;
         m_vLookDirection.y = 0.0f;
         m_vDashDirection   = m_vLookDirection;
@@ -30,16 +36,17 @@ public partial class SHCharPopolo : SHState
         m_vLookDirection = Vector3.zero;
         return true;
     }
-    void SetLookNearMonster()
+    bool SetLookNearMonster()
     {
         var pNearMon = Single.Monster.GetNearMonster(GetLocalPosition());
         if (null == pNearMon)
-            return;
+            return false;
 
         var vDirection   = (pNearMon.GetLocalPosition() - GetLocalPosition()).normalized;
         m_vDashDirection = vDirection;
 
         SetLocalLookY(vDirection);
+        return true;
     }
     bool SetMove()
     {

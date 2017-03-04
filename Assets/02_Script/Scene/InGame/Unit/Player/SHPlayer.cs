@@ -8,7 +8,12 @@ public class SHPlayer : SHInGame_Component
     public GameObject      m_pPlayerRoot = null;
     public SHCharPopolo    m_pCharacter  = null;
     #endregion
-    
+
+
+    #region Members : HardValue
+    public bool            m_bIsAttacking = false;
+    #endregion
+
 
     #region Virtual Functions
     public override void OnInitialize() { }

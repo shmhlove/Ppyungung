@@ -87,10 +87,12 @@ public class SHUIWidget_CtrlType3 : SHMonoWrapper
 
         m_pPressTime = DateTime.Now;
 
+        Single.Player.m_bIsAttacking = true;
         StartCoroutine(CoroutineToShoot());
     }
     public void OnEventToPressOff()
     {
+        Single.Player.m_bIsAttacking = false;
         StopAllCoroutines();
     }
     #endregion
