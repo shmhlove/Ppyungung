@@ -23,8 +23,8 @@ public class SHSocialService : SHSingleton<SHSocialService>
     {
 #if UNITY_EDITOR
 #elif UNITY_ANDROID
-        var pGPGConfig = new PlayGamesClientConfiguration.Builder().EnableSavedGames().Build();
-        PlayGamesPlatform.InitializeInstance(pGPGConfig);
+        // var pGPGConfig = new PlayGamesClientConfiguration.Builder().EnableSavedGames().Build();
+        // PlayGamesPlatform.InitializeInstance(pGPGConfig);
         PlayGamesPlatform.DebugLogEnabled = true;
         PlayGamesPlatform.Activate();
 #else
