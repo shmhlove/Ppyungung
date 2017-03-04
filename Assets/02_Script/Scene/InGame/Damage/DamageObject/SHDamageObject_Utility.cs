@@ -9,7 +9,7 @@ public partial class SHDamageObject : SHMonoWrapper
     void SetupParent()
     {
         var pParentObject  = (true == m_pInfo.m_bIsParentToUI) ? 
-            Single.UI.GetRootToScene() : SH3DRoot.GetRoot();
+            Single.UI.GetRootToScene() : SH3DRoot.GetDMGRoot();
         
         if (null != GetWho())
         {
@@ -46,20 +46,20 @@ public partial class SHDamageObject : SHMonoWrapper
     {
         InitPhysics();
 
-        m_fSpeed = m_pInfo.m_fStartSpeed;
+        m_fDMGSpeed = m_pInfo.m_fStartSpeed;
 
         if (true == m_pInfo.m_bIsStartDirectionToCreator)
-            m_vDirection = GetWho().GetDirection();
+            m_vDMGDirection = GetWho().GetDirection();
         else if (true == m_pInfo.m_bIsRandomStartDirection)
-            m_vDirection = SHMath.RandomDirection();
+            m_vDMGDirection = SHMath.RandomDirection();
         else
-            m_vDirection = m_pInfo.m_vStartDirection;
+            m_vDMGDirection = m_pInfo.m_vStartDirection;
 
-        m_pBeforeBounds = GetCollider().bounds;
+        m_pBeforeBounds = GetDMGCollider().bounds;
     }
     void MovePosition()
     {
-        m_pBeforeBounds = GetCollider().bounds;
+        m_pBeforeBounds = GetDMGCollider().bounds;
 
         if (false == m_pInfo.m_bIsTraceToCreator)
         {
@@ -72,13 +72,13 @@ public partial class SHDamageObject : SHMonoWrapper
     }
     void MoveToNormal()
     {
-        var vSpeed = m_vDirection * GetMoveSpeed();
+        var vSpeed = m_vDMGDirection * GetMoveSpeed();
         {
             SetPosition(
                 SHPhysics.CalculationEuler(
                     m_pInfo.m_vForce, GetPosition(), ref vSpeed, m_pInfo.m_fMass));
         }
-        SetSpeed(vSpeed);
+        SetDMGSpeed(vSpeed);
     }
     void MoveToGuide()
     {
@@ -96,9 +96,9 @@ public partial class SHDamageObject : SHMonoWrapper
         {
             SetPosition(
                 SHPhysics.GuidedMissile(
-                    GetPosition(), ref m_vDirection, pTarget.transform.position, fAngle, fSpeed));
+                    GetPosition(), ref m_vDMGDirection, pTarget.transform.position, fAngle, fSpeed));
         }
-        SetSpeed(fSpeed);
+        SetDMGSpeed(fSpeed);
     }
     #endregion
 
@@ -241,7 +241,7 @@ public partial class SHDamageObject : SHMonoWrapper
     }
     float GetMoveSpeed()
     {
-        return (m_fSpeed + m_pInfo.m_fAddSpeed);
+        return (m_fDMGSpeed + m_pInfo.m_fAddSpeed);
     }
     #endregion
 }

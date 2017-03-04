@@ -11,10 +11,10 @@ public class SHMonoWrapper : MonoBehaviour
     #endregion
 
 
-    #region Members : Physics
-    [HideInInspector] public float       m_fSpeed            = 0.0f;
-    [HideInInspector] public Vector3     m_vDirection        = Vector3.zero;
-    [HideInInspector] public Collider    m_pCollider         = null;
+    #region Members : Damage
+    [HideInInspector] public float       m_fDMGSpeed     = 0.0f;
+    [HideInInspector] public Vector3     m_vDMGDirection = Vector3.zero;
+    [HideInInspector] public Collider    m_pDMGCollider  = null;
     #endregion
 
 
@@ -46,28 +46,28 @@ public class SHMonoWrapper : MonoBehaviour
     #region Interface : Physics
     public void InitPhysics()
     {
-        m_fSpeed     = 0.0f;
-        m_vDirection = Vector3.zero;
+        m_fDMGSpeed     = 0.0f;
+        m_vDMGDirection = Vector3.zero;
     }
-    public Vector3 GetSpeed()
+    public Vector3 GetDMGSpeed()
     {
-        return m_vDirection * m_fSpeed;
+        return m_vDMGDirection * m_fDMGSpeed;
     }
-    public void SetSpeed(float fSpeed)
+    public void SetDMGSpeed(float fSpeed)
     {
-        m_fSpeed     = fSpeed;
+        m_fDMGSpeed     = fSpeed;
     }
-    public void SetSpeed(Vector3 vSpeed)
+    public void SetDMGSpeed(Vector3 vSpeed)
     {
-        m_fSpeed     = vSpeed.magnitude;
-        m_vDirection = vSpeed.normalized;
+        m_fDMGSpeed     = vSpeed.magnitude;
+        m_vDMGDirection = vSpeed.normalized;
     }
-    public Collider GetCollider()
+    public Collider GetDMGCollider()
     {
-        if (null == m_pCollider)
-            m_pCollider = SHGameObject.GetComponent<Collider>(gameObject);
+        if (null == m_pDMGCollider)
+            m_pDMGCollider = SHGameObject.GetComponent<Collider>(gameObject);
 
-        return m_pCollider;
+        return m_pDMGCollider;
     }
     #endregion
 
@@ -308,16 +308,19 @@ public class SHMonoWrapper : MonoBehaviour
 
 
     #region Interface : Direction
-    public void SetLook(Vector3 vLookPos)
+    public void SetLocalLook(Vector3 vDirection)
     {
-        if (Vector3.zero == vLookPos)
-            return;
-        
-        Vector3 vDirection = (vLookPos - GetPosition()).normalized;
         if (Vector3.zero == vDirection)
             return;
-
-        SetRotate(vDirection);
+        
+        SetLocalRotate(vDirection);
+    }
+    public void SetLocalLookY(Vector3 vDirection)
+    {
+        if (Vector3.zero == vDirection)
+            return;
+        
+        SetLocalRotateY(SHMath.GetAngleToPosition(Vector3.up, 1.0f, Vector3.forward, vDirection));
     }
     public Vector3 GetDirection()
     {

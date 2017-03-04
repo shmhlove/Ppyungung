@@ -6,13 +6,15 @@ public class SH3DRoot : MonoBehaviour
 {
     #region Members : Singleton
     private static Transform    m_pRoot       = null;
+    private static Transform    m_pDamageRoot = null;
     private static Transform    m_pCameraRoot = null;
-    private static Camera       m_pCamera     = null;
+    private static Camera       m_pMainCamera = null;
     private static Camera       m_pBlurCamera = null;
     #endregion
 
 
     #region Members : Inspector
+    public Transform    m_pLocalDMGRoot    = null;
     public Transform    m_pLocalCameraRoot = null;
     public Camera       m_pLocalMainCamera = null;
     public Camera       m_pLocalBlurCamera = null;
@@ -23,8 +25,9 @@ public class SH3DRoot : MonoBehaviour
     void Awake()
     {
         m_pRoot         = transform;
+        m_pDamageRoot   = m_pLocalDMGRoot;
         m_pCameraRoot   = m_pLocalCameraRoot;
-        m_pCamera       = m_pLocalMainCamera;
+        m_pMainCamera   = m_pLocalMainCamera;
         m_pBlurCamera   = m_pLocalBlurCamera;
     }
     void OnDestroy()
@@ -33,7 +36,8 @@ public class SH3DRoot : MonoBehaviour
             return;
 
         m_pRoot       = null;
-        m_pCamera     = null;
+        m_pDamageRoot = null;
+        m_pMainCamera = null;
         m_pBlurCamera = null;
     }
     void Update()
@@ -50,10 +54,13 @@ public class SH3DRoot : MonoBehaviour
     {
         return m_pRoot;
     }
-
+    public static Transform GetDMGRoot()
+    {
+        return m_pDamageRoot;
+    }
     public static Camera GetMainCamera()
     {
-        return m_pCamera;
+        return m_pMainCamera;
     }
     public static Camera GetBlurCamera()
     {
@@ -61,10 +68,10 @@ public class SH3DRoot : MonoBehaviour
     }
     public static void PlayCameraShake()
     {
-        if (null == m_pCamera)
+        if (null == m_pMainCamera)
             return;
 
-        var pAnim = m_pCamera.GetComponent<Animation>();
+        var pAnim = m_pMainCamera.GetComponent<Animation>();
         if (null == pAnim)
             return;
 

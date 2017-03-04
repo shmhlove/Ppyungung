@@ -56,6 +56,22 @@ public class SHMonster : SHInGame_Component
     {
         DelMonster(pMonster);
     }
+    public SHState GetNearMonster(Vector3 vPos)
+    {
+        float   fMinDest     = float.MaxValue;
+        SHState pNearMonster = null;
+        foreach(var pMonster in m_pMonsters)
+        {
+            var fDest = Vector3.Distance(pMonster.GetLocalPosition(), vPos);
+            if (fDest < fMinDest)
+            {
+                fMinDest     = fDest;
+                pNearMonster = pMonster;
+            }
+        }
+
+        return pNearMonster;
+    }
     #endregion
 
 

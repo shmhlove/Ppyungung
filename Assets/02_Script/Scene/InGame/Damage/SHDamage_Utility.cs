@@ -61,8 +61,8 @@ public partial class SHDamage : SHInGame_Component
             if (true == pTarget.IsOffDamage())
                 return;
 
-            var pDamageCollider = pDamage.GetCollider();
-            var pTargetCollider = pTarget.GetCollider();
+            var pDamageCollider = pDamage.GetDMGCollider();
+            var pTargetCollider = pTarget.GetDMGCollider();
             if ((null == pDamageCollider) || (null == pTargetCollider))
                 return;
 

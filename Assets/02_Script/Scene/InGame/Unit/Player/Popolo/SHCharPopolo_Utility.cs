@@ -17,15 +17,26 @@ public partial class SHCharPopolo : SHState
 
 
     #region Utility : Behaviour
-    bool SetLookDirection()
+    bool SetLookRotation()
     {
         if (Vector3.zero == m_vLookDirection)
             return false;
 
-        m_vDirection = m_vLookDirection;
-        SetLocalRotateY(SHMath.GetAngleToPosition(Vector3.forward, -1.0f, Vector3.up, m_vLookDirection));
+        m_vLookDirection.z = m_vLookDirection.y;
+        m_vLookDirection.y = 0.0f;
+        m_vDashDirection   = m_vLookDirection;
+
+        SetLocalLookY(m_vLookDirection);
         m_vLookDirection = Vector3.zero;
         return true;
+    }
+    void SetLookNearMonster()
+    {
+        var pNearMon = Single.Monster.GetNearMonster(GetLocalPosition());
+        if (null == pNearMon)
+            return;
+        
+        SetLocalLookY((pNearMon.GetLocalPosition() - GetLocalPosition()));
     }
     bool SetMove()
     {
@@ -54,7 +65,7 @@ public partial class SHCharPopolo : SHState
                             Single.ScoreBoard.AddScore(1);
                         }));
 
-        pDamage.SetSpeed(SHHard.m_fCharDamageSpeed);
+        pDamage.SetDMGSpeed(SHHard.m_fCharDamageSpeed);
         m_bIsShoot = false;
 
         return true;

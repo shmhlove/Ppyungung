@@ -21,7 +21,7 @@ public partial class SHMonMouse : SHState
     {
         var vPCPos   = Single.Player.GetLocalPosition();
         m_vDirection = (vPCPos - GetLocalPosition()).normalized;
-        SetLocalRotateY(SHMath.GetAngleToPosition(Vector3.up, 1.0f, Vector3.forward, m_vDirection));
+        SetLocalLookY(m_vDirection);
     }
     void SetMove()
     {
@@ -37,10 +37,10 @@ public partial class SHMonMouse : SHState
         var pDamage = Single.Damage.AddDamage("Dmg_Mon_Bullet",
                         new SHAddDamageParam(m_pShootPos, null, null, null));
 
-        pDamage.SetSpeed(SHHard.m_fMonDamageSpeed);
+        pDamage.SetDMGSpeed(SHHard.m_fMonDamageSpeed);
         
         if (Vector3.zero != vDirection)
-            pDamage.m_vDirection = vDirection;
+            pDamage.m_vDMGDirection = vDirection;
     }
     bool IsAttackDelay()
     {

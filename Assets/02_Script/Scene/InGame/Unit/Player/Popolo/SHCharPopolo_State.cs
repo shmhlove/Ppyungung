@@ -59,7 +59,7 @@ public partial class SHCharPopolo : SHState
     #region State : Idle
     void OnFixedUpdateToIdle(int iCurrentState, int iFixedTick)
     {
-        SetLookDirection();
+        SetLookRotation();
 
         if (true == m_bIsDash)
         {
@@ -86,7 +86,7 @@ public partial class SHCharPopolo : SHState
     void OnFixedUpdateToMove(int iCurrentState, int iFixedTick)
     {
         bool bIsMoved  = SetMove();
-        SetLookDirection();
+        SetLookRotation();
 
         if (true == m_bIsDash)
         {
@@ -110,14 +110,28 @@ public partial class SHCharPopolo : SHState
 
 
     #region State : Attack
+    private bool m_bAttackStateLockRotation = false;
     void OnEnterToAttack(int iBeforeState, int iCurrentState)
     {
+        m_bAttackStateLockRotation = false;
+        {
+            var pCtrlUI = Single.UI.GetPanel<SHUIPanel_CtrlPad>("Panel_CtrlPad");
+            if ((null != pCtrlUI) &&
+                (eControlType.Type_2 != pCtrlUI.m_eCtrlType))
+            {
+                SetLookNearMonster();
+                m_bAttackStateLockRotation = true;
+            }
+        }
+
         SetAttack();
     }
     void OnFixedUpdateToAttack(int iCurrentState, int iFixedTick)
     {
         bool bMoved  = SetMove();
-        SetLookDirection();
+
+        if (false == m_bAttackStateLockRotation)
+            SetLookRotation();
 
         if (true == m_bIsDash)
         {
@@ -145,11 +159,10 @@ public partial class SHCharPopolo : SHState
     #region State : Dash
     void OnEnterToDash(int iBeforeState, int iCurrentState)
     {
-        if (Vector3.zero == m_vDirection)
-            m_vDirection = Vector3.up;
+        if (Vector3.zero == m_vDashDirection)
+            m_vDashDirection = Vector3.up;
 
         Single.Sound.PlayEffect("Audio_Effect_Dash");
-        m_vDashDirection = m_vDirection;
     }
     void OnFixedUpdateToDash(int iCurrentState, int iFixedTick)
     {

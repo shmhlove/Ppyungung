@@ -23,6 +23,7 @@ public partial class SHMonMouse : SHState
 
     #region Members : AI Data
     private int            m_iAttackCount = 0;
+    private Vector3        m_vDirection   = Vector3.zero;
     private SHDamageObject m_pMonDamage   = null;
     #endregion
 
