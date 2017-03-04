@@ -58,6 +58,10 @@ public class SH3DRoot : MonoBehaviour
     {
         return m_pDamageRoot;
     }
+    public static Transform GetCameraRoot()
+    {
+        return m_pCameraRoot;
+    }
     public static Camera GetMainCamera()
     {
         return m_pMainCamera;

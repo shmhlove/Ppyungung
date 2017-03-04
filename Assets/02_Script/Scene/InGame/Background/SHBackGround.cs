@@ -28,7 +28,11 @@ public class SHBackGround : SHInGame_Component
     }
     public override void OnFrameMove()
     {
-        Repositioning(Single.Player.GetLocalPosition());
+        var pCameraRoot = SH3DRoot.GetCameraRoot();
+        if (null == pCameraRoot)
+            return;
+        
+        Repositioning(pCameraRoot.localPosition);
     }
     #endregion
 
