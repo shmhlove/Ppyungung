@@ -12,8 +12,8 @@
         "m_fMonDamageSpeed": 2000.0,
         "m_fMonShootDelay": 0.3,
         "m_fMonGenDaly": 2.0,
-        "m_iMonMaxGen": 6,
-        "m_iMonMaxCount": 12,
+        "m_iMonMaxGen": 3,
+        "m_iMonMaxCount": 6,
         
         "m_fUnitScale": 0.5,
         "m_fCameraMoveSpeed": 10.0
