@@ -100,16 +100,19 @@ public partial class SHCharPopolo : SHState
     }
     public void LimitInCamera()
     {
-        var pMainCamera = SH3DRoot.GetMainCamera();
-        if (null == pMainCamera)
-            return;
+        // 좌/우는 고정
 
-        var vSides = pMainCamera.GetSides(Mathf.Lerp(pMainCamera.nearClipPlane, pMainCamera.farClipPlane, 0.5f), null);
-        var vRect = new Vector4(
-            vSides[0].x + SHHard.m_fCameraLimitOffsetX, 
-            vSides[3].z + SHHard.m_fCameraLimitOffsetY, 
-            vSides[2].x - SHHard.m_fCameraLimitOffsetX, 
-            vSides[1].z - SHHard.m_fCameraLimitOffsetY);
+        // 상/하는 카메라 Sides
+
+        var pMainCamera = SH3DRoot.GetMainCamera();
+        var vSides      = pMainCamera.GetSides(Mathf.Lerp(pMainCamera.nearClipPlane, pMainCamera.farClipPlane, 0.5f), null);
+
+        var vRect       = new Vector4(
+            -SHHard.m_fMoveLimitX,
+            vSides[3].z + SHHard.m_fMoveLimitY, 
+            SHHard.m_fMoveLimitX,
+            vSides[1].z - SHHard.m_fMoveLimitY);
+        
         SetLocalPosition(SHPhysics.IncludePointInRect(vRect, GetLocalPosition()));
     }
     #endregion

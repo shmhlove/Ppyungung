@@ -74,11 +74,7 @@ public partial class SHCharPopolo : SHState
             return;
         }
         
-        if (Vector3.zero != m_vMoveDirection)
-        {
-            ChangeState(eState.Move);
-            return;
-        }
+        ChangeState(eState.Move);
     }
     #endregion
 
@@ -86,10 +82,6 @@ public partial class SHCharPopolo : SHState
     #region State : Move
     void OnFixedUpdateToMove(int iCurrentState, int iFixedTick)
     {
-        bool bIsMoved  = SetMove();
-
-        SetLookRotation();
-
         if (true == m_bIsDash)
         {
             ChangeState(eState.Dash);
@@ -102,11 +94,8 @@ public partial class SHCharPopolo : SHState
             return;
         }
 
-        if (false == bIsMoved)
-        {
-            ChangeState(eState.Idle);
-            return;
-        }
+        SetMove();
+        SetLookRotation();
     }
     #endregion
 
@@ -119,9 +108,6 @@ public partial class SHCharPopolo : SHState
     }
     void OnFixedUpdateToAttack(int iCurrentState, int iFixedTick)
     {
-        bool bMoved  = SetMove();
-        SetLookRotation();
-
         if (true == m_bIsDash)
         {
             ChangeState(eState.Dash);
@@ -136,11 +122,12 @@ public partial class SHCharPopolo : SHState
 
         if (false == IsAnimPlaying(iCurrentState))
         {
-            if (true == bMoved)
-                ChangeState(eState.Move);
-            else
-                ChangeState(eState.Idle);
+            ChangeState(eState.Move);
+            return;
         }
+
+        SetMove();
+        SetLookRotation();
     }
     #endregion
 
@@ -167,7 +154,7 @@ public partial class SHCharPopolo : SHState
 
         if (false == m_bIsDash)
         {
-            ChangeState(eState.Idle);
+            ChangeState(eState.Move);
             return;
         }
     }

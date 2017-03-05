@@ -25,10 +25,10 @@ public partial class SHMonMouse : SHState
     }
     void SetMove()
     {
-        AddLocalPositionX((SHHard.m_fMonMoveSpeed + SHHard.m_fCameraMoveSpeed) * m_vDirection.x);
+        AddLocalPositionX((SHHard.m_fMonMoveSpeed + SHHard.m_fBasicMoveSpeed) * m_vDirection.x);
 
         if (0.0f < m_vDirection.z)
-            AddLocalPositionZ((SHHard.m_fMonMoveSpeed + SHHard.m_fCameraMoveSpeed) * m_vDirection.z);
+            AddLocalPositionZ((SHHard.m_fMonMoveSpeed + SHHard.m_fBasicMoveSpeed) * m_vDirection.z);
         else
             AddLocalPositionZ(SHHard.m_fMonMoveSpeed * m_vDirection.z);
     }

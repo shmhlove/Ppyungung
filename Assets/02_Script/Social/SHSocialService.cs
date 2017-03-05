@@ -114,22 +114,19 @@ public class SHSocialService : SHSingleton<SHSocialService>
 #if UNITY_EDITOR
         pCallback(true);
 #else
-        Action pFunction = () =>
-        {
-            Social.Active.ReportScore(
-                lScore, GetLeaderBoardType(eType), (bIsSuccess) => 
-                {
-                    ShowLeaderboard();
-                    pCallback(bIsSuccess);
-                });
-        };
-        
         Login((bIsSuccess, strMessage) =>
         {
             if (false == bIsSuccess)
                 pCallback(false);
             else
-                pFunction();
+            {
+                Social.Active.ReportScore(
+                    lScore, GetLeaderBoardType(eType), (bIsSuccess) => 
+                    {
+                        ShowLeaderboard();
+                        pCallback(bIsSuccess);
+                    });
+            }
         });
 #endif
     }

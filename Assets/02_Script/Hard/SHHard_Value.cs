@@ -72,6 +72,24 @@ public static partial class SHHard
         set { GetTable().m_iMonMaxCount = value; }
     }
 
+    // 이동 관련
+    public static float m_fBasicMoveSpeed
+    {
+        get { return GetTable().m_fBasicMoveSpeed; }
+        set { GetTable().m_fBasicMoveSpeed = value; }
+    }
+    public static float m_fMoveLimitX
+    {
+        get { return GetTable().m_fMoveLimitX; }
+        set { GetTable().m_fMoveLimitX = value; }
+    }
+    public static float m_fMoveLimitY
+    {
+        get { return GetTable().m_fMoveLimitY; }
+        set { GetTable().m_fMoveLimitY = value; }
+    }
+
+
     // 기타
     public static float m_fUnitScale
     {
@@ -83,22 +101,9 @@ public static partial class SHHard
         get { return GetTable().m_iFrameRate; }
         set { GetTable().m_iFrameRate = value; }
     }
-    public static float m_fCameraMoveSpeed
-    {
-        get { return GetTable().m_fCameraMoveSpeed; }
-        set { GetTable().m_fCameraMoveSpeed = value; }
-    }
-    public static float m_fCameraLimitOffsetX
-    {
-        get { return GetTable().m_fCameraLimitOffsetX; }
-        set { GetTable().m_fCameraLimitOffsetX = value; }
-    }
-    public static float m_fCameraLimitOffsetY
-    {
-        get { return GetTable().m_fCameraLimitOffsetY; }
-        set { GetTable().m_fCameraLimitOffsetY = value; }
-    }
 
+
+    // 유틸
     static JsonConstants GetTable()
     {
         var pTable = Single.Table.GetTable<JsonConstants>();

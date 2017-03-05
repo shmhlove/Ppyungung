@@ -85,6 +85,14 @@ public class SHUIWidget_CtrlType2 : SHMonoWrapper
                 m_pEventDirection(vDirection);
         }
     }
+    public void OnEventToPressOnLeft()
+    {
+        Single.Player.m_bIsMoving = true;
+    }
+    public void OnEventToPressOffLeft()
+    {
+        Single.Player.m_bIsMoving = false;
+    }
     public void OnEventToDragRight(Vector3 vCenter, Vector3 vThumb, Vector3 vDirection)
     {
         m_bIsRightDrag = true;

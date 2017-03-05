@@ -12,6 +12,7 @@ public class SHPlayer : SHInGame_Component
 
     #region Members : HardValue
     public bool            m_bIsAttacking = false;
+    public bool            m_bIsMoving    = false;
     #endregion
 
 

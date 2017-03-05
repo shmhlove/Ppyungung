@@ -50,11 +50,16 @@ public class SH3DRoot : MonoBehaviour
 
         if (true == m_bIsMove)
         {
-            // 카메라 이동 : 상/하로 흐름
-            SetCameraPosZ(GetCameraPos().z + SHHard.m_fCameraMoveSpeed);
+            // 카메라 이동 : 상으로 흐름
+            var fGap = (Single.Player.GetLocalPosition().z - GetCameraPos().z);
+            fGap = Mathf.Clamp(fGap, 0.0f, fGap);
+            SetCameraPosZ(GetCameraPos().z + fGap + SHHard.m_fBasicMoveSpeed);
 
             // 캐릭터 위치 제한
             Single.Player.LimiteInCamera();
+            
+            // 카메라 이동 : 좌/우는 캐릭터 따라
+            SetCameraPosX(Single.Player.GetLocalPosition().x);
 
             // 미터 스코어 처리
             Single.ScoreBoard.SetMeter((GetCameraPos().z * 0.002f));

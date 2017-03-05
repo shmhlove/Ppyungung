@@ -25,12 +25,14 @@ public class JsonConstants : SHBaseTable
     public int           m_iMonMaxGen       = 4;
     public int           m_iMonMaxCount     = 12;
 
+    // 이동 관련
+    public float         m_fBasicMoveSpeed  = 0.5f;
+    public float         m_fMoveLimitX      = 100.0f;
+    public float         m_fMoveLimitY      = 100.0f;
+
     // 기타
     public float         m_fUnitScale       = 1.0f;
     public int           m_iFrameRate       = 45;
-    public float         m_fCameraMoveSpeed = 0.5f;
-    public float         m_fCameraLimitOffsetX = 100.0f;
-    public float         m_fCameraLimitOffsetY = 100.0f;
     
     #endregion
 
@@ -79,12 +81,14 @@ public class JsonConstants : SHBaseTable
         m_iMonMaxGen       = GetIntToJson(pDataNode,   "m_iMonMaxGen");
         m_iMonMaxCount     = GetIntToJson(pDataNode,   "m_iMonMaxCount");
 
+        // 이동 관련
+        m_fBasicMoveSpeed  = GetFloatToJson(pDataNode, "m_fBasicMoveSpeed");
+        m_fMoveLimitX      = GetFloatToJson(pDataNode, "m_fMoveLimitX");
+        m_fMoveLimitY      = GetFloatToJson(pDataNode, "m_fMoveLimitY");
+
         // 기타
         m_fUnitScale       = GetFloatToJson(pDataNode, "m_fUnitScale");
         m_iFrameRate       = GetIntToJson(pDataNode, "m_iFrameRate");
-        m_fCameraMoveSpeed = GetFloatToJson(pDataNode, "m_fCameraMoveSpeed");
-        m_fCameraLimitOffsetX = GetFloatToJson(pDataNode, "m_fCameraLimitOffsetX");
-        m_fCameraLimitOffsetY = GetFloatToJson(pDataNode, "m_fCameraLimitOffsetY");
 
         return (m_bIsLoaded = true);
     }
@@ -112,12 +116,14 @@ public class JsonConstants : SHBaseTable
         m_iMonMaxGen       = pSerializer.DeserializeInt();
         m_iMonMaxCount     = pSerializer.DeserializeInt();
 
+        // 이동 관련
+        m_fBasicMoveSpeed  = pSerializer.DeserializeFloat();
+        m_fMoveLimitX      = pSerializer.DeserializeFloat();
+        m_fMoveLimitY      = pSerializer.DeserializeFloat();
+
         // 기타
         m_fUnitScale       = pSerializer.DeserializeFloat();
         m_iFrameRate       = pSerializer.DeserializeInt();
-        m_fCameraMoveSpeed = pSerializer.DeserializeFloat();
-        m_fCameraLimitOffsetX = pSerializer.DeserializeFloat();
-        m_fCameraLimitOffsetY = pSerializer.DeserializeFloat();
 
         return (m_bIsLoaded = true);
     }
@@ -145,12 +151,15 @@ public class JsonConstants : SHBaseTable
         pSerializer.Serialize(m_iMonMaxGen);
         pSerializer.Serialize(m_iMonMaxCount);
 
+        // 이동관련
+        pSerializer.Serialize(m_fBasicMoveSpeed);
+        pSerializer.Serialize(m_fMoveLimitX);
+        pSerializer.Serialize(m_fMoveLimitY);
+
         // 기타
         pSerializer.Serialize(m_fUnitScale);
         pSerializer.Serialize(m_iFrameRate);
-        pSerializer.Serialize(m_fCameraMoveSpeed);
-        pSerializer.Serialize(m_fCameraLimitOffsetX);
-        pSerializer.Serialize(m_fCameraLimitOffsetY);
+
 
         return pSerializer.ByteArray;
     }

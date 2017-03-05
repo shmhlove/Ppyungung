@@ -130,8 +130,9 @@ public class SHMonster : SHInGame_Component
         // 상단에서만 Gen되도록
         var vDirection   = vSides[1].normalized;
         var vGenPosition = vSides[1] + (vDirection * 700.0f);
-        vGenPosition.x   = vGenPosition.x + (SHMath.Random(-Math.Abs(vSides[0].x), Math.Abs(vSides[0].x)));
-
+        vGenPosition.x   = vGenPosition.x + 
+            (SHMath.Random(-(SHHard.m_fMoveLimitX-2000.0f), (SHHard.m_fMoveLimitX-2000.0f)));
+        
         // ///////////////////////////////////////////////////////////////////////////////
         // // 사방에서 Gen되도록
         // var iRandom      = SHMath.Random(0, 4);

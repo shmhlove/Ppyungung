@@ -69,6 +69,14 @@ public class SHUIWidget_CtrlType0 : SHMonoWrapper
         if (null != m_pEventDirection)
             m_pEventDirection(vDirection);
     }
+    public void OnEventToPressOnLeft()
+    {
+        Single.Player.m_bIsMoving = true;
+    }
+    public void OnEventToPressOffLeft()
+    {
+        Single.Player.m_bIsMoving = false;
+    }
     public void OnEventToPressOn()
     {
         Single.Player.m_bIsAttacking = true;

@@ -17,16 +17,19 @@ public partial class SHCharPopolo : SHState
 
 
     #region Utility : Behaviour
-    bool SetLookRotation()
+    void SetLookRotation()
     {
         if (true == Single.Player.m_bIsAttacking)
         {
             if (true == SetLookNearMonster())
-                return true;
+                return;
         }
 
+        if (false == Single.Player.m_bIsMoving)
+            m_vLookDirection.y = 1.0f;
+
         if (Vector3.zero == m_vLookDirection)
-            return false;
+            return;
 
         m_vLookDirection.z = m_vLookDirection.y;
         m_vLookDirection.y = 0.0f;
@@ -34,7 +37,6 @@ public partial class SHCharPopolo : SHState
 
         SetLocalLookY(m_vLookDirection);
         m_vLookDirection = Vector3.zero;
-        return true;
     }
     bool SetLookNearMonster()
     {
@@ -50,15 +52,12 @@ public partial class SHCharPopolo : SHState
     }
     bool SetMove()
     {
-        if (Vector3.zero == m_vMoveDirection)
-            return false;
-        
-        AddLocalPositionX((SHHard.m_fCharMoveSpeed + SHHard.m_fCameraMoveSpeed) * m_vMoveDirection.x);
+        AddLocalPositionX((SHHard.m_fBasicMoveSpeed + SHHard.m_fCharMoveSpeed) * m_vMoveDirection.x);
 
-        if (0.0f < m_vMoveDirection.y)
-            AddLocalPositionZ((SHHard.m_fCharMoveSpeed + SHHard.m_fCameraMoveSpeed) * m_vMoveDirection.y);
+        if (0.0f == m_vMoveDirection.y)
+            AddLocalPositionZ(SHHard.m_fBasicMoveSpeed);
         else
-            AddLocalPositionZ(SHHard.m_fCharMoveSpeed * m_vMoveDirection.y);
+            AddLocalPositionZ((SHHard.m_fBasicMoveSpeed + SHHard.m_fCharMoveSpeed) * m_vMoveDirection.y);
 
         LimitInCamera();
         
