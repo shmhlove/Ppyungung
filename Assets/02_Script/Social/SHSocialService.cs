@@ -110,7 +110,7 @@ public class SHSocialService : SHSingleton<SHSocialService>
     {
         if (null == pCallback)
             pCallback = (bIsSuccess) => { };
-        
+
 #if UNITY_EDITOR
         pCallback(true);
 #else
@@ -121,10 +121,10 @@ public class SHSocialService : SHSingleton<SHSocialService>
             else
             {
                 Social.Active.ReportScore(
-                    lScore, GetLeaderBoardType(eType), (bIsSuccess) => 
+                    lScore, GetLeaderBoardType(eType), (bIsReport) => 
                     {
                         ShowLeaderboard();
-                        pCallback(bIsSuccess);
+                        pCallback(bIsReport);
                     });
             }
         });
