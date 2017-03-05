@@ -192,6 +192,10 @@ public class SHUIPanel_Development : SHUIBasePanel
                 Debug.LogFormat("LeaderBoard : {0}", bIsSuccess);
             });
     }
+    public void OnClickToShowRank()
+    {
+        Single.Social.ShowLeaderboard();
+    }
     #endregion
 
 

@@ -31,6 +31,10 @@ public partial class SHMonMouse : SHState
             AddLocalPositionZ((SHHard.m_fMonMoveSpeed + SHHard.m_fBasicMoveSpeed) * m_vDirection.z);
         else
             AddLocalPositionZ(SHHard.m_fMonMoveSpeed * m_vDirection.z);
+
+        // 캐릭터와 너무 멀리 떨어지면 죽이자
+        if (20000.0f < Vector3.Distance(Single.Player.GetLocalPosition(), GetLocalPosition()))
+            ChangeState(eState.Die);
     }
     #endregion
 
