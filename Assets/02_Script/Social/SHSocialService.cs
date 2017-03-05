@@ -153,7 +153,7 @@ public class SHSocialService : SHSingleton<SHSocialService>
         {
             case eLeaderBoardType.BestScore:
             default:
-                return GPGSIds.achievement_1;
+			return GPGSIds.leaderboard_high_score;
         }
 #else
         switch (eType)
