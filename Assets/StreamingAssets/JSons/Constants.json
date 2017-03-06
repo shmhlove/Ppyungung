@@ -13,8 +13,8 @@
         "m_fMonAttackDelay": 1.0,
         "m_fMonShootDelay": 0.8,
         "m_fMonGenDaly": 1.0,
-        "m_iMonMaxGen": 15,
-        "m_iMonMaxCount": 30,
+        "m_iMonMaxGen": 5,
+        "m_iMonMaxCount": 20,
         
         "m_fBasicMoveSpeed": 30.0,
         "m_fMoveLimitX": 6000.0,
