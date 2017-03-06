@@ -44,26 +44,26 @@ public class SH3DRoot : MonoBehaviour
     void Update()
     {
         // 카메라 이동 : 캐릭터 움직임에 따라
-        // var vPlayerPos = Single.Player.GetLocalPosition();
-        // SetCameraPosX(vPlayerPos.x);
-        // SetCameraPosZ(vPlayerPos.z);
+        var vPlayerPos = Single.Player.GetLocalPosition();
+        SetCameraPosX(vPlayerPos.x);
+        SetCameraPosZ(vPlayerPos.z);
 
-        if (true == m_bIsMove)
-        {
-            // 카메라 이동 : 상으로 흐름
-            var fGap = (Single.Player.GetLocalPosition().z - GetCameraPos().z);
-            fGap = Mathf.Clamp(fGap, 0.0f, fGap);
-            SetCameraPosZ(GetCameraPos().z + fGap + SHHard.m_fBasicMoveSpeed);
-
-            // 캐릭터 위치 제한
-            Single.Player.LimiteInCamera();
-            
-            // 카메라 이동 : 좌/우는 캐릭터 따라
-            SetCameraPosX(Single.Player.GetLocalPosition().x);
-
-            // 미터 스코어 처리
-            Single.ScoreBoard.SetMeter((GetCameraPos().z * 0.002f));
-        }
+        // if (true == m_bIsMove)
+        // {
+        //     // 카메라 이동 : 상으로 흐름
+        //     var fGap = (Single.Player.GetLocalPosition().z - GetCameraPos().z);
+        //     fGap = Mathf.Clamp(fGap, 0.0f, fGap);
+        //     SetCameraPosZ(GetCameraPos().z + fGap + SHHard.m_fBasicMoveSpeed);
+        // 
+        //     // 캐릭터 위치 제한
+        //     Single.Player.LimiteInCamera();
+        //     
+        //     // 카메라 이동 : 좌/우는 캐릭터 따라
+        //     SetCameraPosX(Single.Player.GetLocalPosition().x);
+        // 
+        //     // 미터 스코어 처리
+        //     Single.ScoreBoard.SetMeter((GetCameraPos().z * 0.002f));
+        // }
     }
     #endregion
 

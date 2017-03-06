@@ -168,6 +168,12 @@ public class SHMonoWrapper : MonoBehaviour
         vPos.y = fY;
         SetLocalPosition(vPos);
     }
+    public void SetLocalPositionZ(float fZ)
+    {
+        Vector3 vPos = GetLocalPosition();
+        vPos.z = fZ;
+        SetLocalPosition(vPos);
+    }
     public void AddLocalPosition(Vector3 vPos)
     {
         gameObject.transform.localPosition = (GetLocalPosition() + vPos);

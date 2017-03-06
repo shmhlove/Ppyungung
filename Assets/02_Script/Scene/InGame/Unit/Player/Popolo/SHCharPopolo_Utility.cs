@@ -24,10 +24,7 @@ public partial class SHCharPopolo : SHState
             if (true == SetLookNearMonster())
                 return;
         }
-
-        if (false == Single.Player.m_bIsMoving)
-            m_vLookDirection.y = 1.0f;
-
+        
         if (Vector3.zero == m_vLookDirection)
             return;
 
@@ -52,15 +49,21 @@ public partial class SHCharPopolo : SHState
     }
     bool SetMove()
     {
-        AddLocalPositionX((SHHard.m_fBasicMoveSpeed + SHHard.m_fCharMoveSpeed) * m_vMoveDirection.x);
+        if (Vector3.zero == m_vMoveDirection)
+            return false;
 
-        if (0.0f == m_vMoveDirection.y)
-            AddLocalPositionZ(SHHard.m_fBasicMoveSpeed);
-        else
-            AddLocalPositionZ((SHHard.m_fBasicMoveSpeed + SHHard.m_fCharMoveSpeed) * m_vMoveDirection.y);
+        AddLocalPositionX(SHHard.m_fCharMoveSpeed * m_vMoveDirection.x);
+        AddLocalPositionZ(SHHard.m_fCharMoveSpeed * m_vMoveDirection.y);
 
-        LimitInCamera();
-        
+        // AddLocalPositionX((SHHard.m_fBasicMoveSpeed + SHHard.m_fCharMoveSpeed) * m_vMoveDirection.x);
+        // 
+        // if (0.0f == m_vMoveDirection.y)
+        //     AddLocalPositionZ(SHHard.m_fBasicMoveSpeed);
+        // else
+        //     AddLocalPositionZ((SHHard.m_fBasicMoveSpeed + SHHard.m_fCharMoveSpeed) * m_vMoveDirection.y);
+        // 
+        // LimitInCamera();
+
         m_vMoveDirection = Vector3.zero;
         return true;
     }

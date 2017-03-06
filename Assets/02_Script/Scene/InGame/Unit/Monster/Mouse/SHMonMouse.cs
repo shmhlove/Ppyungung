@@ -24,6 +24,7 @@ public partial class SHMonMouse : SHState
     #region Members : AI Data
     private Vector3        m_vDirection   = Vector3.zero;
     private SHDamageObject m_pMonDamage   = null;
+    private float          m_fHommingAngle = 1.0f;
     #endregion
 
 
@@ -82,6 +83,7 @@ public partial class SHMonMouse : SHState
     public void Initialize(int iMonID)
     {
         m_iMonsterID = iMonID;
+        m_fHommingAngle = SHMath.Random(1.0f, 2.0f);
     }
     #endregion
 

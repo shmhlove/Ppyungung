@@ -19,18 +19,44 @@ public partial class SHMonMouse : SHState
     #region Utility : State
     void SetLookPC()
     {
-        var vPCPos   = Single.Player.GetLocalPosition();
-        m_vDirection = (vPCPos - GetLocalPosition()).normalized;
-        SetLocalLookY(m_vDirection);
+        // var vPCPos   = Single.Player.GetLocalPosition();
+        // m_vDirection = (vPCPos - GetLocalPosition()).normalized;
+        // SetLocalLookY(m_vDirection);
     }
     void SetMove()
     {
-        AddLocalPositionX((SHHard.m_fMonMoveSpeed + SHHard.m_fBasicMoveSpeed) * m_vDirection.x);
+        if (Vector3.zero == m_vDirection)
+        {
+            var vPCPos   = Single.Player.GetLocalPosition();
+            m_vDirection = (vPCPos - GetLocalPosition()).normalized;
+            SetLocalLookY(m_vDirection);
+        }
 
-        if (0.0f < m_vDirection.z)
-            AddLocalPositionZ((SHHard.m_fMonMoveSpeed + SHHard.m_fBasicMoveSpeed) * m_vDirection.z);
-        else
-            AddLocalPositionZ(SHHard.m_fMonMoveSpeed * m_vDirection.z);
+        var vPos = SHPhysics.GuidedMissile(GetLocalPosition(), ref m_vDirection, Single.Player.GetLocalPosition(),
+            m_fHommingAngle, SHHard.m_fMonMoveSpeed);
+
+        SetLocalLookY(m_vDirection);
+        SetLocalPositionX(vPos.x);
+        SetLocalPositionZ(vPos.z);
+        //AddLocalPositionX(SHHard.m_fMonMoveSpeed * m_vDirection.x);
+        //AddLocalPositionZ(SHHard.m_fMonMoveSpeed * m_vDirection.z);
+
+        // 개체 충돌체크
+        // var iLayerMask      = (1 << LayerMask.NameToLayer("Monster"));
+        // var vPosition       = GetLocalPosition();
+        // var vBeforePosition = m_vBeforePosition;
+        // var vExtents        = GetDMGCollider().bounds.extents;
+        // var vDist           = Vector3.Distance(vPosition, vBeforePosition);
+        // var vDirection      = (vBeforePosition - vPosition).normalized;
+        // vDirection          = (Vector3.zero == vDirection) ? Vector3.forward : vDirection;
+        // var pHits           = Physics.BoxCastAll(vPosition, vExtents, vDirection, Quaternion.identity, vDist, iLayerMask);
+
+        // AddLocalPositionX((SHHard.m_fMonMoveSpeed + SHHard.m_fBasicMoveSpeed) * m_vDirection.x);
+        // 
+        // if (0.0f < m_vDirection.z)
+        //     AddLocalPositionZ((SHHard.m_fMonMoveSpeed + SHHard.m_fBasicMoveSpeed) * m_vDirection.z);
+        // else
+        //     AddLocalPositionZ(SHHard.m_fMonMoveSpeed * m_vDirection.z);
 
         // 캐릭터와 너무 멀리 떨어지면 죽이자
         if (20000.0f < Vector3.Distance(Single.Player.GetLocalPosition(), GetLocalPosition()))

@@ -52,9 +52,9 @@ public partial class SHMonMouse : SHState
 
     void OnFixedUpdateToIdle(int iCurrentState, int iFixedTick)
     {
-        if (false == IsAttackDelay())
-            StartCoroutine(COROUTINE_ATTACK);
-        else
+        // if (false == IsAttackDelay())
+        //     StartCoroutine(COROUTINE_ATTACK);
+        // else
             ChangeState(eState.Move);
     }
     #endregion
@@ -66,8 +66,8 @@ public partial class SHMonMouse : SHState
         SetLookPC();
         SetMove();
 
-        if (false == IsAttackDelay())
-            StartCoroutine(COROUTINE_ATTACK);
+        // if (false == IsAttackDelay())
+        //     StartCoroutine(COROUTINE_ATTACK);
     }
     #endregion
 
@@ -112,16 +112,16 @@ public partial class SHMonMouse : SHState
     {
         if (100 < iFixedTick)
         {
-            // SHUtils.For(0, 360, 36, (iValue) =>
-            // {
-            //     var vDirection = Vector3.zero;
-            //     vDirection.x = Mathf.Cos(iValue * Mathf.Deg2Rad);
-            //     vDirection.z = Mathf.Sin(iValue * Mathf.Deg2Rad);
-            //     SetAttack(vDirection);
-            // });
+            SHUtils.For(0, 360, 36, (iValue) =>
+            {
+                var vDirection = Vector3.zero;
+                vDirection.x = Mathf.Cos(iValue * Mathf.Deg2Rad);
+                vDirection.z = Mathf.Sin(iValue * Mathf.Deg2Rad);
+                SetAttack(vDirection);
+            });
 
-            Single.Damage.AddDamage("Dmg_Mon_Explosion",
-                            new SHAddDamageParam(this, null, null, null));
+            // Single.Damage.AddDamage("Dmg_Mon_Explosion",
+            //                 new SHAddDamageParam(this, null, null, null));
             
             SetActive(false);
         }

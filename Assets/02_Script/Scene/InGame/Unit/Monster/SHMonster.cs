@@ -81,15 +81,15 @@ public class SHMonster : SHInGame_Component
     {
         while (true)
         {
-            for (int iLoop = 0; iLoop < SHHard.m_iMonMaxGen; ++iLoop)
+            if (SHHard.m_iMonMaxCount > m_pMonsters.Count)
             {
-                if (SHHard.m_iMonMaxCount <= m_pMonsters.Count)
-                    break;
-
-                GenMonster();
-                yield return null;
+                for (int iLoop = 0; iLoop < SHHard.m_iMonMaxGen; ++iLoop)
+                {
+                    GenMonster();
+                    yield return new WaitForSeconds(SHMath.Random(0.0f, SHHard.m_fMonGenDaly));
+                }
             }
-                
+            
             yield return new WaitForSeconds(SHHard.m_fMonGenDaly);
         }
     }
@@ -128,24 +128,24 @@ public class SHMonster : SHInGame_Component
         var vSides       = pMainCamera.GetSides(Mathf.Lerp(pMainCamera.nearClipPlane, pMainCamera.farClipPlane, 0.5f), null);
         ///////////////////////////////////////////////////////////////////////////////
         // 상단에서만 Gen되도록
-        var vDirection   = vSides[1].normalized;
-        var vGenPosition = vSides[1] + (vDirection * 700.0f);
-        vGenPosition.x   = vGenPosition.x + 
-            (SHMath.Random(-(SHHard.m_fMoveLimitX-2000.0f), (SHHard.m_fMoveLimitX-2000.0f)));
+        // var vDirection   = vSides[1].normalized;
+        // var vGenPosition = vSides[1] + (vDirection * 700.0f);
+        // vGenPosition.x   = vGenPosition.x + 
+        //     (SHMath.Random(-(SHHard.m_fMoveLimitX-2000.0f), (SHHard.m_fMoveLimitX-2000.0f)));
         
         // ///////////////////////////////////////////////////////////////////////////////
         // // 사방에서 Gen되도록
-        // var iRandom      = SHMath.Random(0, 4);
-        // var vDirection   = vSides[iRandom].normalized;
-        // var vGenPosition = vSides[iRandom] + (vDirection * 700.0f);
-        // 
-        // // Top or Bottom
-        // if ((1 == iRandom) || (3 == iRandom))
-        //     vGenPosition.x = vGenPosition.x + (SHMath.Random(-Math.Abs(vSides[0].x), Math.Abs(vSides[0].x)));
-        // 
-        // // Left of Right
-        // if ((0 == iRandom) || (2 == iRandom))
-        //     vGenPosition.z = vGenPosition.z + (SHMath.Random(-Math.Abs(vSides[1].z), Math.Abs(vSides[1].z)));
+        var iRandom      = SHMath.Random(0, 4);
+        var vDirection   = vSides[iRandom].normalized;
+        var vGenPosition = vSides[iRandom] + (vDirection * 500.0f);
+        
+        // Top or Bottom
+        if ((1 == iRandom) || (3 == iRandom))
+            vGenPosition.x = vGenPosition.x + (SHMath.Random(-Math.Abs(vSides[0].x), Math.Abs(vSides[0].x)));
+        
+        // Left of Right
+        if ((0 == iRandom) || (2 == iRandom))
+            vGenPosition.z = vGenPosition.z + (SHMath.Random(-Math.Abs(vSides[1].z), Math.Abs(vSides[1].z)));
 
         vGenPosition.y = 0.0f;
 
