@@ -62,7 +62,7 @@ public partial class SHCharPopolo : SHState
         // else
         //     AddLocalPositionZ((SHHard.m_fBasicMoveSpeed + SHHard.m_fCharMoveSpeed) * m_vMoveDirection.y);
         // 
-        // LimitInCamera();
+        LimitInCamera();
 
         m_vMoveDirection = Vector3.zero;
         return true;
