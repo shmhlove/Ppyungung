@@ -112,7 +112,7 @@ public partial class SHMonMouse : SHState
     {
         if (100 < iFixedTick)
         {
-            SHUtils.For(0, 360, 36, (iValue) =>
+            SHUtils.For(0, 360, 60, (iValue) =>
             {
                 var vDirection = Vector3.zero;
                 vDirection.x = Mathf.Cos(iValue * Mathf.Deg2Rad);
