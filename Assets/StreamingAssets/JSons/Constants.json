@@ -20,7 +20,7 @@
         "m_fMoveLimitX": 6000.0,
         "m_fMoveLimitY": 1000.0,
         
-        "m_fUnitScale": 0.5,
+        "m_fUnitScale": 0.7,
         "m_iFrameRate": 45
 	}
 }
