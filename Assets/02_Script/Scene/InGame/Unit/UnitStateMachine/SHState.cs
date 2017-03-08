@@ -20,7 +20,6 @@ public partial class SHState : SHMonoWrapper
     [ReadOnlyField] public  int        m_iBeforeStateID   = -1;
     [ReadOnlyField] public  int        m_iFixedTick       = -1;
                     private DicState   m_dicState         = new DicState();
-    [ReadOnlyField] public  bool       m_bIsStop          = false;
     #endregion
 
 
@@ -39,31 +38,24 @@ public partial class SHState : SHMonoWrapper
 
 
     #region Virtual Functions
-    public virtual void RegisterState() { }
-    #endregion
-
-
-    #region System Functions
     public override void Awake()
     {
         base.Awake();
         RegisterState();
     }
-    public override void OnEnable()
-    {
-        m_bIsStop = false;
-    }
-    public void FrameMove()
+    public virtual void FrameMove()
     {
         if (false == IsActive())
             return;
 
-        if (true == m_bIsStop)
+        if (true == m_bIsPause)
             return;
 
         CallToAutoFlow();
         CallToFixedUpdate();
     }
+    public virtual void RegisterState() { }
+    public virtual int GetKillState() { return 0; }
     #endregion
 
 

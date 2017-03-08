@@ -5,7 +5,6 @@ using UnityEngine;
 public class SHBackGround : SHInGame_Component
 {
     #region Members
-    private GameObject      m_pBGRoot = null;
     private List<SHBGBlock> m_pBlocks = new List<SHBGBlock>();
     #endregion
 
@@ -17,7 +16,7 @@ public class SHBackGround : SHInGame_Component
         {
             var pSpace = Single.ObjectPool.Get<SHBGBlock>("BGBlock");
             pSpace.SetActive(true);
-            pSpace.SetParent(GetRoot());
+            pSpace.SetParent(SH3DRoot.GetRootToBG());
             pSpace.Initialize(iIndex);
             pSpace.SetName(string.Format("{0}_{1}", pSpace.GetName(), pSpace.m_iBlockID));
             m_pBlocks.Add(pSpace);
@@ -28,11 +27,7 @@ public class SHBackGround : SHInGame_Component
     }
     public override void OnFrameMove()
     {
-        var pCameraRoot = SH3DRoot.GetCameraRoot();
-        if (null == pCameraRoot)
-            return;
-        
-        Repositioning(pCameraRoot.localPosition);
+        Repositioning(SH3DRoot.GetRootToCamera().localPosition);
     }
     #endregion
 
@@ -63,27 +58,17 @@ public class SHBackGround : SHInGame_Component
     }
     void GetDecompositionBlocks(Vector3 vCenter, ref SHBGBlock pCenter, ref List<SHBGBlock> pRemainders)
     {
-        foreach(var pObject in m_pBlocks)
+        foreach(var pBlock in m_pBlocks)
         {
             if ((null == pCenter) &&
-                (true == SHPhysics.IsInBoundToPoint(pObject.GetBounds(), vCenter)))
+                (true == SHPhysics.IsInBoundToPoint(pBlock.GetBounds(), vCenter)))
             {
-                pCenter = pObject;
+                pCenter = pBlock;
                 continue;
             }
 
-            pRemainders.Add(pObject);
+            pRemainders.Add(pBlock);
         }
-    }
-    GameObject GetRoot()
-    {
-        if (null == m_pBGRoot)
-        {
-            m_pBGRoot = SHGameObject.CreateEmptyObject("Background");
-            m_pBGRoot.transform.SetParent(SH3DRoot.GetRoot());
-        }
-
-        return m_pBGRoot;
     }
     #endregion
 }

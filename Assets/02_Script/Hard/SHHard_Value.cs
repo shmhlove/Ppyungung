@@ -35,6 +35,7 @@ public static partial class SHHard
         set { GetTable().m_fCharDashCool = value; }
     }
 
+
     // 몬스터 관련
     public static float m_fMonMoveSpeed
     {
@@ -45,16 +46,6 @@ public static partial class SHHard
     {
         get { return GetTable().m_fMonDamageSpeed; }
         set { GetTable().m_fMonDamageSpeed = value; }
-    }
-    public static float m_fMonAttackDelay
-    {
-        get { return GetTable().m_fMonAttackDelay; }
-        set { GetTable().m_fMonAttackDelay = value; }
-    }
-    public static float m_fMonShootDelay
-    {
-        get { return GetTable().m_fMonShootDelay; }
-        set { GetTable().m_fMonShootDelay = value; }
     }
     public static float m_fMonGenDaly
     {
@@ -71,6 +62,7 @@ public static partial class SHHard
         get { return GetTable().m_iMonMaxCount; }
         set { GetTable().m_iMonMaxCount = value; }
     }
+
 
     // 이동 관련
     public static float m_fBasicMoveSpeed

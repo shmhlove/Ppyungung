@@ -171,9 +171,7 @@ public partial class SHCharPopolo : SHState
     #region State : Die
     void OnEnterToDie(int iBeforeState, int iCurrentState)
     {
-        Single.Damage.DelDamage(m_pCharDamage);
-        m_pCharDamage = null;
-        
+        SetEndDamage();        
         PlayParticle("Particle_Crash_Dust_Big");
     }
     void OnFixedUpdateToDie(int iCurrentState, int iFixedTick)

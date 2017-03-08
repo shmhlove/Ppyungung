@@ -79,12 +79,12 @@ public class SHUIWidget_CtrlType5 : SHMonoWrapper
     }
     public void OnEventToPressOn()
     {
-        Single.Player.m_bIsAttacking = true;
+        Single.Player.m_bIsAutoAttacking = true;
         StartCoroutine(CoroutineToShoot());
     }
     public void OnEventToPressOff()
     {
-        Single.Player.m_bIsAttacking = false;
+        Single.Player.m_bIsAutoAttacking = false;
         StopAllCoroutines();
     }
     public void OnEventToDash()

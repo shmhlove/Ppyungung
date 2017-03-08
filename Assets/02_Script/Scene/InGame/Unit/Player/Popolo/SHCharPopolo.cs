@@ -15,9 +15,9 @@ public partial class SHCharPopolo : SHState
 {
     #region Members : Inspector
     [Header("Character State")]
-    [ReadOnlyField]  public  string        m_strState      = string.Empty;
+    [ReadOnlyField]  private string        m_strState  = string.Empty;
     [Header("Character Info")]
-    [SerializeField] private SHMonoWrapper m_pShootPos     = null;
+    [SerializeField] private SHMonoWrapper m_pShootPos = null;
     #endregion
 
 
@@ -37,39 +37,27 @@ public partial class SHCharPopolo : SHState
 
 
     #region System Functions
-    public override void Start()
-    {
-        base.Start();
-    }
     public override void OnEnable()
     {
-        Single.Damage.AddUnit(this);
-
-        Single.Damage.DelDamage(m_pCharDamage);
-        m_pCharDamage = Single.Damage.AddDamage("Dmg_Char",new SHAddDamageParam(this, null, null, null));
-        
         base.OnEnable();
+        SetBeginDamage();
     }
     public override void OnDisable()
     {
         base.OnDisable();
-
-        if (true == SHApplicationInfo.m_bIsAppQuit)
-            return;
-
-        Single.Damage.DelUnit(this);
+        SetEndDamage();
     }
     public override void OnDestroy()
     {
         base.OnDestroy();
         StopCharacter();
     }
-    public override void FixedUpdate()
+    public override void FrameMove()
     {
         base.FrameMove();
         m_strState = ((eState)m_iCurrentStateID).ToString();
     }
-    public override bool IsOffDamage()
+    public override bool IsPassDMGCollision()
     {
         return ((true == IsState((int)eState.Die)) ||
                 (true == IsState((int)eState.Dash)));
@@ -97,27 +85,6 @@ public partial class SHCharPopolo : SHState
     public bool IsDie()
     {
         return IsState((int)eState.Die);
-    }
-    public void LimitInCamera()
-    {
-        var vRect = new Vector4(
-            -12000.0f,
-            -7200.0f,
-            12000.0f,
-            7200.0f);
-
-        SetLocalPosition(SHPhysics.IncludePointInRect(vRect, GetLocalPosition()));
-
-        // var pMainCamera = SH3DRoot.GetMainCamera();
-        // var vSides      = pMainCamera.GetSides(Mathf.Lerp(pMainCamera.nearClipPlane, pMainCamera.farClipPlane, 0.5f), null);
-        // 
-        // var vRect       = new Vector4(
-        //     -SHHard.m_fMoveLimitX,
-        //     vSides[3].z + SHHard.m_fMoveLimitY, 
-        //     SHHard.m_fMoveLimitX,
-        //     vSides[1].z - SHHard.m_fMoveLimitY);
-        // 
-        // SetLocalPosition(SHPhysics.IncludePointInRect(vRect, GetLocalPosition()));
     }
     #endregion
 }

@@ -5,9 +5,11 @@ using System.Collections;
 public class SHMonoWrapper : MonoBehaviour
 {
     #region Members : Transform
-    [HideInInspector] public Vector3     m_vStartPosition    = Vector3.zero;
-    [HideInInspector] public Vector3     m_vStartScale       = Vector3.zero;
-    [HideInInspector] public Quaternion  m_qStartRotation    = Quaternion.identity;
+    [HideInInspector] public Vector3     m_vStartPosition       = Vector3.zero;
+    [HideInInspector] public Vector3     m_vStartScale          = Vector3.zero;
+    [HideInInspector] public Quaternion  m_qStartRotation       = Quaternion.identity;
+    [HideInInspector] public Vector3     m_vBeforePosition      = Vector3.zero;
+    [HideInInspector] public Vector3     m_vBeforeLocalPosition = Vector3.zero;
     #endregion
 
 
@@ -21,6 +23,11 @@ public class SHMonoWrapper : MonoBehaviour
     #region Members : Animation
     [HideInInspector] public Animation   m_pAnim             = null;
     [HideInInspector] public bool        m_bIsAnimPlaying    = false;
+    #endregion
+
+
+    #region Members : Animation
+    [HideInInspector] public bool        m_bIsPause          = false;
     #endregion
 
 
@@ -38,7 +45,7 @@ public class SHMonoWrapper : MonoBehaviour
     public virtual void Update() { }
     public virtual void FixedUpdate() { }
     public virtual void LateUpdate() { }
-    public virtual bool IsOffDamage() { return false; }
+    public virtual bool IsPassDMGCollision() { return false; }
     public virtual void OnCrashDamage(SHMonoWrapper pCrashObject) { }
     #endregion
 
@@ -55,12 +62,16 @@ public class SHMonoWrapper : MonoBehaviour
     }
     public void SetDMGSpeed(float fSpeed)
     {
-        m_fDMGSpeed     = fSpeed;
+        m_fDMGSpeed = fSpeed;
     }
     public void SetDMGSpeed(Vector3 vSpeed)
     {
         m_fDMGSpeed     = vSpeed.magnitude;
         m_vDMGDirection = vSpeed.normalized;
+    }
+    public void SetDMGDirection(Vector3 vDirection)
+    {
+        m_vDMGDirection = vDirection;
     }
     public Collider GetDMGCollider()
     {
@@ -119,6 +130,7 @@ public class SHMonoWrapper : MonoBehaviour
         if (true == SHUtils.IsNan(vPos))
             return;
 
+        m_vBeforePosition = gameObject.transform.position;
         gameObject.transform.position = vPos;
     }
     public void SetPositionX(float fX)
@@ -135,7 +147,7 @@ public class SHMonoWrapper : MonoBehaviour
     }
     public void AddPosition(Vector3 vPos)
     {
-        gameObject.transform.position = (GetPosition() + vPos);
+        SetPosition(GetPosition() + vPos);
     }
     public void AddPositionX(float fX)
     {
@@ -154,6 +166,7 @@ public class SHMonoWrapper : MonoBehaviour
         if (true == SHUtils.IsNan(vPos))
             return;
 
+        m_vBeforeLocalPosition = gameObject.transform.localPosition;
         gameObject.transform.localPosition = vPos;
     }
     public void SetLocalPositionX(float fX)
@@ -176,7 +189,7 @@ public class SHMonoWrapper : MonoBehaviour
     }
     public void AddLocalPosition(Vector3 vPos)
     {
-        gameObject.transform.localPosition = (GetLocalPosition() + vPos);
+        SetLocalPosition(GetLocalPosition() + vPos);
     }
     public void AddLocalPositionX(float fX)
     {
@@ -200,9 +213,17 @@ public class SHMonoWrapper : MonoBehaviour
     {
         return gameObject.transform.position;
     }
+    public Vector3 GetBeforePosition()
+    {
+        return m_vBeforePosition;
+    }
     public Vector3 GetLocalPosition()
     {
         return gameObject.transform.localPosition;
+    }
+    public Vector3 GetBeforeLocalPosition()
+    {
+        return m_vBeforeLocalPosition;
     }
     #endregion
 
@@ -545,6 +566,10 @@ public class SHMonoWrapper : MonoBehaviour
         SetLocalPosition(m_vStartPosition);
         SetLocalRotate(m_qStartRotation);
         SetLocalScale(m_vStartScale);
+    }
+    public void SetPause(bool bIsPause)
+    {
+        m_bIsPause = bIsPause;
     }
     #endregion
 }

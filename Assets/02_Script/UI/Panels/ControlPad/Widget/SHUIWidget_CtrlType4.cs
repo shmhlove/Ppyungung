@@ -30,8 +30,7 @@ public class SHUIWidget_CtrlType4 : SHMonoWrapper
             m_pJoyStick.m_pEventToDrag     = OnEventToDrag;
             m_pJoyStick.m_pEventToPressOn  = OnEventToPressOn;
         }
-
-        Single.Player.m_bIsAttacking = true;
+        
         StartCoroutine(CoroutineToShoot());
     }
     public override void OnDisable()
@@ -40,8 +39,7 @@ public class SHUIWidget_CtrlType4 : SHMonoWrapper
 
         if (true == SHApplicationInfo.m_bIsAppQuit)
             return;
-
-        Single.Player.m_bIsAttacking = false;
+        
         StopAllCoroutines();
     }
     #endregion

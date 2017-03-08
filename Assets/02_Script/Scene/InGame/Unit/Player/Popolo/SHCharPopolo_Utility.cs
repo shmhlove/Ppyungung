@@ -4,7 +4,7 @@ using System.Collections;
 
 public partial class SHCharPopolo : SHState
 {
-    #region Utility : State
+    #region Utility : State Common
     SHStateInfo CreateState(eState eType)
     {
         return base.CreateState((int)eType);
@@ -16,10 +16,10 @@ public partial class SHCharPopolo : SHState
     #endregion
 
 
-    #region Utility : Behaviour
+    #region Utility : Helper
     void SetLookRotation()
     {
-        if (true == Single.Player.m_bIsAttacking)
+        if (true == Single.Player.m_bIsAutoAttacking)
         {
             if (true == SetLookNearMonster())
                 return;
@@ -54,15 +54,8 @@ public partial class SHCharPopolo : SHState
 
         AddLocalPositionX(SHHard.m_fCharMoveSpeed * m_vMoveDirection.x);
         AddLocalPositionZ(SHHard.m_fCharMoveSpeed * m_vMoveDirection.y);
-
-        // AddLocalPositionX((SHHard.m_fBasicMoveSpeed + SHHard.m_fCharMoveSpeed) * m_vMoveDirection.x);
-        // 
-        // if (0.0f == m_vMoveDirection.y)
-        //     AddLocalPositionZ(SHHard.m_fBasicMoveSpeed);
-        // else
-        //     AddLocalPositionZ((SHHard.m_fBasicMoveSpeed + SHHard.m_fCharMoveSpeed) * m_vMoveDirection.y);
-        // 
-        LimitInCamera();
+        
+        LimitInGround();
 
         m_vMoveDirection = Vector3.zero;
         return true;
@@ -89,6 +82,26 @@ public partial class SHCharPopolo : SHState
         m_bIsShoot = false;
 
         return true;
+    }
+    void SetBeginDamage()
+    {
+        Single.Damage.DelDamage(m_pCharDamage);
+        m_pCharDamage = Single.Damage.AddDamage("Dmg_Char", new SHAddDamageParam(this));
+    }
+    void SetEndDamage()
+    {
+        if (true == SHApplicationInfo.m_bIsAppQuit)
+            return;
+        
+        Single.Damage.DelDamage(m_pCharDamage);
+        m_pCharDamage = null;
+    }
+    public void LimitInGround()
+    {
+        var vRect = new Vector4(
+            -12000.0f, -7200.0f, 12000.0f, 7200.0f);
+
+        SetLocalPosition(SHPhysics.IncludePointInRect(vRect, GetLocalPosition()));
     }
     #endregion
 }

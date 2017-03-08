@@ -4,9 +4,9 @@ using System.Collections;
 
 /* partial Information
  * 
- * SHMonPopolo
- * SHMonPopolo_State
- * SHMonPopolo_Utility
+ * SHMonMouse
+ * SHMonMouse_State
+ * SHMonMouse_Utility
  * 
 */
 
@@ -22,50 +22,33 @@ public partial class SHMonMouse : SHState
 
 
     #region Members : AI Data
-    private Vector3        m_vDirection   = Vector3.zero;
-    private SHDamageObject m_pMonDamage   = null;
-    private float          m_fHommingAngle = 1.0f;
-    #endregion
-
-
-    #region Members : Constants
-    private int      MAX_ATTACK_COUNT  = 5;
+    private Vector3        m_vDirection     = Vector3.zero;
+    private SHDamageObject m_pMonDamage     = null;
+    private float          m_fHommingAngle  = 1.0f;
     #endregion
 
 
     #region System Functions
-    public override void Start()
-    {
-        base.Start();
-    }
     public override void OnEnable()
     {
-        Single.Damage.AddUnit(this);
-
-        Single.Damage.DelDamage(m_pMonDamage);
-        m_pMonDamage = Single.Damage.AddDamage("Dmg_Mon", new SHAddDamageParam(this, null, null, null));
-
         base.OnEnable();
+        SetBeginDamage();
     }
     public override void OnDisable()
     {
         base.OnDisable();
-
-        if (true == SHApplicationInfo.m_bIsAppQuit)
-            return;
-        
-        Single.Damage.DelUnit(this);
+        SetEndDamage();
     }
     public override void OnDestroy()
     {
         base.OnDestroy();
     }
-    public override void FixedUpdate()
+    public override void FrameMove()
     {
         base.FrameMove();
         m_strState = ((eState)m_iCurrentStateID).ToString();
     }
-    public override bool IsOffDamage()
+    public override bool IsPassDMGCollision()
     {
         return IsState((int)eState.Die);
     }
@@ -80,30 +63,10 @@ public partial class SHMonMouse : SHState
 
 
     #region Interface Functions
-    public void Initialize(int iMonID)
+    public void InitMonster(int iMonID)
     {
-        m_iMonsterID = iMonID;
+        m_iMonsterID    = iMonID;
         m_fHommingAngle = SHMath.Random(1.0f, 2.0f);
-    }
-    #endregion
-
-
-    #region Dev Functions
-    [FuncButton] void PlayIdleState()
-    {
-        ChangeState(eState.Idle);
-    }
-    [FuncButton] void PlayMoveState()
-    {
-        ChangeState(eState.Move);
-    }
-    [FuncButton] void PlayAttackState()
-    {
-        ChangeState(eState.Attack);
-    }
-    [FuncButton] void PlayDieState()
-    {
-        ChangeState(eState.Die);
     }
     #endregion
 }

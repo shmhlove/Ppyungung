@@ -82,12 +82,12 @@ public class SHUIWidget_CtrlType6 : SHMonoWrapper
     }
     public void OnClickToRightButton()
     {
-        Single.Player.m_bIsAttacking = true;
+        Single.Player.m_bIsAutoAttacking = true;
 
         if (null != m_pEventShoot)
             m_pEventShoot();
 
-        Single.Player.m_bIsAttacking = false;
+        Single.Player.m_bIsAutoAttacking = false;
     }
     public void OnEventToDash()
     {

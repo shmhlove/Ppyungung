@@ -15,12 +15,13 @@ public class SHScoreBoard : SHInGame_Component
     public override void OnFinalize() { }
     public override void OnFrameMove()
     {
-        if (0 != m_iAddScore)
-        {
-            SetScore(m_iScore + m_iAddScore);
-            ShowCurrentScore();
-            m_iAddScore = 0;
-        }
+        if (0 == m_iAddScore)
+            return;
+        
+        SetScore(m_iScore + m_iAddScore);
+        ShowCurrentScore();
+        ShowBestScore();
+        m_iAddScore = 0;
     }
     #endregion
 
@@ -31,6 +32,10 @@ public class SHScoreBoard : SHInGame_Component
         m_iScore    = 0;
         m_iAddScore = 0;
         CloseScoreBoard();
+    }
+    public void ShowCurrentScore()
+    {
+        Single.UI.Show("Panel_ScoreBoard", "Current", m_iScore);
     }
     public void ShowBestScore()
     {
@@ -73,10 +78,6 @@ public class SHScoreBoard : SHInGame_Component
     {
         SHPlayerPrefs.SetInt("BestScore", iScore);
     }
-    private void ShowCurrentScore()
-    {
-        Single.UI.Show("Panel_ScoreBoard", "Current", m_iScore);
-    }
     private void SetBestMeter(float fMeter)
     {
         SHPlayerPrefs.SetFloat("BestMeter", fMeter);
@@ -85,9 +86,5 @@ public class SHScoreBoard : SHInGame_Component
     {
         Single.UI.Close("Panel_ScoreBoard");
     }
-    #endregion
-
-
-    #region Event Handler
     #endregion
 }

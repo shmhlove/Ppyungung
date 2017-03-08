@@ -23,7 +23,6 @@ public class SHUIPanel_Development : SHUIBasePanel
     [SerializeField] private UIInput        m_pInputToOneTimeSummon  = null;
     [SerializeField] private UIInput        m_pInputToMonMoveSpeed   = null;
     [SerializeField] private UIInput        m_pInputToMonDMGSpeed    = null;
-    [SerializeField] private UIInput        m_pInputToMonShootSpeed  = null;
     [Header("ETC")]
     [SerializeField] private UIInput        m_pInputToUnitScale      = null;
     [SerializeField] private UIInput        m_pInputToFrameRate      = null;
@@ -107,10 +106,9 @@ public class SHUIPanel_Development : SHUIBasePanel
             (null == m_pInputToMonDMGSpeed)    ||
             (null == m_pInputToUnitScale)      ||
             (null == m_pInputToFrameRate)      ||
-            (null == m_pInputToBasicSP)    ||
-            (null == m_pInputToMoveLimitX)  ||
-            (null == m_pInputToMoveLimitY) ||
-            (null == m_pInputToMonShootSpeed))
+            (null == m_pInputToBasicSP)        ||
+            (null == m_pInputToMoveLimitX)     ||
+            (null == m_pInputToMoveLimitY))
             return;
 
         m_pInputToCharMoveSpeed.value   = SHHard.m_fCharMoveSpeed.ToString();
@@ -120,7 +118,6 @@ public class SHUIPanel_Development : SHUIBasePanel
         m_pInputToOneTimeSummon.value   = SHHard.m_iMonMaxGen.ToString();
         m_pInputToMonMoveSpeed.value    = SHHard.m_fMonMoveSpeed.ToString();
         m_pInputToMonDMGSpeed.value     = SHHard.m_fMonDamageSpeed.ToString();
-        m_pInputToMonShootSpeed.value   = SHHard.m_fMonShootDelay.ToString();
         m_pInputToUnitScale.value       = SHHard.m_fUnitScale.ToString();
         m_pInputToFrameRate.value       = SHHard.m_iFrameRate.ToString();
         m_pInputToBasicSP.value         = SHHard.m_fBasicMoveSpeed.ToString();
@@ -186,11 +183,7 @@ public class SHUIPanel_Development : SHUIBasePanel
     }
     public void OnClickToRank()
     {
-        Single.Social.SetLeaderboard((long)Single.ScoreBoard.GetBestMeter(), eLeaderBoardType.BestScore, 
-            (bIsSuccess) => 
-            {
-                Debug.LogFormat("LeaderBoard : {0}", bIsSuccess);
-            });
+        Single.Social.SetLeaderboard((long)Single.ScoreBoard.GetBestScore(), eLeaderBoardType.BestScore, null);
     }
     public void OnClickToShowRank()
     {
@@ -252,10 +245,6 @@ public class SHUIPanel_Development : SHUIBasePanel
     public void OnSubmitToMonDamageSpeed(string strValue)
     {
         SHHard.m_fMonDamageSpeed = float.Parse(strValue);
-    }
-    public void OnSubmitToMonShootSpeed(string strValue)
-    {
-        SHHard.m_fMonShootDelay = float.Parse(strValue);
     }
     #endregion
 

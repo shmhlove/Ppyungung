@@ -12,16 +12,15 @@ public class SHStep_Play : SHStep_Component
     public override void InitialStep()
     {
         Single.UI.Show("Panel_CtrlPad");
+        Single.ScoreBoard.Clear();
         Single.Player.StartPlayer();
         Single.Monster.StartMonster();
-        SH3DRoot.StartCameraMove();
         Single.Sound.PlayBGM("Audio_BGM_InGame");
     }
     public override void FinalStep()
     {
         Single.Player.StopPlayer();
         Single.Monster.StopMonster();
-        SH3DRoot.StopCameraMove();
     }
     public override void FrameMove(int iCallCnt)
     {

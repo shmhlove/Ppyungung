@@ -1,7 +1,7 @@
 {
 	"Constants": 
 	{
-        "m_fCharMoveSpeed": 60.0,
+        "m_fCharMoveSpeed": 70.0,
         "m_fCharDamageSpeed": 6000.0,
         "m_fCharShootDelay": 0.2,
         "m_fCharDashSpeed": 100.0,
@@ -10,8 +10,6 @@
 
         "m_fMonMoveSpeed": 3000.0,
         "m_fMonDamageSpeed": 3000.0,
-        "m_fMonAttackDelay": 1.0,
-        "m_fMonShootDelay": 0.8,
         "m_fMonGenDaly": 1.0,
         "m_iMonMaxGen": 5,
         "m_iMonMaxCount": 20,
