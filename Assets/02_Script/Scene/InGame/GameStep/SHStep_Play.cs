@@ -12,6 +12,8 @@ public class SHStep_Play : SHStep_Component
     public override void InitialStep()
     {
         Single.UI.Show("Panel_CtrlPad");
+        Single.UI.Show("Panel_HUD");
+
         Single.ScoreBoard.Clear();
         Single.Player.StartPlayer();
         Single.Monster.StartMonster();
@@ -19,6 +21,9 @@ public class SHStep_Play : SHStep_Component
     }
     public override void FinalStep()
     {
+        Single.UI.Close("Panel_CtrlPad");
+        Single.UI.Close("Panel_HUD");
+
         Single.Player.StopPlayer();
         Single.Monster.StopMonster();
     }

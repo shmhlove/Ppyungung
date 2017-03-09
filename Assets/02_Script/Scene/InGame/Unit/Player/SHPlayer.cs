@@ -51,6 +51,14 @@ public class SHPlayer : SHInGame_Component
 
         return m_pCharacter.GetLocalPosition();
     }
+    public float GetHPPercent()
+    {
+        return 100.0f;
+    }
+    public float GetDashPercent()
+    {
+        return 100.0f;
+    }
     public bool IsDie()
     {
         if (null == m_pCharacter)

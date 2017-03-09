@@ -35,7 +35,12 @@ public static partial class SHHard
         set { GetTable().m_fCharDashCool = value; }
     }
 
+    // @_@_@ 대시 속도
+    // @_@_@ 대시 몬스터당 증가량
+    // @_@_@ 대시 틱당 감소량
+    // @_@_@ 최대 대시량
 
+    
     // 몬스터 관련
     public static float m_fMonMoveSpeed
     {
