@@ -171,7 +171,7 @@ public class SHJson
     }
 
     // 유틸 : StreamingPath경로 만들기
-    string GetStreamingPath(string strFileName)
+    public static string GetStreamingPath(string strFileName)
     {
         string strPath = string.Empty;
 

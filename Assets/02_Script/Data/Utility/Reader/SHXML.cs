@@ -14,6 +14,7 @@ public class SHXML
     public string m_strXMLData = string.Empty;
     #endregion
 
+
     #region System Functions
     public SHXML() { }
     public SHXML(string strFileName)

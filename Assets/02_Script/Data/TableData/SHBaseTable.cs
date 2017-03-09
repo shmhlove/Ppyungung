@@ -187,6 +187,32 @@ public abstract class SHBaseTable
 
         return Return(LoadBytesTable(pBytes.GetBytes()));
     }
+
+    // 인터페이스 : 파일 저장된 경로얻기
+    public string GetFilePath()
+    {
+        string strPath = string.Empty;
+        switch (GetTableType())
+        {
+            case eTableType.SQLite:
+                strPath = SHSQLite.GetStreamingPath(m_strFileName);
+                break;
+            case eTableType.Json:
+                strPath = SHJson.GetStreamingPath(m_strFileName);
+                break;
+            case eTableType.XML:
+                strPath = string.Format("{0}/{1}", SHPath.GetPathToXML(), m_strFileName);
+                break;
+            case eTableType.Byte:
+                strPath = string.Format("{0}/{1}", SHPath.GetPathToBytes(), m_strFileName);
+                break;
+        }
+
+        strPath = strPath.Replace("file://", "");
+        strPath = strPath.Replace("jar: file://", "");
+
+        return strPath;
+    }
     #endregion
 
 

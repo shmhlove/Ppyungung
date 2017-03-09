@@ -215,7 +215,7 @@ public class SHSQLite
         return string.Format("{0}/{1}.db", SHPath.GetPathToPersistentSQLite(), Path.GetFileNameWithoutExtension(strFileName));
     }
 
-    string GetStreamingPath(string strFileName)
+    public static string GetStreamingPath(string strFileName)
     {
         string strPath = string.Empty;
 
