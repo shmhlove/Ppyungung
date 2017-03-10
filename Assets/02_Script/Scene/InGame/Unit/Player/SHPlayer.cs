@@ -5,13 +5,7 @@ using System.Collections;
 public class SHPlayer : SHInGame_Component
 {
     #region Members
-    public SHCharPopolo    m_pCharacter  = null;
-    #endregion
-
-
-    #region Members : HardValue
-    public bool            m_bIsAutoAttacking = false;
-    public bool            m_bIsMoving        = false;
+    public SHCharPopolo    m_pCharacter       = null;
     #endregion
 
 
@@ -31,10 +25,12 @@ public class SHPlayer : SHInGame_Component
     #region Interface Functions
     public void StartPlayer()
     {
+        DestoryCharacter();
         m_pCharacter = Single.ObjectPool.Get<SHCharPopolo>("CharPopolo");
         m_pCharacter.SetActive(true);
         m_pCharacter.SetParent(SH3DRoot.GetRootToPlayer());
         m_pCharacter.SetLocalScale(m_pCharacter.m_vStartScale * SHHard.m_fUnitScale);
+        m_pCharacter.OnInitialize();
         m_pCharacter.StartCharacter();
     }
     public void StopPlayer()
@@ -57,7 +53,10 @@ public class SHPlayer : SHInGame_Component
     }
     public float GetDashPercent()
     {
-        return 100.0f;
+        if (null == m_pCharacter)
+            return 0.0f;
+
+        return SHMath.Divide(m_pCharacter.m_fDashGauge, SHHard.m_fCharMaxDashGauge) * 100.0f;
     }
     public bool IsDie()
     {
@@ -65,6 +64,17 @@ public class SHPlayer : SHInGame_Component
             return true;
 
         return m_pCharacter.IsDie();
+    }
+    #endregion
+
+
+    #region Utility Functions
+    void DestoryCharacter()
+    {
+        if (null == m_pCharacter)
+            return;
+
+        m_pCharacter.Destory();
     }
     #endregion
 }

@@ -23,16 +23,19 @@ public partial class SHCharPopolo : SHState
 
     #region Members : User Interaction Data
     private bool    m_bIsDash        = false;
-    private bool    m_bIsDashReady   = true;
     private bool    m_bIsShoot       = false;
     private Vector3 m_vMoveDirection = Vector3.zero;
     private Vector3 m_vLookDirection = Vector3.zero;
-    private Vector3 m_vDashDirection = Vector3.zero;
+    #endregion
+
+
+    #region Members : Character Status Data
+    public float    m_fDashGauge     = 0.0f;
     #endregion
 
 
     #region Members : ETC
-    private SHDamageObject m_pCharDamage = null;
+    private SHDamageObject m_pBodyDamage = null;
     #endregion
 
 
@@ -40,12 +43,12 @@ public partial class SHCharPopolo : SHState
     public override void OnEnable()
     {
         base.OnEnable();
-        SetBeginDamage();
+        AddBodyDamage();
     }
     public override void OnDisable()
     {
         base.OnDisable();
-        SetEndDamage();
+        DelBodyDamage();
     }
     public override void OnDestroy()
     {
@@ -74,6 +77,15 @@ public partial class SHCharPopolo : SHState
 
 
     #region Interface Functions
+    public void OnInitialize()
+    {
+        m_bIsDash        = false;
+        m_bIsShoot       = false;
+        m_vMoveDirection = Vector3.zero;
+        m_vLookDirection = Vector3.zero;
+
+        m_fDashGauge     = 0.0f;
+    }
     public void StartCharacter()
     {
         ConnectControllerUI();

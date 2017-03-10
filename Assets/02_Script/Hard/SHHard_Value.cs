@@ -24,23 +24,23 @@ public static partial class SHHard
         get { return GetTable().m_fCharDashSpeed; }
         set { GetTable().m_fCharDashSpeed = value; }
     }
-    public static float m_fCharDashTime
+    public static float m_fCharAddDashGauge
     {
-        get { return GetTable().m_fCharDashTime; }
-        set { GetTable().m_fCharDashTime = value; }
+        get { return GetTable().m_fCharAddDashGauge; }
+        set { GetTable().m_fCharAddDashGauge = value; }
     }
-    public static float m_fCharDashCool
+    public static float m_fCharDecDashGauge
     {
-        get { return GetTable().m_fCharDashCool; }
-        set { GetTable().m_fCharDashCool = value; }
+        get { return GetTable().m_fCharDecDashGauge; }
+        set { GetTable().m_fCharDecDashGauge = value; }
     }
-
-    // @_@_@ 대시 속도
-    // @_@_@ 대시 몬스터당 증가량
-    // @_@_@ 대시 틱당 감소량
-    // @_@_@ 최대 대시량
-
+    public static float m_fCharMaxDashGauge
+    {
+        get { return GetTable().m_fCharMaxDashGauge; }
+        set { GetTable().m_fCharMaxDashGauge = value; }
+    }
     
+
     // 몬스터 관련
     public static float m_fMonMoveSpeed
     {

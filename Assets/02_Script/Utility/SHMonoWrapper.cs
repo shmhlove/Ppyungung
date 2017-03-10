@@ -557,6 +557,10 @@ public class SHMonoWrapper : MonoBehaviour
     {
         return transform;
     }
+    public void Destory()
+    {
+        SHGameObject.DestoryObject(this);
+    }
     #endregion
 
 

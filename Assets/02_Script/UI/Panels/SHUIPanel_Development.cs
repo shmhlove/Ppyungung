@@ -8,27 +8,31 @@ public class SHUIPanel_Development : SHUIBasePanel
 {
     #region Members : Inspector
     [Header("Cheat Open")]
-    [SerializeField] private Animation      m_pAnimOpen              = null;
+    [SerializeField] private Animation      m_pAnimOpen                 = null;
     [Header("Information")]
-    [SerializeField] private GameObject     m_pInfoRoot              = null;
-    [SerializeField] private UILabel        m_pLabelToID             = null;
-    [SerializeField] private UILabel        m_pLabelToName           = null;
+    [SerializeField] private GameObject     m_pInfoRoot                 = null;
+    [SerializeField] private UILabel        m_pLabelToID                = null;
+    [SerializeField] private UILabel        m_pLabelToName              = null;
     [Header("Player")]
-    [SerializeField] private UIPopupList    m_pPopupListToCtrl       = null;
-    [SerializeField] private UIInput        m_pInputToCharMoveSpeed  = null;
-    [SerializeField] private UIInput        m_pInputToCharShootSpeed = null;
-    [SerializeField] private UIInput        m_pInputToCharDMGSpeed   = null;
+    [SerializeField] private UIPopupList    m_pPopupListToCtrl          = null;
+    [SerializeField] private UIInput        m_pInputToCharMoveSpeed     = null;
+    [SerializeField] private UIInput        m_pInputToCharShootSpeed    = null;
+    [SerializeField] private UIInput        m_pInputToCharDMGSpeed      = null;
+    [SerializeField] private UIInput        m_pInputToCharDashSpeed     = null;
+    [SerializeField] private UIInput        m_pInputToCharAddDashGauge  = null;
+    [SerializeField] private UIInput        m_pInputToCharDecDashGauge  = null;
+    [SerializeField] private UIInput        m_pInputToCharMaxDashGauge  = null;
     [Header("Monster")]
-    [SerializeField] private UIInput        m_pInputToMonMaxSummon   = null;
-    [SerializeField] private UIInput        m_pInputToOneTimeSummon  = null;
-    [SerializeField] private UIInput        m_pInputToMonMoveSpeed   = null;
-    [SerializeField] private UIInput        m_pInputToMonDMGSpeed    = null;
+    [SerializeField] private UIInput        m_pInputToMonMaxSummon      = null;
+    [SerializeField] private UIInput        m_pInputToOneTimeSummon     = null;
+    [SerializeField] private UIInput        m_pInputToMonMoveSpeed      = null;
+    [SerializeField] private UIInput        m_pInputToMonDMGSpeed       = null;
     [Header("ETC")]
-    [SerializeField] private UIInput        m_pInputToUnitScale      = null;
-    [SerializeField] private UIInput        m_pInputToFrameRate      = null;
-    [SerializeField] private UIInput        m_pInputToBasicSP        = null;
-    [SerializeField] private UIInput        m_pInputToMoveLimitX     = null;
-    [SerializeField] private UIInput        m_pInputToMoveLimitY     = null;
+    [SerializeField] private UIInput        m_pInputToUnitScale         = null;
+    [SerializeField] private UIInput        m_pInputToFrameRate         = null;
+    [SerializeField] private UIInput        m_pInputToBasicSP           = null;
+    [SerializeField] private UIInput        m_pInputToMoveLimitX        = null;
+    [SerializeField] private UIInput        m_pInputToMoveLimitY        = null;
     #endregion
 
 
@@ -97,32 +101,42 @@ public class SHUIPanel_Development : SHUIBasePanel
     }
     void SetInputInfo()
     {
-        if ((null == m_pInputToCharMoveSpeed)  ||
-            (null == m_pInputToCharShootSpeed) ||
-            (null == m_pInputToCharDMGSpeed)   ||
-            (null == m_pInputToMonMaxSummon)   ||
-            (null == m_pInputToOneTimeSummon)  ||
-            (null == m_pInputToMonMoveSpeed)   ||
-            (null == m_pInputToMonDMGSpeed)    ||
-            (null == m_pInputToUnitScale)      ||
-            (null == m_pInputToFrameRate)      ||
-            (null == m_pInputToBasicSP)        ||
-            (null == m_pInputToMoveLimitX)     ||
+        if ((null == m_pInputToCharMoveSpeed)    ||
+            (null == m_pInputToCharShootSpeed)   ||
+            (null == m_pInputToCharDMGSpeed)     ||
+            (null == m_pInputToCharDashSpeed)    ||
+            (null == m_pInputToCharAddDashGauge) ||
+            (null == m_pInputToCharDecDashGauge) ||
+            (null == m_pInputToCharMaxDashGauge) ||
+            (null == m_pInputToMonMaxSummon)     ||
+            (null == m_pInputToOneTimeSummon)    ||
+            (null == m_pInputToMonMoveSpeed)     ||
+            (null == m_pInputToMonDMGSpeed)      ||
+            (null == m_pInputToUnitScale)        ||
+            (null == m_pInputToFrameRate)        ||
+            (null == m_pInputToBasicSP)          ||
+            (null == m_pInputToMoveLimitX)       ||
             (null == m_pInputToMoveLimitY))
             return;
 
-        m_pInputToCharMoveSpeed.value   = SHHard.m_fCharMoveSpeed.ToString();
-        m_pInputToCharShootSpeed.value  = SHHard.m_fCharShootDelay.ToString();
-        m_pInputToCharDMGSpeed.value    = SHHard.m_fCharDamageSpeed.ToString();
-        m_pInputToMonMaxSummon.value    = SHHard.m_iMonMaxCount.ToString();
-        m_pInputToOneTimeSummon.value   = SHHard.m_iMonMaxGen.ToString();
-        m_pInputToMonMoveSpeed.value    = SHHard.m_fMonMoveSpeed.ToString();
-        m_pInputToMonDMGSpeed.value     = SHHard.m_fMonDamageSpeed.ToString();
-        m_pInputToUnitScale.value       = SHHard.m_fUnitScale.ToString();
-        m_pInputToFrameRate.value       = SHHard.m_iFrameRate.ToString();
-        m_pInputToBasicSP.value         = SHHard.m_fBasicMoveSpeed.ToString();
-        m_pInputToMoveLimitX.value      = SHHard.m_fMoveLimitX.ToString();
-        m_pInputToMoveLimitY.value      = SHHard.m_fMoveLimitY.ToString();
+        m_pInputToCharMoveSpeed.value       = SHHard.m_fCharMoveSpeed.ToString();
+        m_pInputToCharShootSpeed.value      = SHHard.m_fCharShootDelay.ToString();
+        m_pInputToCharDMGSpeed.value        = SHHard.m_fCharDamageSpeed.ToString();
+        m_pInputToCharDashSpeed.value       = SHHard.m_fCharDashSpeed.ToString();
+        m_pInputToCharAddDashGauge.value    = SHHard.m_fCharAddDashGauge.ToString();
+        m_pInputToCharDecDashGauge.value    = SHHard.m_fCharDecDashGauge.ToString();
+        m_pInputToCharMaxDashGauge.value    = SHHard.m_fCharMaxDashGauge.ToString();
+
+        m_pInputToMonMaxSummon.value        = SHHard.m_iMonMaxCount.ToString();
+        m_pInputToOneTimeSummon.value       = SHHard.m_iMonMaxGen.ToString();
+        m_pInputToMonMoveSpeed.value        = SHHard.m_fMonMoveSpeed.ToString();
+        m_pInputToMonDMGSpeed.value         = SHHard.m_fMonDamageSpeed.ToString();
+
+        m_pInputToUnitScale.value           = SHHard.m_fUnitScale.ToString();
+        m_pInputToFrameRate.value           = SHHard.m_iFrameRate.ToString();
+        m_pInputToBasicSP.value             = SHHard.m_fBasicMoveSpeed.ToString();
+        m_pInputToMoveLimitX.value          = SHHard.m_fMoveLimitX.ToString();
+        m_pInputToMoveLimitY.value          = SHHard.m_fMoveLimitY.ToString();
     }
     #endregion
 
@@ -204,6 +218,22 @@ public class SHUIPanel_Development : SHUIBasePanel
     public void OnSubmitToShootSpeed(string strValue)
     {
         SHHard.m_fCharShootDelay = float.Parse(strValue);
+    }
+    public void OnSubmitToDashSpeed(string strValue)
+    {
+        SHHard.m_fCharDashSpeed = float.Parse(strValue);
+    }
+    public void OnSubmitToAddDashGauge(string strValue)
+    {
+        SHHard.m_fCharAddDashGauge = float.Parse(strValue);
+    }
+    public void OnSubmitToDecDashGauge(string strValue)
+    {
+        SHHard.m_fCharDecDashGauge = float.Parse(strValue);
+    }
+    public void OnSubmitToMaxDashGauge(string strValue)
+    {
+        SHHard.m_fCharMaxDashGauge = float.Parse(strValue);
     }
     public void OnSelectToCtrlType(string strType)
     {

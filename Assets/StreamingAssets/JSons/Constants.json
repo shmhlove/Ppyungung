@@ -4,9 +4,10 @@
         "m_fCharMoveSpeed": 70.0,
         "m_fCharDamageSpeed": 6000.0,
         "m_fCharShootDelay": 0.2,
-        "m_fCharDashSpeed": 100.0,
-        "m_fCharDashTime": 0.3,
-        "m_fCharDashCool": 0.0,
+        "m_fCharDashSpeed": 150.0,
+        "m_fCharAddDashGauge": 3.5,
+        "m_fCharDecDashGauge": 0.8,
+        "m_fCharMaxDashGauge": 100.0,
 
         "m_fMonMoveSpeed": 3000.0,
         "m_fMonDamageSpeed": 3000.0,

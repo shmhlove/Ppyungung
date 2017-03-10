@@ -15,38 +15,36 @@ public partial class SHCharPopolo : SHState
     }
     #endregion
 
-
-    #region Utility : Helper
-    void SetLookRotation()
+    
+    #region Utility : State Attack
+    void SetAttack()
     {
-        if (true == Single.Player.m_bIsAutoAttacking)
-        {
-            if (true == SetLookNearMonster())
-                return;
-        }
-        
-        if (Vector3.zero == m_vLookDirection)
+        if (false == m_bIsShoot)
             return;
 
-        m_vLookDirection.z = m_vLookDirection.y;
-        m_vLookDirection.y = 0.0f;
-        m_vDashDirection   = m_vLookDirection;
+        // 컨트롤러 5번과 6번은 자동 타켓팅이다.
+        var pCtrlPad = Single.UI.GetPanel<SHUIPanel_CtrlPad>("Panel_CtrlPad");
+        if ((true == pCtrlPad.IsCtrlType(eControlType.Type_5)) ||
+            (true == pCtrlPad.IsCtrlType(eControlType.Type_6)))
+        {
+            SetLookNearMonster();
+        }
 
-        SetLocalLookY(m_vLookDirection);
-        m_vLookDirection = Vector3.zero;
+        SH3DRoot.PlayCameraShake();
+        var pDamage = Single.Damage.AddDamage("Dmg_Char_Bullet",
+                        new SHAddDamageParam(m_pShootPos, null, null, (pTarget) => 
+                        {
+                            Single.ScoreBoard.AddScore(1);
+                            AddDashGauge();
+                        }));
+
+        pDamage.SetDMGSpeed(SHHard.m_fCharDamageSpeed);
+        m_bIsShoot = false;
     }
-    bool SetLookNearMonster()
-    {
-        var pNearMon = Single.Monster.GetNearMonster(GetLocalPosition());
-        if (null == pNearMon)
-            return false;
+    #endregion
 
-        var vDirection   = (pNearMon.GetLocalPosition() - GetLocalPosition()).normalized;
-        m_vDashDirection = vDirection;
 
-        SetLocalLookY(vDirection);
-        return true;
-    }
+    #region Utility : State Move
     bool SetMove()
     {
         if (Vector3.zero == m_vMoveDirection)
@@ -54,47 +52,93 @@ public partial class SHCharPopolo : SHState
 
         AddLocalPositionX(SHHard.m_fCharMoveSpeed * m_vMoveDirection.x);
         AddLocalPositionZ(SHHard.m_fCharMoveSpeed * m_vMoveDirection.y);
-        
+
         LimitInGround();
 
         m_vMoveDirection = Vector3.zero;
         return true;
     }
-    void SetDash()
-    {
-        SetLocalLookY(m_vDashDirection);
-        AddLocalPositionX(SHHard.m_fCharDashSpeed * m_vDashDirection.x);
-        AddLocalPositionZ(SHHard.m_fCharDashSpeed * m_vDashDirection.z);
-    }
-    bool SetAttack()
-    {
-        if (false == m_bIsShoot)
-            return false;
+    #endregion
 
-        SH3DRoot.PlayCameraShake();
-        var pDamage = Single.Damage.AddDamage("Dmg_Char_Bullet",
-                        new SHAddDamageParam(m_pShootPos, null, null, (pTarget) => 
-                        {
-                            Single.ScoreBoard.AddScore(1);
-                        }));
 
-        pDamage.SetDMGSpeed(SHHard.m_fCharDamageSpeed);
-        m_bIsShoot = false;
-
-        return true;
-    }
-    void SetBeginDamage()
+    #region Utility : State Dash
+    void SetDashMove()
     {
-        Single.Damage.DelDamage(m_pCharDamage);
-        m_pCharDamage = Single.Damage.AddDamage("Dmg_Char", new SHAddDamageParam(this));
+        if (Vector3.zero == m_vMoveDirection)
+            return;
+
+        AddLocalPositionX(SHHard.m_fCharDashSpeed * m_vMoveDirection.x);
+        AddLocalPositionZ(SHHard.m_fCharDashSpeed * m_vMoveDirection.y);
+
+        LimitInGround();
+
+        m_vMoveDirection = Vector3.zero;
     }
-    void SetEndDamage()
+    void AddDashGauge()
+    {
+        m_fDashGauge += SHHard.m_fCharAddDashGauge;
+        m_fDashGauge = Mathf.Clamp(m_fDashGauge, 0.0f, SHHard.m_fCharMaxDashGauge);
+    }
+    void DecreaseDashGauge()
+    {
+        m_fDashGauge -= SHHard.m_fCharDecDashGauge;
+        m_fDashGauge = Mathf.Clamp(m_fDashGauge, 0.0f, m_fDashGauge);
+    }
+    bool IsRemainDashGauge()
+    {
+        return ((0.0f < m_fDashGauge) && (SHHard.m_fCharDecDashGauge < m_fDashGauge));
+    }
+    bool IsPossibleDash()
+    {
+        return (true == m_bIsDash) && (true == IsRemainDashGauge());
+    }
+    #endregion
+
+
+    #region Utility : Body Damage
+    void AddBodyDamage()
+    {
+        DelBodyDamage();
+        m_pBodyDamage = Single.Damage.AddDamage("Dmg_Char", new SHAddDamageParam(this));
+    }
+    void DelBodyDamage()
     {
         if (true == SHApplicationInfo.m_bIsAppQuit)
             return;
+
+        Single.Damage.DelDamage(m_pBodyDamage);
+        m_pBodyDamage = null;
+    }
+    void SetBodyDamageLock(bool bIsLock)
+    {
+        if (null == m_pBodyDamage)
+            return;
+
+        m_pBodyDamage.m_bIsCrashLock = bIsLock;
+    }
+    #endregion
+
+
+    #region Utility : Helper
+    bool SetLookNearMonster()
+    {
+        var pNearMon = Single.Monster.GetNearMonster(GetLocalPosition());
+        if (null == pNearMon)
+            return false;
         
-        Single.Damage.DelDamage(m_pCharDamage);
-        m_pCharDamage = null;
+        SetLocalLookY((pNearMon.GetLocalPosition() - GetLocalPosition()).normalized);
+        return true;
+    }
+    void SetLookRotation()
+    {
+        if (Vector3.zero == m_vLookDirection)
+            return;
+
+        m_vLookDirection.z = m_vLookDirection.y;
+        m_vLookDirection.y = 0.0f;
+
+        SetLocalLookY(m_vLookDirection);
+        m_vLookDirection = Vector3.zero;
     }
     public void LimitInGround()
     {

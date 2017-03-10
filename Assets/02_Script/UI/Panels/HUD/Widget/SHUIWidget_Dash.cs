@@ -22,6 +22,15 @@ public class SHUIWidget_Dash : SHMonoWrapper
     #endregion
 
 
+    #region Virtual Functions
+    public override void Start()
+    {
+        SetSlider();
+        SetLabel();
+    }
+    #endregion
+
+
     #region Interface Functions
     public void FrameMove()
     {

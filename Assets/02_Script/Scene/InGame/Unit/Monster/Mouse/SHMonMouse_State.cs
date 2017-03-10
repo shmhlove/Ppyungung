@@ -54,8 +54,8 @@ public partial class SHMonMouse : SHState
     #region State : Die
     void OnEnterToDie(int iBeforeState, int iCurrentState)
     {
+        DelBodyDamage();
         PlayParticle("Particle_Crash_Dust_Big");
-        SetEndDamage();
     }
     void OnFixedUpdateToDie(int iCurrentState, int iFixedTick)
     {

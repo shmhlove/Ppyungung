@@ -34,6 +34,23 @@ public partial class SHMonMouse : SHState
     #endregion
 
 
+    #region Utility : Body Damage
+    void AddBodyDamage()
+    {
+        DelBodyDamage();
+        m_pBodyDamage = Single.Damage.AddDamage("Dmg_Mon", new SHAddDamageParam(this));
+    }
+    void DelBodyDamage()
+    {
+        if (true == SHApplicationInfo.m_bIsAppQuit)
+            return;
+
+        Single.Damage.DelDamage(m_pBodyDamage);
+        m_pBodyDamage = null;
+    }
+    #endregion
+
+
     #region Utility : Helper
     void SetAttack(Vector3 vDirection)
     {
@@ -42,19 +59,6 @@ public partial class SHMonMouse : SHState
             pDamage.SetDMGSpeed(SHHard.m_fMonDamageSpeed);
             pDamage.SetDMGDirection(vDirection);
         }
-    }
-    void SetBeginDamage()
-    {
-        Single.Damage.DelDamage(m_pMonDamage);
-        m_pMonDamage = Single.Damage.AddDamage("Dmg_Mon", new SHAddDamageParam(this));
-    }
-    void SetEndDamage()
-    {
-        if (true == SHApplicationInfo.m_bIsAppQuit)
-            return;
-        
-        Single.Damage.DelDamage(m_pMonDamage);
-        m_pMonDamage = null;
     }
     #endregion
 }

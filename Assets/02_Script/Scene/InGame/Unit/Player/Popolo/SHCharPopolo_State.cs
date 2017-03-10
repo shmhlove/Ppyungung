@@ -62,7 +62,7 @@ public partial class SHCharPopolo : SHState
     {
         SetLookRotation();
 
-        if (true == m_bIsDash)
+        if (true == IsPossibleDash())
         {
             ChangeState(eState.Dash);
             return;
@@ -89,7 +89,7 @@ public partial class SHCharPopolo : SHState
         SetMove();
         SetLookRotation();
 
-        if (true == m_bIsDash)
+        if (true == IsPossibleDash())
         {
             ChangeState(eState.Dash);
             return;
@@ -115,7 +115,7 @@ public partial class SHCharPopolo : SHState
         var bIsMove = SetMove();
         SetLookRotation();
 
-        if (true == m_bIsDash)
+        if (true == IsPossibleDash())
         {
             ChangeState(eState.Dash);
             return;
@@ -142,24 +142,20 @@ public partial class SHCharPopolo : SHState
     #region State : Dash
     void OnEnterToDash(int iBeforeState, int iCurrentState)
     {
-        if (Vector3.zero == m_vDashDirection)
-            m_vDashDirection = Vector3.forward;
-
-        if (null != m_pCharDamage)
-            m_pCharDamage.m_bIsCrashLock = true;
-
+        SetBodyDamageLock(true);
         Single.Sound.PlayEffect("Audio_Effect_Dash");
     }
     void OnExitToDash(int iBeforeState, int iCurrentState)
     {
-        if (null != m_pCharDamage)
-            m_pCharDamage.m_bIsCrashLock = false;
+        SetBodyDamageLock(false);
     }
     void OnFixedUpdateToDash(int iCurrentState, int iFixedTick)
     {
-        SetDash();
+        SetDashMove();
+        SetLookRotation();
+        DecreaseDashGauge();
 
-        if (false == m_bIsDash)
+        if (false == IsPossibleDash())
         {
             ChangeState(eState.Move);
             return;
@@ -171,7 +167,7 @@ public partial class SHCharPopolo : SHState
     #region State : Die
     void OnEnterToDie(int iBeforeState, int iCurrentState)
     {
-        SetEndDamage();        
+        DelBodyDamage();        
         PlayParticle("Particle_Crash_Dust_Big");
     }
     void OnFixedUpdateToDie(int iCurrentState, int iFixedTick)

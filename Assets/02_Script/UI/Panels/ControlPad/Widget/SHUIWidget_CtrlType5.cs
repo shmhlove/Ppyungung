@@ -13,7 +13,7 @@ public class SHUIWidget_CtrlType5 : SHMonoWrapper
     private Action<Vector3> m_pEventMove      = null;
     private Action<Vector3> m_pEventDirection = null;
     private Action          m_pEventShoot     = null;
-    private Action          m_pEventDash      = null;
+    private Action<bool>    m_pEventDash      = null;
     #endregion
 
 
@@ -29,7 +29,7 @@ public class SHUIWidget_CtrlType5 : SHMonoWrapper
 
 
     #region Interface Functions
-    public void Initialize(Action<Vector3> pMove, Action<Vector3> pDirection, Action pShoot, Action pDash)
+    public void Initialize(Action<Vector3> pMove, Action<Vector3> pDirection, Action pShoot, Action<bool> pDash)
     {
         m_pEventMove      = pMove;
         m_pEventDirection = pDirection;
@@ -69,28 +69,23 @@ public class SHUIWidget_CtrlType5 : SHMonoWrapper
         if (null != m_pEventDirection)
             m_pEventDirection(vDirection);
     }
-    public void OnEventToPressOnLeft()
+    public void OnPressOnShoot()
     {
-        Single.Player.m_bIsMoving = true;
-    }
-    public void OnEventToPressOffLeft()
-    {
-        Single.Player.m_bIsMoving = false;
-    }
-    public void OnEventToPressOn()
-    {
-        Single.Player.m_bIsAutoAttacking = true;
         StartCoroutine(CoroutineToShoot());
     }
-    public void OnEventToPressOff()
+    public void OnPressOffShoot()
     {
-        Single.Player.m_bIsAutoAttacking = false;
         StopAllCoroutines();
     }
-    public void OnEventToDash()
+    public void OnPressOnDash()
     {
         if (null != m_pEventDash)
-            m_pEventDash();
+            m_pEventDash(true);
+    }
+    public void OnPressOffDash()
+    {
+        if (null != m_pEventDash)
+            m_pEventDash(false);
     }
     #endregion
 }

@@ -21,9 +21,9 @@ public partial class SHMonMouse : SHState
     #endregion
 
 
-    #region Members : AI Data
+    #region Members : Monster Status Data
     private Vector3        m_vDirection     = Vector3.zero;
-    private SHDamageObject m_pMonDamage     = null;
+    private SHDamageObject m_pBodyDamage    = null;
     private float          m_fHommingAngle  = 1.0f;
     #endregion
 
@@ -32,12 +32,12 @@ public partial class SHMonMouse : SHState
     public override void OnEnable()
     {
         base.OnEnable();
-        SetBeginDamage();
+        AddBodyDamage();
     }
     public override void OnDisable()
     {
         base.OnDisable();
-        SetEndDamage();
+        DelBodyDamage();
     }
     public override void OnDestroy()
     {
