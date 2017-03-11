@@ -63,6 +63,8 @@ public class SHUIPanel_Development : SHUIBasePanel
             SetLogToID();
             SetLogToUserName();
             SetFPS();
+            SetMonsterCount();
+            SetObjectCount();
         }
     }
     #endregion
