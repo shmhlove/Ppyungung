@@ -14,10 +14,15 @@ public class SHStep_Play : SHStep_Component
         Single.UI.Show("Panel_CtrlPad");
         Single.UI.Show("Panel_HUD");
 
+        Single.Damage.Clear();
+
         Single.ScoreBoard.Clear();
+        Single.ScoreBoard.ShowScore();
+
         Single.Player.StartPlayer();
         Single.Monster.AllKillMonster();
         Single.Monster.StartMonster();
+
         Single.Sound.PlayBGM("Audio_BGM_InGame");
     }
     public override void FinalStep()

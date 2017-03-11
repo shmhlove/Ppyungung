@@ -359,5 +359,9 @@ public class SHUIPanel_Development : SHUIBasePanel
         SHHard.m_iFrameRate = int.Parse(strValue);
         Single.AppInfo.SetFrameRate(SHHard.m_iFrameRate);
     }
+    public void OnSubmitToComboTime(string strValue)
+    {
+        SHHard.m_fComboTime = float.Parse(strValue);
+    }
     #endregion
 }

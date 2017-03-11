@@ -33,7 +33,8 @@ public class JsonConstants : SHBaseTable
     // 기타
     public float         m_fUnitScale       = 1.0f;
     public int           m_iFrameRate       = 45;
-    
+    public float         m_fComboTime       = 0.2f;
+
     #endregion
 
 
@@ -89,7 +90,8 @@ public class JsonConstants : SHBaseTable
         // 기타
         m_fUnitScale            = GetFloatToJson(pDataNode, "m_fUnitScale");
         m_iFrameRate            = GetIntToJson(pDataNode, "m_iFrameRate");
-
+        m_fComboTime            = GetFloatToJson(pDataNode, "m_fComboTime");
+        
         return (m_bIsLoaded = true);
     }
     public override bool? LoadBytesTable(byte[] pByte)
@@ -124,6 +126,7 @@ public class JsonConstants : SHBaseTable
         // 기타
         m_fUnitScale            = pSerializer.DeserializeFloat();
         m_iFrameRate            = pSerializer.DeserializeInt();
+        m_fComboTime            = pSerializer.DeserializeFloat();
 
         return (m_bIsLoaded = true);
     }
@@ -159,7 +162,7 @@ public class JsonConstants : SHBaseTable
         // 기타
         pSerializer.Serialize(m_fUnitScale);
         pSerializer.Serialize(m_iFrameRate);
-
+        pSerializer.Serialize(m_fComboTime);
 
         return pSerializer.ByteArray;
     }
