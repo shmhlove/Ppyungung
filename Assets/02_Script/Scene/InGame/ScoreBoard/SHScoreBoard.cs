@@ -4,24 +4,15 @@ using System.Collections;
 public class SHScoreBoard : SHInGame_Component
 {
     #region Members
-    public float m_fMoveMeter = 0;
     public int   m_iScore     = 0;
-    public int   m_iAddScore  = 0;
+    public int   m_iCombo     = 0;
     #endregion
 
 
     #region Virtual Functions
     public override void OnInitialize() { }
     public override void OnFinalize() { }
-    public override void OnFrameMove()
-    {
-        if (0 != m_iAddScore)
-        {
-            SetScore(m_iScore + m_iAddScore);
-            ShowCurrentScore();
-            m_iAddScore = 0;
-        }
-    }
+    public override void OnFrameMove() { }
     #endregion
 
 
@@ -29,65 +20,67 @@ public class SHScoreBoard : SHInGame_Component
     public void Clear()
     {
         m_iScore    = 0;
-        m_iAddScore = 0;
+        m_iCombo    = 0;
         CloseScoreBoard();
     }
-    public void ShowBestScore()
+    public void ShowScore()
     {
-        Single.UI.Show("Panel_ScoreBoard", "Best", GetBestScore());
+        ShowCurrentScore();
+        ShowBestScore();
+        ShowComboScore();
     }
     public void AddScore(int iScore)
     {
-        m_iAddScore += iScore;
+        if (0 == iScore)
+            return;
+
+        var fComboSecond = Single.Timer.GetDeltaTimeToSecond("ScoreBoard_ComboTime");
+        if (fComboSecond < SHHard.m_fComboTime)
+            AddCombo(1);
+        
+        if (GetBestScore() < (m_iScore += iScore))
+            SetBestScore(m_iScore);
+
+        ShowCurrentScore();
+        ShowBestScore();
+
+        Single.Timer.StartDeltaTime("ScoreBoard_ComboTime");
     }
-    public void SetMeter(float fMeter)
+    public void AddCombo(int iCombo)
     {
-        m_fMoveMeter = fMeter;
+        if (0 == iCombo)
+            return;
 
-        if (GetBestMeter() < m_fMoveMeter)
-            SetBestMeter(m_fMoveMeter);
-
-        Single.UI.Show("Panel_ScoreBoard", "Meter",     m_fMoveMeter);
-        Single.UI.Show("Panel_ScoreBoard", "BestMeter", GetBestMeter());
+        m_iCombo += iCombo;
+        ShowComboScore();
     }
     public int GetBestScore()
     {
         return SHPlayerPrefs.GetInt("BestScore", 0);
     }
-    public float GetBestMeter()
-    {
-        return SHPlayerPrefs.GetFloat("BestMeter", 0.0f);
-    }
     #endregion
 
 
     #region Utility Functions
-    private void SetScore(int iScore)
-    {
-        m_iScore = iScore;
-
-        if (GetBestScore() < m_iScore)
-            SetBestScore(m_iScore);
-    }
-    private void SetBestScore(int iScore)
-    {
-        SHPlayerPrefs.SetInt("BestScore", iScore);
-    }
-    private void ShowCurrentScore()
+    void ShowCurrentScore()
     {
         Single.UI.Show("Panel_ScoreBoard", "Current", m_iScore);
     }
-    private void SetBestMeter(float fMeter)
+    void ShowBestScore()
     {
-        SHPlayerPrefs.SetFloat("BestMeter", fMeter);
+        Single.UI.Show("Panel_ScoreBoard", "Best", GetBestScore());
     }
-    private void CloseScoreBoard()
+    void ShowComboScore()
+    {
+        Single.UI.Show("Panel_ScoreBoard", "Combo", m_iCombo);
+    }
+    void SetBestScore(int iScore)
+    {
+        SHPlayerPrefs.SetInt("BestScore", iScore);
+    }
+    void CloseScoreBoard()
     {
         Single.UI.Close("Panel_ScoreBoard");
     }
-    #endregion
-
-
-    #region Event Handler
     #endregion
 }

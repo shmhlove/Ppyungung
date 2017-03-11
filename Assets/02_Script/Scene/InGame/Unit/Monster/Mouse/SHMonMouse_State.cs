@@ -6,34 +6,25 @@ public partial class SHMonMouse : SHState
 {
     public enum eState
     {
-        None,
-        Idle,
         Move,
-        Attack,
         Die,
+        Kill,
     }
 
 
     #region State : Register
     public override void RegisterState()
     {
-        var pState = CreateState(eState.Idle);
-        {
-            pState.m_strAnimClip   = "Anim_Char_Idle";
-            pState.m_OnFixedUpdate = OnFixedUpdateToIdle;
-        }
-
-        pState = CreateState(eState.Move);
+        var pState = CreateState(eState.Move);
         {
             pState.m_strAnimClip   = "Anim_Char_Move";
             pState.m_OnFixedUpdate = OnFixedUpdateToMove;
         }
-
-        pState = CreateState(eState.Attack);
+        
+        pState = CreateState(eState.Kill);
         {
-            pState.m_strAnimClip   = "Anim_Char_Attack";
-            pState.m_OnEnter       = OnEnterToAttack;
-            pState.m_OnFixedUpdate = OnFixedUpdateToAttack;
+            pState.m_strAnimClip    = "Anim_Char_Die";
+            pState.m_OnEnter        = OnEnterToKill;
         }
 
         pState = CreateState(eState.Die);
@@ -43,19 +34,11 @@ public partial class SHMonMouse : SHState
             pState.m_OnFixedUpdate = OnFixedUpdateToDie;
         }
 
-        ChangeState(eState.Idle);
+        ChangeState(eState.Move);
     }
-    #endregion
-
-
-    #region State : Idle
-
-    void OnFixedUpdateToIdle(int iCurrentState, int iFixedTick)
+    public override int GetKillState()
     {
-        // if (false == IsAttackDelay())
-        //     StartCoroutine(COROUTINE_ATTACK);
-        // else
-            ChangeState(eState.Move);
+        return (int)eState.Kill;
     }
     #endregion
 
@@ -63,36 +46,6 @@ public partial class SHMonMouse : SHState
     #region State : Move
     void OnFixedUpdateToMove(int iCurrentState, int iFixedTick)
     {
-        SetLookPC();
-        SetMove();
-
-        // if (false == IsAttackDelay())
-        //     StartCoroutine(COROUTINE_ATTACK);
-    }
-    #endregion
-
-
-    #region State : Attack
-    private string COROUTINE_ATTACK = "CoroutineToAttackDelay";
-    IEnumerator CoroutineToAttackDelay()
-    {
-        for(int iLoop = 0; iLoop < MAX_ATTACK_COUNT; ++iLoop)
-        {
-            ChangeState(eState.Attack);
-
-            yield return new WaitForSeconds(SHHard.m_fMonShootDelay);
-        }
-
-        Single.Timer.StartDeltaTime(GetAttackKey());
-        ChangeState(eState.Idle);
-    }
-    void OnEnterToAttack(int iBeforeState, int iCurrentState)
-    {
-        SetAttack(Vector3.zero);
-    }
-    void OnFixedUpdateToAttack(int iCurrentState, int iFixedTick)
-    {
-        SetLookPC();
         SetMove();
     }
     #endregion
@@ -101,11 +54,6 @@ public partial class SHMonMouse : SHState
     #region State : Die
     void OnEnterToDie(int iBeforeState, int iCurrentState)
     {
-        StopCoroutine(COROUTINE_ATTACK);
-        Single.Monster.DeleteMonster(this);
-        Single.Damage.DelDamage(m_pMonDamage);
-        m_pMonDamage = null;
-
         PlayParticle("Particle_Crash_Dust_Big");
     }
     void OnFixedUpdateToDie(int iCurrentState, int iFixedTick)
@@ -119,12 +67,21 @@ public partial class SHMonMouse : SHState
                 vDirection.z = Mathf.Sin(iValue * Mathf.Deg2Rad);
                 SetAttack(vDirection);
             });
-
-            // Single.Damage.AddDamage("Dmg_Mon_Explosion",
-            //                 new SHAddDamageParam(this, null, null, null));
             
             SetActive(false);
+            Single.Monster.DeleteMonster(this);
         }
+    }
+    #endregion
+
+
+    #region State : Kill
+    void OnEnterToKill(int iBeforeState, int iCurrentState)
+    {
+        OnEnterToDie(iBeforeState, iCurrentState);
+
+        SetActive(false);
+        Single.Monster.DeleteMonster(this);
     }
     #endregion
 }

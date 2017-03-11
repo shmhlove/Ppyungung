@@ -4,7 +4,7 @@ using System.Collections;
 
 public partial class SHCharPopolo : SHState
 {
-    #region Utility : State
+    #region Utility : State Common
     SHStateInfo CreateState(eState eType)
     {
         return base.CreateState((int)eType);
@@ -15,38 +15,36 @@ public partial class SHCharPopolo : SHState
     }
     #endregion
 
-
-    #region Utility : Behaviour
-    void SetLookRotation()
+    
+    #region Utility : State Attack
+    void SetAttack()
     {
-        if (true == Single.Player.m_bIsAttacking)
-        {
-            if (true == SetLookNearMonster())
-                return;
-        }
-        
-        if (Vector3.zero == m_vLookDirection)
+        if (false == m_bIsShoot)
             return;
 
-        m_vLookDirection.z = m_vLookDirection.y;
-        m_vLookDirection.y = 0.0f;
-        m_vDashDirection   = m_vLookDirection;
+        // 컨트롤러 5번과 6번은 자동 타켓팅이다.
+        var pCtrlPad = Single.UI.GetPanel<SHUIPanel_CtrlPad>("Panel_CtrlPad");
+        if ((true == pCtrlPad.IsCtrlType(eControlType.Type_5)) ||
+            (true == pCtrlPad.IsCtrlType(eControlType.Type_6)))
+        {
+            SetLookNearMonster();
+        }
 
-        SetLocalLookY(m_vLookDirection);
-        m_vLookDirection = Vector3.zero;
+        SH3DRoot.PlayCameraShake();
+        var pDamage = Single.Damage.AddDamage("Dmg_Char_Bullet",
+                        new SHAddDamageParam(m_pShootPos, null, null, (pTarget) => 
+                        {
+                            Single.ScoreBoard.AddScore(1);
+                            AddDashGauge();
+                        }));
+
+        pDamage.SetDMGSpeed(SHHard.m_fCharDamageSpeed);
+        m_bIsShoot = false;
     }
-    bool SetLookNearMonster()
-    {
-        var pNearMon = Single.Monster.GetNearMonster(GetLocalPosition());
-        if (null == pNearMon)
-            return false;
+    #endregion
 
-        var vDirection   = (pNearMon.GetLocalPosition() - GetLocalPosition()).normalized;
-        m_vDashDirection = vDirection;
 
-        SetLocalLookY(vDirection);
-        return true;
-    }
+    #region Utility : State Move
     bool SetMove()
     {
         if (Vector3.zero == m_vMoveDirection)
@@ -55,40 +53,113 @@ public partial class SHCharPopolo : SHState
         AddLocalPositionX(SHHard.m_fCharMoveSpeed * m_vMoveDirection.x);
         AddLocalPositionZ(SHHard.m_fCharMoveSpeed * m_vMoveDirection.y);
 
-        // AddLocalPositionX((SHHard.m_fBasicMoveSpeed + SHHard.m_fCharMoveSpeed) * m_vMoveDirection.x);
-        // 
-        // if (0.0f == m_vMoveDirection.y)
-        //     AddLocalPositionZ(SHHard.m_fBasicMoveSpeed);
-        // else
-        //     AddLocalPositionZ((SHHard.m_fBasicMoveSpeed + SHHard.m_fCharMoveSpeed) * m_vMoveDirection.y);
-        // 
-        LimitInCamera();
+        LimitInGround();
 
         m_vMoveDirection = Vector3.zero;
         return true;
     }
-    void SetDash()
+    #endregion
+
+
+    #region Utility : State Dash
+    void SetDashMove()
     {
-        SetLocalLookY(m_vDashDirection);
-        AddLocalPositionX(SHHard.m_fCharDashSpeed * m_vDashDirection.x);
-        AddLocalPositionZ(SHHard.m_fCharDashSpeed * m_vDashDirection.z);
+        if (Vector3.zero == m_vMoveDirection)
+            return;
+
+        AddLocalPositionX(SHHard.m_fCharDashSpeed * m_vMoveDirection.x);
+        AddLocalPositionZ(SHHard.m_fCharDashSpeed * m_vMoveDirection.y);
+
+        LimitInGround();
+
+        m_vMoveDirection = Vector3.zero;
     }
-    bool SetAttack()
+    void AddDashGauge()
     {
-        if (false == m_bIsShoot)
+        m_fDashPoint += SHHard.m_fCharAddDashPoint;
+        m_fDashPoint = Mathf.Clamp(m_fDashPoint, 0.0f, SHHard.m_fCharMaxDashPoint);
+    }
+    void DecreaseDashGauge()
+    {
+        m_fDashPoint -= SHHard.m_fCharDecDashPoint;
+        m_fDashPoint = Mathf.Clamp(m_fDashPoint, 0.0f, m_fDashPoint);
+    }
+    bool IsRemainDashGauge()
+    {
+        return ((0.0f < m_fDashPoint) && (SHHard.m_fCharDecDashPoint < m_fDashPoint));
+    }
+    bool IsPossibleDash()
+    {
+        return (true == m_bIsDash) && (true == IsRemainDashGauge());
+    }
+    #endregion
+
+
+    #region Utility : Body Damage
+    void AddBodyDamage()
+    {
+        DelBodyDamage();
+        m_pBodyDamage = Single.Damage.AddDamage("Dmg_Char_Body", 
+            new SHAddDamageParam(this, null, null, (pObject) => { OnCrashDamage(pObject); }));
+    }
+    void DelBodyDamage()
+    {
+        if (true == SHApplicationInfo.m_bIsAppQuit)
+            return;
+
+        Single.Damage.DelDamage(m_pBodyDamage);
+        m_pBodyDamage = null;
+    }
+    void SetBodyDamageLock(bool bIsLock)
+    {
+        if (null == m_pBodyDamage)
+            return;
+
+        m_pBodyDamage.m_bIsCrashLock = bIsLock;
+    }
+    #endregion
+
+
+    #region Utility : HealthPoint
+    void AddHP(float fAddValue)
+    {
+        m_fHealthPoint += fAddValue;
+        m_fHealthPoint = Mathf.Clamp(m_fHealthPoint, 0.0f, SHHard.m_iCharMaxHealthPoint);
+    }
+    bool IsRemainHP()
+    {
+        return (0.0f < m_fHealthPoint);
+    }
+    #endregion
+
+
+    #region Utility : Helper
+    bool SetLookNearMonster()
+    {
+        var pNearMon = Single.Monster.GetNearMonster(GetLocalPosition());
+        if (null == pNearMon)
             return false;
-
-        SH3DRoot.PlayCameraShake();
-        var pDamage = Single.Damage.AddDamage("Dmg_Char_Bullet",
-                        new SHAddDamageParam(m_pShootPos, null, null, (pTarget) => 
-                        {
-                            Single.ScoreBoard.AddScore(1);
-                        }));
-
-        pDamage.SetDMGSpeed(SHHard.m_fCharDamageSpeed);
-        m_bIsShoot = false;
-
+        
+        SetLocalLookY((pNearMon.GetLocalPosition() - GetLocalPosition()).normalized);
         return true;
+    }
+    void SetLookRotation()
+    {
+        if (Vector3.zero == m_vLookDirection)
+            return;
+
+        m_vLookDirection.z = m_vLookDirection.y;
+        m_vLookDirection.y = 0.0f;
+
+        SetLocalLookY(m_vLookDirection);
+        m_vLookDirection = Vector3.zero;
+    }
+    public void LimitInGround()
+    {
+        var vRect = new Vector4(
+            -12000.0f, -7200.0f, 12000.0f, 7200.0f);
+
+        SetLocalPosition(SHPhysics.IncludePointInRect(vRect, GetLocalPosition()));
     }
     #endregion
 }

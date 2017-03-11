@@ -121,7 +121,7 @@ public partial class SHUIManager : SHSingleton<SHUIManager>
         if (null == pPanel)
             return;
 
-        SHGameObject.DestoryObject(pPanel);
+        pPanel.Destory();
     }
     #endregion
 

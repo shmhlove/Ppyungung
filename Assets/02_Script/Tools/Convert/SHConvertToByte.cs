@@ -29,8 +29,7 @@ public class SHConvertToByte
                 if (false == bIsDelete)
                     return;
                 
-                // @_@ 파일경로 인터페이스 만들기
-                // SHUtils.DeleteFile(pValue.GetFilePath());
+                SHUtils.DeleteFile(pValue.GetFilePath());
             }
         });
 

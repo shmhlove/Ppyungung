@@ -26,7 +26,17 @@ public class SHSound_BGM_OutGame : SHSound_Table
     public SHSound_BGM_OutGame()
     {
         m_strFileName = "Audio_BGM_OutGame";
-        m_bIsLoop = true;
+        m_bIsLoop     = true;
+        m_eBGMChannel = eSoundBGMChannel.Main;
+    }
+}
+
+public class SHSound_BGM_GameOver : SHSound_Table
+{
+    public SHSound_BGM_GameOver()
+    {
+        m_strFileName = "Audio_BGM_GameOver";
+        m_bIsLoop     = false;
         m_eBGMChannel = eSoundBGMChannel.Main;
     }
 }

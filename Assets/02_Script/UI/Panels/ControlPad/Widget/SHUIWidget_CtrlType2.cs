@@ -19,7 +19,7 @@ public class SHUIWidget_CtrlType2 : SHMonoWrapper
     private Action<Vector3> m_pEventMove      = null;
     private Action<Vector3> m_pEventDirection = null;
     private Action          m_pEventShoot     = null;
-    private Action          m_pEventDash      = null;
+    private Action<bool>    m_pEventDash      = null;
     #endregion
 
 
@@ -42,7 +42,7 @@ public class SHUIWidget_CtrlType2 : SHMonoWrapper
 
 
     #region Interface Functions
-    public void Initialize(Action<Vector3> pMove, Action<Vector3> pDirection, Action pShoot, Action pDash)
+    public void Initialize(Action<Vector3> pMove, Action<Vector3> pDirection, Action pShoot, Action<bool> pDash)
     {
         m_pEventMove      = pMove;
         m_pEventDirection = pDirection;
@@ -85,14 +85,6 @@ public class SHUIWidget_CtrlType2 : SHMonoWrapper
                 m_pEventDirection(vDirection);
         }
     }
-    public void OnEventToPressOnLeft()
-    {
-        Single.Player.m_bIsMoving = true;
-    }
-    public void OnEventToPressOffLeft()
-    {
-        Single.Player.m_bIsMoving = false;
-    }
     public void OnEventToDragRight(Vector3 vCenter, Vector3 vThumb, Vector3 vDirection)
     {
         m_bIsRightDrag = true;
@@ -112,12 +104,15 @@ public class SHUIWidget_CtrlType2 : SHMonoWrapper
 
         StopAllCoroutines();
     }
-    public void OnEventToDash()
+    public void OnPressOnDash()
     {
-        if (null == m_pEventDash)
-            return;
-
-        m_pEventDash();
+        if (null != m_pEventDash)
+            m_pEventDash(true);
+    }
+    public void OnPressOffDash()
+    {
+        if (null != m_pEventDash)
+            m_pEventDash(false);
     }
     #endregion
 }

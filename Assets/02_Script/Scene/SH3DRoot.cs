@@ -4,66 +4,64 @@ using UnityEngine;
 
 public class SH3DRoot : MonoBehaviour
 {
-    #region Members : Singleton
-    private static Transform    m_pRoot       = null;
-    private static Transform    m_pDamageRoot = null;
-    private static Transform    m_pCameraRoot = null;
-    private static Camera       m_pMainCamera = null;
-    private static Camera       m_pBlurCamera = null;
-    private static bool         m_bIsMove     = false;
+    #region Members : Inspector
+    [SerializeField] private Transform m_pLocalRootToDMG   = null;
+    [SerializeField] private Transform m_pLocalRootCamera  = null;
+    [SerializeField] private Transform m_pLocalRootPlayer  = null;
+    [SerializeField] private Transform m_pLocalRootMonster = null;
+    [SerializeField] private Transform m_pLocalRootBG      = null;
+    [SerializeField] private Camera    m_pLocalMainCamera  = null;
+    [SerializeField] private Camera    m_pLocalBlurCamera  = null;
     #endregion
 
 
-    #region Members : Inspector
-    public Transform    m_pLocalDMGRoot    = null;
-    public Transform    m_pLocalCameraRoot = null;
-    public Camera       m_pLocalMainCamera = null;
-    public Camera       m_pLocalBlurCamera = null;
+    #region Members : Root
+    [HideInInspector] private static Transform m_pRoot          = null;
+    [HideInInspector] private static Transform m_pRootToDamage  = null;
+    [HideInInspector] private static Transform m_pRootToCamera  = null;
+    [HideInInspector] private static Transform m_pRootToPlayer  = null;
+    [HideInInspector] private static Transform m_pRootToMonster = null;
+    [HideInInspector] private static Transform m_pRootToBG      = null;
+    #endregion
+
+
+    #region Members : Component
+    [HideInInspector] private static Camera    m_pMainCamera = null;
+    [HideInInspector] private static Camera    m_pBlurCamera = null;
     #endregion
 
 
     #region System Functions
     void Awake()
     {
-        m_pRoot         = transform;
-        m_pDamageRoot   = m_pLocalDMGRoot;
-        m_pCameraRoot   = m_pLocalCameraRoot;
-        m_pMainCamera   = m_pLocalMainCamera;
-        m_pBlurCamera   = m_pLocalBlurCamera;
+        m_pRoot          = transform;
+        m_pRootToDamage  = m_pLocalRootToDMG;
+        m_pRootToCamera  = m_pLocalRootCamera;
+        m_pRootToPlayer  = m_pLocalRootPlayer;
+        m_pRootToMonster = m_pLocalRootMonster;
+        m_pRootToBG      = m_pLocalRootBG;
+        m_pMainCamera    = m_pLocalMainCamera;
+        m_pBlurCamera    = m_pLocalBlurCamera;
     }
     void OnDestroy()
     {
         if (m_pRoot != transform)
             return;
 
-        m_pRoot       = null;
-        m_pDamageRoot = null;
-        m_pMainCamera = null;
-        m_pBlurCamera = null;
+        m_pRoot          = null;
+        m_pRootToDamage  = null;
+        m_pRootToCamera  = null;
+        m_pRootToPlayer  = null;
+        m_pRootToMonster = null;
+        m_pRootToBG      = null;
+        m_pMainCamera    = null;
+        m_pBlurCamera    = null;
     }
     void Update()
     {
-        // 카메라 이동 : 캐릭터 움직임에 따라
         var vPlayerPos = Single.Player.GetLocalPosition();
         SetCameraPosX(vPlayerPos.x);
         SetCameraPosZ(vPlayerPos.z);
-
-        // if (true == m_bIsMove)
-        // {
-        //     // 카메라 이동 : 상으로 흐름
-        //     var fGap = (Single.Player.GetLocalPosition().z - GetCameraPos().z);
-        //     fGap = Mathf.Clamp(fGap, 0.0f, fGap);
-        //     SetCameraPosZ(GetCameraPos().z + fGap + SHHard.m_fBasicMoveSpeed);
-        // 
-        //     // 캐릭터 위치 제한
-        //     Single.Player.LimiteInCamera();
-        //     
-        //     // 카메라 이동 : 좌/우는 캐릭터 따라
-        //     SetCameraPosX(Single.Player.GetLocalPosition().x);
-        // 
-        //     // 미터 스코어 처리
-        //     Single.ScoreBoard.SetMeter((GetCameraPos().z * 0.002f));
-        // }
     }
     #endregion
 
@@ -73,13 +71,25 @@ public class SH3DRoot : MonoBehaviour
     {
         return m_pRoot;
     }
-    public static Transform GetDMGRoot()
+    public static Transform GetRootToDMG()
     {
-        return m_pDamageRoot;
+        return m_pRootToDamage;
     }
-    public static Transform GetCameraRoot()
+    public static Transform GetRootToCamera()
     {
-        return m_pCameraRoot;
+        return m_pRootToCamera;
+    }
+    public static Transform GetRootToPlayer()
+    {
+        return m_pRootToPlayer;
+    }
+    public static Transform GetRootToMonster()
+    {
+        return m_pRootToMonster;
+    }
+    public static Transform GetRootToBG()
+    {
+        return m_pRootToBG;
     }
     public static Camera GetMainCamera()
     {
@@ -107,35 +117,27 @@ public class SH3DRoot : MonoBehaviour
 
         m_pBlurCamera.gameObject.SetActive(bIsActive);
     }
-    public static void StartCameraMove()
-    {
-        m_bIsMove = true;
-    }
-    public static void StopCameraMove()
-    {
-        m_bIsMove = false;
-    }
     #endregion
 
 
     #region Utility Functions
     Vector3 GetCameraPos()
     {
-        if (null == m_pCameraRoot)
+        if (null == m_pRootToCamera)
             return Vector3.zero;
 
-        return m_pCameraRoot.localPosition;
+        return m_pRootToCamera.localPosition;
     }
     void SetCameraPos(Vector3 vPos)
     {
-        if (null == m_pCameraRoot)
+        if (null == m_pRootToCamera)
             return;
 
-        m_pCameraRoot.localPosition = vPos;
+        m_pRootToCamera.localPosition = vPos;
     }
     void SetCameraPosX(float fX)
     {
-        if (null == m_pCameraRoot)
+        if (null == m_pRootToCamera)
             return;
 
         var vLocalPos = GetCameraPos();
@@ -144,7 +146,7 @@ public class SH3DRoot : MonoBehaviour
     }
     void SetCameraPosY(float fY)
     {
-        if (null == m_pCameraRoot)
+        if (null == m_pRootToCamera)
             return;
 
         var vLocalPos = GetCameraPos();
@@ -153,7 +155,7 @@ public class SH3DRoot : MonoBehaviour
     }
     void SetCameraPosZ(float fZ)
     {
-        if (null == m_pCameraRoot)
+        if (null == m_pRootToCamera)
             return;
 
         var vLocalPos = GetCameraPos();

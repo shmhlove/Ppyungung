@@ -32,7 +32,7 @@ public class SHUIPanel_CtrlPad : SHUIBasePanel
     private Action<Vector3> m_pEventMove      = null;
     private Action<Vector3> m_pEventDirection = null;
     private Action          m_pEventShoot     = null;
-    private Action          m_pEventDash      = null;
+    private Action<bool>    m_pEventDash      = null;
     #endregion
 
 
@@ -56,6 +56,10 @@ public class SHUIPanel_CtrlPad : SHUIBasePanel
     {
         SettingController(m_eCtrlType = eType);
     }
+    public bool IsCtrlType(eControlType eType)
+    {
+        return (eType == m_eCtrlType);
+    }
     public void AddEventToMove(Action<Vector3> pEvent)
     {
         m_pEventMove = pEvent;
@@ -68,7 +72,7 @@ public class SHUIPanel_CtrlPad : SHUIBasePanel
     {
         m_pEventShoot = pEvent;
     }
-    public void AddEventToDash(Action pEvent)
+    public void AddEventToDash(Action<bool> pEvent)
     {
         m_pEventDash = pEvent;
     }
@@ -92,58 +96,36 @@ public class SHUIPanel_CtrlPad : SHUIBasePanel
         Activer(m_pCtrlType4, false);
         Activer(m_pCtrlType5, false);
         Activer(m_pCtrlType6, false);
-
-
+        
         switch (eType)
         {
             case eControlType.Type_0:
-                if (null != m_pCtrlType0)
-                {
-                    m_pCtrlType0.Initialize(OnEventToMove, OnEventToDirection, OnEventToShoot, OnEventToDash);
-                    Activer(m_pCtrlType0, true);
-                }
+                m_pCtrlType0.Initialize(OnEventToMove, OnEventToDirection, OnEventToShoot, OnEventToDash);
+                Activer(m_pCtrlType0, true);
                 break;
             case eControlType.Type_1:
-                if (null != m_pCtrlType1)
-                {
-                    m_pCtrlType1.Initialize(OnEventToMove, OnEventToDirection, OnEventToShoot, OnEventToDash);
-                    Activer(m_pCtrlType1, true);
-                }
+                m_pCtrlType1.Initialize(OnEventToMove, OnEventToDirection, OnEventToShoot, OnEventToDash);
+                Activer(m_pCtrlType1, true);
                 break;
             case eControlType.Type_2:
-                if (null != m_pCtrlType2)
-                {
-                    m_pCtrlType2.Initialize(OnEventToMove, OnEventToDirection, OnEventToShoot, OnEventToDash);
-                    Activer(m_pCtrlType2, true);
-                }
+                m_pCtrlType2.Initialize(OnEventToMove, OnEventToDirection, OnEventToShoot, OnEventToDash);
+                Activer(m_pCtrlType2, true);
                 break;
             case eControlType.Type_3:
-                if (null != m_pCtrlType3)
-                {
-                    m_pCtrlType3.Initialize(OnEventToMove, OnEventToDirection, OnEventToShoot, OnEventToDash);
-                    Activer(m_pCtrlType3, true);
-                }
+                m_pCtrlType3.Initialize(OnEventToMove, OnEventToDirection, OnEventToShoot, OnEventToDash);
+                Activer(m_pCtrlType3, true);
                 break;
             case eControlType.Type_4:
-                if (null != m_pCtrlType4)
-                {
-                    m_pCtrlType4.Initialize(OnEventToMove, OnEventToDirection, OnEventToShoot, OnEventToDash);
-                    Activer(m_pCtrlType4, true);
-                }
+                m_pCtrlType4.Initialize(OnEventToMove, OnEventToDirection, OnEventToShoot, OnEventToDash);
+                Activer(m_pCtrlType4, true);
                 break;
             case eControlType.Type_5:
-                if (null != m_pCtrlType5)
-                {
-                    m_pCtrlType5.Initialize(OnEventToMove, OnEventToDirection, OnEventToShoot, OnEventToDash);
-                    Activer(m_pCtrlType5, true);
-                }
+                m_pCtrlType5.Initialize(OnEventToMove, OnEventToDirection, OnEventToShoot, OnEventToDash);
+                Activer(m_pCtrlType5, true);
                 break;
             case eControlType.Type_6:
-                if (null != m_pCtrlType6)
-                {
-                    m_pCtrlType6.Initialize(OnEventToMove, OnEventToDirection, OnEventToShoot, OnEventToDash);
-                    Activer(m_pCtrlType6, true);
-                }
+                m_pCtrlType6.Initialize(OnEventToMove, OnEventToDirection, OnEventToShoot, OnEventToDash);
+                Activer(m_pCtrlType6, true);
                 break;
         }
     }
@@ -179,12 +161,12 @@ public class SHUIPanel_CtrlPad : SHUIBasePanel
 
         m_pEventShoot();
     }
-    public void OnEventToDash()
+    public void OnEventToDash(bool bIsOn)
     {
         if (null == m_pEventDash)
             return;
 
-        m_pEventDash();
+        m_pEventDash(bIsOn);
     }
     #endregion
 }

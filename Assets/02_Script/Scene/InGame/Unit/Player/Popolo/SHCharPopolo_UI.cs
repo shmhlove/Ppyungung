@@ -10,29 +10,11 @@ public partial class SHCharPopolo : SHState
         if (null == pCtrlUI)
             return false;
 
+        pCtrlUI.Clear();
         pCtrlUI.AddEventToMove((vDirection) => m_vMoveDirection = vDirection);
         pCtrlUI.AddEventToDirection((vDirection) => m_vLookDirection = vDirection);
         pCtrlUI.AddEventToShoot(() => m_bIsShoot = true);
-        pCtrlUI.AddEventToDash(() => 
-        {
-            if (false == m_bIsDashReady)
-                return;
-
-            m_bIsDash       = true;
-            m_bIsDashReady  = false;
-            SH3DRoot.SetActiveBlurCamera(true);
-
-            SHCoroutine.Instance.WaitTime(() =>
-            {
-                m_bIsDash = false;
-                SH3DRoot.SetActiveBlurCamera(false);
-            }, SHHard.m_fCharDashTime);
-
-            SHCoroutine.Instance.WaitTime(() =>
-            {
-                m_bIsDashReady = true;
-            }, SHHard.m_fCharDashTime + SHHard.m_fCharDashCool);
-        });
+        pCtrlUI.AddEventToDash((bIsOn) => m_bIsDash = bIsOn);
         
         return true;
     }

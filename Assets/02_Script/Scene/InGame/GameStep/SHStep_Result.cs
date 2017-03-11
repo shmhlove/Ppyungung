@@ -11,10 +11,10 @@ public class SHStep_Result : SHStep_Component
     #region Virtual Functions
     public override void InitialStep()
     {
-        Single.Damage.Clear();
-        Single.ScoreBoard.ShowBestScore();
         Single.UI.Show("Panel_ResultMenu", (Action)OnEventToRetry);
         Single.UI.Close("Panel_CtrlPad");
+
+        Single.Sound.PlayBGM("Audio_BGM_GameOver");
     }
     #endregion
     

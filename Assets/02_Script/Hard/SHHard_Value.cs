@@ -4,6 +4,11 @@ using System.Collections;
 public static partial class SHHard
 {
     // 캐릭터 관련
+    public static float m_iCharMaxHealthPoint
+    {
+        get { return GetTable().m_iCharMaxHP; }
+        set { GetTable().m_iCharMaxHP = value; }
+    }
     public static float m_fCharMoveSpeed
     {
         get { return GetTable().m_fCharMoveSpeed; }
@@ -24,16 +29,22 @@ public static partial class SHHard
         get { return GetTable().m_fCharDashSpeed; }
         set { GetTable().m_fCharDashSpeed = value; }
     }
-    public static float m_fCharDashTime
+    public static float m_fCharAddDashPoint
     {
-        get { return GetTable().m_fCharDashTime; }
-        set { GetTable().m_fCharDashTime = value; }
+        get { return GetTable().m_fCharAddDashPoint; }
+        set { GetTable().m_fCharAddDashPoint = value; }
     }
-    public static float m_fCharDashCool
+    public static float m_fCharDecDashPoint
     {
-        get { return GetTable().m_fCharDashCool; }
-        set { GetTable().m_fCharDashCool = value; }
+        get { return GetTable().m_fCharDecDashPoint; }
+        set { GetTable().m_fCharDecDashPoint = value; }
     }
+    public static float m_fCharMaxDashPoint
+    {
+        get { return GetTable().m_fCharMaxDashPoint; }
+        set { GetTable().m_fCharMaxDashPoint = value; }
+    }
+    
 
     // 몬스터 관련
     public static float m_fMonMoveSpeed
@@ -45,16 +56,6 @@ public static partial class SHHard
     {
         get { return GetTable().m_fMonDamageSpeed; }
         set { GetTable().m_fMonDamageSpeed = value; }
-    }
-    public static float m_fMonAttackDelay
-    {
-        get { return GetTable().m_fMonAttackDelay; }
-        set { GetTable().m_fMonAttackDelay = value; }
-    }
-    public static float m_fMonShootDelay
-    {
-        get { return GetTable().m_fMonShootDelay; }
-        set { GetTable().m_fMonShootDelay = value; }
     }
     public static float m_fMonGenDaly
     {
@@ -71,6 +72,7 @@ public static partial class SHHard
         get { return GetTable().m_iMonMaxCount; }
         set { GetTable().m_iMonMaxCount = value; }
     }
+
 
     // 이동 관련
     public static float m_fBasicMoveSpeed
@@ -101,7 +103,11 @@ public static partial class SHHard
         get { return GetTable().m_iFrameRate; }
         set { GetTable().m_iFrameRate = value; }
     }
-
+    public static float m_fComboTime
+    {
+        get { return GetTable().m_fComboTime; }
+        set { GetTable().m_fComboTime = value; }
+    }
 
     // 유틸
     static JsonConstants GetTable()

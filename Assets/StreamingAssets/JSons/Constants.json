@@ -1,17 +1,17 @@
 {
 	"Constants": 
 	{
-        "m_fCharMoveSpeed": 60.0,
+        "m_iCharMaxHP": 3.0,
+        "m_fCharMoveSpeed": 70.0,
         "m_fCharDamageSpeed": 6000.0,
         "m_fCharShootDelay": 0.2,
-        "m_fCharDashSpeed": 100.0,
-        "m_fCharDashTime": 0.3,
-        "m_fCharDashCool": 0.0,
+        "m_fCharDashSpeed": 150.0,
+        "m_fCharAddDashPoint": 3.5,
+        "m_fCharDecDashPoint": 0.8,
+        "m_fCharMaxDashPoint": 100.0,
 
         "m_fMonMoveSpeed": 3000.0,
         "m_fMonDamageSpeed": 3000.0,
-        "m_fMonAttackDelay": 1.0,
-        "m_fMonShootDelay": 0.8,
         "m_fMonGenDaly": 1.0,
         "m_iMonMaxGen": 5,
         "m_iMonMaxCount": 20,
@@ -21,6 +21,7 @@
         "m_fMoveLimitY": 1000.0,
         
         "m_fUnitScale": 0.7,
-        "m_iFrameRate": 45
+        "m_iFrameRate": 45,
+        "m_fComboTime": 0.5
 	}
 }

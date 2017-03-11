@@ -18,7 +18,7 @@ public class SHEditorConvertToByte : Editor
 
         DateTime pStartTime = DateTime.Now;
 
-        Run(true);
+        Run(false);
 
         GameObject.DestroyImmediate(GameObject.Find("SHSingletons(Destroy)"));
         

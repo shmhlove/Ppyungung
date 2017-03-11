@@ -16,7 +16,7 @@ public class SHMainToInGame : MonoBehaviour
         else
             Single.UI.Close("Panel_Development");
 
-        Single.InGame.StartGame();
+        Single.InGame.StartInGame();
     }
     void FixedUpdate()
     {

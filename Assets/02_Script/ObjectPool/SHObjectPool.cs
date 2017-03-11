@@ -26,16 +26,19 @@ public class SHObjectInfo
     public ePoolDestroyType m_eDestroyType   = ePoolDestroyType.None;
     public GameObject       m_pObject        = null;
 
+    public string           m_strPrefabName  = string.Empty;
     public Vector3          m_vStartPosition = Vector3.zero;
     public Quaternion       m_qStartRotate   = Quaternion.identity;
     public Vector3          m_vStartScale    = Vector3.zero;
-
+    
     public SHObjectInfo() { }
-    public SHObjectInfo(ePoolReturnType eReturnType, ePoolDestroyType eDestoryType, GameObject pObject)
+    public SHObjectInfo(ePoolReturnType eReturnType, ePoolDestroyType eDestoryType, GameObject pObject, string strPrefabName)
     {
-        m_eReturnType  = eReturnType;
-        m_eDestroyType = eDestoryType;
-        m_pObject      = pObject;
+        m_eReturnType   = eReturnType;
+        m_eDestroyType  = eDestoryType;
+        m_pObject       = pObject;
+        m_strPrefabName = strPrefabName;
+
         if (null != m_pObject)
         {
             m_vStartPosition = m_pObject.transform.localPosition;
@@ -78,10 +81,7 @@ public class SHObjectInfo
     }
     public string GetName()
     {
-        if (null == m_pObject)
-            return string.Empty;
-
-        return m_pObject.name;
+        return m_strPrefabName;
     }
     public bool IsSameObject(GameObject pObject)
     {
@@ -99,7 +99,9 @@ public class SHObjectInfo
         if (null == m_pObject)
             return;
 
-        GameObject.DestroyObject(m_pObject);
+        SHGameObject.DestoryObject(m_pObject);
+        m_pObject        = null;
+        m_strPrefabName  = string.Empty;
     }
 }
 
@@ -197,7 +199,8 @@ public class SHObjectPool : SHSingleton<SHObjectPool>
         CheckDictionary(m_dicActives,   strName);
         CheckDictionary(m_dicInactives, strName);
 
-        if (ePoolDestroyType.Return == pObjectInfo.m_eDestroyType)
+        if ((null == pObjectInfo.m_pObject) || 
+            (ePoolDestroyType.Return == pObjectInfo.m_eDestroyType))
         {
             SetDestroyObject(strName, pObjectInfo);
         }
@@ -241,7 +244,7 @@ public class SHObjectPool : SHSingleton<SHObjectPool>
                 return null;
 
             return new SHObjectInfo(
-                eReturnType, eDestroyType, pObject);
+                eReturnType, eDestroyType, pObject, strName);
         }
         else
         {

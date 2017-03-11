@@ -14,7 +14,7 @@ public partial class SHState : SHMonoWrapper
             return;
         
         StopAnimCoroutine();
-        PlayAnim(eDirection.Front, m_pAnimRoot, pInfo.m_strAnimClip, pInfo.OnEndAnimation);
+        base.PlayAnim(eDirection.Front, m_pAnimRoot, pInfo.m_strAnimClip, pInfo.OnEndAnimation);
     }
 
     public bool IsAnimPlaying(int iStateID)
@@ -23,6 +23,15 @@ public partial class SHState : SHMonoWrapper
         if (null == pState)
             return false;
 
-        return IsPlaying(pState.m_strAnimClip);
+        return base.IsPlaying(pState.m_strAnimClip);
+    }
+
+    public void SetPauseAnimation(bool bIsPause)
+    {
+        var pState = GetCurrentState();
+        if (null == pState)
+            return;
+
+        base.SetPauseAnim(bIsPause, pState.m_strAnimClip);
     }
 }

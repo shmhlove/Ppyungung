@@ -17,51 +17,43 @@
 			"s_Path": "Prefab/Background/BGBlock"
 		},
 		{
-			"s_Name": "Dmg_Char",
-			"s_FileName": "Dmg_Char.prefab",
+			"s_Name": "Dmg_Char_Body",
+			"s_FileName": "Dmg_Char_Body.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "13012",
-			"s_Hash": "4AE727CD40E99848DFE5E7188E2F1B76",
-			"s_Path": "Prefab/Damage/Dmg_Char"
+			"s_Size": "14212",
+			"s_Hash": "A94ACB17B31E68DC01D6917625C02AA7",
+			"s_Path": "Prefab/Damage/Dmg_Char_Body"
 		},
 		{
 			"s_Name": "Dmg_Char_Bullet",
 			"s_FileName": "Dmg_Char_Bullet.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "16636",
-			"s_Hash": "448752463075643FEC894706616F1E7E",
+			"s_Size": "17812",
+			"s_Hash": "B485418A9AFE65DE4BF5172D8C7CE615",
 			"s_Path": "Prefab/Damage/Dmg_Char_Bullet"
-		},
-		{
-			"s_Name": "Dmg_Mon",
-			"s_FileName": "Dmg_Mon.prefab",
-			"s_Extension": ".prefab",
-			"s_Size": "13012",
-			"s_Hash": "071ED1C5A79BA9A20D8DB9E2588FB7E2",
-			"s_Path": "Prefab/Damage/Dmg_Mon"
 		},
 		{
 			"s_Name": "Dmg_Mon_Bullet",
 			"s_FileName": "Dmg_Mon_Bullet.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "16636",
-			"s_Hash": "939DFFEF3A4AC595AF6AB9EAA2F446AF",
+			"s_Size": "17820",
+			"s_Hash": "F063D4BC12E79BD3330B813120147F22",
 			"s_Path": "Prefab/Damage/Dmg_Mon_Bullet"
 		},
 		{
 			"s_Name": "Dmg_Mon_Explosion",
 			"s_FileName": "Dmg_Mon_Explosion.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "19404",
-			"s_Hash": "5FDF96DEA9619AF6C597D8CDB82D6DBF",
+			"s_Size": "17788",
+			"s_Hash": "F7079891AF8B73E27FBC063CF9C6313D",
 			"s_Path": "Prefab/Damage/Dmg_Mon_Explosion"
 		},
 		{
 			"s_Name": "Dmg_Sample",
 			"s_FileName": "Dmg_Sample.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "15396",
-			"s_Hash": "06780137F3862C4FF414E24A4318599F",
+			"s_Size": "16588",
+			"s_Hash": "279FC97CC18BB20907EC02703ADFC6A3",
 			"s_Path": "Prefab/Damage/Dmg_Sample"
 		},
 		{
@@ -84,8 +76,8 @@
 			"s_Name": "Panel_Development",
 			"s_FileName": "Panel_Development.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "99684",
-			"s_Hash": "7678FBC10A94EDC0B4504FD8AEE13439",
+			"s_Size": "121812",
+			"s_Hash": "6ED2DB6623699D014CE3740FCF9B523D",
 			"s_Path": "Prefab/UI/Panel/Panel_Development"
 		},
 		{
@@ -135,6 +127,14 @@
 			"s_Size": "16664",
 			"s_Hash": "55E65D3B23BE4DB3AB9AC44290893FEE",
 			"s_Path": "Prefab/Unit/MonMouse"
+		},
+		{
+			"s_Name": "Audio_BGM_GameOver",
+			"s_FileName": "Audio_BGM_GameOver.wav",
+			"s_Extension": ".wav",
+			"s_Size": "360852",
+			"s_Hash": "83ACDDE38C731E8FC3216C1F282F2AA3",
+			"s_Path": "Sound/BGM/Audio_BGM_GameOver"
 		},
 		{
 			"s_Name": "Audio_BGM_InGame",
@@ -204,8 +204,8 @@
 			"s_Name": "Constants",
 			"s_FileName": "Constants.bytes",
 			"s_Extension": ".bytes",
-			"s_Size": "72",
-			"s_Hash": "61876ED5E516EFE5DA5CFD04670CC495",
+			"s_Size": "76",
+			"s_Hash": "07ADD45459068F156C614D34AD3B6C8D",
 			"s_Path": "Table/Bytes/Constants"
 		}
 	]

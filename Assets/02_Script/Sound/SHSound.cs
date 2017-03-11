@@ -125,6 +125,7 @@ public class SHSound : SHSingleton<SHSound>
         m_dicSoundTable.Clear();
         m_dicSoundTable.Add("Audio_BGM_InGame",         new SHSound_BGM_InGame());
         m_dicSoundTable.Add("Audio_BGM_OutGame",        new SHSound_BGM_OutGame());
+        m_dicSoundTable.Add("Audio_BGM_GameOver",       new SHSound_BGM_GameOver());
         m_dicSoundTable.Add("Audio_Effect_Dash",        new SHSound_Effect_Dash());
         m_dicSoundTable.Add("Audio_Effect_Explosion",   new SHSound_Effect_Explosion());
         m_dicSoundTable.Add("Audio_Effect_GetCoin",     new SHSound_Effect_GetCoin());

@@ -9,16 +9,11 @@ public class SHUIWidget_CtrlType4 : SHMonoWrapper
     #endregion
 
 
-    #region Members : Info
-    private DateTime        m_pPressTime;
-    #endregion
-
-
     #region Members : Event
     private Action<Vector3> m_pEventMove      = null;
     private Action<Vector3> m_pEventDirection = null;
     private Action          m_pEventShoot     = null;
-    private Action          m_pEventDash      = null;
+    private Action<bool>    m_pEventDash      = null;
     #endregion
 
 
@@ -27,11 +22,9 @@ public class SHUIWidget_CtrlType4 : SHMonoWrapper
     {
         if (null != m_pJoyStick)
         {
-            m_pJoyStick.m_pEventToDrag     = OnEventToDrag;
-            m_pJoyStick.m_pEventToPressOn  = OnEventToPressOn;
+            m_pJoyStick.m_pEventToDrag = OnEventToDrag;
         }
-
-        Single.Player.m_bIsAttacking = true;
+        
         StartCoroutine(CoroutineToShoot());
     }
     public override void OnDisable()
@@ -40,15 +33,14 @@ public class SHUIWidget_CtrlType4 : SHMonoWrapper
 
         if (true == SHApplicationInfo.m_bIsAppQuit)
             return;
-
-        Single.Player.m_bIsAttacking = false;
+        
         StopAllCoroutines();
     }
     #endregion
 
 
     #region Interface Functions
-    public void Initialize(Action<Vector3> pMove, Action<Vector3> pDirection, Action pShoot, Action pDash)
+    public void Initialize(Action<Vector3> pMove, Action<Vector3> pDirection, Action pShoot, Action<bool> pDash)
     {
         m_pEventMove      = pMove;
         m_pEventDirection = pDirection;
@@ -88,24 +80,15 @@ public class SHUIWidget_CtrlType4 : SHMonoWrapper
         if (null != m_pEventDirection)
             m_pEventDirection(vDirection);
     }
-    public void OnEventToPressOnLeft()
+    public void OnPressOnDash()
     {
-        Single.Player.m_bIsMoving = true;
+        if (null != m_pEventDash)
+            m_pEventDash(true);
     }
-    public void OnEventToPressOffLeft()
+    public void OnPressOffDash()
     {
-        Single.Player.m_bIsMoving = false;
-    }
-    public void OnEventToPressOn()
-    {
-        float fTimeGap = (float)(DateTime.Now - m_pPressTime).TotalMilliseconds / 1000.0f;
-        if (fTimeGap < 0.5f)
-        {
-            if (null != m_pEventDash)
-                m_pEventDash();
-        }
-
-        m_pPressTime = DateTime.Now;
+        if (null != m_pEventDash)
+            m_pEventDash(false);
     }
     #endregion
 }

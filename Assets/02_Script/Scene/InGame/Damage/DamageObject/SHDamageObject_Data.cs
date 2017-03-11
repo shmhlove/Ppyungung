@@ -81,7 +81,7 @@ public class SHDamageObjectInfo
     public int              m_iCheckDelayTickToLate     = 0;                // 데미지 생성 뒤 얼마 후 부터 충돌체크를 하지 않을 것인가?
     public bool             m_bIsDeleteToCrash          = true;             // 충돌이 즉시 이 데미지를 제거할 것인가?
     public bool             m_bIsDeleteWithCreator      = true;             // 데미지 생성자가 Disable일때 데미지를 제거할 것인가?
-
+    
     [Header("- 위치")]
     public bool             m_bIsParentToUI             = false;            // UI Root를 부모 오브젝트로 설정할 것인가?
     public bool             m_bIsParentToCreator        = true;             // 데미지 발생자를 부모 오브젝트로 설정할 것인가?

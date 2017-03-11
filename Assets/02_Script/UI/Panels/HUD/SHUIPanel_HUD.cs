@@ -5,6 +5,9 @@ using System.Collections;
 public class SHUIPanel_HUD : SHUIBasePanel
 {
     #region Members : Inspector
+    [Header("HUD Widget")]
+    [SerializeField] private SHUIWidget_HP   m_pHP   = null;
+    [SerializeField] private SHUIWidget_Dash m_pDash = null;
     #endregion
 
 
@@ -13,6 +16,14 @@ public class SHUIPanel_HUD : SHUIBasePanel
 
 
     #region System Functions
+    public override void Update()
+    {
+        if (null != m_pHP)
+            m_pHP.FrameMove();
+
+        if (null != m_pDash)
+            m_pDash.FrameMove();
+    }
     #endregion
 
 

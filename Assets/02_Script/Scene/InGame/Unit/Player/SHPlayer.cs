@@ -5,31 +5,40 @@ using System.Collections;
 public class SHPlayer : SHInGame_Component
 {
     #region Members
-    public GameObject      m_pPlayerRoot = null;
-    public SHCharPopolo    m_pCharacter  = null;
-    #endregion
-
-
-    #region Members : HardValue
-    public bool            m_bIsAttacking = false;
-    public bool            m_bIsMoving    = false;
+    public SHCharPopolo    m_pCharacter       = null;
     #endregion
 
 
     #region Virtual Functions
     public override void OnInitialize() { }
     public override void OnFinalize() { }
-    public override void OnFrameMove() { }
+    public override void OnFrameMove()
+    {
+        if (null == m_pCharacter)
+            return;
+
+        m_pCharacter.FrameMove();
+    }
+    public override void SetPause(bool bIsPause)
+    {
+        base.SetPause(bIsPause);
+
+        if (null == m_pCharacter)
+            return;
+
+        m_pCharacter.SetPauseAnimation(bIsPause);
+    }
     #endregion
 
 
     #region Interface Functions
     public void StartPlayer()
     {
-        m_pCharacter = Single.ObjectPool.Get<SHCharPopolo>("CharPopolo");
-        m_pCharacter.SetActive(true);
-        m_pCharacter.SetParent(GetRoot());
+        DestoryCharacter();
+        m_pCharacter = Single.ObjectPool.Get<SHCharPopolo>("CharPopolo", true, ePoolReturnType.None, ePoolDestroyType.Return);
+        m_pCharacter.SetParent(SH3DRoot.GetRootToPlayer());
         m_pCharacter.SetLocalScale(m_pCharacter.m_vStartScale * SHHard.m_fUnitScale);
+        m_pCharacter.OnInitialize();
         m_pCharacter.StartCharacter();
     }
     public void StopPlayer()
@@ -39,13 +48,6 @@ public class SHPlayer : SHInGame_Component
 
         m_pCharacter.StopCharacter();
     }
-    public Vector3 GetPosition()
-    {
-        if (null == m_pCharacter)
-            return Vector3.zero;
-
-        return m_pCharacter.GetPosition();
-    }
     public Vector3 GetLocalPosition()
     {
         if (null == m_pCharacter)
@@ -53,33 +55,38 @@ public class SHPlayer : SHInGame_Component
 
         return m_pCharacter.GetLocalPosition();
     }
-    public void LimiteInCamera()
+    public float GetHPPercent()
     {
         if (null == m_pCharacter)
-            return;
+            return 0.0f;
 
-        m_pCharacter.LimitInCamera();
+        return SHMath.Divide(m_pCharacter.m_fHealthPoint, (float)SHHard.m_iCharMaxHealthPoint) * 100.0f;
     }
-    public bool IsDie()
+    public float GetDPPercent()
     {
         if (null == m_pCharacter)
-            return true;
+            return 0.0f;
 
-        return m_pCharacter.IsDie();
+        return SHMath.Divide(m_pCharacter.m_fDashPoint, SHHard.m_fCharMaxDashPoint) * 100.0f;
+    }
+    public bool IsActive()
+    {
+        if (null == m_pCharacter)
+            return false;
+
+        return m_pCharacter.IsActive();
     }
     #endregion
 
 
     #region Utility Functions
-    GameObject GetRoot()
+    void DestoryCharacter()
     {
-        if (null == m_pPlayerRoot)
-        {
-            m_pPlayerRoot = SHGameObject.CreateEmptyObject("Player");
-            m_pPlayerRoot.transform.SetParent(SH3DRoot.GetRoot());
-        }
+        if (null == m_pCharacter)
+            return;
 
-        return m_pPlayerRoot;
+        Single.ObjectPool.Return(m_pCharacter.gameObject);
+        m_pCharacter = null;
     }
     #endregion
 }

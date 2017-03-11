@@ -40,9 +40,6 @@ public class SHStep : SHInGame_Component
     public override void OnFinalize() { }
     public override void OnFrameMove()
     {
-        if (true == m_bIsPause)
-            return;
-
         if (0 == m_dicSteps.Count)
             return;
 
@@ -90,6 +87,10 @@ public class SHStep : SHInGame_Component
 
 
     #region Interface : Helpper
+    public bool IsStep(eStep eType)
+    {
+        return (eType == m_eCurrentStep);
+    }
     #endregion
 
 

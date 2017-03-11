@@ -12,8 +12,11 @@ public class SHAddDamageParam
     [HideInInspector] public List<Action<SHDamageObject>> m_pEventToCollision = new List<Action<SHDamageObject>>();
 
     public SHAddDamageParam() { }
-    public SHAddDamageParam(SHMonoWrapper pWho, GameObject pGuideTarget, 
-        Action<SHDamageObject> pEventDelete, Action<SHDamageObject> pEventCollision)
+    public SHAddDamageParam(
+        SHMonoWrapper   pWho, 
+        GameObject      pGuideTarget = null, 
+        Action<SHDamageObject> pEventDelete = null, 
+        Action<SHDamageObject> pEventCollision = null)
     {
         m_pWho           = pWho;
         m_pGuideTarget   = pGuideTarget;
@@ -65,7 +68,6 @@ public partial class SHDamageObject : SHMonoWrapper
     [HideInInspector] public bool    m_bIsDieDamage  = false;  // 데미지 라이프가 끝난 상태
     [HideInInspector] public bool    m_bIsCrashLock  = false;  // 데미지 충돌체크를 하지 않을 상태
     [HideInInspector] public int     m_iCrashHitTick = 0;      // 충돌 후 시간체크 (다단히트)
-    [HideInInspector] public Vector3 m_vBeforePosition;        // 이전 위치의 Bounds
     #endregion
     
 
