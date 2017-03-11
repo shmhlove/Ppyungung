@@ -94,15 +94,16 @@ public class SHMonster : SHInGame_Component
     {
         while (true)
         {
-            if (SHHard.m_iMonMaxCount > m_pMonsters.Count)
+            for (int iLoop = 0; iLoop < SHHard.m_iMonMaxGen; ++iLoop)
             {
-                for (int iLoop = 0; iLoop < SHHard.m_iMonMaxGen; ++iLoop)
-                {
-                    GenMonster();
-                    yield return new WaitForSeconds(SHMath.Random(0.0f, SHHard.m_fMonGenDaly));
-                }
+                if (SHHard.m_iMonMaxCount > m_pMonsters.Count)
+                    break;
+
+                GenMonster();
+
+                yield return new WaitForSeconds(SHMath.Random(0.0f, SHHard.m_fMonGenDaly));
             }
-            
+
             yield return new WaitForSeconds(SHHard.m_fMonGenDaly);
         }
     }
