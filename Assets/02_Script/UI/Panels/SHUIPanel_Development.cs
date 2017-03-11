@@ -8,7 +8,8 @@ public class SHUIPanel_Development : SHUIBasePanel
 {
     #region Members : Inspector
     [Header("Cheat Open")]
-    [SerializeField] private Animation      m_pAnimOpen                 = null;
+    [SerializeField] private AnimationClip  m_pAnimOpen                 = null;
+    [SerializeField] private AnimationClip  m_pAnimClose                = null;
     [Header("Information")]
     [SerializeField] private GameObject     m_pInfoRoot                 = null;
     [SerializeField] private UILabel        m_pLabelToID                = null;
@@ -144,17 +145,22 @@ public class SHUIPanel_Development : SHUIBasePanel
     #region Event : Opener
     public void OnClickToOpener(bool bIsOpen)
     {
-        if (null == m_pAnimOpen)
-            return;
-
         if (false == m_bIsUpdated)
             return;
 
         if (true == bIsOpen)
-            m_pAnimOpen.Play("Anim_Cheat_Open");
+        {
+            PlayAnimation(m_pAnimOpen, () =>
+            Time.timeScale = 0.0f);
+            //Single.InGame.PauseInGame(true);
+        }
         else
-            m_pAnimOpen.Play("Anim_Cheat_Close");
-
+        {
+            PlayAnimation(m_pAnimClose, () =>
+            Time.timeScale = 1.0f);
+            //Single.InGame.PauseInGame(false));
+        }
+        
         SetPlayerCtrlType();
         SetInputInfo();
     }

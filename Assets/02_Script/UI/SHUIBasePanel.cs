@@ -59,7 +59,7 @@ public class SHUIBasePanel : SHMonoWrapper
 
 
     #region Utility Functions
-    void PlayAnimation(AnimationClip pClip, Action pEndCallback)
+    protected void PlayAnimation(AnimationClip pClip, Action pEndCallback)
     {
         PlayAnim(eDirection.Front, m_pAnimRoot, pClip, pEndCallback);
     }

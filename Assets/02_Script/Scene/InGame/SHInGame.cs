@@ -19,7 +19,26 @@ public class SHInGame : SHSingleton<SHInGame>
     public override void OnInitialize() { }
     public override void OnFinalize()
     {
-        FinalizeEngine();
+        if (null != m_pStep)
+            m_pStep.OnFinalize();
+
+        if (null != m_pScoreBoard)
+            m_pScoreBoard.OnFinalize();
+
+        if (null != m_pBalance)
+            m_pBalance.OnFinalize();
+
+        if (null != m_pPlayer)
+            m_pPlayer.OnFinalize();
+
+        if (null != m_pMonster)
+            m_pMonster.OnFinalize();
+
+        if (null != m_pDamage)
+            m_pDamage.OnFinalize();
+
+        if (null != m_pBackground)
+            m_pBackground.OnFinalize();
     }
     #endregion
 
@@ -29,7 +48,7 @@ public class SHInGame : SHSingleton<SHInGame>
 
 
     #region Interface : System
-    public void StartGame()
+    public void StartInGame()
     {
         if (null != m_pStep)
             m_pStep.OnInitialize();
@@ -52,31 +71,36 @@ public class SHInGame : SHSingleton<SHInGame>
         if (null != m_pBackground)
             m_pBackground.OnInitialize();
     }
-    public void FinalizeEngine()
+    public void PauseInGame(bool bIsPause)
     {
+        SetPause(bIsPause);
+
         if (null != m_pStep)
-            m_pStep.OnFinalize();
+            m_pStep.SetPause(bIsPause);
 
         if (null != m_pScoreBoard)
-            m_pScoreBoard.OnFinalize();
-        
+            m_pScoreBoard.SetPause(bIsPause);
+
         if (null != m_pBalance)
-            m_pBalance.OnFinalize();
+            m_pBalance.SetPause(bIsPause);
 
         if (null != m_pPlayer)
-            m_pPlayer.OnFinalize();
+            m_pPlayer.SetPause(bIsPause);
 
         if (null != m_pMonster)
-            m_pMonster.OnFinalize();
+            m_pMonster.SetPause(bIsPause);
 
         if (null != m_pDamage)
-            m_pDamage.OnFinalize();
+            m_pDamage.SetPause(bIsPause);
 
         if (null != m_pBackground)
-            m_pBackground.OnFinalize();
+            m_pBackground.SetPause(bIsPause);
     }
     public void FrameMove()
     {
+        if (true == m_bIsPause)
+            return;
+
         if (null != m_pStep)
             m_pStep.OnFrameMove();
 

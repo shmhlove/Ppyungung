@@ -34,9 +34,6 @@ public partial class SHDamage : SHInGame_Component
     }
     public override void OnFrameMove()
     {
-        if (true == m_bIsPause)
-            return;
-
         OnAddDamage();
         OnDelDamage();
         
