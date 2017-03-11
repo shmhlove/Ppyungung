@@ -100,7 +100,7 @@ public class SHObjectInfo
             return;
 
         SHGameObject.DestoryObject(m_pObject);
-        m_pObject       = null;
+        m_pObject        = null;
         m_strPrefabName  = string.Empty;
     }
 }
@@ -199,7 +199,8 @@ public class SHObjectPool : SHSingleton<SHObjectPool>
         CheckDictionary(m_dicActives,   strName);
         CheckDictionary(m_dicInactives, strName);
 
-        if (ePoolDestroyType.Return == pObjectInfo.m_eDestroyType)
+        if ((null == pObjectInfo.m_pObject) || 
+            (ePoolDestroyType.Return == pObjectInfo.m_eDestroyType))
         {
             SetDestroyObject(strName, pObjectInfo);
         }
