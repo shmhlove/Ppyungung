@@ -13,6 +13,8 @@ public class SHStep_Result : SHStep_Component
     {
         Single.UI.Show("Panel_ResultMenu", (Action)OnEventToRetry);
         Single.UI.Close("Panel_CtrlPad");
+
+        Single.Sound.PlayBGM("Audio_BGM_GameOver");
     }
     #endregion
     

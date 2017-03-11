@@ -23,6 +23,14 @@
 			"p_Resources": 
 			[
 				{
+					"s_Name": "Audio_BGM_GameOver",
+					"s_FileName": "Audio_BGM_GameOver.wav",
+					"s_Extension": ".wav",
+					"s_Size": "360852",
+					"s_Hash": "83ACDDE38C731E8FC3216C1F282F2AA3",
+					"s_Path": "Sound/BGM/Audio_BGM_GameOver"
+				},
+				{
 					"s_Name": "Audio_BGM_InGame",
 					"s_FileName": "Audio_BGM_InGame.mp3",
 					"s_Extension": ".mp3",
