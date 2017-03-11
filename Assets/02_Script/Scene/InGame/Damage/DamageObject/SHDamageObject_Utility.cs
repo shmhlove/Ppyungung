@@ -149,7 +149,8 @@ public partial class SHDamageObject : SHMonoWrapper
             switch (eEvent)
             {
                 case eDamageEvent.Tick:
-                    if (m_pInfo.m_iLifeTick == pInfo.m_iPlayToLifeTick)
+                    if ((0 != pInfo.m_iPlayToLifeTick) &&
+                        (m_pInfo.m_iLifeTick == pInfo.m_iPlayToLifeTick))
                         Single.Sound.PlayEffect(pInfo.m_strClipName);
                     break;
                 case eDamageEvent.Start:
