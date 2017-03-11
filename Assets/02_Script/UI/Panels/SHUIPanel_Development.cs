@@ -17,6 +17,7 @@ public class SHUIPanel_Development : SHUIBasePanel
     [SerializeField] private GameObject     m_pInfoRoot                 = null;
     [SerializeField] private UILabel        m_pLabelToID                = null;
     [SerializeField] private UILabel        m_pLabelToName              = null;
+    [SerializeField] private UILabel        m_pLabelToFPS               = null;
     [Header("Player")]
     [SerializeField] private UIPopupList    m_pPopupListToCtrl          = null;
     [SerializeField] private UIInput        m_pInputToCharMoveSpeed     = null;
@@ -41,7 +42,8 @@ public class SHUIPanel_Development : SHUIBasePanel
 
 
     #region Members : Info
-    private bool m_bIsUpdated = false;
+    private bool    m_bIsUpdated = false;
+    private float   m_fDeltaTime = 0.0f;
     #endregion
 
 
@@ -52,8 +54,14 @@ public class SHUIPanel_Development : SHUIBasePanel
     public override void Update()
     {
         m_bIsUpdated = true;
-        SetLogToID();
-        SetLogToUserName();
+        m_fDeltaTime += (Time.deltaTime - m_fDeltaTime) * 0.1f;
+
+        if (true == m_pInfoRoot.activeInHierarchy)
+        {
+            SetLogToID();
+            SetLogToUserName();
+            SetFPS();
+        }
     }
     #endregion
 
@@ -88,6 +96,13 @@ public class SHUIPanel_Development : SHUIBasePanel
             m_pLabelToName.text = "Not Login";
         else
             m_pLabelToName.text = strUserName;
+    }
+    void SetFPS()
+    {
+        if (null == m_pLabelToFPS)
+            return;
+
+        m_pLabelToFPS.text = string.Format("FPS : {0}", (1.0f / m_fDeltaTime).ToString("N2"));
     }
     void SetPlayerCtrlType()
     {
