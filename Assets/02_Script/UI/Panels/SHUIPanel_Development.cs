@@ -154,11 +154,12 @@ public class SHUIPanel_Development : SHUIBasePanel
         if (true == bIsOpen)
         {
             PlayAnimation(m_pAnimOpen, null);
+            StopAllCoroutines();
             StartCoroutine(CoroutineToPauseGame());
         }
         else
         {
-            PlayAnimation(m_pAnimClose, () => 
+            PlayAnimation(m_pAnimClose, () =>
             StartCoroutine(CoroutineToResumeGame(3)));
         }
         
@@ -169,7 +170,8 @@ public class SHUIPanel_Development : SHUIBasePanel
     {
         m_pLocker.SetActive(true);
         Single.InGame.PauseInGame(true);
-        
+        NGUITools.SetActive(m_pResumeCounter.gameObject, false);
+
         yield return null;
     }
     IEnumerator CoroutineToResumeGame(int iWaitSecond)
