@@ -35,7 +35,7 @@ public class SHPlayer : SHInGame_Component
     public void StartPlayer()
     {
         DestoryCharacter();
-        m_pCharacter = Single.ObjectPool.Get<SHCharPopolo>("CharPopolo", true, ePoolReturnType.Disable, ePoolDestroyType.Return);
+        m_pCharacter = Single.ObjectPool.Get<SHCharPopolo>("CharPopolo", true, ePoolReturnType.None, ePoolDestroyType.Return);
         m_pCharacter.SetParent(SH3DRoot.GetRootToPlayer());
         m_pCharacter.SetLocalScale(m_pCharacter.m_vStartScale * SHHard.m_fUnitScale);
         m_pCharacter.OnInitialize();

@@ -87,6 +87,10 @@ public class SHStep : SHInGame_Component
 
 
     #region Interface : Helpper
+    public bool IsStep(eStep eType)
+    {
+        return (eType == m_eCurrentStep);
+    }
     #endregion
 
 

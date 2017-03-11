@@ -174,13 +174,16 @@ public class SHUIPanel_Development : SHUIBasePanel
     }
     IEnumerator CoroutineToResumeGame(int iWaitSecond)
     {
-        NGUITools.SetActive(m_pResumeCounter.gameObject, true);
-        for (int iLoop = 0; iLoop< iWaitSecond; ++iLoop)
+        if (true == Single.Step.IsStep(eStep.Play))
         {
-            m_pResumeCounter.text = (iWaitSecond - iLoop).ToString();
-            yield return new WaitForSeconds(1.0f);
+            NGUITools.SetActive(m_pResumeCounter.gameObject, true);
+            for (int iLoop = 0; iLoop< iWaitSecond; ++iLoop)
+            {
+                m_pResumeCounter.text = (iWaitSecond - iLoop).ToString();
+                yield return new WaitForSeconds(1.0f);
+            }
+            NGUITools.SetActive(m_pResumeCounter.gameObject, false);
         }
-        NGUITools.SetActive(m_pResumeCounter.gameObject, false);
 
         m_pLocker.SetActive(false);
         Single.InGame.PauseInGame(false);
