@@ -118,6 +118,10 @@ public partial class SHDamage : SHInGame_Component
 
         m_dicDelDamages.Add(pDamage.m_pInfo.m_strID, pDamage);
     }
+    public int GetDamageCount()
+    {
+        return m_dicDamages.Count;
+    }
     public void Clear()
     {
         OnAddDamage();

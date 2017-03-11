@@ -19,6 +19,7 @@ public class SHUIPanel_Development : SHUIBasePanel
     [SerializeField] private UILabel        m_pLabelToName              = null;
     [SerializeField] private UILabel        m_pLabelToFPS               = null;
     [SerializeField] private UILabel        m_pLabelToMonsterMgr        = null;
+    [SerializeField] private UILabel        m_pLabelToDamageMgr         = null;
     [SerializeField] private UILabel        m_pLabelToObjectPool        = null;
     [Header("Player")]
     [SerializeField] private UIPopupList    m_pPopupListToCtrl          = null;
@@ -64,6 +65,7 @@ public class SHUIPanel_Development : SHUIBasePanel
             SetLogToUserName();
             SetFPS();
             SetMonsterCount();
+            SetDamageCount();
             SetObjectCount();
         }
     }
@@ -114,6 +116,13 @@ public class SHUIPanel_Development : SHUIBasePanel
             return;
 
         m_pLabelToMonsterMgr.text = string.Format("MonCount : {0}", Single.Monster.GetMonsterCount().ToString());
+    }
+    void SetDamageCount()
+    {
+        if (null == m_pLabelToDamageMgr)
+            return;
+
+        m_pLabelToDamageMgr.text = string.Format("DMGCount : {0}", Single.Damage.GetDamageCount().ToString());
     }
     void SetObjectCount()
     {
