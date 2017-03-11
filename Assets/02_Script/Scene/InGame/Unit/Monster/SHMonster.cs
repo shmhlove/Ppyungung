@@ -29,6 +29,15 @@ public class SHMonster : SHInGame_Component
             pMonster.FrameMove();
         });
     }
+    public override void SetPause(bool bIsPause)
+    {
+        base.SetPause(bIsPause);
+
+        SHUtils.ForToList(m_pMonsters, (pMonster) =>
+        {
+            pMonster.SetPauseAnimation(bIsPause);
+        });
+    }
     #endregion
 
 

@@ -150,15 +150,13 @@ public class SHUIPanel_Development : SHUIBasePanel
 
         if (true == bIsOpen)
         {
-            PlayAnimation(m_pAnimOpen, () =>
-            Time.timeScale = 0.0f);
-            //Single.InGame.PauseInGame(true);
+            PlayAnimation(m_pAnimOpen, null);
+            Single.InGame.PauseInGame(true);
         }
         else
         {
             PlayAnimation(m_pAnimClose, () =>
-            Time.timeScale = 1.0f);
-            //Single.InGame.PauseInGame(false));
+            Single.InGame.PauseInGame(false));
         }
         
         SetPlayerCtrlType();

@@ -19,6 +19,15 @@ public class SHPlayer : SHInGame_Component
 
         m_pCharacter.FrameMove();
     }
+    public override void SetPause(bool bIsPause)
+    {
+        base.SetPause(bIsPause);
+
+        if (null == m_pCharacter)
+            return;
+
+        m_pCharacter.SetPauseAnimation(bIsPause);
+    }
     #endregion
 
 

@@ -32,10 +32,18 @@ public class SHTimer : SHSingleton<SHTimer>
         m_fFixedTime      = Time.fixedTime;
         m_fFixedDeltaTime = Time.fixedDeltaTime;
     }
-
     public override void OnFinalize()
     {
 
+    }
+    public override void SetPause(bool bIsPause)
+    {
+        base.SetPause(bIsPause);
+
+        if (true == bIsPause)
+            Time.timeScale = 0.0f;
+        else
+            Time.timeScale = 1.0f;
     }
     #endregion
 
@@ -48,7 +56,6 @@ public class SHTimer : SHSingleton<SHTimer>
 
         m_dicDeltaTimer[strKey] = DateTime.Now;
     }
-
     public DateTime GetDeltaTime(string strKey)
     {
         if (false == m_dicDeltaTimer.ContainsKey(strKey))
@@ -56,7 +63,6 @@ public class SHTimer : SHSingleton<SHTimer>
 
         return m_dicDeltaTimer[strKey];
     }
-
     public float GetDeltaTimeToSecond(string strKey)
     {
         return ((float)(DateTime.Now - GetDeltaTime(strKey)).TotalMilliseconds / 1000.0f);
@@ -78,7 +84,6 @@ public class SHTimer : SHSingleton<SHTimer>
     {
         return IsPastTime(DateTime.Now, pTime);
     }
-
     public bool IsPastTime(DateTime pNowTime, SHReleaseTimer pTime)
     {
         if (null == pTime)
@@ -110,7 +115,6 @@ public class SHTimer : SHSingleton<SHTimer>
 
         return false;
     }
-
     // private InternetTime.SNTPClient m_cSNTPClient = null;
     // public DateTime GetNowTimeFromTimeServer()
     // {
@@ -142,49 +146,42 @@ public class SHTimer : SHSingleton<SHTimer>
     {
         return Mathf.RoundToInt(1.0f / m_fFixedDeltaTime);
     }
-
     //----------------------------------------------------------------------------
     // 단위변환 : 초당 AnimationFrame
     int GetAnimationFramePerSecond()
     {
         return Mathf.RoundToInt(1.0f / m_fAnimationDeltaTime);
     }
-
     //----------------------------------------------------------------------------
     // 단위변환 : FixedTic을 시간(초)으로 변환
     public float GetSecToFixedTic(int iFixedTic)
     {
         return (iFixedTic * m_fFixedDeltaTime);
     }
-
     //----------------------------------------------------------------------------
     // 단위변환 : 시간(초)을 FixedTic로 변환
     public int GetFixedTicToSec(float fSecond)
     {
         return Mathf.RoundToInt(fSecond * GetFixedTicPerSecond());
     }
-
     //----------------------------------------------------------------------------
     // 단위변환 : AnimationFrame을 FixedTic로 변환
     public int GetFixedTicToAnimFrame(int iAnimFrame)
     {
         return Mathf.RoundToInt(GetSecToAnimFrame(iAnimFrame) * GetFixedTicPerSecond());
     }
-
     //----------------------------------------------------------------------------
     // 단위변환 : AnimationFrame을 시간(초)로 변환
     public float GetSecToAnimFrame(int iAnimFrame)
     {
         return (iAnimFrame * m_fAnimationDeltaTime);
     }
-
     //----------------------------------------------------------------------------
     // 단위변환 : 시간(초)을 AnimationFrame으로 변환
     public int GetAnimFrameToSec(float fSecTime)
     {
         return Mathf.RoundToInt(fSecTime * GetAnimationFramePerSecond());
     }
-
     //----------------------------------------------------------------------------
     // 단위변환 : FixedTic을 AnimationFrame으로 변환
     public int GetAnimFrameToFixedTic(int iFixedTic)

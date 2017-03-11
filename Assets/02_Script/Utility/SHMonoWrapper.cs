@@ -437,6 +437,17 @@ public class SHMonoWrapper : MonoBehaviour
 
         return true;
     }
+    public void SetPauseAnim(bool bIsPause, string strClipName)
+    {
+        if (true == string.IsNullOrEmpty(strClipName))
+            return;
+        
+        var pClip = GetAnimClip(null, strClipName);
+        if (null == pClip)
+            return;
+
+        GetAnimation()[strClipName].speed = (true == bIsPause) ? 0.0f : 1.0f;
+    }
     // Anim Coroutine
     IEnumerator m_pCorToAnimWaitTime         = null;
     IEnumerator m_pCorToAnimUnScaledForward  = null;
@@ -571,7 +582,7 @@ public class SHMonoWrapper : MonoBehaviour
         SetLocalRotate(m_qStartRotation);
         SetLocalScale(m_vStartScale);
     }
-    public void SetPause(bool bIsPause)
+    public virtual void SetPause(bool bIsPause)
     {
         m_bIsPause = bIsPause;
     }
