@@ -85,7 +85,8 @@ public class SHPlayer : SHInGame_Component
         if (null == m_pCharacter)
             return;
 
-        m_pCharacter.Destory();
+        Single.ObjectPool.Return(m_pCharacter.gameObject);
+        m_pCharacter = null;
     }
     #endregion
 }

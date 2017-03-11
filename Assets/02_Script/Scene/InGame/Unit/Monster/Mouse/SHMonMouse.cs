@@ -64,6 +64,7 @@ public partial class SHMonMouse : SHState
     {
         m_iMonsterID    = iMonID;
         m_fHommingAngle = SHMath.Random(1.0f, 2.0f);
+        ChangeState(eState.Move);
     }
     #endregion
 }

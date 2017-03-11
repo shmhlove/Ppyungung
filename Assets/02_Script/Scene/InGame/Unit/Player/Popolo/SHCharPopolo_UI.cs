@@ -10,6 +10,7 @@ public partial class SHCharPopolo : SHState
         if (null == pCtrlUI)
             return false;
 
+        pCtrlUI.Clear();
         pCtrlUI.AddEventToMove((vDirection) => m_vMoveDirection = vDirection);
         pCtrlUI.AddEventToDirection((vDirection) => m_vLookDirection = vDirection);
         pCtrlUI.AddEventToShoot(() => m_bIsShoot = true);

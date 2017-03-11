@@ -118,9 +118,9 @@ public class SHMonster : SHInGame_Component
             pMonster.SetParent(SH3DRoot.GetRootToMonster());
             pMonster.SetLocalPosition(GetGenPosition(pMonster));
             pMonster.SetLocalScale(pMonster.m_vStartScale * SHHard.m_fUnitScale);
-            pMonster.InitMonster(pMonster.GetInstanceID());
-            pMonster.SetName(string.Format("{0}_{1}", pMonster.GetName(), pMonster.m_iMonsterID));
             pMonster.SetActive(true);
+            pMonster.InitMonster(pMonster.GetInstanceID());
+            pMonster.SetName(string.Format("MonMouse_{0}", pMonster.m_iMonsterID));
         }
         m_pMonsters.Add(pMonster);
     }
