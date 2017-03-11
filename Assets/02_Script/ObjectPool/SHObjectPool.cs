@@ -178,6 +178,13 @@ public class SHObjectPool : SHSingleton<SHObjectPool>
 
         pObjectInfo.SetStartTransform();
     }
+    public int GetAllObjectCount()
+    {
+        int iCount = 0;
+        SHUtils.ForToDic(m_dicActives,   (pKey, pValue) => iCount += pValue.Count);
+        SHUtils.ForToDic(m_dicInactives, (pKey, pValue) => iCount += pValue.Count);
+        return iCount;
+    }
     #endregion
 
 

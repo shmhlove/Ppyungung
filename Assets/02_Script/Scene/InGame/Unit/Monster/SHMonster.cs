@@ -86,6 +86,10 @@ public class SHMonster : SHInGame_Component
 
         return pNearMonster;
     }
+    public int GetMonsterCount()
+    {
+        return m_pMonsters.Count;
+    }
     #endregion
 
 

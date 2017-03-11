@@ -18,6 +18,8 @@ public class SHUIPanel_Development : SHUIBasePanel
     [SerializeField] private UILabel        m_pLabelToID                = null;
     [SerializeField] private UILabel        m_pLabelToName              = null;
     [SerializeField] private UILabel        m_pLabelToFPS               = null;
+    [SerializeField] private UILabel        m_pLabelToMonsterMgr        = null;
+    [SerializeField] private UILabel        m_pLabelToObjectPool        = null;
     [Header("Player")]
     [SerializeField] private UIPopupList    m_pPopupListToCtrl          = null;
     [SerializeField] private UIInput        m_pInputToCharMoveSpeed     = null;
@@ -103,6 +105,20 @@ public class SHUIPanel_Development : SHUIBasePanel
             return;
 
         m_pLabelToFPS.text = string.Format("FPS : {0}", (1.0f / m_fDeltaTime).ToString("N2"));
+    }
+    void SetMonsterCount()
+    {
+        if (null == m_pLabelToMonsterMgr)
+            return;
+
+        m_pLabelToMonsterMgr.text = string.Format("MonCount : {0}", Single.Monster.GetMonsterCount().ToString());
+    }
+    void SetObjectCount()
+    {
+        if (null == m_pLabelToObjectPool)
+            return;
+
+        m_pLabelToObjectPool.text = string.Format("ObjCount : {0}", Single.ObjectPool.GetAllObjectCount().ToString());
     }
     void SetPlayerCtrlType()
     {
