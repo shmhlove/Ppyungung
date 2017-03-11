@@ -10,6 +10,9 @@ public class SHUIPanel_Development : SHUIBasePanel
     [Header("Cheat Open")]
     [SerializeField] private AnimationClip  m_pAnimOpen                 = null;
     [SerializeField] private AnimationClip  m_pAnimClose                = null;
+    [Header("Game Locker")]
+    [SerializeField] private GameObject     m_pLocker                   = null;
+    [SerializeField] private UILabel        m_pResumeCounter            = null;
     [Header("Information")]
     [SerializeField] private GameObject     m_pInfoRoot                 = null;
     [SerializeField] private UILabel        m_pLabelToID                = null;
@@ -151,16 +154,36 @@ public class SHUIPanel_Development : SHUIBasePanel
         if (true == bIsOpen)
         {
             PlayAnimation(m_pAnimOpen, null);
-            Single.InGame.PauseInGame(true);
+            StartCoroutine(CoroutineToPauseGame());
         }
         else
         {
-            PlayAnimation(m_pAnimClose, () =>
-            Single.InGame.PauseInGame(false));
+            PlayAnimation(m_pAnimClose, () => 
+            StartCoroutine(CoroutineToResumeGame(3)));
         }
         
         SetPlayerCtrlType();
         SetInputInfo();
+    }
+    IEnumerator CoroutineToPauseGame()
+    {
+        m_pLocker.SetActive(true);
+        Single.InGame.PauseInGame(true);
+        
+        yield return null;
+    }
+    IEnumerator CoroutineToResumeGame(int iWaitSecond)
+    {
+        NGUITools.SetActive(m_pResumeCounter.gameObject, true);
+        for (int iLoop = 0; iLoop< iWaitSecond; ++iLoop)
+        {
+            m_pResumeCounter.text = (iWaitSecond - iLoop).ToString();
+            yield return new WaitForSeconds(1.0f);
+        }
+        NGUITools.SetActive(m_pResumeCounter.gameObject, false);
+
+        m_pLocker.SetActive(false);
+        Single.InGame.PauseInGame(false);
     }
     #endregion
 
