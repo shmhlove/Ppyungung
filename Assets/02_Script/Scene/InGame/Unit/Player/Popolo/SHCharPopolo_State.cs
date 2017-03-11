@@ -168,7 +168,6 @@ public partial class SHCharPopolo : SHState
     void OnEnterToDie(int iBeforeState, int iCurrentState)
     {
         DelBodyDamage();        
-        PlayParticle("Particle_Crash_Dust_Big");
     }
     void OnFixedUpdateToDie(int iCurrentState, int iFixedTick)
     {

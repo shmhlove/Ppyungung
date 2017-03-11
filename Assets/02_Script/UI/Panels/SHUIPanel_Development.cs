@@ -127,9 +127,9 @@ public class SHUIPanel_Development : SHUIBasePanel
         m_pInputToCharShootSpeed.value      = SHHard.m_fCharShootDelay.ToString();
         m_pInputToCharDMGSpeed.value        = SHHard.m_fCharDamageSpeed.ToString();
         m_pInputToCharDashSpeed.value       = SHHard.m_fCharDashSpeed.ToString();
-        m_pInputToCharAddDashGauge.value    = SHHard.m_fCharAddDashGauge.ToString();
-        m_pInputToCharDecDashGauge.value    = SHHard.m_fCharDecDashGauge.ToString();
-        m_pInputToCharMaxDashGauge.value    = SHHard.m_fCharMaxDashGauge.ToString();
+        m_pInputToCharAddDashGauge.value    = SHHard.m_fCharAddDashPoint.ToString();
+        m_pInputToCharDecDashGauge.value    = SHHard.m_fCharDecDashPoint.ToString();
+        m_pInputToCharMaxDashGauge.value    = SHHard.m_fCharMaxDashPoint.ToString();
 
         m_pInputToMonMaxSummon.value        = SHHard.m_iMonMaxCount.ToString();
         m_pInputToOneTimeSummon.value       = SHHard.m_iMonMaxGen.ToString();
@@ -252,15 +252,15 @@ public class SHUIPanel_Development : SHUIBasePanel
     }
     public void OnSubmitToAddDashGauge(string strValue)
     {
-        SHHard.m_fCharAddDashGauge = float.Parse(strValue);
+        SHHard.m_fCharAddDashPoint = float.Parse(strValue);
     }
     public void OnSubmitToDecDashGauge(string strValue)
     {
-        SHHard.m_fCharDecDashGauge = float.Parse(strValue);
+        SHHard.m_fCharDecDashPoint = float.Parse(strValue);
     }
     public void OnSubmitToMaxDashGauge(string strValue)
     {
-        SHHard.m_fCharMaxDashGauge = float.Parse(strValue);
+        SHHard.m_fCharMaxDashPoint = float.Parse(strValue);
     }
     public void OnSelectToCtrlType(string strType)
     {

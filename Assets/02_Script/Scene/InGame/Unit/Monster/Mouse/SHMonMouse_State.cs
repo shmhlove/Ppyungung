@@ -54,7 +54,6 @@ public partial class SHMonMouse : SHState
     #region State : Die
     void OnEnterToDie(int iBeforeState, int iCurrentState)
     {
-        DelBodyDamage();
         PlayParticle("Particle_Crash_Dust_Big");
     }
     void OnFixedUpdateToDie(int iCurrentState, int iFixedTick)
@@ -80,7 +79,9 @@ public partial class SHMonMouse : SHState
     void OnEnterToKill(int iBeforeState, int iCurrentState)
     {
         OnEnterToDie(iBeforeState, iCurrentState);
+
         SetActive(false);
+        Single.Monster.DeleteMonster(this);
     }
     #endregion
 }

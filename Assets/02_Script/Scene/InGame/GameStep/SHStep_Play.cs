@@ -16,6 +16,7 @@ public class SHStep_Play : SHStep_Component
 
         Single.ScoreBoard.Clear();
         Single.Player.StartPlayer();
+        Single.Monster.AllKillMonster();
         Single.Monster.StartMonster();
         Single.Sound.PlayBGM("Audio_BGM_InGame");
     }
@@ -25,13 +26,12 @@ public class SHStep_Play : SHStep_Component
         Single.UI.Close("Panel_HUD");
 
         Single.Player.StopPlayer();
-        Single.Monster.StopMonster();
     }
     public override void FrameMove(int iCallCnt)
     {
         base.FrameMove(iCallCnt);
 
-        if (true == Single.Player.IsDie())
+        if (false == Single.Player.IsActive())
             MoveTo(eStep.Result);
     }
     #endregion

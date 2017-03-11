@@ -46,7 +46,12 @@ public class SHMonoWrapper : MonoBehaviour
     public virtual void FixedUpdate() { }
     public virtual void LateUpdate() { }
     public virtual bool IsPassDMGCollision() { return false; }
-    public virtual void OnCrashDamage(SHMonoWrapper pCrashObject) { }
+    public virtual void OnCrashDamage(SHMonoWrapper pObject)
+    {
+        // var pDamage = pObject as SHDamageObject;
+        // var pChar   = pObject as SHCharPopolo;
+        // var pMon    = pObject as SHMonMouse;
+    }
     #endregion
 
 

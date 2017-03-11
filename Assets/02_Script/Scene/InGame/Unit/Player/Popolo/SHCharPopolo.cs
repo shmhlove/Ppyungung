@@ -30,7 +30,8 @@ public partial class SHCharPopolo : SHState
 
 
     #region Members : Character Status Data
-    public float    m_fDashGauge     = 0.0f;
+    public float    m_fDashPoint     = 0.0f;
+    public float    m_fHealthPoint   = 0.0f;
     #endregion
 
 
@@ -65,13 +66,23 @@ public partial class SHCharPopolo : SHState
         return ((true == IsState((int)eState.Die)) ||
                 (true == IsState((int)eState.Dash)));
     }
-    public override void OnCrashDamage(SHMonoWrapper pDamage)
+    public override void OnCrashDamage(SHMonoWrapper pObject)
     {
-        if (null == pDamage)
+        if (null == pObject)
             return;
 
-        PlayParticle("Particle_Crash_Dust_Big");
-        // ChangeState(eState.Die);
+        var pDamage = pObject as SHDamageObject;
+        AddHP(-pDamage.m_pInfo.m_fDamageValue);
+
+        if (false == IsRemainHP())
+        {
+            ChangeState(eState.Die);
+            PlayParticle("Particle_Crash_Dust_Big");
+        }
+        else
+        {
+            PlayParticle("Particle_Crash_Dust_Small");
+        }
     }
     #endregion
 
@@ -84,10 +95,12 @@ public partial class SHCharPopolo : SHState
         m_vMoveDirection = Vector3.zero;
         m_vLookDirection = Vector3.zero;
 
-        m_fDashGauge     = 0.0f;
+        m_fDashPoint     = 0.0f;
+        m_fHealthPoint   = SHHard.m_iCharMaxHealthPoint;
     }
     public void StartCharacter()
     {
+        ChangeState(eState.Idle);
         ConnectControllerUI();
     }
     public void StopCharacter()

@@ -4,6 +4,11 @@ using System.Collections;
 public static partial class SHHard
 {
     // 캐릭터 관련
+    public static float m_iCharMaxHealthPoint
+    {
+        get { return GetTable().m_iCharMaxHP; }
+        set { GetTable().m_iCharMaxHP = value; }
+    }
     public static float m_fCharMoveSpeed
     {
         get { return GetTable().m_fCharMoveSpeed; }
@@ -24,20 +29,20 @@ public static partial class SHHard
         get { return GetTable().m_fCharDashSpeed; }
         set { GetTable().m_fCharDashSpeed = value; }
     }
-    public static float m_fCharAddDashGauge
+    public static float m_fCharAddDashPoint
     {
-        get { return GetTable().m_fCharAddDashGauge; }
-        set { GetTable().m_fCharAddDashGauge = value; }
+        get { return GetTable().m_fCharAddDashPoint; }
+        set { GetTable().m_fCharAddDashPoint = value; }
     }
-    public static float m_fCharDecDashGauge
+    public static float m_fCharDecDashPoint
     {
-        get { return GetTable().m_fCharDecDashGauge; }
-        set { GetTable().m_fCharDecDashGauge = value; }
+        get { return GetTable().m_fCharDecDashPoint; }
+        set { GetTable().m_fCharDecDashPoint = value; }
     }
-    public static float m_fCharMaxDashGauge
+    public static float m_fCharMaxDashPoint
     {
-        get { return GetTable().m_fCharMaxDashGauge; }
-        set { GetTable().m_fCharMaxDashGauge = value; }
+        get { return GetTable().m_fCharMaxDashPoint; }
+        set { GetTable().m_fCharMaxDashPoint = value; }
     }
     
 

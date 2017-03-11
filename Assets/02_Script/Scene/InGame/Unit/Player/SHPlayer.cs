@@ -35,8 +35,7 @@ public class SHPlayer : SHInGame_Component
     public void StartPlayer()
     {
         DestoryCharacter();
-        m_pCharacter = Single.ObjectPool.Get<SHCharPopolo>("CharPopolo");
-        m_pCharacter.SetActive(true);
+        m_pCharacter = Single.ObjectPool.Get<SHCharPopolo>("CharPopolo", true, ePoolReturnType.Disable, ePoolDestroyType.Return);
         m_pCharacter.SetParent(SH3DRoot.GetRootToPlayer());
         m_pCharacter.SetLocalScale(m_pCharacter.m_vStartScale * SHHard.m_fUnitScale);
         m_pCharacter.OnInitialize();
@@ -58,21 +57,24 @@ public class SHPlayer : SHInGame_Component
     }
     public float GetHPPercent()
     {
-        return 100.0f;
+        if (null == m_pCharacter)
+            return 0.0f;
+
+        return SHMath.Divide(m_pCharacter.m_fHealthPoint, (float)SHHard.m_iCharMaxHealthPoint) * 100.0f;
     }
-    public float GetDashPercent()
+    public float GetDPPercent()
     {
         if (null == m_pCharacter)
             return 0.0f;
 
-        return SHMath.Divide(m_pCharacter.m_fDashGauge, SHHard.m_fCharMaxDashGauge) * 100.0f;
+        return SHMath.Divide(m_pCharacter.m_fDashPoint, SHHard.m_fCharMaxDashPoint) * 100.0f;
     }
-    public bool IsDie()
+    public bool IsActive()
     {
         if (null == m_pCharacter)
-            return true;
+            return false;
 
-        return m_pCharacter.IsDie();
+        return m_pCharacter.IsActive();
     }
     #endregion
 

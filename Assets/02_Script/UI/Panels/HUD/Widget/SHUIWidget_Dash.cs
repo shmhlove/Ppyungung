@@ -46,7 +46,7 @@ public class SHUIWidget_Dash : SHMonoWrapper
     #region Utility Functions
     bool CalcCurrentPercent()
     {
-        m_fTargetPercent = Single.Player.GetDashPercent();
+        m_fTargetPercent = Single.Player.GetDPPercent();
 
         if (m_fTargetPercent == m_fCurrentPercent)
         {

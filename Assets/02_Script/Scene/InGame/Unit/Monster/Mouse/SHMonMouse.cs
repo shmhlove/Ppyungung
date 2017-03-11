@@ -23,7 +23,6 @@ public partial class SHMonMouse : SHState
 
     #region Members : Monster Status Data
     private Vector3        m_vDirection     = Vector3.zero;
-    private SHDamageObject m_pBodyDamage    = null;
     private float          m_fHommingAngle  = 1.0f;
     #endregion
 
@@ -32,12 +31,10 @@ public partial class SHMonMouse : SHState
     public override void OnEnable()
     {
         base.OnEnable();
-        AddBodyDamage();
     }
     public override void OnDisable()
     {
         base.OnDisable();
-        DelBodyDamage();
     }
     public override void OnDestroy()
     {
@@ -52,11 +49,11 @@ public partial class SHMonMouse : SHState
     {
         return IsState((int)eState.Die);
     }
-    public override void OnCrashDamage(SHMonoWrapper pDamage)
+    public override void OnCrashDamage(SHMonoWrapper pObject)
     {
-        if (null == pDamage)
+        if (null == pObject)
             return;
-
+        
         ChangeState(eState.Die);
     }
     #endregion

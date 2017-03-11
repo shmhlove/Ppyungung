@@ -76,17 +76,17 @@ public partial class SHCharPopolo : SHState
     }
     void AddDashGauge()
     {
-        m_fDashGauge += SHHard.m_fCharAddDashGauge;
-        m_fDashGauge = Mathf.Clamp(m_fDashGauge, 0.0f, SHHard.m_fCharMaxDashGauge);
+        m_fDashPoint += SHHard.m_fCharAddDashPoint;
+        m_fDashPoint = Mathf.Clamp(m_fDashPoint, 0.0f, SHHard.m_fCharMaxDashPoint);
     }
     void DecreaseDashGauge()
     {
-        m_fDashGauge -= SHHard.m_fCharDecDashGauge;
-        m_fDashGauge = Mathf.Clamp(m_fDashGauge, 0.0f, m_fDashGauge);
+        m_fDashPoint -= SHHard.m_fCharDecDashPoint;
+        m_fDashPoint = Mathf.Clamp(m_fDashPoint, 0.0f, m_fDashPoint);
     }
     bool IsRemainDashGauge()
     {
-        return ((0.0f < m_fDashGauge) && (SHHard.m_fCharDecDashGauge < m_fDashGauge));
+        return ((0.0f < m_fDashPoint) && (SHHard.m_fCharDecDashPoint < m_fDashPoint));
     }
     bool IsPossibleDash()
     {
@@ -99,7 +99,8 @@ public partial class SHCharPopolo : SHState
     void AddBodyDamage()
     {
         DelBodyDamage();
-        m_pBodyDamage = Single.Damage.AddDamage("Dmg_Char", new SHAddDamageParam(this));
+        m_pBodyDamage = Single.Damage.AddDamage("Dmg_Char_Body", 
+            new SHAddDamageParam(this, null, null, (pObject) => { OnCrashDamage(pObject); }));
     }
     void DelBodyDamage()
     {
@@ -115,6 +116,19 @@ public partial class SHCharPopolo : SHState
             return;
 
         m_pBodyDamage.m_bIsCrashLock = bIsLock;
+    }
+    #endregion
+
+
+    #region Utility : HealthPoint
+    void AddHP(float fAddValue)
+    {
+        m_fHealthPoint += fAddValue;
+        m_fHealthPoint = Mathf.Clamp(m_fHealthPoint, 0.0f, SHHard.m_iCharMaxHealthPoint);
+    }
+    bool IsRemainHP()
+    {
+        return (0.0f < m_fHealthPoint);
     }
     #endregion
 

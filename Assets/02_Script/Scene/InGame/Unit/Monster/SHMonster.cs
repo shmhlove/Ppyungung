@@ -19,7 +19,7 @@ public class SHMonster : SHInGame_Component
     public override void OnInitialize() { }
     public override void OnFinalize()
     {
-        StopMonster();
+        AllKillMonster();
     }
     public override void OnFrameMove()
     {
