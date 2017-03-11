@@ -254,6 +254,10 @@ public class SHUIPanel_Development : SHUIBasePanel
 
 
     #region Event : Player
+    public void OnSubmitToMaxHealthPoint(string strValue)
+    {
+        SHHard.m_iCharMaxHealthPoint = float.Parse(strValue);
+    }
     public void OnSubmitToMoveSpeed(string strValue)
     {
         SHHard.m_fCharMoveSpeed = float.Parse(strValue);
