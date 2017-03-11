@@ -96,7 +96,7 @@ public class SHMonster : SHInGame_Component
         {
             for (int iLoop = 0; iLoop < SHHard.m_iMonMaxGen; ++iLoop)
             {
-                if (SHHard.m_iMonMaxCount > m_pMonsters.Count)
+                if (SHHard.m_iMonMaxCount <= m_pMonsters.Count)
                     break;
 
                 GenMonster();
