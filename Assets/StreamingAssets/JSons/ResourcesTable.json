@@ -76,8 +76,8 @@
 			"s_Name": "Panel_Development",
 			"s_FileName": "Panel_Development.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "125068",
-			"s_Hash": "CBDF8468493E52F7E48CF2A72BE182B3",
+			"s_Size": "122356",
+			"s_Hash": "D271E341971D82AE79A29E28111A58B0",
 			"s_Path": "Prefab/UI/Panel/Panel_Development"
 		},
 		{
@@ -209,27 +209,19 @@
 			"s_Path": "Sound/Effect/Audio_Effect_Shoot"
 		},
 		{
-			"s_Name": "",
-			"s_FileName": ".bytes",
-			"s_Extension": ".bytes",
-			"s_Size": "36",
-			"s_Hash": "EE5614781651DAC2282AAF14A782CDE8",
-			"s_Path": "Table/Bytes/"
-		},
-		{
 			"s_Name": "Constants",
 			"s_FileName": "Constants.bytes",
 			"s_Extension": ".bytes",
-			"s_Size": "76",
-			"s_Hash": "07ADD45459068F156C614D34AD3B6C8D",
+			"s_Size": "72",
+			"s_Hash": "E25F78CF6CDF9DEE6CBCCCB369A34D2C",
 			"s_Path": "Table/Bytes/Constants"
 		},
 		{
 			"s_Name": "PhaseInfo",
 			"s_FileName": "PhaseInfo.bytes",
 			"s_Extension": ".bytes",
-			"s_Size": "94",
-			"s_Hash": "64B1BC03B63F38EF2B049F1AD5D0A662",
+			"s_Size": "444",
+			"s_Hash": "16FDBFED92AF287BE5E3E2D0C774BD23",
 			"s_Path": "Table/Bytes/PhaseInfo"
 		}
 	]

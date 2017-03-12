@@ -88,23 +88,21 @@ public class JsonPhaseInfo : SHBaseTable
     {
         if (null == pByte)
             return false;
-
+        
         var pSerializer = new SHSerializer(pByte);
         var iPhaseCount = pSerializer.DeserializeInt();
-        for(int iPhaseLoop = 0; iPhaseLoop< iPhaseCount; ++iPhaseCount)
+        for(int iPhaseLoop = 0; iPhaseLoop < iPhaseCount; ++iPhaseLoop)
         {
             var pPhaseInfo           = new SHPhaseInfo();
             pPhaseInfo.m_iPhaseID    = pSerializer.DeserializeInt();
             pPhaseInfo.m_iPhaseCount = pSerializer.DeserializeInt();
-            var iMonCount    = pSerializer.DeserializeInt();
             
+            var iMonCount            = pSerializer.DeserializeInt();
             for (int iMonLoop = 0; iMonLoop < iMonCount; ++iMonLoop)
             {
                 var pMonInfo = new SHPhaseMonsterGenInfo();
-
                 pMonInfo.m_strName = pSerializer.DeserializeString();
                 pMonInfo.m_fWeight = pSerializer.DeserializeFloat();
-
                 pPhaseInfo.m_pMonsterGenInfo.Add(pMonInfo);
             }
 
