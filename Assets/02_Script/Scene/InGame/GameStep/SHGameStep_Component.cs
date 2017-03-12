@@ -2,10 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class SHStep_Component
+public class SHGameStep_Component
 {
     #region Members
-    public eStep m_eStep = eStep.None;
+    public eGameStep m_eStep = eGameStep.None;
     #endregion
 
 
@@ -24,13 +24,13 @@ public class SHStep_Component
 
 
     #region Interface Functions
-    public void MoveTo(eStep eMoveStep)
+    public void MoveTo(eGameStep eMoveStep)
     {
-        Single.Step.MoveTo(eMoveStep);
+        Single.GameStep.MoveTo(eMoveStep);
     }
-    public void DirectMoveTo(eStep eMoveStep)
+    public void DirectMoveTo(eGameStep eMoveStep)
     {
-        Single.Step.DirectMoveTo(eMoveStep);
+        Single.GameStep.DirectMoveTo(eMoveStep);
     }
     #endregion
 

@@ -218,7 +218,7 @@ public class SHUIPanel_Development : SHUIBasePanel
     }
     IEnumerator CoroutineToResumeGame(int iWaitSecond)
     {
-        if (true == Single.Step.IsStep(eStep.Play))
+        if (true == Single.GameStep.IsStep(eGameStep.Play))
         {
             NGUITools.SetActive(m_pResumeCounter.gameObject, true);
             for (int iLoop = 0; iLoop< iWaitSecond; ++iLoop)
@@ -271,7 +271,7 @@ public class SHUIPanel_Development : SHUIBasePanel
     }
     public void OnClickToRank()
     {
-        Single.Social.SetLeaderboard((long)Single.ScoreBoard.GetBestScore(), eLeaderBoardType.BestScore, null);
+        Single.Social.SetLeaderboard((long)Single.GameState.GetBestScore(), eLeaderBoardType.BestScore, null);
     }
     public void OnClickToShowRank()
     {

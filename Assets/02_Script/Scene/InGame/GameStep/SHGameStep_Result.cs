@@ -2,7 +2,7 @@
 using System;
 using System.Collections;
 
-public class SHStep_Result : SHStep_Component
+public class SHGameStep_Result : SHGameStep_Component
 {
     #region Members
     #endregion
@@ -22,7 +22,7 @@ public class SHStep_Result : SHStep_Component
     #region Event Handler
     public void OnEventToRetry()
     {
-        MoveTo(eStep.Play);
+        MoveTo(eGameStep.Play);
     }
     #endregion
 }

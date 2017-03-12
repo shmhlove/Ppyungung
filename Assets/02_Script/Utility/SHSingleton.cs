@@ -17,8 +17,8 @@ public static class Single
 
     // 인게임
     public static SHInGame                  InGame              { get { return SHInGame.Instance; } }
-    public static SHStep                    Step                { get { return InGame.GetStep(); } }
-    public static SHScoreBoard              ScoreBoard          { get { return InGame.GetScoreBoard(); } }
+    public static SHGameStep                GameStep            { get { return InGame.GetGameStep(); } }
+    public static SHGameState               GameState           { get { return InGame.GetGameState(); } }
     public static SHBalance                 Balance             { get { return InGame.GetBalance(); } }
     public static SHPlayer                  Player              { get { return InGame.GetPlayer(); } }
     public static SHMonster                 Monster             { get { return InGame.GetMonster(); } }

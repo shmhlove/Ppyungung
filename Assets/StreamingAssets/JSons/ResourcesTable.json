@@ -223,6 +223,14 @@
 			"s_Size": "76",
 			"s_Hash": "07ADD45459068F156C614D34AD3B6C8D",
 			"s_Path": "Table/Bytes/Constants"
+		},
+		{
+			"s_Name": "PhaseInfo",
+			"s_FileName": "PhaseInfo.bytes",
+			"s_Extension": ".bytes",
+			"s_Size": "94",
+			"s_Hash": "64B1BC03B63F38EF2B049F1AD5D0A662",
+			"s_Path": "Table/Bytes/PhaseInfo"
 		}
 	]
 }

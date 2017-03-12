@@ -2,7 +2,7 @@
 using System;
 using System.Collections;
 
-public class SHStep_Play : SHStep_Component
+public class SHGameStep_Play : SHGameStep_Component
 {
     #region Members
     #endregion
@@ -16,8 +16,8 @@ public class SHStep_Play : SHStep_Component
 
         Single.Damage.Clear();
 
-        Single.ScoreBoard.Clear();
-        Single.ScoreBoard.ShowScore();
+        Single.GameState.Clear();
+        Single.GameState.ShowScore();
 
         Single.Player.StartPlayer();
         Single.Monster.AllKillMonster();
@@ -37,7 +37,10 @@ public class SHStep_Play : SHStep_Component
         base.FrameMove(iCallCnt);
 
         if (false == Single.Player.IsActive())
-            MoveTo(eStep.Result);
+            MoveTo(eGameStep.Result);
+
+        // if (true == Single.GameStatus.IsNextPhase())
+        //     MoveTo(eStep.ChangePhase);
     }
     #endregion
 }

@@ -2,15 +2,15 @@
 using System;
 using System.Collections;
 
-public class SHStep_Start : SHStep_Component
+public class SHGameStep_ChangePhase : SHGameStep_Component
 {
+    #region Members
+    #endregion
+
+
     #region Virtual Functions
     public override void InitialStep()
     {
-        Single.ScoreBoard.Clear();
-        Single.UI.Show("Panel_StartMenu", (Action)(()=> MoveTo(eStep.Play)));
-
-        Single.Sound.PlayBGM("Audio_BGM_OutGame");
     }
     public override void FinalStep()
     {

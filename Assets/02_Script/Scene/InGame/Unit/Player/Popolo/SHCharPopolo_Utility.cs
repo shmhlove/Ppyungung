@@ -34,7 +34,7 @@ public partial class SHCharPopolo : SHState
         var pDamage = Single.Damage.AddDamage("Dmg_Char_Bullet",
                         new SHAddDamageParam(m_pShootPos, null, null, (pTarget) => 
                         {
-                            Single.ScoreBoard.AddScore(1);
+                            Single.GameState.AddScore(1);
                             AddDashGauge();
                         }));
 

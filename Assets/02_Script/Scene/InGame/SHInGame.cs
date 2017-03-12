@@ -5,8 +5,8 @@ using System.Collections;
 public class SHInGame : SHSingleton<SHInGame>
 {
     #region Members
-    private SHStep       m_pStep       = new SHStep();
-    private SHScoreBoard m_pScoreBoard = new SHScoreBoard();
+    private SHGameStep   m_pGameStep   = new SHGameStep();
+    private SHGameState  m_pGameState  = new SHGameState();
     private SHBalance    m_pBalance    = new SHBalance();
     private SHPlayer     m_pPlayer     = new SHPlayer();
     private SHMonster    m_pMonster    = new SHMonster();
@@ -19,12 +19,12 @@ public class SHInGame : SHSingleton<SHInGame>
     public override void OnInitialize() { }
     public override void OnFinalize()
     {
-        if (null != m_pStep)
-            m_pStep.OnFinalize();
+        if (null != m_pGameStep)
+            m_pGameStep.OnFinalize();
 
-        if (null != m_pScoreBoard)
-            m_pScoreBoard.OnFinalize();
-
+        if (null != m_pGameState)
+            m_pGameState.OnFinalize();
+        
         if (null != m_pBalance)
             m_pBalance.OnFinalize();
 
@@ -50,11 +50,11 @@ public class SHInGame : SHSingleton<SHInGame>
     #region Interface : System
     public void StartInGame()
     {
-        if (null != m_pStep)
-            m_pStep.OnInitialize();
-
-        if (null != m_pScoreBoard)
-            m_pScoreBoard.OnInitialize();
+        if (null != m_pGameStep)
+            m_pGameStep.OnInitialize();
+        
+        if (null != m_pGameState)
+            m_pGameState.OnInitialize();
         
         if (null != m_pBalance)
             m_pBalance.OnInitialize();
@@ -75,12 +75,12 @@ public class SHInGame : SHSingleton<SHInGame>
     {
         SetPause(bIsPause);
 
-        if (null != m_pStep)
-            m_pStep.SetPause(bIsPause);
-
-        if (null != m_pScoreBoard)
-            m_pScoreBoard.SetPause(bIsPause);
-
+        if (null != m_pGameStep)
+            m_pGameStep.SetPause(bIsPause);
+        
+        if (null != m_pGameState)
+            m_pGameState.SetPause(bIsPause);
+        
         if (null != m_pBalance)
             m_pBalance.SetPause(bIsPause);
 
@@ -101,11 +101,11 @@ public class SHInGame : SHSingleton<SHInGame>
         if (true == m_bIsPause)
             return;
 
-        if (null != m_pStep)
-            m_pStep.OnFrameMove();
-
-        if (null != m_pScoreBoard)
-            m_pScoreBoard.OnFrameMove();
+        if (null != m_pGameStep)
+            m_pGameStep.OnFrameMove();
+        
+        if (null != m_pGameState)
+            m_pGameState.OnFrameMove();
         
         if (null != m_pBalance)
             m_pBalance.OnFrameMove();
@@ -126,13 +126,13 @@ public class SHInGame : SHSingleton<SHInGame>
 
 
     #region Interface : Helpper
-    public SHStep GetStep()
+    public SHGameStep GetGameStep()
     {
-        return m_pStep;
+        return m_pGameStep;
     }
-    public SHScoreBoard GetScoreBoard()
+    public SHGameState GetGameState()
     {
-        return m_pScoreBoard;
+        return m_pGameState;
     }
     public SHBalance GetBalance()
     {

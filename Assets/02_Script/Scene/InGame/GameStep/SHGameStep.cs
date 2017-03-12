@@ -2,24 +2,25 @@
 using System.Collections;
 using System.Collections.Generic;
 
-using DicStep = System.Collections.Generic.Dictionary<eStep, SHStep_Component>;
+using DicStep = System.Collections.Generic.Dictionary<eGameStep, SHGameStep_Component>;
 
-public enum eStep
+public enum eGameStep
 {
     None,
     Start,
     Play,
+    ChangePhase,
     Result,
 }
 
-public class SHStep : SHInGame_Component
+public class SHGameStep : SHInGame_Component
 {
     #region Members
     private DicStep     m_dicSteps      = new DicStep();
     public int          m_iCallCnt      = 0;
-    public eStep        m_eBeforeStep   = eStep.None;
-    public eStep        m_eCurrentStep  = eStep.None;
-    public eStep        m_eMoveTo       = eStep.None;
+    public eGameStep        m_eBeforeStep   = eGameStep.None;
+    public eGameStep        m_eCurrentStep  = eGameStep.None;
+    public eGameStep        m_eMoveTo       = eGameStep.None;
     #endregion
     
 
@@ -31,11 +32,12 @@ public class SHStep : SHInGame_Component
     public override void OnInitialize()
     {
         m_dicSteps.Clear();
-        m_dicSteps.Add(eStep.Start,  new SHStep_Start());
-        m_dicSteps.Add(eStep.Play,   new SHStep_Play());
-        m_dicSteps.Add(eStep.Result, new SHStep_Result());
+        m_dicSteps.Add(eGameStep.Start,         new SHGameStep_Start());
+        m_dicSteps.Add(eGameStep.Play,          new SHGameStep_Play());
+        m_dicSteps.Add(eGameStep.ChangePhase,   new SHGameStep_ChangePhase());
+        m_dicSteps.Add(eGameStep.Result,        new SHGameStep_Result());
 
-        MoveTo(eStep.Start);
+        MoveTo(eGameStep.Start);
     }
     public override void OnFinalize() { }
     public override void OnFrameMove()
@@ -66,7 +68,7 @@ public class SHStep : SHInGame_Component
 
 
     #region Interface : Control
-    public void MoveTo(eStep eStep)
+    public void MoveTo(eGameStep eStep)
     {
         if (false == IsExistStep(eStep))
         {
@@ -78,7 +80,7 @@ public class SHStep : SHInGame_Component
         m_dicSteps[m_eMoveTo].m_eStep = m_eMoveTo;
         m_dicSteps[m_eMoveTo].Awake();
     }
-    public void DirectMoveTo(eStep eStep)
+    public void DirectMoveTo(eGameStep eStep)
     {
         MoveTo(eStep);
         ChangeStep();
@@ -87,7 +89,7 @@ public class SHStep : SHInGame_Component
 
 
     #region Interface : Helpper
-    public bool IsStep(eStep eType)
+    public bool IsStep(eGameStep eType)
     {
         return (eType == m_eCurrentStep);
     }
@@ -97,7 +99,7 @@ public class SHStep : SHInGame_Component
     #region Utility Functions
     private void ChangeStep()
     {
-        if (eStep.None == m_eMoveTo)
+        if (eGameStep.None == m_eMoveTo)
             return;
 
         if (false == IsExistStep(m_eMoveTo))
@@ -109,11 +111,11 @@ public class SHStep : SHInGame_Component
         m_iCallCnt      = 0;
         m_eBeforeStep   = m_eCurrentStep;
         m_eCurrentStep  = m_eMoveTo;
-        m_eMoveTo       = eStep.None;
+        m_eMoveTo       = eGameStep.None;
 
         m_dicSteps[m_eCurrentStep].InitialStep();
     }
-    private bool IsExistStep(eStep eStep)
+    private bool IsExistStep(eGameStep eStep)
     {
         return m_dicSteps.ContainsKey(eStep);
     }

@@ -1,0 +1,155 @@
+{
+	"PhaseInfo":
+	[
+        {
+            "m_iPhaseID": 1,
+            "m_iPhaseCount": 100,
+            "m_pMonsterGenInfo":
+            [
+                {
+                    "m_strName": "MonMouse",
+                    "m_fWeight": 0.5
+                },
+                {
+                    "m_strName": "MonMouse",
+                    "m_fWeight": 0.5
+                }
+            ]
+        },
+        {
+            "m_iPhaseID": 2,
+            "m_iPhaseCount": 200,
+            "m_pMonsterGenInfo":
+            [
+                {
+                    "m_strName": "MonMouse",
+                    "m_fWeight": 0.5
+                },
+                {
+                    "m_strName": "MonMouse",
+                    "m_fWeight": 0.5
+                }
+            ]
+        },
+        {
+            "m_iPhaseID": 3,
+            "m_iPhaseCount": 300,
+            "m_pMonsterGenInfo":
+            [
+                {
+                    "m_strName": "MonMouse",
+                    "m_fWeight": 0.5
+                },
+                {
+                    "m_strName": "MonMouse",
+                    "m_fWeight": 0.5
+                }
+            ]
+        },
+        {
+            "m_iPhaseID": 4,
+            "m_iPhaseCount": 400,
+            "m_pMonsterGenInfo":
+            [
+                {
+                    "m_strName": "MonMouse",
+                    "m_fWeight": 0.5
+                },
+                {
+                    "m_strName": "MonMouse",
+                    "m_fWeight": 0.5
+                }
+            ]
+        },
+        {
+            "m_iPhaseID": 5,
+            "m_iPhaseCount": 500,
+            "m_pMonsterGenInfo":
+            [
+                {
+                    "m_strName": "MonMouse",
+                    "m_fWeight": 0.5
+                },
+                {
+                    "m_strName": "MonMouse",
+                    "m_fWeight": 0.5
+                }
+            ]
+        },
+        {
+            "m_iPhaseID": 6,
+            "m_iPhaseCount": 600,
+            "m_pMonsterGenInfo":
+            [
+                {
+                    "m_strName": "MonMouse",
+                    "m_fWeight": 0.5
+                },
+                {
+                    "m_strName": "MonMouse",
+                    "m_fWeight": 0.5
+                }
+            ]
+        },
+        {
+            "m_iPhaseID": 7,
+            "m_iPhaseCount": 700,
+            "m_pMonsterGenInfo":
+            [
+                {
+                    "m_strName": "MonMouse",
+                    "m_fWeight": 0.5
+                },
+                {
+                    "m_strName": "MonMouse",
+                    "m_fWeight": 0.5
+                }
+            ]
+        },
+        {
+            "m_iPhaseID": "8",
+            "m_iPhaseCount": 800,
+            "m_pMonsterGenInfo":
+            [
+                {
+                    "m_strName": "MonMouse",
+                    "m_fWeight": 0.5
+                },
+                {
+                    "m_strName": "MonMouse",
+                    "m_fWeight": 0.5
+                }
+            ]
+        },
+        {
+            "m_iPhaseID": 9,
+            "m_iPhaseCount": 900,
+            "m_pMonsterGenInfo":
+            [
+                {
+                    "m_strName": "MonMouse",
+                    "m_fWeight": 0.5
+                },
+                {
+                    "m_strName": "MonMouse",
+                    "m_fWeight": 0.5
+                }
+            ]
+        },
+        {
+            "m_iPhaseID": 10,
+            "m_iPhaseCount": 1000,
+            "m_pMonsterGenInfo":
+            [
+                {
+                    "m_strName": "MonMouse",
+                    "m_fWeight": 0.5
+                },
+                {
+                    "m_strName": "MonMouse",
+                    "m_fWeight": 0.5
+                }
+            ]
+        },
+	]
+}
