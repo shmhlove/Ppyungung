@@ -4,25 +4,25 @@ using System.Collections;
 
 public class SHGameStep_Play : SHGameStep_Component
 {
-    #region Members
-    #endregion
-
-
     #region Virtual Functions
     public override void InitialStep()
     {
         Single.UI.Show("Panel_CtrlPad");
         Single.UI.Show("Panel_HUD");
 
+        // 데미지 정리
         Single.Damage.Clear();
 
-        Single.GameState.Clear();
-        Single.GameState.ShowScore();
+        // 게임상태 정리
+        Single.GameState.ShowCurrentScore();
+        Single.GameState.CloseBestScore();
+        Single.GameState.SetUpdatePhaseID();
 
+        // 유닛정리
         Single.Player.StartPlayer();
         Single.Monster.AllKillMonster();
         Single.Monster.StartMonster();
-
+        
         Single.Sound.PlayBGM("Audio_BGM_InGame");
     }
     public override void FinalStep()
@@ -39,8 +39,8 @@ public class SHGameStep_Play : SHGameStep_Component
         if (false == Single.Player.IsActive())
             MoveTo(eGameStep.Result);
 
-        // if (true == Single.GameStatus.IsNextPhase())
-        //     MoveTo(eStep.ChangePhase);
+        if (true == Single.GameState.IsNextPhase())
+            MoveTo(eGameStep.ChangePhase);
     }
     #endregion
 }

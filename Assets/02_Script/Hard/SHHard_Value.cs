@@ -103,12 +103,7 @@ public static partial class SHHard
         get { return GetTable().m_iFrameRate; }
         set { GetTable().m_iFrameRate = value; }
     }
-    public static float m_fComboTime
-    {
-        get { return GetTable().m_fComboTime; }
-        set { GetTable().m_fComboTime = value; }
-    }
-
+    
     // 유틸
     static JsonConstants GetTable()
     {

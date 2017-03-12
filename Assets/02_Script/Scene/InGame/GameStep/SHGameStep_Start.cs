@@ -7,7 +7,7 @@ public class SHGameStep_Start : SHGameStep_Component
     #region Virtual Functions
     public override void InitialStep()
     {
-        Single.GameState.Clear();
+        Single.GameState.ClearScoreBoard();
         Single.UI.Show("Panel_StartMenu", (Action)(()=> MoveTo(eGameStep.Play)));
 
         Single.Sound.PlayBGM("Audio_BGM_OutGame");

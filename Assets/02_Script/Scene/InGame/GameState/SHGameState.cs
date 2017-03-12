@@ -17,12 +17,4 @@ public partial class SHGameState : SHInGame_Component
     public override void OnFinalize() { }
     public override void OnFrameMove() { }
     #endregion
-
-
-    #region Interface Functions
-    public void Clear()
-    {
-        ClearScoreBoard();
-    }
-    #endregion
 }

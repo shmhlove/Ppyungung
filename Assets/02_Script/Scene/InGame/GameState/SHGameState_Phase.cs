@@ -17,10 +17,15 @@ public partial class SHGameState : SHInGame_Component
     #endregion
     
     #region Interface Functions
+    public void SetUpdatePhaseID()
+    {
+        var pPhaseInfo = Single.Table.GetPhaseInfo(Single.GameState.m_iScore);
+        m_iPhaseID     = pPhaseInfo.m_iPhaseID;
+    }
     public bool IsNextPhase()
     {
-        // 몬스터 잡은 마릿수와 현재 PhaseID로 판단
-        return false;
+        var pPhaseInfo = Single.Table.GetPhaseInfo(Single.GameState.m_iScore);
+        return (m_iPhaseID != pPhaseInfo.m_iPhaseID);
     }
     #endregion
 }

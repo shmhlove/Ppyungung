@@ -34,10 +34,6 @@ public class SHScoreBoard : SHInGame_Component
         if (0 == iScore)
             return;
 
-        var fComboSecond = Single.Timer.GetDeltaTimeToSecond("ScoreBoard_ComboTime");
-        if (fComboSecond < SHHard.m_fComboTime)
-            AddCombo(1);
-        
         if (GetBestScore() < (m_iScore += iScore))
             SetBestScore(m_iScore);
 

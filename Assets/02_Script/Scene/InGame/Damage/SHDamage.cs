@@ -26,11 +26,7 @@ public partial class SHDamage : SHInGame_Component
     }
     public override void OnFinalize()
     {
-        SHUtils.ForToDic(m_dicDamages, (pKey, pValue) =>
-        {
-            ReturnDamage(pValue);
-        });
-        m_dicDamages.Clear();
+        DelAllDamage();
     }
     public override void OnFrameMove()
     {
@@ -117,6 +113,25 @@ public partial class SHDamage : SHInGame_Component
             return;
 
         m_dicDelDamages.Add(pDamage.m_pInfo.m_strID, pDamage);
+    }
+    public void DelAllDamage()
+    {
+        if (true == SHApplicationInfo.m_bIsAppQuit)
+            return;
+
+        SHUtils.ForToDic(m_dicDamages, (pKey, pValue) =>
+        {
+            ReturnDamage(pValue);
+        });
+        m_dicDamages.Clear();
+
+        SHUtils.ForToDic(m_dicAddDamages, (pKey, pValue) =>
+        {
+            ReturnDamage(pValue);
+        });
+        m_dicAddDamages.Clear();
+
+        m_dicDelDamages.Clear();
     }
     public int GetDamageCount()
     {

@@ -4,25 +4,22 @@ using System.Collections;
 
 public class SHGameStep_Result : SHGameStep_Component
 {
-    #region Members
-    #endregion
-
-
     #region Virtual Functions
     public override void InitialStep()
     {
-        Single.UI.Show("Panel_ResultMenu", (Action)OnEventToRetry);
+        // UI 정리
+        Single.UI.Show("Panel_ResultMenu", (Action)(() => MoveTo(eGameStep.Play)));
         Single.UI.Close("Panel_CtrlPad");
+
+        // 스코어 출력
+        Single.GameState.ShowCurrentScore();
+        Single.GameState.ShowBestScore();
 
         Single.Sound.PlayBGM("Audio_BGM_GameOver");
     }
-    #endregion
-    
-
-    #region Event Handler
-    public void OnEventToRetry()
+    public override void FinalStep()
     {
-        MoveTo(eGameStep.Play);
+        Single.GameState.ClearScoreBoard();
     }
     #endregion
 }
