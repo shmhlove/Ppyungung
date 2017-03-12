@@ -151,7 +151,7 @@ public class SHUIJoystick : SHMonoWrapper
 
 
     #region UI Event Functions
-    void OnPress(bool bPressed)
+    public void OnPress(bool bPressed)
     {
         m_vBeforePos   = m_vCurrentPos = GetTouchPos();
         m_bIsPressOn   = bPressed;
@@ -169,7 +169,7 @@ public class SHUIJoystick : SHMonoWrapper
             CallEventToPressOff();
         }
     }
-    void OnDrag(Vector2 vDelta)
+    public void OnDrag(Vector2 vDelta)
     {
         if (true == Vector2.zero.Equals(vDelta))
             return;
