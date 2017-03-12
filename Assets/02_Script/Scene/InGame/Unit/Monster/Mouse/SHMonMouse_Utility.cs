@@ -30,6 +30,8 @@ public partial class SHMonMouse : SHState
         SetLocalLookY(m_vDirection);
         SetLocalPositionX(vPos.x);
         SetLocalPositionZ(vPos.z);
+
+        LimitInGround();
     }
     #endregion
 
@@ -42,6 +44,13 @@ public partial class SHMonMouse : SHState
             pDamage.SetDMGSpeed(SHHard.m_fMonDamageSpeed);
             pDamage.SetDMGDirection(vDirection);
         }
+    }
+    public void LimitInGround()
+    {
+        var vRect = new Vector4(
+            -12000.0f, -7200.0f, 12000.0f, 7200.0f);
+
+        SetLocalPosition(SHPhysics.IncludePointInRect(vRect, GetLocalPosition()));
     }
     #endregion
 }
