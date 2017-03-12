@@ -5,7 +5,7 @@
 		"ServiceMode": "DevQA",
 		"Version": "1.0.0",
 		"VSyncCount": 0,
-		"FrameRate": 45,
+		"FrameRate": 30,
 		"CacheSize(MB)": 200
 	}
 }
