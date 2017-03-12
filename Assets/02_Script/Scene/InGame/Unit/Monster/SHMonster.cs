@@ -44,6 +44,7 @@ public class SHMonster : SHInGame_Component
     #region Interface Functions
     public void StartMonster()
     {
+        SHCoroutine.Instance.StopRoutine(m_pCorOnCheckGen);
         SHCoroutine.Instance.StartRoutine(m_pCorOnCheckGen = OnCoroutineToCheckGen());
         SHUtils.ForToList(m_pMonsters, (pMonster) =>
         {
@@ -68,6 +69,7 @@ public class SHMonster : SHInGame_Component
     }
     public void DeleteMonster(SHState pMonster)
     {
+        Single.ObjectPool.Return(pMonster.gameObject);
         m_pMonsters.Remove(pMonster);
     }
     public SHState GetNearMonster(Vector3 vPos)
@@ -104,7 +106,7 @@ public class SHMonster : SHInGame_Component
                     break;
 
                 GenMonster();
-
+                
                 yield return new WaitForSeconds(SHMath.Random(0.0f, SHHard.m_fMonGenDaly));
             }
 
