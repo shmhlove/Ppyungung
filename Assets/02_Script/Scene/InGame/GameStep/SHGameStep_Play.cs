@@ -16,7 +16,7 @@ public class SHGameStep_Play : SHGameStep_Component
         // 게임상태 정리
         Single.GameState.ShowCurrentScore();
         Single.GameState.CloseBestScore();
-        Single.GameState.SetUpdatePhaseID();
+        Single.GameState.SetUpdatePhase();
 
         // 유닛정리
         Single.Player.StartPlayer();
