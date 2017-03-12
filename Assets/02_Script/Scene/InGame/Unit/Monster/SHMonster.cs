@@ -19,7 +19,7 @@ public class SHMonster : SHInGame_Component
     public override void OnInitialize() { }
     public override void OnFinalize()
     {
-        AllKillMonster();
+        AllDeleteMonster();
     }
     public override void OnFrameMove()
     {
@@ -71,6 +71,14 @@ public class SHMonster : SHInGame_Component
     {
         Single.ObjectPool.Return(pMonster.gameObject);
         m_pMonsters.Remove(pMonster);
+    }
+    public void AllDeleteMonster()
+    {
+        var pMonsters = new List<SHState>(m_pMonsters);
+        SHUtils.ForToList(pMonsters, (pMonster) =>
+        {
+            DeleteMonster(pMonster);
+        });
     }
     public SHState GetNearMonster(Vector3 vPos)
     {
