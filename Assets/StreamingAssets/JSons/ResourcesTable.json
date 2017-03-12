@@ -36,8 +36,8 @@
 			"s_Name": "Dmg_Mon_Bullet",
 			"s_FileName": "Dmg_Mon_Bullet.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "17820",
-			"s_Hash": "F063D4BC12E79BD3330B813120147F22",
+			"s_Size": "17780",
+			"s_Hash": "95DFB52A4A9338B3CC29852AB8CC9969",
 			"s_Path": "Prefab/Damage/Dmg_Mon_Bullet"
 		},
 		{
@@ -76,8 +76,8 @@
 			"s_Name": "Panel_Development",
 			"s_FileName": "Panel_Development.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "121812",
-			"s_Hash": "6ED2DB6623699D014CE3740FCF9B523D",
+			"s_Size": "125068",
+			"s_Hash": "CBDF8468493E52F7E48CF2A72BE182B3",
 			"s_Path": "Prefab/UI/Panel/Panel_Development"
 		},
 		{
@@ -116,17 +116,33 @@
 			"s_Name": "CharPopolo",
 			"s_FileName": "CharPopolo.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "17416",
-			"s_Hash": "F5E547F93C864F14228A10460B645DEB",
+			"s_Size": "13780",
+			"s_Hash": "BEAD8300D539B2F520EFDDF771FBD35D",
 			"s_Path": "Prefab/Unit/CharPopolo"
 		},
 		{
 			"s_Name": "MonMouse",
 			"s_FileName": "MonMouse.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "16664",
-			"s_Hash": "55E65D3B23BE4DB3AB9AC44290893FEE",
+			"s_Size": "13840",
+			"s_Hash": "4D7885925153F22781F0EC4B1617AE9E",
 			"s_Path": "Prefab/Unit/MonMouse"
+		},
+		{
+			"s_Name": "_CharPopolo",
+			"s_FileName": "_CharPopolo.prefab",
+			"s_Extension": ".prefab",
+			"s_Size": "17828",
+			"s_Hash": "B33C50AEC9F78623B5650DD70422F36C",
+			"s_Path": "Prefab/Unit/_CharPopolo"
+		},
+		{
+			"s_Name": "_MonMouse",
+			"s_FileName": "_MonMouse.prefab",
+			"s_Extension": ".prefab",
+			"s_Size": "17240",
+			"s_Hash": "9FDC42D04FFF4ABB6E0DF69D89A03EA3",
+			"s_Path": "Prefab/Unit/_MonMouse"
 		},
 		{
 			"s_Name": "Audio_BGM_GameOver",

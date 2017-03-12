@@ -555,6 +555,9 @@ public class SHMonoWrapper : MonoBehaviour
     #region Interface : Particle
     public void PlayParticle(string strPrefabName)
     {
+        if (true == SHApplicationInfo.m_bIsAppQuit)
+            return;
+
         var pEffect = Single.ObjectPool.Get(strPrefabName, true, ePoolReturnType.Disable, ePoolDestroyType.Return);
         pEffect.transform.SetParent(transform);
         pEffect.transform.localPosition = Vector3.zero;
