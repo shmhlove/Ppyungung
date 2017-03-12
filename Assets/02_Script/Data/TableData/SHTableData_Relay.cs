@@ -18,6 +18,7 @@ public partial class SHTableData : SHBaseData
     }
     #endregion
 
+
     #region ResourcesTable
     public SHResourcesTableInfo GetResourcesInfo(string strFileName)
     {
@@ -28,6 +29,7 @@ public partial class SHTableData : SHBaseData
         return pTable.GetResouceInfo(strFileName);
     }
     #endregion
+
 
     #region JsonClientConfiguration
     public string GetServerConfigurationCDN()
@@ -63,6 +65,7 @@ public partial class SHTableData : SHBaseData
         return pTable.GetVersionToOrder(eOrder);
     }
     #endregion
+
 
     #region JsonServerConfiguration
     public string GetServerURL()
@@ -134,6 +137,7 @@ public partial class SHTableData : SHBaseData
     }
     #endregion
 
+
     #region AssetBundleInfo
     public Dictionary<string, AssetBundleInfo> GetAssetBundleInfo()
     {
@@ -169,6 +173,27 @@ public partial class SHTableData : SHBaseData
         }
 
         pTable.DownloadByCDN(pComplate);
+    }
+    #endregion
+
+
+    #region PhaseInfo
+    public SHPhaseInfo GetPhaseInfo(int iCount)
+    {
+        var pTable = GetTable<JsonPhaseInfo>();
+        if (null == pTable)
+            return new SHPhaseInfo();
+
+        if (false == pTable.IsLoadTable())
+        {
+#if UNITY_EDITOR
+            pTable.LoadJson(pTable.m_strFileName);
+#else
+            pTable.LoadBytes(pTable.m_strByteFileName);
+#endif
+        }
+
+        return pTable.GetPhaseInfo(iCount);
     }
     #endregion
 }

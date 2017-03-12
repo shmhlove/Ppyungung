@@ -16,6 +16,19 @@ public class SHPhaseInfo
     public int                         m_iPhaseID    = 0;
     public int                         m_iPhaseCount = 0;
     public List<SHPhaseMonsterGenInfo> m_pMonsterGenInfo = new List<SHPhaseMonsterGenInfo>();
+
+    public List<string> GetMonsterList()
+    {
+        var pMonsters = new List<string>();
+        SHUtils.ForToList(m_pMonsterGenInfo, (pInfo) => pMonsters.Add(pInfo.m_strName));
+        return pMonsters;
+    }
+    public List<float> GetWeightList()
+    {
+        var pWeights = new List<float>();
+        SHUtils.ForToList(m_pMonsterGenInfo, (pInfo) => pWeights.Add(pInfo.m_fWeight));
+        return pWeights;
+    }
 }
 
 public class JsonPhaseInfo : SHBaseTable
@@ -54,7 +67,7 @@ public class JsonPhaseInfo : SHBaseTable
             var pPhaseNode = pDataNode[iPhaseLoop];
             var pPhaseInfo = new SHPhaseInfo();
 
-            pPhaseInfo.m_iPhaseID    = GetIntToJson(pPhaseNode, "m_iPhaseID");
+            pPhaseInfo.m_iPhaseID    = iPhaseLoop;
             pPhaseInfo.m_iPhaseCount = GetIntToJson(pPhaseNode, "m_iPhaseCount");
 
             var pMonsterNode = pPhaseNode["m_pMonsterGenInfo"];
@@ -80,7 +93,7 @@ public class JsonPhaseInfo : SHBaseTable
         var iPhaseCount = pSerializer.DeserializeInt();
         for(int iPhaseLoop = 0; iPhaseLoop< iPhaseCount; ++iPhaseCount)
         {
-            var pPhaseInfo   = new SHPhaseInfo();
+            var pPhaseInfo           = new SHPhaseInfo();
             pPhaseInfo.m_iPhaseID    = pSerializer.DeserializeInt();
             pPhaseInfo.m_iPhaseCount = pSerializer.DeserializeInt();
             var iMonCount    = pSerializer.DeserializeInt();

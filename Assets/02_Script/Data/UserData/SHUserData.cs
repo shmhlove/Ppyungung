@@ -5,14 +5,6 @@ using System.Collections.Generic;
 
 public partial class SHUserData : SHBaseData
 {
-    #region Members
-    #endregion
-
-
-    #region System Functions
-    #endregion
-
-
     #region Virtual Functions
     public override void OnInitialize() { }
 

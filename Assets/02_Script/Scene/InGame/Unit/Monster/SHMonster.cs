@@ -127,14 +127,17 @@ public class SHMonster : SHInGame_Component
     #region Utility Functions
     void GenMonster()
     {
-        var pMonster = Single.ObjectPool.Get<SHMonMouse>("MonMouse");
+        var pPhaseInfo = Single.Table.GetPhaseInfo(Single.GameState.m_iScore);
+        var strMonster = SHMath.RandomW(pPhaseInfo.GetMonsterList(), pPhaseInfo.GetWeightList());
+
+        var pMonster = Single.ObjectPool.Get<SHMonMouse>(strMonster);
         {
             pMonster.SetParent(SH3DRoot.GetRootToMonster());
             pMonster.SetLocalPosition(GetGenPosition(pMonster));
             pMonster.SetLocalScale(pMonster.m_vStartScale * SHHard.m_fUnitScale);
             pMonster.SetActive(true);
             pMonster.InitMonster(pMonster.GetInstanceID());
-            pMonster.SetName(string.Format("MonMouse_{0}", pMonster.m_iMonsterID));
+            pMonster.SetName(string.Format("{0}_{1}", strMonster, pMonster.m_iMonsterID));
         }
         m_pMonsters.Add(pMonster);
     }

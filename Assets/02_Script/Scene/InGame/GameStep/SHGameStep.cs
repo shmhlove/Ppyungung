@@ -18,9 +18,9 @@ public class SHGameStep : SHInGame_Component
     #region Members
     private DicStep     m_dicSteps      = new DicStep();
     public int          m_iCallCnt      = 0;
-    public eGameStep        m_eBeforeStep   = eGameStep.None;
-    public eGameStep        m_eCurrentStep  = eGameStep.None;
-    public eGameStep        m_eMoveTo       = eGameStep.None;
+    public eGameStep    m_eBeforeStep   = eGameStep.None;
+    public eGameStep    m_eCurrentStep  = eGameStep.None;
+    public eGameStep    m_eMoveTo       = eGameStep.None;
     #endregion
     
 
@@ -32,10 +32,10 @@ public class SHGameStep : SHInGame_Component
     public override void OnInitialize()
     {
         m_dicSteps.Clear();
-        m_dicSteps.Add(eGameStep.Start,         new SHGameStep_Start());
-        m_dicSteps.Add(eGameStep.Play,          new SHGameStep_Play());
-        m_dicSteps.Add(eGameStep.ChangePhase,   new SHGameStep_ChangePhase());
-        m_dicSteps.Add(eGameStep.Result,        new SHGameStep_Result());
+        m_dicSteps.Add(eGameStep.Start,       new SHGameStep_Start());
+        m_dicSteps.Add(eGameStep.Play,        new SHGameStep_Play());
+        m_dicSteps.Add(eGameStep.ChangePhase, new SHGameStep_ChangePhase());
+        m_dicSteps.Add(eGameStep.Result,      new SHGameStep_Result());
 
         MoveTo(eGameStep.Start);
     }
