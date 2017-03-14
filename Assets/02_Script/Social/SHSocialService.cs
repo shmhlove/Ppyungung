@@ -18,13 +18,17 @@ public enum eLeaderBoardType
 
 public class SHSocialService : SHSingleton<SHSocialService>
 {
+#if !UNITY_EDITOR && UNITY_ANDROID
+    private static PlayGamesClientConfiguration m_pGPGConfig;
+#endif
+
     #region Virtual Functions
     public override void OnInitialize()
     {
 #if UNITY_EDITOR
 #elif UNITY_ANDROID
-        // var pGPGConfig = new PlayGamesClientConfiguration.Builder().EnableSavedGames().Build();
-        // PlayGamesPlatform.InitializeInstance(pGPGConfig);
+        m_pGPGConfig = new PlayGamesClientConfiguration.Builder().EnableSavedGames().Build();
+        PlayGamesPlatform.InitializeInstance(m_pGPGConfig);
         PlayGamesPlatform.DebugLogEnabled = true;
         PlayGamesPlatform.Activate();
 #else
