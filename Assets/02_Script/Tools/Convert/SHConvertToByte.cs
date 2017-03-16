@@ -29,7 +29,7 @@ public class SHConvertToByte
                 if (false == bIsDelete)
                     return;
                 
-                SHUtils.DeleteFile(pValue.GetFilePath());
+                //SHUtils.DeleteFile(pValue.GetFilePath());
             }
         });
 
