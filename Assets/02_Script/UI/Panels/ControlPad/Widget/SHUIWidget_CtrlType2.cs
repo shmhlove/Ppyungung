@@ -38,6 +38,92 @@ public class SHUIWidget_CtrlType2 : SHMonoWrapper
             m_pJoyStick_Right.m_pEventToPressOff = OnEventToPressOffRight;
         }
     }
+
+    bool   m_bIsSpaceKeyDown = false;
+    bool[] m_bIsLeftKeyDown  = new bool[4];
+    bool[] m_bIsRightKeyDown = new bool[4];
+    public override void Update()
+    {
+#if UNITY_EDITOR
+        // Right 조작
+        {
+            if (true == Input.GetKeyDown(KeyCode.Keypad8))
+                m_bIsRightKeyDown[0] = true;
+            if (true == Input.GetKeyUp(KeyCode.Keypad8))
+                m_bIsRightKeyDown[0] = false;
+            if (true == Input.GetKeyDown(KeyCode.Keypad5))
+                m_bIsRightKeyDown[1] = true;
+            if (true == Input.GetKeyUp(KeyCode.Keypad5))
+                m_bIsRightKeyDown[1] = false;
+            if (true == Input.GetKeyDown(KeyCode.Keypad4))
+                m_bIsRightKeyDown[2] = true;
+            if (true == Input.GetKeyUp(KeyCode.Keypad4))
+                m_bIsRightKeyDown[2] = false;
+            if (true == Input.GetKeyDown(KeyCode.Keypad6))
+                m_bIsRightKeyDown[3] = true;
+            if (true == Input.GetKeyUp(KeyCode.Keypad6))
+                m_bIsRightKeyDown[3] = false;
+
+            var vRightDirection = Vector3.zero;
+            if (true == m_bIsRightKeyDown[0]) vRightDirection.y = 1.0f;
+            if (true == m_bIsRightKeyDown[1]) vRightDirection.y = -1.0f;
+            if (true == m_bIsRightKeyDown[2]) vRightDirection.x = -1.0f;
+            if (true == m_bIsRightKeyDown[3]) vRightDirection.x = 1.0f;
+
+            if (Vector3.zero != vRightDirection)
+            {
+                if (false == m_bIsRightDrag)
+                    OnEventToPressOnRight();
+
+                OnEventToDragRight(Vector3.zero, Vector3.zero, vRightDirection.normalized);
+            }
+            else
+            {
+                if (true == m_bIsRightDrag)
+                    OnEventToPressOffRight();
+            }
+        }
+
+        // Left 조작
+        {
+            if (true == Input.GetKeyDown(KeyCode.W))
+                m_bIsLeftKeyDown[0] = true;
+            if (true == Input.GetKeyUp(KeyCode.W))
+                m_bIsLeftKeyDown[0] = false;
+            if (true == Input.GetKeyDown(KeyCode.S))
+                m_bIsLeftKeyDown[1] = true;
+            if (true == Input.GetKeyUp(KeyCode.S))
+                m_bIsLeftKeyDown[1] = false;
+            if (true == Input.GetKeyDown(KeyCode.A))
+                m_bIsLeftKeyDown[2] = true;
+            if (true == Input.GetKeyUp(KeyCode.A))
+                m_bIsLeftKeyDown[2] = false;
+            if (true == Input.GetKeyDown(KeyCode.D))
+                m_bIsLeftKeyDown[3] = true;
+            if (true == Input.GetKeyUp(KeyCode.D))
+                m_bIsLeftKeyDown[3] = false;
+
+            var vLeftDirection = Vector3.zero;
+            if (true == m_bIsLeftKeyDown[0]) vLeftDirection.y = 1.0f;
+            if (true == m_bIsLeftKeyDown[1]) vLeftDirection.y = -1.0f;
+            if (true == m_bIsLeftKeyDown[2]) vLeftDirection.x = -1.0f;
+            if (true == m_bIsLeftKeyDown[3]) vLeftDirection.x = 1.0f;
+
+            if (Vector3.zero != vLeftDirection)
+            {
+                OnEventToDragLeft(Vector3.zero, Vector3.zero, vLeftDirection.normalized);
+            }
+        }
+
+        // Dash조작
+        {
+            if (true == Input.GetKeyDown(KeyCode.Space))
+                OnPressOnDash();
+            if (true == Input.GetKeyUp(KeyCode.Space))
+                OnPressOffDash();
+        }
+#endif
+    }
     #endregion
 
 
