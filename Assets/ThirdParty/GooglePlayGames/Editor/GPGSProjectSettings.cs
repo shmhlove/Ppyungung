@@ -56,7 +56,7 @@ namespace GooglePlayGames.Editor
                 {
                     mFile,
                     "Assets/ThirdParty/GooglePlayGames/Editor/projsettings.txt".Replace("/", ds),
-                    "Assets/Editor/projsettings.txt".Replace("/", ds)
+                    "Assets/ThirdParty/GooglePlayGames/Editor/projsettings.txt".Replace("/", ds)
                 };
             
             foreach (string f in fileLocations)
