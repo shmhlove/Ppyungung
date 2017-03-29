@@ -62,6 +62,7 @@ public static class SHPhysics
         // 회전 전 타켓과 진행 방향간 X/Y 부호기록
         bool bMarkX1 = (0.0f < vTargetDist.x - vDirection.x);
         bool bMarkY1 = (0.0f < vTargetDist.y - vDirection.y);
+        bool bMarkZ1 = (0.0f < vTargetDist.z - vDirection.z);
 
         if (true == bDirect)
         {
@@ -78,12 +79,12 @@ public static class SHPhysics
 
         bool bMarkX2 = (0.0f < vTargetDist.x - vDirection.x);
         bool bMarkY2 = (0.0f < vTargetDist.y - vDirection.y);
+        bool bMarkZ2 = (0.0f < vTargetDist.z - vDirection.z);
 
         // 방향 부호가 변했다면 타켓방향보다 회전이 더 크게 된것으로 타켓방향으로 처리 안해주면 지그재그로 흔들림
-        if (bMarkX1 != bMarkX2)
-            vDirection.x = vTargetDist.x;
-        if (bMarkY1 != bMarkY2)
-            vDirection.y = vTargetDist.y;
+        if (bMarkX1 != bMarkX2) vDirection.x = vTargetDist.x;
+        if (bMarkY1 != bMarkY2) vDirection.y = vTargetDist.y;
+        if (bMarkZ1 != bMarkZ2) vDirection.z = vTargetDist.z;
 
         // 회전된 방향으로 진행
         Vector3 vSpeed = (vDirection * fSpeed);
@@ -106,9 +107,9 @@ public static class SHPhysics
     public static Vector3 IncludePointInRect(Vector4 vRect, Vector3 vPos)
     {
         if (vPos.x < vRect.x) vPos.x = vRect.x;
-        if (vPos.z < vRect.y) vPos.z = vRect.y;
+        if (vPos.y < vRect.y) vPos.y = vRect.y;
         if (vPos.x > vRect.z) vPos.x = vRect.z;
-        if (vPos.z > vRect.w) vPos.z = vRect.w;
+        if (vPos.y > vRect.w) vPos.y = vRect.w;
 
         return vPos;
     }

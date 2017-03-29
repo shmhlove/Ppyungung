@@ -157,7 +157,7 @@ public partial class SHCharPopolo : SHState
     public void LimitInGround()
     {
         var vRect = new Vector4(
-            -12000.0f, -7200.0f, 12000.0f, 7200.0f);
+            -1200.0f, -720.0f, 1200.0f, 720.0f);
 
         SetLocalPosition(SHPhysics.IncludePointInRect(vRect, GetLocalPosition()));
     }

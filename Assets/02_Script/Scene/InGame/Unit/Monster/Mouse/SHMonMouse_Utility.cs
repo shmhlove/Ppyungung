@@ -27,9 +27,9 @@ public partial class SHMonMouse : SHState
         var vPos = SHPhysics.GuidedMissile(GetLocalPosition(), ref m_vDirection, Single.Player.GetLocalPosition(),
             m_fHommingAngle, SHHard.m_fMonMoveSpeed);
 
-        SetLocalLookY(m_vDirection);
+        SetLocalLookZ(m_vDirection);
         SetLocalPositionX(vPos.x);
-        SetLocalPositionZ(vPos.z);
+        SetLocalPositionY(vPos.y);
 
         LimitInGround();
     }
@@ -48,8 +48,8 @@ public partial class SHMonMouse : SHState
     public void LimitInGround()
     {
         var vRect = new Vector4(
-            -12000.0f, -7200.0f, 12000.0f, 7200.0f);
-
+            -1280.0f, -720.0f, 1280.0f, 720.0f);
+             
         SetLocalPosition(SHPhysics.IncludePointInRect(vRect, GetLocalPosition()));
     }
     #endregion

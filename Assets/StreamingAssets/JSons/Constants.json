@@ -10,7 +10,7 @@
         "m_fCharDecDashPoint": 0.8,
         "m_fCharMaxDashPoint": 100.0,
 
-        "m_fMonMoveSpeed": 3000.0,
+        "m_fMonMoveSpeed": 200.0,
         "m_fMonDamageSpeed": 3000.0,
         "m_fMonGenDaly": 1.0,
         "m_iMonMaxGen": 5,
@@ -20,7 +20,7 @@
         "m_fMoveLimitX": 1280.0,
         "m_fMoveLimitY": 720.0,
         
-        "m_fUnitScale": 0.4,
+        "m_fUnitScale": 0.2,
         "m_iFrameRate": 30,
         "m_fComboTime": 0.5
 	}

@@ -64,7 +64,7 @@ public partial class SHMonMouse : SHState
             {
                 var vDirection = Vector3.zero;
                 vDirection.x = Mathf.Cos(iValue * Mathf.Deg2Rad);
-                vDirection.z = Mathf.Sin(iValue * Mathf.Deg2Rad);
+                vDirection.y = Mathf.Sin(iValue * Mathf.Deg2Rad);
                 SetAttack(vDirection);
             });
             

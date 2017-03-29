@@ -354,6 +354,13 @@ public class SHMonoWrapper : MonoBehaviour
         
         SetLocalRotateY(SHMath.GetAngleToPosition(Vector3.up, 1.0f, Vector3.forward, vDirection));
     }
+    public void SetLocalLookZ(Vector3 vDirection)
+    {
+        if (Vector3.zero == vDirection)
+            return;
+
+        SetLocalRotateZ(SHMath.GetAngleToPosition(Vector3.forward, 1.0f, Vector3.up, vDirection));
+    }
     public Vector3 GetDirection()
     {
         return GetRotate() * Vector3.forward;

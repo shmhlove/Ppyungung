@@ -161,9 +161,9 @@ public class SHMonster : SHInGame_Component
         
         // Left of Right
         if ((0 == iRandom) || (2 == iRandom))
-            vGenPosition.z = vGenPosition.z + (SHMath.Random(-Math.Abs(vSides[1].z), Math.Abs(vSides[1].z)));
+            vGenPosition.y = vGenPosition.y + (SHMath.Random(-Math.Abs(vSides[1].y), Math.Abs(vSides[1].y)));
 
-        vGenPosition.y = 0.0f;
+        vGenPosition.z = 0.0f;
 
         return vGenPosition;
     }
