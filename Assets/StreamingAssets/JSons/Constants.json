@@ -21,7 +21,7 @@
         "m_fMoveLimitY": 720.0,
         
         "m_fUnitScale": 0.2,
-        "m_iFrameRate": 30,
+        "m_iFrameRate": 45,
         "m_fComboTime": 0.5
 	}
 }
