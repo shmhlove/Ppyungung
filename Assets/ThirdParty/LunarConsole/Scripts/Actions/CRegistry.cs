@@ -40,8 +40,6 @@ namespace LunarConsolePluginInternal
 
     public class CRegistry
     {
-        public static CRegistry instance = new CRegistry();
-
         private readonly CActionList m_actions = new CActionList();
         private readonly CVarList m_vars = new CVarList();
 
@@ -179,6 +177,17 @@ namespace LunarConsolePluginInternal
         public CVar FindVariable(int variableId)
         {
             return m_vars.Find(variableId);
+        }
+
+        #endregion
+
+        #region Destroyable
+
+        public void Destroy()
+        {
+            m_actions.Clear();
+            m_vars.Clear();
+            m_delegate = null;
         }
 
         #endregion

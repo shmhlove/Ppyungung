@@ -28,6 +28,7 @@
 @class LUConsole;
 @class LUConsolePlugin;
 @class LUConsolePluginSettings;
+@class LUCVar;
 @class LUWindow;
 
 typedef enum : NSUInteger {
@@ -43,10 +44,15 @@ typedef enum : NSUInteger {
 
 @end
 
+extern BOOL LUConsoleIsFreeVersion;
+extern BOOL LUConsoleIsFullVersion;
+
+extern NSString * const LUConsoleCheckFullVersionNotification;
+extern NSString * const LUConsoleCheckFullVersionNotificationSource;
+
 @interface LUConsolePlugin : LUObject
 
 @property (nonatomic, readonly) LUWindow         * consoleWindow;
-@property (nonatomic, readonly) LUWindow         * overlayWindow;
 @property (nonatomic, readonly) LUWindow         * actionOverlayWindow;
 @property (nonatomic, readonly) LUWindow         * warningWindow;
 @property (nonatomic, readonly) LUConsole        * console;
@@ -67,6 +73,7 @@ typedef enum : NSUInteger {
                        gestureName:(NSString *)gestureName;
 
 - (void)start;
+- (void)stop;
 
 - (void)showConsole;
 - (void)hideConsole;
@@ -74,20 +81,20 @@ typedef enum : NSUInteger {
 - (void)showOverlay;
 - (void)hideOverlay;
 
-- (void)showActionOverlay;
-- (void)hideActionOverlay;
-
 - (void)logMessage:(NSString *)message stackTrace:(NSString *)stackTrace type:(LUConsoleLogType)type;
 - (void)clear;
 
 - (void)registerActionWithId:(int)actionId name:(NSString *)name;
 - (void)unregisterActionWithId:(int)actionId;
 
-- (void)registerVariableWithId:(int)entryId name:(NSString *)name type:(NSString *)type value:(NSString *)value;
-- (void)registerVariableWithId:(int)entryId name:(NSString *)name type:(NSString *)type value:(NSString *)value defaultValue:(NSString *)defaultValue;
+- (LUCVar *)registerVariableWithId:(int)entryId name:(NSString *)name type:(NSString *)type value:(NSString *)value;
+- (LUCVar *)registerVariableWithId:(int)entryId name:(NSString *)name type:(NSString *)type value:(NSString *)value defaultValue:(NSString *)defaultValue;
 - (void)setValue:(NSString *)value forVariableWithId:(int)variableId;
 
 - (void)enableGestureRecognition;
 - (void)disableGestureRecognition;
+
+- (void)sendScriptMessageName:(NSString *)name;
+- (void)sendScriptMessageName:(NSString *)name params:(NSDictionary *)params;
 
 @end

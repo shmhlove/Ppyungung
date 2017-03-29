@@ -21,7 +21,7 @@
 
 #import "LUCVar.h"
 
-#import "Lunar.h"
+#import "Lunar-Full.h"
 
 NSString * const LUCVarTypeNameBoolean = @"Boolean";
 NSString * const LUCVarTypeNameInteger = @"Integer";
@@ -61,6 +61,7 @@ NSString * const LUCVarTypeNameUnknown = @"Unknown";
         _defaultValue = defaultValue;
         _cellClass = cellClass;
         _type = type;
+        _range = LUMakeCVarRange(NAN, NAN);
     }
     return self;
 }
@@ -121,6 +122,11 @@ NSString * const LUCVarTypeNameUnknown = @"Unknown";
 - (BOOL)isDefaultValue
 {
     return [_value isEqualToString:_defaultValue];
+}
+
+- (BOOL)hasRange
+{
+    return !isnan(_range.min) && !isnan(_range.max);
 }
 
 @end

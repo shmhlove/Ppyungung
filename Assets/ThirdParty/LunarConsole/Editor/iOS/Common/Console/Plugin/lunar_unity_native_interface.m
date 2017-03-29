@@ -28,7 +28,6 @@
 
 static LUConsolePlugin * _lunarConsolePlugin;
 
-OBJC_EXTERN // see: https://github.com/SpaceMadness/lunar-unity-console/pull/18
 void __lunar_console_initialize(const char *targetNameStr, const char *methodNameStr, const char * versionStr, int capacity, int trimCount, const char *gestureStr)
 {
     lunar_dispatch_main(^{
@@ -50,14 +49,13 @@ void __lunar_console_initialize(const char *targetNameStr, const char *methodNam
     });
 }
 
-OBJC_EXTERN // see: https://github.com/SpaceMadness/lunar-unity-console/pull/18
 void __lunar_console_destroy() {
     lunar_dispatch_main(^{
+        [_lunarConsolePlugin stop];
         _lunarConsolePlugin = nil;
     });
 }
 
-OBJC_EXTERN // see: https://github.com/SpaceMadness/lunar-unity-console/pull/18
 void __lunar_console_show()
 {
     lunar_dispatch_main(^{
@@ -66,7 +64,6 @@ void __lunar_console_show()
     });
 }
 
-OBJC_EXTERN // see: https://github.com/SpaceMadness/lunar-unity-console/pull/18
 void __lunar_console_hide()
 {
     lunar_dispatch_main(^{
@@ -75,7 +72,6 @@ void __lunar_console_hide()
     });
 }
 
-OBJC_EXTERN // see: https://github.com/SpaceMadness/lunar-unity-console/pull/18
 void __lunar_console_clear()
 {
     lunar_dispatch_main(^{
@@ -84,7 +80,6 @@ void __lunar_console_clear()
     });
 }
 
-OBJC_EXTERN // see: https://github.com/SpaceMadness/lunar-unity-console/pull/18
 void __lunar_console_log_message(const char * messageStr, const char * stackTraceStr, int type)
 {
     NSString *message = [[NSString alloc] initWithUTF8String:messageStr];
@@ -132,14 +127,19 @@ void __lunar_console_action_unregister(int actionId)
     }
 }
 
-void __lunar_console_cvar_register(int entryId, const char *nameStr, const char *typeStr, const char *valueStr, const char *defaultValueStr)
+void __lunar_console_cvar_register(int entryId, const char *nameStr, const char *typeStr, const char *valueStr, const char *defaultValueStr, BOOL hasRange, float min, float max)
 {
     lunar_dispatch_main(^{
         NSString *name = [[NSString alloc] initWithUTF8String:nameStr];
         NSString *type = [[NSString alloc] initWithUTF8String:typeStr];
         NSString *value = [[NSString alloc] initWithUTF8String:valueStr];
         NSString *defaultValue = [[NSString alloc] initWithUTF8String:defaultValueStr];
-        [_lunarConsolePlugin registerVariableWithId:entryId name:name type:type value:value defaultValue:defaultValue];
+        
+        LUCVar *cvar = [_lunarConsolePlugin registerVariableWithId:entryId name:name type:type value:value defaultValue:defaultValue];
+        if (!isnan(min) && !isnan(max))
+        {
+            cvar.range = LUMakeCVarRange(min, max);
+        }
     });
 }
 

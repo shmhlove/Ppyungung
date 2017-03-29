@@ -24,6 +24,9 @@
 @class LUConsolePopupButton;
 @class LUConsolePopupController;
 
+extern NSString * const LUConsolePopupControllerWillAppearNotification;
+extern NSString * const LUConsolePopupControllerWillDisappearNotification;
+
 @protocol LUConsolePopupControllerDelegate <NSObject>
 
 - (void)popupControllerDidDismiss:(LUConsolePopupController *)controller;
@@ -48,5 +51,7 @@ typedef void(^LUConsolePopupButtonCallback)(LUConsolePopupButton *button);
 
 - (void)presentFromController:(UIViewController *)controller animated:(BOOL)animated;
 - (void)dismissAnimated:(BOOL)animated;
+
+- (void)setLearnMoreTitle:(NSString *)title target:(id)target action:(SEL)action;
 
 @end

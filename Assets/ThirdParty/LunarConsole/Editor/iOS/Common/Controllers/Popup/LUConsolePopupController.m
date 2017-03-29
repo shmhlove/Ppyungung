@@ -22,6 +22,9 @@
 #import "LUConsolePopupController.h"
 #import "Lunar.h"
 
+NSString * const LUConsolePopupControllerWillAppearNotification = @"LUConsolePopupControllerWillAppearNotification";
+NSString * const LUConsolePopupControllerWillDisappearNotification = @"LUConsolePopupControllerWillDisappearNotification";
+
 @interface LUViewController (PopupController)
 
 - (void)setPopupController:(LUConsolePopupController *)controller;
@@ -66,6 +69,7 @@
 @property (nonatomic, weak) IBOutlet UIView *contentView;
 @property (nonatomic, weak) IBOutlet UIView *bottomBarView;
 @property (nonatomic, weak) IBOutlet UIButton *closeButton;
+@property (nonatomic, weak) IBOutlet UIButton *learnMoreButton;
 
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *contentWidthConstraint;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *contentHeightConstraint;
@@ -111,6 +115,23 @@
     
     // popup buttons
     [self addPopupButtons];
+    
+    // "Learn more..." button
+    _learnMoreButton.hidden = YES;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [LUNotificationCenter postNotificationName:LUConsolePopupControllerWillAppearNotification object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [LUNotificationCenter postNotificationName:LUConsolePopupControllerWillDisappearNotification object:nil];
 }
 
 - (void)viewDidLayoutSubviews
@@ -130,6 +151,10 @@
         contentHeight = MAX(320, 2 * fullSize.height / 3) - 2 * 20;
         contentWidth = 1.5 * contentHeight;
     }
+    
+    CGSize preferredSize = [_contentController preferredPopupSize];
+    if (preferredSize.width > 0) contentWidth = preferredSize.width;
+    if (preferredSize.height > 0) contentHeight = preferredSize.height;
     
     self.contentWidthConstraint.constant = contentWidth;
     self.contentHeightConstraint.constant = contentHeight;
@@ -306,6 +331,18 @@
         [self.view removeFromSuperview];
         [self removeFromParentViewController];
     }
+}
+
+- (void)setLearnMoreTitle:(NSString *)title target:(id)target action:(SEL)action
+{
+    // FIXME: store button details and set params in viewDidLoad
+    dispatch_async(dispatch_get_main_queue(), ^{
+        _learnMoreButton.hidden = NO;
+        [_learnMoreButton setTitle:title forState:UIControlStateNormal];
+        [_learnMoreButton addTarget:target
+                             action:action
+                   forControlEvents:UIControlEventTouchUpInside];
+    });
 }
 
 @end

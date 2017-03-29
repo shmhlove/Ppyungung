@@ -53,6 +53,25 @@ namespace LunarConsolePlugin
         }
     }
 
+    public struct CVarValueRange
+    {
+        public static readonly CVarValueRange Undefined = new CVarValueRange(float.NaN, float.NaN);
+
+        public readonly float min;
+        public readonly float max;
+
+        public CVarValueRange(float min, float max)
+        {
+            this.min = min;
+            this.max = max;
+        }
+
+        public bool IsValid
+        {
+            get { return !float.IsNaN(min) && !float.IsNaN(max); }
+        }
+    }
+
     public class CVar : IEquatable<CVar>, IComparable<CVar>
     {
         private static int s_nextId;
@@ -63,6 +82,7 @@ namespace LunarConsolePlugin
 
         private CValue m_value;
         private CValue m_defaultValue;
+        private CVarValueRange m_range = CVarValueRange.Undefined;
 
         private CVarChangedDelegateList m_delegateList;
 
@@ -71,7 +91,6 @@ namespace LunarConsolePlugin
         {
             this.IntValue = defaultValue ? 1 : 0;
             m_defaultValue = m_value;
-            Register();
         }
 
         public CVar(string name, int defaultValue)
@@ -79,7 +98,6 @@ namespace LunarConsolePlugin
         {
             this.IntValue = defaultValue;
             m_defaultValue = m_value;
-            Register();
         }
 
         public CVar(string name, float defaultValue)
@@ -87,7 +105,6 @@ namespace LunarConsolePlugin
         {
             this.FloatValue = defaultValue;
             m_defaultValue = m_value;
-            Register();
         }
 
         public CVar(string name, string defaultValue)
@@ -95,7 +112,6 @@ namespace LunarConsolePlugin
         {
             this.Value = defaultValue;
             m_defaultValue = m_value;
-            Register();
         }
 
         private CVar(string name, CVarType type)
@@ -109,14 +125,6 @@ namespace LunarConsolePlugin
 
             m_name = name;
             m_type = type;
-        }
-
-        void Register()
-        {
-            if (LunarConsoleSettings.consoleEnabled && LunarConsoleSettings.consoleSupported)
-            {
-                CRegistry.instance.Register(this);
-            }
         }
 
         //////////////////////////////////////////////////////////////////////////////
@@ -256,6 +264,17 @@ namespace LunarConsolePlugin
             }
         }
 
+        public CVarValueRange Range
+        {
+            get { return m_range; }
+            set { m_range = value; }
+        }
+
+        public bool HasRange
+        {
+            get { return m_range.IsValid; }
+        }
+
         public bool IsInt
         {
             get { return m_type == CVarType.Integer || m_type == CVarType.Boolean; }
@@ -392,6 +411,12 @@ namespace LunarConsolePlugin
             return m_lookupById.TryGetValue(id, out variable) ? variable : null;
         }
 
+        public void Clear()
+        {
+            m_variables.Clear();
+            m_lookupById.Clear();
+        }
+
         #region IEnumerable implementation
 
         public IEnumerator<CVar> GetEnumerator()
@@ -411,45 +436,23 @@ namespace LunarConsolePlugin
         #endregion
     }
 
-    public class CVarContainerAttribute : Attribute
+    [AttributeUsage (AttributeTargets.Field, Inherited = true, AllowMultiple = false)]
+    public sealed class CVarRangeAttribute : Attribute
     {
+        public readonly float min;
+
+        public readonly float max;
+
+        public CVarRangeAttribute(float min, float max)
+        {
+            this.min = min;
+            this.max = max;
+        }
     }
 
-    static class CVarResolver
+    [AttributeUsage(AttributeTargets.Class)]
+    public class CVarContainerAttribute : Attribute
     {
-        public static void ResolveVariables()
-        {
-            try
-            {
-                var assembly = typeof(CVarResolver).Assembly;
-                var containerTypes = ReflectionUtils.FindAttributeTypes<CVarContainerAttribute>(assembly);
-                foreach (var type in containerTypes)
-                {
-                    ForceStaticInit(type);
-                }
-            }
-            catch (Exception e)
-            {
-                Debug.LogError("Unable to resolve variables: " + e.Message);
-            }
-        }
-
-        private static void ForceStaticInit(Type type)
-        {
-            try
-            {
-                FieldInfo[] fields = type.GetFields(BindingFlags.Static|BindingFlags.Public);
-                if (fields != null && fields.Length > 0)
-                {
-                    fields[0].GetValue(null);
-                }
-            }
-            catch (Exception e)
-            {
-                Log.e(e, "Unable to initialize cvar container: {0}", type);
-            }
-
-        }
     }
 
     class CVarChangedDelegateList : BaseList<CVarChangedDelegate>

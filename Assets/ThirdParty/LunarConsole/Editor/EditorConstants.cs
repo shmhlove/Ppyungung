@@ -33,6 +33,6 @@ namespace LunarConsoleEditorInternal
         public static readonly string EditorPathIOS = EditorPath + "/iOS";
         public static readonly string EditorPathAndroid = EditorPath + "/Android";
 
-		public static readonly string PluginAndroidPath = "Assets/Plugins/Android/" + Constants.PluginName;
+        public static readonly string PluginAndroidPath = "Assets/Plugins/Android/" + Constants.PluginName;
     }
 }
