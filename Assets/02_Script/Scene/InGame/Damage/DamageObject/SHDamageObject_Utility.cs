@@ -84,14 +84,14 @@ public partial class SHDamageObject : SHMonoWrapper
     {
         m_vBeforePosition = GetPosition();
 
-        if (false == m_pInfo.m_bIsTraceToCreator)
-        {
-            if ((true == m_pInfo.m_bIsUseGuideSystem) && 
-                (GetLeftTick() > m_pInfo.m_iNotGuideTick))
-                MoveToGuide();
-            else
-                MoveToNormal();
-        }
+        if (true == m_pInfo.m_bIsTraceToCreator)
+            return;
+        
+        if ((true == m_pInfo.m_bIsUseGuideSystem) && 
+            (GetLeftTick() > m_pInfo.m_iNotGuideTick))
+            MoveToGuide();
+        else
+            MoveToNormal();
     }
     void MoveToNormal()
     {

@@ -363,7 +363,7 @@ public class SHMonoWrapper : MonoBehaviour
     }
     public Vector3 GetDirection()
     {
-        return GetRotate() * Vector3.forward;
+        return GetRotate() * Vector3.up;
     }
     public Vector3 GetLocalDirection()
     {

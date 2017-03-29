@@ -77,12 +77,8 @@ public partial class SHCharPopolo : SHState
         if (false == IsRemainHP())
         {
             ChangeState(eState.Die);
-            PlayParticle("Particle_Crash_Dust_Big");
         }
-        else
-        {
-            PlayParticle("Particle_Crash_Dust_Small");
-        }
+        PlayParticle("Particle_Crash_Dust_Big");
     }
     #endregion
 

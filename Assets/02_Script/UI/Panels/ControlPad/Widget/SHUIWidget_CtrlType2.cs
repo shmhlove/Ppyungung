@@ -11,6 +11,8 @@ public class SHUIWidget_CtrlType2 : SHMonoWrapper
 
 
     #region Members : Info
+    private bool m_bIsLeftPress  = false;
+    private bool m_bIsRightPress = false;
     private bool m_bIsRightDrag  = false;
     #endregion
 
@@ -40,14 +42,14 @@ public class SHUIWidget_CtrlType2 : SHMonoWrapper
             m_pJoyStick_Right.m_pEventToPressOff = OnEventToPressOffRight;
         }
     }
-
-    bool   m_bIsSpaceKeyDown = false;
+    
     bool[] m_bIsLeftKeyDown  = new bool[4];
     bool[] m_bIsRightKeyDown = new bool[4];
     public override void Update()
     {
 #if UNITY_EDITOR
         // Right 조작
+        if (false == m_bIsRightPress)
         {
             if (true == Input.GetKeyDown(KeyCode.Keypad8))
                 m_bIsRightKeyDown[0] = true;
@@ -87,6 +89,7 @@ public class SHUIWidget_CtrlType2 : SHMonoWrapper
         }
 
         // Left 조작
+        if (false == m_bIsLeftPress)
         {
             if (true == Input.GetKeyDown(KeyCode.W))
                 m_bIsLeftKeyDown[0] = true;
@@ -182,22 +185,26 @@ public class SHUIWidget_CtrlType2 : SHMonoWrapper
     }
     public void OnEventToPressOnLeft()
     {
+        m_bIsLeftPress = true;
         m_pEventMove(Vector3.zero);
     }
     public void OnEventToPressOffLeft()
     {
+        m_bIsLeftPress = false;
         m_pEventMove(Vector3.zero);
     }
     public void OnEventToPressOnRight()
     {
-        m_bIsRightDrag = false;
+        m_bIsRightPress = true;
+        m_bIsRightDrag  = false;
         m_pEventDirection(Vector3.zero);
 
         StartCoroutine(CoroutineToShoot());
     }
     public void OnEventToPressOffRight()
     {
-        m_bIsRightDrag = false;
+        m_bIsRightPress = false;
+        m_bIsRightDrag  = false;
         m_pEventDirection(Vector3.zero);
 
         StopAllCoroutines();
