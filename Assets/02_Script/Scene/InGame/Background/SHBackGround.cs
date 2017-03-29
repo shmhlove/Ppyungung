@@ -47,14 +47,14 @@ public class SHBackGround : SHInGame_Component
         var vCenterHeight = pCenterBlock.m_fHeight;
         var vDirection    = (vCenter - vCenterBlock).normalized;
         var fSignX        = SHMath.Sign(vDirection.x);
-        var fSignZ        = SHMath.Sign(vDirection.z);
+        var fSignY        = SHMath.Sign(vDirection.y);
 
         pRemainders[0].SetLocalPosition(
-            new Vector3(vCenterBlock.x + (vCenterWidth * fSignX), 0.0f, vCenterBlock.z));
+            new Vector3(vCenterBlock.x + (vCenterWidth * fSignX), vCenterBlock.y, 0.0f));
         pRemainders[1].SetLocalPosition(
-            new Vector3(vCenterBlock.x, 0.0f, vCenterBlock.z + (vCenterHeight * fSignZ)));
+            new Vector3(vCenterBlock.x, vCenterBlock.y + (vCenterHeight * fSignY), 0.0f));
         pRemainders[2].SetLocalPosition(
-            new Vector3(vCenterBlock.x + (vCenterWidth * fSignX), 0.0f, vCenterBlock.z + (vCenterHeight * fSignZ)));
+            new Vector3(vCenterBlock.x + (vCenterWidth * fSignX), vCenterBlock.y + (vCenterHeight * fSignY), 0.0f));
     }
     void GetDecompositionBlocks(Vector3 vCenter, ref SHBGBlock pCenter, ref List<SHBGBlock> pRemainders)
     {

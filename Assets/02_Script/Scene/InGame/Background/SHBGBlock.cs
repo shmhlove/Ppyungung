@@ -22,7 +22,7 @@ public class SHBGBlock : SHMonoWrapper
     }
     public Bounds GetBounds()
     {
-        return new Bounds(GetLocalPosition(), new Vector3((m_fWidth*2.0f), 0.0f, (m_fHeight*2.0f)));
+        return new Bounds(GetLocalPosition(), new Vector3((m_fWidth*2.0f), (m_fHeight*2.0f), 0.0f));
     }
     #endregion
 }
