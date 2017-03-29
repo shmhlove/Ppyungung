@@ -1,0 +1,225 @@
+fileFormatVersion: 2
+guid: 45c62e115fbd343bb858ee01c881851d
+timeCreated: 1490786476
+licenseType: Pro
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Atlas_Character_All
+    21300002: Atlas_Character_Shadow
+    21300004: Atlas_Character_Right
+    21300006: Atlas_Character_Gas
+    21300008: Atlas_Character_Head
+    21300010: Atlas_Character_Left
+    21300012: Atlas_Character_Sample
+    21300014: Atlas_Character_Weapon
+    21300016: Atlas_Character_7
+    21300018: Atlas_Character_8
+    21300020: Atlas_Character_9
+    21300022: Atlas_Character_10
+    21300024: Atlas_Character_11
+    21300026: Atlas_Character_12
+    21300028: Atlas_Character_13
+    21300030: Atlas_Character_14
+    21300032: Atlas_Character_15
+    21300034: Atlas_Character_16
+    21300036: Atlas_Character_17
+    21300038: Atlas_Character_18
+    21300040: Atlas_Character_19
+    21300042: Atlas_Character_20
+    21300044: Atlas_Character_21
+    21300046: Atlas_Character_22
+    21300048: Atlas_Character_23
+    21300050: Atlas_Character_24
+    21300052: Atlas_Character_25
+    21300054: Atlas_Character_26
+    21300056: Atlas_Character_27
+    21300058: Atlas_Character_28
+    21300060: Atlas_Character_29
+    21300062: Atlas_Character_30
+    21300064: Atlas_Character_31
+    21300066: Atlas_Character_32
+    21300068: Atlas_Character_33
+    21300070: Atlas_Character_34
+    21300072: Atlas_Character_35
+    21300074: Atlas_Character_36
+    21300076: Atlas_Character_37
+    21300078: Atlas_Character_38
+    21300080: Atlas_Character_39
+    21300082: Atlas_Character_Shadow
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 2
+    aniso: 4
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 4096
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: iPhone
+    maxTextureSize: 4096
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 4096
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Atlas_Character_Shadow
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 396
+        width: 88
+        height: 108
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Atlas_Character_Right
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 396
+        width: 51
+        height: 73
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Atlas_Character_Gas
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 384
+        width: 163
+        height: 73
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Atlas_Character_Head
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 258
+        width: 163
+        height: 136
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Atlas_Character_Left
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 258
+        width: 141
+        height: 124
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Atlas_Character_Sample
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 196
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Atlas_Character_Weapon
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 0
+        width: 77
+        height: 139
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
