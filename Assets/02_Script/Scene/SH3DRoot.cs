@@ -11,7 +11,6 @@ public class SH3DRoot : MonoBehaviour
     [SerializeField] private Transform m_pLocalRootMonster = null;
     [SerializeField] private Transform m_pLocalRootBG      = null;
     [SerializeField] private Camera    m_pLocalMainCamera  = null;
-    [SerializeField] private Camera    m_pLocalBlurCamera  = null;
     #endregion
 
 
@@ -27,7 +26,6 @@ public class SH3DRoot : MonoBehaviour
 
     #region Members : Component
     [HideInInspector] private static Camera    m_pMainCamera = null;
-    [HideInInspector] private static Camera    m_pBlurCamera = null;
     #endregion
 
 
@@ -41,7 +39,6 @@ public class SH3DRoot : MonoBehaviour
         m_pRootToMonster = m_pLocalRootMonster;
         m_pRootToBG      = m_pLocalRootBG;
         m_pMainCamera    = m_pLocalMainCamera;
-        m_pBlurCamera    = m_pLocalBlurCamera;
     }
     void OnDestroy()
     {
@@ -55,7 +52,6 @@ public class SH3DRoot : MonoBehaviour
         m_pRootToMonster = null;
         m_pRootToBG      = null;
         m_pMainCamera    = null;
-        m_pBlurCamera    = null;
     }
     void Update()
     {
@@ -95,10 +91,6 @@ public class SH3DRoot : MonoBehaviour
     {
         return m_pMainCamera;
     }
-    public static Camera GetBlurCamera()
-    {
-        return m_pBlurCamera;
-    }
     public static void PlayCameraShake()
     {
         if (null == m_pMainCamera)
@@ -109,13 +101,6 @@ public class SH3DRoot : MonoBehaviour
             return;
 
         pAnim.Play();
-    }
-    public static void SetActiveBlurCamera(bool bIsActive)
-    {
-        if (null == m_pBlurCamera)
-            return;
-
-        m_pBlurCamera.gameObject.SetActive(bIsActive);
     }
     #endregion
 
