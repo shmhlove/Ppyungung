@@ -94,7 +94,6 @@ public static class SHPhysics
 
 
     #region Collision Physics
-
     // Bound안에 Point가 포함되는지 확인
     public static bool IsInBoundToPoint(Bounds pBound, Vector3 vPoint)
     {
@@ -113,6 +112,5 @@ public static class SHPhysics
 
         return vPos;
     }
-
     #endregion
 }

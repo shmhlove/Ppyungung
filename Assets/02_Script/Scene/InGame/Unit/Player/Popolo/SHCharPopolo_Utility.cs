@@ -49,13 +49,14 @@ public partial class SHCharPopolo : SHState
     {
         if (Vector3.zero == m_vMoveDirection)
             return false;
+        
+        var vSpeed = (m_vMoveDirection * SHHard.m_fCharMoveSpeed);
+        var vPos   = SHPhysics.CalculationEuler(Vector3.zero, GetLocalPosition(), ref vSpeed);
 
-        AddLocalPositionX(SHHard.m_fCharMoveSpeed * m_vMoveDirection.x);
-        AddLocalPositionZ(SHHard.m_fCharMoveSpeed * m_vMoveDirection.y);
+        SetLocalPositionX(vPos.x);
+        SetLocalPositionY(vPos.y);
 
         LimitInGround();
-
-        m_vMoveDirection = Vector3.zero;
         return true;
     }
     #endregion
@@ -66,13 +67,14 @@ public partial class SHCharPopolo : SHState
     {
         if (Vector3.zero == m_vMoveDirection)
             return;
+        
+        var vSpeed = (m_vMoveDirection * SHHard.m_fCharDashSpeed);
+        var vPos   = SHPhysics.CalculationEuler(Vector3.zero, GetLocalPosition(), ref vSpeed);
 
-        AddLocalPositionX(SHHard.m_fCharDashSpeed * m_vMoveDirection.x);
-        AddLocalPositionZ(SHHard.m_fCharDashSpeed * m_vMoveDirection.y);
+        SetLocalPositionX(vPos.x);
+        SetLocalPositionY(vPos.y);
 
         LimitInGround();
-
-        m_vMoveDirection = Vector3.zero;
     }
     void AddDashGauge()
     {
@@ -140,24 +142,20 @@ public partial class SHCharPopolo : SHState
         if (null == pNearMon)
             return false;
         
-        SetLocalLookY((pNearMon.GetLocalPosition() - GetLocalPosition()).normalized);
+        SetLocalLookZ((pNearMon.GetLocalPosition() - GetLocalPosition()).normalized);
         return true;
     }
     void SetLookRotation()
     {
         if (Vector3.zero == m_vLookDirection)
             return;
-
-        m_vLookDirection.z = m_vLookDirection.y;
-        m_vLookDirection.y = 0.0f;
-
-        SetLocalLookY(m_vLookDirection);
-        m_vLookDirection = Vector3.zero;
+        
+        SetLocalLookZ(m_vLookDirection);
     }
     public void LimitInGround()
     {
         var vRect = new Vector4(
-            -1200.0f, -720.0f, 1200.0f, 720.0f);
+            -1280.0f, -720.0f, 1280.0f, 720.0f);
 
         SetLocalPosition(SHPhysics.IncludePointInRect(vRect, GetLocalPosition()));
     }

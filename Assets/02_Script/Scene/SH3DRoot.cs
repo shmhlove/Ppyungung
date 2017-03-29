@@ -57,7 +57,7 @@ public class SH3DRoot : MonoBehaviour
     {
         var vPlayerPos = Single.Player.GetLocalPosition();
         SetCameraPosX(vPlayerPos.x);
-        SetCameraPosZ(vPlayerPos.z);
+        SetCameraPosY(vPlayerPos.y);
     }
     #endregion
 

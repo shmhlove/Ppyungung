@@ -2,7 +2,7 @@
 	"Constants": 
 	{
         "m_iCharMaxHP": 3.0,
-        "m_fCharMoveSpeed": 100.0,
+        "m_fCharMoveSpeed": 200.0,
         "m_fCharDamageSpeed": 6000.0,
         "m_fCharShootDelay": 0.2,
         "m_fCharDashSpeed": 200.0,

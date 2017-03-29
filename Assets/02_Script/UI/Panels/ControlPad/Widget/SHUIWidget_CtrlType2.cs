@@ -29,6 +29,8 @@ public class SHUIWidget_CtrlType2 : SHMonoWrapper
         if (null != m_pJoyStick_Left)
         {
             m_pJoyStick_Left.m_pEventToDrag      = OnEventToDragLeft;
+            m_pJoyStick_Left.m_pEventToPressOn   = OnEventToPressOnLeft;
+            m_pJoyStick_Left.m_pEventToPressOff  = OnEventToPressOffLeft;
         }
 
         if (null != m_pJoyStick_Right)
@@ -178,15 +180,25 @@ public class SHUIWidget_CtrlType2 : SHMonoWrapper
         if (null != m_pEventDirection)
             m_pEventDirection(vDirection);
     }
+    public void OnEventToPressOnLeft()
+    {
+        m_pEventMove(Vector3.zero);
+    }
+    public void OnEventToPressOffLeft()
+    {
+        m_pEventMove(Vector3.zero);
+    }
     public void OnEventToPressOnRight()
     {
         m_bIsRightDrag = false;
+        m_pEventDirection(Vector3.zero);
 
         StartCoroutine(CoroutineToShoot());
     }
     public void OnEventToPressOffRight()
     {
         m_bIsRightDrag = false;
+        m_pEventDirection(Vector3.zero);
 
         StopAllCoroutines();
     }
