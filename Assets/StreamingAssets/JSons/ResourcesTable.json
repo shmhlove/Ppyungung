@@ -1,11 +1,19 @@
 {
 	"ResourcesList": [
 		{
+			"s_Name": "",
+			"s_FileName": ".DS_Store",
+			"s_Extension": ".DS_Store",
+			"s_Size": "6148",
+			"s_Hash": "D9FBC4632220715BF5CCE585CD5191E5",
+			"s_Path": "Prefab/"
+		},
+		{
 			"s_Name": "Local_Common",
 			"s_FileName": "Local_Common.csv",
 			"s_Extension": ".csv",
-			"s_Size": "388",
-			"s_Hash": "C44059A26C1728334FEA41E57625091B",
+			"s_Size": "383",
+			"s_Hash": "5B2EABFCAE548608CD5F753606789D26",
 			"s_Path": "Localization/Local_Common"
 		},
 		{
@@ -21,7 +29,7 @@
 			"s_FileName": "Dmg_Char_Body.prefab",
 			"s_Extension": ".prefab",
 			"s_Size": "14212",
-			"s_Hash": "0E0F23FE4B23B4C82CC6E76EF3B1F880",
+			"s_Hash": "9F75A3EF10C29696E324CA9800B60842",
 			"s_Path": "Prefab/Damage/Dmg_Char_Body"
 		},
 		{
@@ -29,7 +37,7 @@
 			"s_FileName": "Dmg_Char_Bullet.prefab",
 			"s_Extension": ".prefab",
 			"s_Size": "16756",
-			"s_Hash": "ADFDF83B19AD68926F620A670B0C485A",
+			"s_Hash": "647D380119833C4C2C3D277D865C1436",
 			"s_Path": "Prefab/Damage/Dmg_Char_Bullet"
 		},
 		{
@@ -37,7 +45,7 @@
 			"s_FileName": "Dmg_Mon_Bullet.prefab",
 			"s_Extension": ".prefab",
 			"s_Size": "16724",
-			"s_Hash": "832E24D49A6DB60C358EA330B29F1E50",
+			"s_Hash": "823CED4E7AAA370CCCD6E6E4CAEE3CC4",
 			"s_Path": "Prefab/Damage/Dmg_Mon_Bullet"
 		},
 		{
@@ -61,7 +69,7 @@
 			"s_FileName": "Particle_Crash_Dust_Big.prefab",
 			"s_Extension": ".prefab",
 			"s_Size": "68472",
-			"s_Hash": "9FFBE96A2F81999B87AC83777B0DFC95",
+			"s_Hash": "F39E30833E454731209B70490D5A59BF",
 			"s_Path": "Prefab/Effect/Particle_Crash_Dust_Big"
 		},
 		{
@@ -109,15 +117,15 @@
 			"s_FileName": "CharPopolo.prefab",
 			"s_Extension": ".prefab",
 			"s_Size": "15724",
-			"s_Hash": "1EB5726E8F59361FA87370E976B23180",
+			"s_Hash": "F94A1828BAE6F1FDDE2DB28BC99DD7B7",
 			"s_Path": "Prefab/Unit/CharPopolo"
 		},
 		{
 			"s_Name": "MonMouse",
 			"s_FileName": "MonMouse.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "15740",
-			"s_Hash": "80B241F5FEEE978C9BA38C726E8BE3B2",
+			"s_Size": "15732",
+			"s_Hash": "CA1E5F9A7D709242956E94CCC51B92CA",
 			"s_Path": "Prefab/Unit/MonMouse"
 		},
 		{
@@ -189,7 +197,7 @@
 			"s_FileName": "Constants.bytes",
 			"s_Extension": ".bytes",
 			"s_Size": "72",
-			"s_Hash": "93EDB6B455226FA78EC52946499D02E5",
+			"s_Hash": "7B67A5E0ED3B421F27D0E65AAF14D88E",
 			"s_Path": "Table/Bytes/Constants"
 		},
 		{
