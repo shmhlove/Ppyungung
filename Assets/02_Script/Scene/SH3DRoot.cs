@@ -5,6 +5,8 @@ using UnityEngine;
 public class SH3DRoot : MonoBehaviour
 {
     #region Members : Inspector
+    [SerializeField] private float     m_fBasicWidth       = 1280.0f;
+    [SerializeField] private float     m_fBasicHeight      = 720.0f;
     [SerializeField] private Transform m_pLocalRootToDMG   = null;
     [SerializeField] private Transform m_pLocalRootCamera  = null;
     [SerializeField] private Transform m_pLocalRootPlayer  = null;
@@ -153,27 +155,29 @@ public class SH3DRoot : MonoBehaviour
     {
         if (null == pCamera)
             return;
-            
-        Debug.LogFormat("카메라 세팅 전 해상도 : {0}", pCamera.rect);
-        float fResolutionX = Single.AppInfo.GetScreenWidth() / 3.0f;
-        float fResolutionY = Single.AppInfo.GetScreenHeight() / 2.0f;
-        if (fResolutionX > fResolutionY)
+        
+        float fTargetAspect = m_fBasicWidth / m_fBasicHeight;
+        float fWindowAspect = (float)Single.AppInfo.GetScreenWidth() / (float)Single.AppInfo.GetScreenHeight();
+        float fScaleHeight  = fWindowAspect / fTargetAspect;
+        
+        Debug.LogFormat("카메라 세팅 전 해상도 : {0}, {1}, {2}", pCamera.rect, fWindowAspect, fScaleHeight);
+        if (1.0f > fScaleHeight)
         {
-            float fValue = (fResolutionX - fResolutionY) * 0.5f;
-            fValue = fValue / fResolutionX ;
-            pCamera.rect = new Rect( fResolutionX * fValue / fResolutionX + pCamera.rect.x * (1.0f - 2.0f * fValue), 
-                                     pCamera.rect.y, 
-                                     pCamera.rect.width * (1.0f - 2.0f * fValue), 
-                                     pCamera.rect.height );
+            var pRect = pCamera.rect;
+            pRect.width  = 1.0f;
+            pRect.height = fScaleHeight;
+            pRect.x      = 0.0f;
+            pRect.y      = (1.0f - fScaleHeight) / 2.0f;
+            pCamera.rect = pRect;
         }
-        else if(fResolutionX < fResolutionY)
+        else
         {
-            float fValue = (fResolutionY - fResolutionX) * 0.5f;
-            fValue = fValue / fResolutionY ;
-                pCamera.rect = new Rect( pCamera.rect.x, 
-                                         fResolutionY * fValue / fResolutionY + pCamera.rect.y * (1.0f - 2.0f * fValue), 
-                                         pCamera.rect.width,
-                                         pCamera.rect.height * (1.0f - 2.0f * fValue));
+            var pRect = pCamera.rect;
+            pRect.width  = fScaleHeight;
+            pRect.height = 1.0f;
+            pRect.x      = (1.0f - fScaleHeight) / 2.0f;
+            pRect.y      = 0.0f;
+            pCamera.rect = pRect;
         }
         Debug.LogFormat("카메라 세팅 후 해상도 : {0}", pCamera.rect);
     }

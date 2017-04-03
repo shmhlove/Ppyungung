@@ -348,7 +348,7 @@ public partial class SHApplicationInfo : SHSingleton<SHApplicationInfo>
 
         m_dicRealLoadInfo[Single.Scene.GetActiveScene()].Add(strInfo);
     }
-	public void PrintDeviceInfo()
+	[FuncButton] public void PrintDeviceInfo()
     {
         string strBuff = "<color=yellow>==================Device Information==================</color>\n";
         {
