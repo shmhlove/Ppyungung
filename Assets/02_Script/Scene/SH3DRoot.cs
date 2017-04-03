@@ -39,6 +39,8 @@ public class SH3DRoot : MonoBehaviour
         m_pRootToMonster = m_pLocalRootMonster;
         m_pRootToBG      = m_pLocalRootBG;
         m_pMainCamera    = m_pLocalMainCamera;
+
+        SetResoultion(m_pMainCamera);
     }
     void OnDestroy()
     {
@@ -146,6 +148,34 @@ public class SH3DRoot : MonoBehaviour
         var vLocalPos = GetCameraPos();
         vLocalPos.z = fZ;
         SetCameraPos(vLocalPos);
+    }
+    void SetResoultion(Camera pCamera)
+    {
+        if (null == pCamera)
+            return;
+            
+        Debug.LogFormat("카메라 세팅 전 해상도 : {0}", pCamera.rect);
+        float fResolutionX = Single.AppInfo.GetScreenWidth() / 3.0f;
+        float fResolutionY = Single.AppInfo.GetScreenHeight() / 2.0f;
+        if (fResolutionX > fResolutionY)
+        {
+            float fValue = (fResolutionX - fResolutionY) * 0.5f;
+            fValue = fValue / fResolutionX ;
+            pCamera.rect = new Rect( fResolutionX * fValue / fResolutionX + pCamera.rect.x * (1.0f - 2.0f * fValue), 
+                                     pCamera.rect.y, 
+                                     pCamera.rect.width * (1.0f - 2.0f * fValue), 
+                                     pCamera.rect.height );
+        }
+        else if(fResolutionX < fResolutionY)
+        {
+            float fValue = (fResolutionY - fResolutionX) * 0.5f;
+            fValue = fValue / fResolutionY ;
+                pCamera.rect = new Rect( pCamera.rect.x, 
+                                         fResolutionY * fValue / fResolutionY + pCamera.rect.y * (1.0f - 2.0f * fValue), 
+                                         pCamera.rect.width,
+                                         pCamera.rect.height * (1.0f - 2.0f * fValue));
+        }
+        Debug.LogFormat("카메라 세팅 후 해상도 : {0}", pCamera.rect);
     }
     #endregion
 }
