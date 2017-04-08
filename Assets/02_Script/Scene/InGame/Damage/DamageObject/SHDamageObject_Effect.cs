@@ -22,23 +22,23 @@ public partial class SHDamageObject : SHMonoWrapper
         return pEffect;
     }
 
-    void SetupEffectTransform(GameObject pEffect, SHDamageEffectInfo pEffectInfo)
+    void SetupEffectTransform(SHDamageEffectInfo pEffectInfo, GameObject pEffect)
     {
         if ((null == pEffect) || (null == pEffectInfo))
             return;
         
-        Vector3 vLocalPosition = pEffectInfo.m_vStaticStartPosition;
+        Vector3 vPosition = pEffectInfo.m_vStaticStartPosition;
         
         if (true == pEffectInfo.m_bIsTraceDamage)
         {
             SHGameObject.SetParent(pEffect, GetGameObject());
-            vLocalPosition = Vector3.zero;
+            vPosition = Vector3.zero;
         }
         else if (true == pEffectInfo.m_bIsStartPosToDamage)
         {
-            vLocalPosition = GetPosition();
+            vPosition = GetPosition();
         }
 
-        pEffect.transform.localPosition = (vLocalPosition + pEffectInfo.m_vPositionOffset);
+        pEffect.transform.localPosition = (vPosition + pEffectInfo.m_vPositionOffset);
     }
 }

@@ -24,7 +24,7 @@ public class SHRnD_Damage : SHMonoWrapper
     [FuncButton] void AddDamage()
     {
         Single.Damage.AddDamage("Dmg_Sample", 
-            new SHAddDamageParam(this, m_pTarget, OnEventToDelete, OnEventToCollision));
+            new SHDamageParam(this, m_pTarget, OnEventToDelete, OnEventToCollision));
     }
     #endregion
 
@@ -38,7 +38,7 @@ public class SHRnD_Damage : SHMonoWrapper
     {
         Debug.LogFormat("SHRnD_Damage::OnEventToDelete() - Event On Delete : {0}", pDamage.m_pInfo.m_strID);
     }
-    public void OnEventToCollision(SHDamageObject pDamage)
+    public void OnEventToCollision(SHDamageObject pDamage, SHMonoWrapper pTarget)
     {
         Debug.LogFormat("SHRnD_Damage::OnEventToCollision() - Event On Collision : {0}", pDamage.m_pInfo.m_strID);
     }

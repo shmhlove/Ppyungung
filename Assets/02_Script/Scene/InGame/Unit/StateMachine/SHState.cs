@@ -14,28 +14,21 @@ public enum eReturnAutoFlow
 
 public partial class SHState : SHMonoWrapper
 {
-    #region Members : Basic
-    [Header("State Info")]
+    #region Members : Inpector
+    [Header("[State Info]")]
     [ReadOnlyField] public  int        m_iCurrentStateID  = -1;
     [ReadOnlyField] public  int        m_iBeforeStateID   = -1;
     [ReadOnlyField] public  int        m_iFixedTick       = -1;
-                    private DicState   m_dicState         = new DicState();
-    #endregion
-
-
-    #region Members : Animation
-    [Header("Animation Info")]
+    [Header("[Animation Info]")]
     [SerializeField] public GameObject m_pAnimRoot        = null;
     #endregion
 
 
-    // AutoFlow : 등록한 함수를 순차적으로 호출해주는 기능
-    // AddAutoFlowState()를 호출한 순서대로 함수를 호출해주며,
-    // ReturnValue의 타입에 따라 다음으로 넘길지 말지를 결정.
-    #region Members : AutoFlowState
+    #region Members : Info
+    private DicState     m_dicState       = new DicState();
     private ListAutoFlow m_pAutoFlowState = new ListAutoFlow();
     #endregion
-
+    
 
     #region Virtual Functions
     public override void Awake()
@@ -55,38 +48,24 @@ public partial class SHState : SHMonoWrapper
         CallToFixedUpdate();
     }
     public virtual void RegisterState() { }
-    public virtual int GetKillState() { return 0; }
     #endregion
 
 
     #region Interface : State
+    public SHStateInfo CreateState<T>(T pState)
+    {
+        return CreateState(Convert.ToInt32(pState));
+    }
     public SHStateInfo CreateState(int iStateID)
     {
-        AddStateInfo(iStateID, new SHStateInfo()
+        return AddStateInfo(iStateID, new SHStateInfo()
         {
             m_iStateID = iStateID,
         });
-        return GetStateInfo(iStateID);
     }
-    public void AddStateInfo(int iStateID, SHStateInfo pInfo)
+    public void ChangeState<T>(T pState)
     {
-        if (null == pInfo)
-        {
-            Debug.LogErrorFormat("SHState::AddState - StateInfo Is Null!! : {0}", iStateID);
-            return;
-        }
-
-        if (true == m_dicState.ContainsKey(iStateID))
-            m_dicState[iStateID] = pInfo;
-        else
-            m_dicState.Add(iStateID, pInfo);
-    }
-    public SHStateInfo GetStateInfo(int iStateID)
-    {
-        if (false == m_dicState.ContainsKey(iStateID))
-            return null;
-
-        return m_dicState[iStateID];
+        ChangeState(Convert.ToInt32(pState));
     }
     public void ChangeState(int iChangeStateID)
     {
@@ -102,11 +81,12 @@ public partial class SHState : SHMonoWrapper
         m_iCurrentStateID         = iChangeStateID;
         pChangeState.m_iFixedTick = (m_iFixedTick = -1);
         pChangeState.OnEnterState(m_iBeforeStateID);
+
         PlayAnimation(pChangeState);
     }
-    public bool IsState(int iStateID)
+    public bool IsState<T>(T pState)
     {
-        return (m_iCurrentStateID == iStateID);
+        return (m_iCurrentStateID == Convert.ToInt32(pState));
     }
     #endregion
 

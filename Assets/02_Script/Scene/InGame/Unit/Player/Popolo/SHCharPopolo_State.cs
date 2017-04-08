@@ -6,7 +6,6 @@ public partial class SHCharPopolo : SHState
 {
     public enum eState
     {
-        None,
         Idle,
         Move,
         Attack,
@@ -15,7 +14,7 @@ public partial class SHCharPopolo : SHState
     }
 
 
-    #region State : Register
+    #region Override Functions
     public override void RegisterState()
     {
         var pState = CreateState(eState.Idle);
@@ -33,7 +32,6 @@ public partial class SHCharPopolo : SHState
         pState = CreateState(eState.Attack);
         {
             pState.m_strAnimClip   = "Anim_Char_Attack";
-            pState.m_OnEnter       = OnEnterToAttack;
             pState.m_OnFixedUpdate = OnFixedUpdateToAttack;
         }
         
@@ -58,7 +56,7 @@ public partial class SHCharPopolo : SHState
     
 
     #region State : Idle
-    void OnFixedUpdateToIdle(int iCurrentState, int iFixedTick)
+    void OnFixedUpdateToIdle(int iFixedTick)
     {
         SetLookRotation();
 
@@ -68,13 +66,13 @@ public partial class SHCharPopolo : SHState
             return;
         }
 
-        if (true == m_bIsShoot)
+        if (true == IsPossibleAttack())
         {
             ChangeState(eState.Attack);
             return;
         }
 
-        if (Vector3.zero != m_vMoveDirection)
+        if (true == IsPossibleMove())
         {
             ChangeState(eState.Move);
             return;
@@ -84,9 +82,9 @@ public partial class SHCharPopolo : SHState
 
 
     #region State : Move
-    void OnFixedUpdateToMove(int iCurrentState, int iFixedTick)
+    void OnFixedUpdateToMove(int iFixedTick)
     {
-        SetMove();
+        SetMove(SHHard.m_fCharMoveSpeed);
         SetLookRotation();
 
         if (true == IsPossibleDash())
@@ -95,7 +93,7 @@ public partial class SHCharPopolo : SHState
             return;
         }
 
-        if (true == m_bIsShoot)
+        if (true == IsPossibleAttack())
         {
             ChangeState(eState.Attack);
             return;
@@ -105,15 +103,15 @@ public partial class SHCharPopolo : SHState
 
 
     #region State : Attack
-    void OnEnterToAttack(int iBeforeState, int iCurrentState)
+    void OnFixedUpdateToAttack(int iFixedTick)
     {
+        SetMove(SHHard.m_fCharMoveSpeed);
         SetLookRotation();
-        SetAttack();
-    }
-    void OnFixedUpdateToAttack(int iCurrentState, int iFixedTick)
-    {
-        var bIsMove = SetMove();
-        SetLookRotation();
+        
+        if (true == IsPossibleAttack())
+        {
+            SetAttack();
+        }
 
         if (true == IsPossibleDash())
         {
@@ -121,15 +119,9 @@ public partial class SHCharPopolo : SHState
             return;
         }
 
-        if (true == m_bIsShoot)
+        if (false == IsAnimPlaying(m_iCurrentStateID))
         {
-            ChangeState(eState.Attack);
-            return;
-        }
-
-        if (false == IsAnimPlaying(iCurrentState))
-        {
-            if (true == bIsMove)
+            if (true == IsPossibleMove())
                 ChangeState(eState.Move);
             else
                 ChangeState(eState.Idle);
@@ -140,18 +132,18 @@ public partial class SHCharPopolo : SHState
 
 
     #region State : Dash
-    void OnEnterToDash(int iBeforeState, int iCurrentState)
+    void OnEnterToDash(int iBeforeState)
     {
         SetBodyDamageLock(true);
         Single.Sound.PlayEffect("Audio_Effect_Dash");
     }
-    void OnExitToDash(int iBeforeState, int iCurrentState)
+    void OnExitToDash(int iBeforeState)
     {
         SetBodyDamageLock(false);
     }
-    void OnFixedUpdateToDash(int iCurrentState, int iFixedTick)
+    void OnFixedUpdateToDash(int iFixedTick)
     {
-        SetDashMove();
+        SetMove(SHHard.m_fCharDashSpeed);
         SetLookRotation();
         DecreaseDashGauge();
 
@@ -165,11 +157,11 @@ public partial class SHCharPopolo : SHState
 
 
     #region State : Die
-    void OnEnterToDie(int iBeforeState, int iCurrentState)
+    void OnEnterToDie(int iBeforeState)
     {
         DelBodyDamage();        
     }
-    void OnFixedUpdateToDie(int iCurrentState, int iFixedTick)
+    void OnFixedUpdateToDie(int iFixedTick)
     {
         if (100 < iFixedTick)
         {

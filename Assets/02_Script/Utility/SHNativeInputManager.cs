@@ -98,6 +98,10 @@ public class SHNativeInputManager : SHSingleton<SHNativeInputManager>
 
         return m_dicCurrentTouchMove[iFingerID];
     }
+    public bool IsTouch()
+    {
+        return (0 != m_pTouchOrders.Count);
+    }
     #endregion
 
 

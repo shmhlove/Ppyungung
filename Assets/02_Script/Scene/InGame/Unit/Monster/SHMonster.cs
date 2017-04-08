@@ -5,8 +5,14 @@ using System.Collections.Generic;
 
 public class SHMonster : SHInGame_Component
 {
-    #region Members
-    public List<SHState> m_pMonsters    = new List<SHState>();
+    #region Members : Info
+    public List<SHBaseMonster> m_pMonsters = new List<SHBaseMonster>();
+    #endregion
+
+
+    #region Members : Cheat
+    public bool m_bIsStopAutoGen = false;
+    public bool m_bIsStopMonster = false;
     #endregion
 
 
@@ -23,8 +29,7 @@ public class SHMonster : SHInGame_Component
     }
     public override void OnFrameMove()
     {
-        var pMonsters = new List<SHState>(m_pMonsters);
-        SHUtils.ForToList(pMonsters, (pMonster) =>
+        ForMonsters((pMonster) =>
         {
             pMonster.FrameMove();
         });
@@ -33,7 +38,7 @@ public class SHMonster : SHInGame_Component
     {
         base.SetPause(bIsPause);
 
-        SHUtils.ForToList(m_pMonsters, (pMonster) =>
+        ForMonsters((pMonster) =>
         {
             pMonster.SetPauseAnimation(bIsPause);
         });
@@ -46,7 +51,7 @@ public class SHMonster : SHInGame_Component
     {
         SHCoroutine.Instance.StopRoutine(m_pCorOnCheckGen);
         SHCoroutine.Instance.StartRoutine(m_pCorOnCheckGen = OnCoroutineToCheckGen());
-        SHUtils.ForToList(m_pMonsters, (pMonster) =>
+        ForMonsters((pMonster) =>
         {
             pMonster.SetPause(false);
         });
@@ -54,37 +59,50 @@ public class SHMonster : SHInGame_Component
     public void StopMonster()
     {
         SHCoroutine.Instance.StopRoutine(m_pCorOnCheckGen);
-        SHUtils.ForToList(m_pMonsters, (pMonster) =>
+        ForMonsters((pMonster) =>
         {
             pMonster.SetPause(true);
         });
     }
     public void AllKillMonster()
     {
-        var pMonsters = new List<SHState>(m_pMonsters);
-        SHUtils.ForToList(pMonsters, (pMonster) =>
+        ForMonsters((pMonster) =>
         {
             pMonster.ChangeState(pMonster.GetKillState());
         });
     }
-    public void DeleteMonster(SHState pMonster)
+    public void DeleteMonster(SHBaseMonster pMonster)
     {
         Single.ObjectPool.Return(pMonster.gameObject);
         m_pMonsters.Remove(pMonster);
     }
     public void AllDeleteMonster()
     {
-        var pMonsters = new List<SHState>(m_pMonsters);
-        SHUtils.ForToList(pMonsters, (pMonster) =>
+        ForMonsters((pMonster) =>
         {
             DeleteMonster(pMonster);
         });
+    }
+    public SHBaseMonster GenMonster(string strMonster, Vector3 vGetPosition)
+    {
+        var pMonster = Single.ObjectPool.Get<SHBaseMonster>(strMonster);
+        {
+            pMonster.SetParent(SH3DRoot.GetRootToMonster());
+            pMonster.SetLocalPosition(vGetPosition);
+            pMonster.SetLocalScale(pMonster.m_vStartScale * SHHard.m_fUnitScale);
+            pMonster.SetActive(true);
+            pMonster.InitMonster(pMonster.GetInstanceID());
+            pMonster.SetName(string.Format("{0}_{1}", strMonster, pMonster.m_iMonsterID));
+        }
+        m_pMonsters.Add(pMonster);
+
+        return pMonster;
     }
     public SHState GetNearMonster(Vector3 vPos)
     {
         float   fMinDest     = float.MaxValue;
         SHState pNearMonster = null;
-        foreach(var pMonster in m_pMonsters)
+        ForMonsters((pMonster) =>
         {
             var fDest = Vector3.Distance(pMonster.GetLocalPosition(), vPos);
             if (fDest < fMinDest)
@@ -92,7 +110,7 @@ public class SHMonster : SHInGame_Component
                 fMinDest     = fDest;
                 pNearMonster = pMonster;
             }
-        }
+        });
 
         return pNearMonster;
     }
@@ -101,7 +119,7 @@ public class SHMonster : SHInGame_Component
         return m_pMonsters.Count;
     }
     #endregion
-
+    
 
     #region Coroutine Functions
     IEnumerator OnCoroutineToCheckGen()
@@ -110,10 +128,15 @@ public class SHMonster : SHInGame_Component
         {
             for (int iLoop = 0; iLoop < SHHard.m_iMonMaxGen; ++iLoop)
             {
+                if (true == m_bIsStopAutoGen)
+                    break;
+
                 if (SHHard.m_iMonMaxCount <= m_pMonsters.Count)
                     break;
 
-                GenMonster();
+                var pPhaseInfo = Single.Table.GetPhaseInfo(Single.GameState.m_iScore);
+                var strMonster = SHMath.RandomW(pPhaseInfo.GetMonsterList(), pPhaseInfo.GetWeightList());
+                GenMonster(strMonster, GetGenPosition());
                 
                 yield return new WaitForSeconds(SHMath.Random(0.0f, SHHard.m_fMonGenDaly));
             }
@@ -125,27 +148,8 @@ public class SHMonster : SHInGame_Component
 
 
     #region Utility Functions
-    void GenMonster()
+    Vector3 GetGenPosition()
     {
-        var pPhaseInfo = Single.Table.GetPhaseInfo(Single.GameState.m_iScore);
-        var strMonster = SHMath.RandomW(pPhaseInfo.GetMonsterList(), pPhaseInfo.GetWeightList());
-
-        var pMonster = Single.ObjectPool.Get<SHMonMouse>(strMonster);
-        {
-            pMonster.SetParent(SH3DRoot.GetRootToMonster());
-            pMonster.SetLocalPosition(GetGenPosition(pMonster));
-            pMonster.SetLocalScale(pMonster.m_vStartScale * SHHard.m_fUnitScale);
-            pMonster.SetActive(true);
-            pMonster.InitMonster(pMonster.GetInstanceID());
-            pMonster.SetName(string.Format("{0}_{1}", strMonster, pMonster.m_iMonsterID));
-        }
-        m_pMonsters.Add(pMonster);
-    }
-    Vector3 GetGenPosition(SHState pMonster)
-    {
-        if (null == pMonster)
-            return Vector3.zero;
-
         var pMainCamera = SH3DRoot.GetMainCamera();
         if (null == pMainCamera)
             return Vector3.zero;
@@ -166,6 +170,13 @@ public class SHMonster : SHInGame_Component
         vGenPosition.z = 0.0f;
 
         return vGenPosition;
+    }
+    void ForMonsters(Action<SHBaseMonster> pCallback)
+    {
+        SHUtils.ForToList(new List<SHBaseMonster>(m_pMonsters), (pMonster) =>
+        {
+            pCallback(pMonster);
+        });
     }
     #endregion
 }

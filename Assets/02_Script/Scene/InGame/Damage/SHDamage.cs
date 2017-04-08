@@ -80,7 +80,7 @@ public partial class SHDamage : SHInGame_Component
 
 
     #region Interface Functions
-    public SHDamageObject AddDamage(string strPrefabName, SHAddDamageParam pParam)
+    public SHDamageObject AddDamage(string strPrefabName, SHDamageParam pParam)
     {
         if (null == pParam)
         {

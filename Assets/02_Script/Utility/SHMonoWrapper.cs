@@ -26,8 +26,13 @@ public class SHMonoWrapper : MonoBehaviour
     #endregion
 
 
-    #region Members : Animation
+    #region Members : State
     [HideInInspector] public bool        m_bIsPause          = false;
+    #endregion
+
+
+    #region Members : Unit
+    [HideInInspector] public float       m_fHealthPoint      = 0.0f;
     #endregion
 
 
@@ -50,7 +55,7 @@ public class SHMonoWrapper : MonoBehaviour
     {
         // var pDamage = pObject as SHDamageObject;
         // var pChar   = pObject as SHCharPopolo;
-        // var pMon    = pObject as SHMonMouse;
+        // var pMon    = pObject as SHBaseMonster;
     }
     #endregion
 
@@ -560,15 +565,22 @@ public class SHMonoWrapper : MonoBehaviour
 
 
     #region Interface : Particle
-    public void PlayParticle(string strPrefabName)
+    public GameObject PlayParticle(string strPrefabName, Transform pRoot = null)
     {
         if (true == SHApplicationInfo.m_bIsAppQuit)
-            return;
+            return null;
 
-        var pEffect = Single.ObjectPool.Get(strPrefabName, true, ePoolReturnType.Disable, ePoolDestroyType.Return);
-        pEffect.transform.SetParent(transform);
-        pEffect.transform.localPosition = Vector3.zero;
-        pEffect.transform.localScale    = Vector3.one;
+        if (null == pRoot)
+            pRoot = transform;
+        
+        var pEffect = Single.ObjectPool.Get(strPrefabName, true, ePoolReturnType.Disable, ePoolDestroyType.ChangeScene);
+        if (null != pEffect)
+        {
+            pEffect.transform.SetParent(pRoot);
+            pEffect.transform.localPosition = Vector3.zero;
+            pEffect.transform.localScale    = pRoot.transform.localScale;
+        }
+        return pEffect;
     }
     #endregion
 

@@ -14,9 +14,9 @@ using System.Collections;
 public partial class SHCharPopolo : SHState
 {
     #region Members : Inspector
-    [Header("Character State")]
+    [Header("[Character State]")]
     [ReadOnlyField]  private string        m_strState  = string.Empty;
-    [Header("Character Info")]
+    [Header("[Character Info]")]
     [SerializeField] private SHMonoWrapper m_pShootPos = null;
     #endregion
 
@@ -31,7 +31,6 @@ public partial class SHCharPopolo : SHState
 
     #region Members : Character Status Data
     public float    m_fDashPoint     = 0.0f;
-    public float    m_fHealthPoint   = 0.0f;
     #endregion
 
 
@@ -72,13 +71,15 @@ public partial class SHCharPopolo : SHState
             return;
 
         var pDamage = pObject as SHDamageObject;
-        AddHP(-pDamage.m_pInfo.m_fDamageValue);
+        {
+            AddHP(-pDamage.m_pInfo.m_fDamageValue);
+            PlayParticle("Particle_Crash_Dust_Big");
+        }
 
         if (false == IsRemainHP())
         {
             ChangeState(eState.Die);
         }
-        PlayParticle("Particle_Crash_Dust_Big");
     }
     #endregion
 

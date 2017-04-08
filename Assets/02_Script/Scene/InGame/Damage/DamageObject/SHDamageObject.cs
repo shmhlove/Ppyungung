@@ -3,58 +3,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-[Serializable]
-public class SHAddDamageParam
-{
-    [ReadOnlyField]   public SHMonoWrapper                m_pWho              = null;   // 데미지 발생자
-    [ReadOnlyField]   public GameObject                   m_pGuideTarget      = null;   // 쫓아갈 타켓 ( 유도 옵션이 있을경우 )
-    [HideInInspector] public List<Action<SHDamageObject>> m_pEventToDelete    = new List<Action<SHDamageObject>>();
-    [HideInInspector] public List<Action<SHDamageObject>> m_pEventToCollision = new List<Action<SHDamageObject>>();
-
-    public SHAddDamageParam() { }
-    public SHAddDamageParam(
-        SHMonoWrapper   pWho, 
-        GameObject      pGuideTarget = null, 
-        Action<SHDamageObject> pEventDelete = null, 
-        Action<SHDamageObject> pEventCollision = null)
-    {
-        m_pWho           = pWho;
-        m_pGuideTarget   = pGuideTarget;
-        AddEventToDelete(pEventDelete);
-        AddEventToCollision(pEventCollision);
-    }
-
-    public void AddEventToDelete(Action<SHDamageObject> pEvent)
-    {
-        if (null == pEvent)
-            return;
-
-        m_pEventToDelete.Add(pEvent);
-    }
-
-    public void AddEventToCollision(Action<SHDamageObject> pEvent)
-    {
-        if (null == pEvent)
-            return;
-
-        m_pEventToCollision.Add(pEvent);
-    }
-
-    public void SendEventToDelete(SHDamageObject pDamage)
-    {
-        SHUtils.ForToList(m_pEventToDelete, (pCallback) => pCallback(pDamage));
-    }
-
-    public void SendEventToCollision(SHDamageObject pDamage)
-    {
-        SHUtils.ForToList(m_pEventToCollision, (pCallback) => pCallback(pDamage));
-    }
-}
 
 public partial class SHDamageObject : SHMonoWrapper
 {
     #region Members : ParamInfo
-    [SerializeField]  private SHAddDamageParam  m_pParam        = null;
+    [SerializeField]  private SHDamageParam  m_pParam        = null;
     #endregion
 
 
@@ -72,7 +25,7 @@ public partial class SHDamageObject : SHMonoWrapper
     
 
     #region System Functions
-    public void OnInitialize(string strID, SHAddDamageParam pParam)
+    public void OnInitialize(string strID, SHDamageParam pParam)
     {
         if (null == pParam)
         {
@@ -138,7 +91,7 @@ public partial class SHDamageObject : SHMonoWrapper
         PlayEffect(eDamageEvent.Crash);
 
         if (null != m_pParam)
-            m_pParam.SendEventToCollision(this);
+            m_pParam.SendEventToCollision(this, pCrashObject);
         
         if (true == m_pInfo.m_bIsDeleteToCrash)
             DeleteDamage();
@@ -177,13 +130,13 @@ public partial class SHDamageObject : SHMonoWrapper
         if (0 < m_iCrashHitTick)
             return false;
 
-        if ((0 != m_pInfo.m_iCheckDelayTickToStart) && 
-            (GetLeftTick() < m_pInfo.m_iCheckDelayTickToStart))
-            return false;
+        // if ((0 != m_pInfo.m_iCheckDelayTickToStart) && 
+        //     (GetLeftTick() < m_pInfo.m_iCheckDelayTickToStart))
+        //     return false;
 
-        if ((0 != m_pInfo.m_iCheckDelayTickToLate) &&
-            (GetLeftTick() > m_pInfo.m_iCheckDelayTickToLate))
-            return false;
+        // if ((0 != m_pInfo.m_iCheckDelayTickToLate) &&
+        //     (GetLeftTick() > m_pInfo.m_iCheckDelayTickToLate))
+        //     return false;
 
         return true;
     }

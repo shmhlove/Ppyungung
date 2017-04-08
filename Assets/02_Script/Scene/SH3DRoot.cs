@@ -11,6 +11,7 @@ public class SH3DRoot : MonoBehaviour
     [SerializeField] private Transform m_pLocalRootCamera  = null;
     [SerializeField] private Transform m_pLocalRootPlayer  = null;
     [SerializeField] private Transform m_pLocalRootMonster = null;
+    [SerializeField] private Transform m_pLocalRootEffect  = null;
     [SerializeField] private Transform m_pLocalRootBG      = null;
     [SerializeField] private Camera    m_pLocalMainCamera  = null;
     #endregion
@@ -22,6 +23,7 @@ public class SH3DRoot : MonoBehaviour
     [HideInInspector] private static Transform m_pRootToCamera  = null;
     [HideInInspector] private static Transform m_pRootToPlayer  = null;
     [HideInInspector] private static Transform m_pRootToMonster = null;
+    [HideInInspector] private static Transform m_pRootToEffect  = null;
     [HideInInspector] private static Transform m_pRootToBG      = null;
     #endregion
 
@@ -39,6 +41,7 @@ public class SH3DRoot : MonoBehaviour
         m_pRootToCamera  = m_pLocalRootCamera;
         m_pRootToPlayer  = m_pLocalRootPlayer;
         m_pRootToMonster = m_pLocalRootMonster;
+        m_pRootToEffect  = m_pLocalRootEffect;
         m_pRootToBG      = m_pLocalRootBG;
         m_pMainCamera    = m_pLocalMainCamera;
 
@@ -54,6 +57,7 @@ public class SH3DRoot : MonoBehaviour
         m_pRootToCamera  = null;
         m_pRootToPlayer  = null;
         m_pRootToMonster = null;
+        m_pRootToEffect  = null;
         m_pRootToBG      = null;
         m_pMainCamera    = null;
     }
@@ -86,6 +90,10 @@ public class SH3DRoot : MonoBehaviour
     public static Transform GetRootToMonster()
     {
         return m_pRootToMonster;
+    }
+    public static Transform GetRootToEffect()
+    {
+        return m_pRootToEffect;
     }
     public static Transform GetRootToBG()
     {

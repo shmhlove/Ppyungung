@@ -2,7 +2,7 @@
 using System;
 using System.Collections;
 
-public partial class SHMonMouse : SHBaseMonster
+public partial class SHMonHeracles : SHBaseMonster
 {
     public enum eState
     {
@@ -29,20 +29,20 @@ public partial class SHMonMouse : SHBaseMonster
     {
         var pState = CreateState(eState.Move);
         {
-            pState.m_strAnimClip    = "Anim_Char_Move";
-            pState.m_OnFixedUpdate  = OnFixedUpdateToMove;
+            pState.m_strAnimClip   = "Anim_Char_Move";
+            pState.m_OnFixedUpdate = OnFixedUpdateToMove;
         }
 
         pState = CreateState(eState.Kill);
         {
-            pState.m_strAnimClip    = "Anim_Char_Die";
-            pState.m_OnFixedUpdate  = OnFixedUpdateToKill;
+            pState.m_strAnimClip   = "Anim_Char_Die";
+            pState.m_OnFixedUpdate = OnFixedUpdateToKill;
         }
 
         pState = CreateState(eState.Die);
         {
-            pState.m_strAnimClip    = "Anim_Char_Die";
-            pState.m_OnFixedUpdate  = OnFixedUpdateToDie;
+            pState.m_strAnimClip   = "Anim_Char_Die";
+            pState.m_OnFixedUpdate = OnFixedUpdateToDie;
         }
     }
     #endregion
@@ -59,8 +59,16 @@ public partial class SHMonMouse : SHBaseMonster
     #region Utility : Die State
     void OnFixedUpdateToDie(int iFixedTick)
     {
-        if (25 > iFixedTick)
+        if (100 > iFixedTick)
             return;
+        
+        SHUtils.For(0, 360, 60, (iValue) =>
+        {
+            SetAttack("Dmg_Mon_Bullet", new Vector3(
+                Mathf.Cos(iValue * Mathf.Deg2Rad),
+                Mathf.Sin(iValue * Mathf.Deg2Rad),
+                0.0f));
+        });
 
         SetExplosionDie();
     }

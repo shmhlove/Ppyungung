@@ -7,13 +7,13 @@ using LunarConsolePlugin;
 public class SHUIPanel_Development : SHUIBasePanel
 {
     #region Members : Inspector
-    [Header("Cheat Open")]
+    [Header("[Cheat Open]")]
     [SerializeField] private AnimationClip  m_pAnimOpen                 = null;
     [SerializeField] private AnimationClip  m_pAnimClose                = null;
-    [Header("Game Locker")]
+    [Header("[Game Locker]")]
     [SerializeField] private GameObject     m_pLocker                   = null;
     [SerializeField] private UILabel        m_pResumeCounter            = null;
-    [Header("Information")]
+    [Header("[Information]")]
     [SerializeField] private GameObject     m_pInfoRoot                 = null;
     [SerializeField] private UILabel        m_pLabelToID                = null;
     [SerializeField] private UILabel        m_pLabelToName              = null;
@@ -21,7 +21,7 @@ public class SHUIPanel_Development : SHUIBasePanel
     [SerializeField] private UILabel        m_pLabelToMonsterMgr        = null;
     [SerializeField] private UILabel        m_pLabelToDamageMgr         = null;
     [SerializeField] private UILabel        m_pLabelToObjectPool        = null;
-    [Header("Player")]
+    [Header("[Player]")]
     [SerializeField] private UIPopupList    m_pPopupListToCtrl          = null;
     [SerializeField] private UIInput        m_pInputToCharMoveSpeed     = null;
     [SerializeField] private UIInput        m_pInputToCharShootSpeed    = null;
@@ -30,12 +30,14 @@ public class SHUIPanel_Development : SHUIBasePanel
     [SerializeField] private UIInput        m_pInputToCharAddDashGauge  = null;
     [SerializeField] private UIInput        m_pInputToCharDecDashGauge  = null;
     [SerializeField] private UIInput        m_pInputToCharMaxDashGauge  = null;
-    [Header("Monster")]
+    [Header("[Monster]")]
+    [SerializeField] private UILabel        m_pLabelToMonAutoGen        = null;
+    [SerializeField] private UILabel        m_pLabelToMonMove           = null;
     [SerializeField] private UIInput        m_pInputToMonMaxSummon      = null;
     [SerializeField] private UIInput        m_pInputToOneTimeSummon     = null;
     [SerializeField] private UIInput        m_pInputToMonMoveSpeed      = null;
     [SerializeField] private UIInput        m_pInputToMonDMGSpeed       = null;
-    [Header("ETC")]
+    [Header("[ETC]")]
     [SerializeField] private UIInput        m_pInputToUnitScale         = null;
     [SerializeField] private UIInput        m_pInputToFrameRate         = null;
     [SerializeField] private UIInput        m_pInputToBasicSP           = null;
@@ -172,7 +174,7 @@ public class SHUIPanel_Development : SHUIBasePanel
         m_pInputToCharAddDashGauge.value    = SHHard.m_fCharAddDashPoint.ToString();
         m_pInputToCharDecDashGauge.value    = SHHard.m_fCharDecDashPoint.ToString();
         m_pInputToCharMaxDashGauge.value    = SHHard.m_fCharMaxDashPoint.ToString();
-
+        
         m_pInputToMonMaxSummon.value        = SHHard.m_iMonMaxCount.ToString();
         m_pInputToOneTimeSummon.value       = SHHard.m_iMonMaxGen.ToString();
         m_pInputToMonMoveSpeed.value        = SHHard.m_fMonMoveSpeed.ToString();
@@ -183,6 +185,11 @@ public class SHUIPanel_Development : SHUIBasePanel
         m_pInputToBasicSP.value             = SHHard.m_fBasicMoveSpeed.ToString();
         m_pInputToMoveLimitX.value          = SHHard.m_fMoveLimitX.ToString();
         m_pInputToMoveLimitY.value          = SHHard.m_fMoveLimitY.ToString();
+
+        OnClickToMonsterAutoGen(m_pLabelToMonAutoGen);
+        OnClickToMonsterAutoGen(m_pLabelToMonAutoGen);
+        OnClickToMonsterMove(m_pLabelToMonMove);
+        OnClickToMonsterMove(m_pLabelToMonMove);
     }
     #endregion
 
@@ -202,7 +209,7 @@ public class SHUIPanel_Development : SHUIBasePanel
         else
         {
             PlayAnimation(m_pAnimClose, () =>
-            StartCoroutine(CoroutineToResumeGame(3)));
+            StartCoroutine(CoroutineToResumeGame(0)));
         }
         
         SetPlayerCtrlType();
@@ -221,7 +228,7 @@ public class SHUIPanel_Development : SHUIBasePanel
         if (true == Single.GameStep.IsStep(eGameStep.Play))
         {
             NGUITools.SetActive(m_pResumeCounter.gameObject, true);
-            for (int iLoop = 0; iLoop< iWaitSecond; ++iLoop)
+            for (int iLoop = 0; iLoop < iWaitSecond; ++iLoop)
             {
                 m_pResumeCounter.text = (iWaitSecond - iLoop).ToString();
                 yield return new WaitForSeconds(1.0f);
@@ -326,15 +333,33 @@ public class SHUIPanel_Development : SHUIBasePanel
 
 
     #region Event : Monster
-    public void OnClickToStartMonster()
+    public void OnClickToMonsterAutoGen(UILabel pLabel)
     {
-        Single.Monster.StartMonster();
+        if (true == Single.Monster.m_bIsStopAutoGen)
+        {
+            pLabel.text = "AutoGen\nOn";
+            Single.Monster.m_bIsStopAutoGen = false;
+        }
+        else
+        {
+            pLabel.text = "AutoGen\nOff";
+            Single.Monster.m_bIsStopAutoGen = true;
+        }
     }
-    public void OnClickToStopMonster()
+    public void OnClickToMonsterMove(UILabel pLabel)
     {
-        Single.Monster.StopMonster();
+        if (true == Single.Monster.m_bIsStopMonster)
+        {
+            pLabel.text = "Move\nOn";
+            Single.Monster.m_bIsStopMonster = false;
+        }
+        else
+        {
+            pLabel.text = "Move\nOff";
+            Single.Monster.m_bIsStopMonster = true;
+        }
     }
-    public void OnClickToAllKillMonster()
+    public void OnClickToMonsterAllKill()
     {
         Single.Monster.AllKillMonster();
     }
@@ -353,6 +378,12 @@ public class SHUIPanel_Development : SHUIBasePanel
     public void OnSubmitToMonDamageSpeed(string strValue)
     {
         SHHard.m_fMonDamageSpeed = float.Parse(strValue);
+    }
+    public void OnSelectToGetMonsterType(string strMonster)
+    {
+        var vCharPos = Single.Player.GetLocalPosition();
+        vCharPos.y += 100.0f;
+        Single.Monster.GenMonster(strMonster, vCharPos);
     }
     #endregion
 

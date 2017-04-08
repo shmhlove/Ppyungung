@@ -4,15 +4,18 @@ using System.Collections;
 
 public class SHStateInfo
 {
-    #region Members
+    #region Members : Basic
     public int              m_iStateID      = -1;
     public int              m_iFixedTick    = -1;
-
     public string           m_strAnimClip   = string.Empty;
-    public Action<int, int> m_OnEnter       = null; // (int iBeforeState,  int iCurrentState)
-    public Action<int, int> m_OnExit        = null; // (int iBeforeState,  int iCurrentState)
-    public Action<int, int> m_OnFixedUpdate = null; // (int iCurrentState, int iFixedTick)
-    public Action<int>      m_OnEndAnim     = null; // (int iCurrentState)
+    #endregion
+
+
+    #region Members : Callback
+    public Action<int> m_OnEnter       = null; // (int iBeforeState)
+    public Action<int> m_OnExit        = null; // (int iAfterState)
+    public Action<int> m_OnFixedUpdate = null; // (int iFixedTick)
+    public Action      m_OnEndAnim     = null; // ()
     #endregion
 
 
@@ -22,28 +25,28 @@ public class SHStateInfo
         if (null == m_OnEnter)
             return;
 
-        m_OnEnter(iBeforeState, m_iStateID);
+        m_OnEnter(iBeforeState);
     }
     public void OnExitState(int iAfterState)
     {
         if (null == m_OnExit)
             return;
 
-        m_OnExit(m_iStateID, iAfterState);
+        m_OnExit(iAfterState);
     }
     public void OnFixedUpdate()
     {
         if (null == m_OnFixedUpdate)
             return;
 
-        m_OnFixedUpdate(m_iStateID, m_iFixedTick);
+        m_OnFixedUpdate(m_iFixedTick);
     }
     public void OnEndAnimation()
     {
         if (null == m_OnEndAnim)
             return;
 
-        m_OnEndAnim(m_iStateID);
+        m_OnEndAnim();
     }
     #endregion
 }

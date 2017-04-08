@@ -1,22 +1,6 @@
 {
 	"AssetBundleInfo": [
 		{
-			"s_BundleName": "Root",
-			"s_BundleSize": "0",
-			"s_BundleHash": "00000000000000000000000000000000",
-			"p_Resources": 
-			[
-				{
-					"s_Name": "",
-					"s_FileName": ".DS_Store",
-					"s_Extension": ".DS_Store",
-					"s_Size": "6148",
-					"s_Hash": "A901B94BCF7FEBD5C7BCD87C2FE21CE5",
-					"s_Path": ""
-				}
-			]
-		},
-		{
 			"s_BundleName": "Localization",
 			"s_BundleSize": "0",
 			"s_BundleHash": "00000000000000000000000000000000",
@@ -26,25 +10,9 @@
 					"s_Name": "Local_Common",
 					"s_FileName": "Local_Common.csv",
 					"s_Extension": ".csv",
-					"s_Size": "383",
-					"s_Hash": "5B2EABFCAE548608CD5F753606789D26",
+					"s_Size": "388",
+					"s_Hash": "C44059A26C1728334FEA41E57625091B",
 					"s_Path": "Localization/Local_Common"
-				}
-			]
-		},
-		{
-			"s_BundleName": "Prefab",
-			"s_BundleSize": "0",
-			"s_BundleHash": "00000000000000000000000000000000",
-			"p_Resources": 
-			[
-				{
-					"s_Name": "",
-					"s_FileName": ".DS_Store",
-					"s_Extension": ".DS_Store",
-					"s_Size": "6148",
-					"s_Hash": "D9FBC4632220715BF5CCE585CD5191E5",
-					"s_Path": "Prefab/"
 				}
 			]
 		},

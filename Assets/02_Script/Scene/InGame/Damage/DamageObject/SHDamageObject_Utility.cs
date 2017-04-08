@@ -203,7 +203,7 @@ public partial class SHDamageObject : SHMonoWrapper
                 return;
 
             pInfo.SetEffectObject(pEffect);
-            SetupEffectTransform(pEffect, pInfo);
+            SetupEffectTransform(pInfo, pEffect);
             pEffect.SetActive(true);
         });
     }

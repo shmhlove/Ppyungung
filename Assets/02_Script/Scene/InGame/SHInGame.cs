@@ -163,7 +163,7 @@ public class SHInGame : SHSingleton<SHInGame>
     [FuncButton] public void TestAddDamage()
     {
         Single.Damage.AddDamage(m_strTestDamageName,
-            new SHAddDamageParam(this, m_pTestDamageTarget, null, null));
+            new SHDamageParam(this, m_pTestDamageTarget));
     }
     #endregion
 }
