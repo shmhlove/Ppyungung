@@ -68,6 +68,8 @@ public partial class SHCharPopolo : SHState
         DelBodyDamage();
         m_pBodyDamage = Single.Damage.AddDamage("Dmg_Char_Body", 
             new SHDamageParam(this, null, null, (pDamage, pTarget) => { OnCrashDamage(pDamage); }));
+
+        m_pBodyDamage.SetStartTransform();
     }
     void DelBodyDamage()
     {

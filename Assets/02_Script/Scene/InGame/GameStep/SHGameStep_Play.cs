@@ -12,6 +12,7 @@ public class SHGameStep_Play : SHGameStep_Component
 
         // 데미지 정리
         Single.Damage.Clear();
+        Single.Damage.SetLockCheckCollision(false);
 
         // 게임상태 정리
         Single.GameState.ShowCurrentScore();
@@ -21,16 +22,13 @@ public class SHGameStep_Play : SHGameStep_Component
         // 유닛정리
         Single.Player.StartPlayer();
         Single.Monster.AllKillMonster();
-        Single.Monster.StartMonster();
+        Single.Monster.StartGen();
         
+        // 사운드 출력
         Single.Sound.PlayBGM("Audio_BGM_InGame");
     }
     public override void FinalStep()
     {
-        Single.UI.Close("Panel_CtrlPad");
-        Single.UI.Close("Panel_HUD");
-
-        Single.Player.StopPlayer();
     }
     public override void FrameMove(int iCallCnt)
     {

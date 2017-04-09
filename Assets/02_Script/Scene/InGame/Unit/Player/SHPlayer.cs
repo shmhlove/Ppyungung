@@ -32,13 +32,24 @@ public class SHPlayer : SHInGame_Component
 
 
     #region Interface Functions
+    public void ClearPlayer()
+    {
+        if (null == m_pCharacter)
+            return;
+
+        m_pCharacter.OnInitialize();
+    }
     public void StartPlayer()
     {
-        DestoryCharacter();
-        m_pCharacter = Single.ObjectPool.Get<SHCharPopolo>("CharPopolo", true, ePoolReturnType.None, ePoolDestroyType.Return);
-        m_pCharacter.SetParent(SH3DRoot.GetRootToPlayer());
-        m_pCharacter.SetLocalScale(m_pCharacter.m_vStartScale * SHHard.m_fUnitScale);
-        m_pCharacter.OnInitialize();
+        if (null == m_pCharacter)
+        {
+            m_pCharacter = Single.ObjectPool.Get<SHCharPopolo>("CharPopolo", true, ePoolReturnType.ChangeScene, ePoolDestroyType.Return);
+            m_pCharacter.SetParent(SH3DRoot.GetRootToPlayer());
+            m_pCharacter.SetLocalScale(m_pCharacter.m_vStartScale * SHHard.m_fUnitScale);
+            m_pCharacter.OnInitialize();
+        }
+
+        m_pCharacter.SetActive(true);
         m_pCharacter.StartCharacter();
     }
     public void StopPlayer()
@@ -75,18 +86,6 @@ public class SHPlayer : SHInGame_Component
             return false;
 
         return m_pCharacter.IsActive();
-    }
-    #endregion
-
-
-    #region Utility Functions
-    void DestoryCharacter()
-    {
-        if (null == m_pCharacter)
-            return;
-
-        Single.ObjectPool.Return(m_pCharacter.gameObject);
-        m_pCharacter = null;
     }
     #endregion
 }

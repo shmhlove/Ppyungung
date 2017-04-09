@@ -15,6 +15,7 @@ public partial class SHDamage : SHInGame_Component
     
 
     #region Members : ETC
+    private bool       m_bIsLockCheckCollision = false;    // 데미지 충돌체크를 하지 않는다.
     private int        m_iAddCount     = 0;                // 데미지 Key를 중복없이 만들어주기 위해...
     #endregion
 
@@ -138,6 +139,10 @@ public partial class SHDamage : SHInGame_Component
     public int GetDamageCount()
     {
         return m_dicDamages.Count;
+    }
+    public void SetLockCheckCollision(bool bIsLock)
+    {
+        m_bIsLockCheckCollision = bIsLock;
     }
     public void Clear()
     {

@@ -49,26 +49,40 @@ public class SHMonster : SHInGame_Component
     #region Interface Functions
     public void StartMonster()
     {
-        SHCoroutine.Instance.StopRoutine(m_pCorOnCheckGen);
-        SHCoroutine.Instance.StartRoutine(m_pCorOnCheckGen = OnCoroutineToCheckGen());
         ForMonsters((pMonster) =>
         {
             pMonster.SetPause(false);
         });
     }
     public void StopMonster()
-    {
-        SHCoroutine.Instance.StopRoutine(m_pCorOnCheckGen);
+    {        
         ForMonsters((pMonster) =>
         {
             pMonster.SetPause(true);
         });
+    }
+    public void StartGen()
+    {
+        StopGen();
+        SHCoroutine.Instance.StartRoutine(m_pCorOnCheckGen = OnCoroutineToCheckGen());
+    }
+    public void StopGen()
+    {
+        SHCoroutine.Instance.StopRoutine(m_pCorOnCheckGen);
+        m_pCorOnCheckGen = null;
     }
     public void AllKillMonster()
     {
         ForMonsters((pMonster) =>
         {
             pMonster.ChangeState(pMonster.GetKillState());
+        });
+    }
+    public void AllDieMonster()
+    {
+        ForMonsters((pMonster) =>
+        {
+            pMonster.ChangeState(pMonster.GetDieState());
         });
     }
     public void DeleteMonster(SHBaseMonster pMonster)

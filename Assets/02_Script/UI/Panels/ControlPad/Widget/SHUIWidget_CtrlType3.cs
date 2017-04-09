@@ -40,10 +40,6 @@ public class SHUIWidget_CtrlType3 : SHMonoWrapper
     }
     public void Clear()
     {
-        m_pEventMove      = null;
-        m_pEventDirection = null;
-        m_pEventShoot     = null;
-        m_pEventDash      = null;
     }
     #endregion
 

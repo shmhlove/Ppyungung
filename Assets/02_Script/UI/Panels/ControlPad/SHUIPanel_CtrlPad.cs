@@ -82,6 +82,14 @@ public class SHUIPanel_CtrlPad : SHUIBasePanel
         m_pEventDirection = null;
         m_pEventShoot     = null;
         m_pEventDash      = null;
+
+        m_pCtrlType0.Clear();
+        m_pCtrlType1.Clear();
+        m_pCtrlType2.Clear();
+        m_pCtrlType3.Clear();
+        m_pCtrlType4.Clear();
+        m_pCtrlType5.Clear();
+        m_pCtrlType6.Clear();
     }
     #endregion
 

@@ -42,6 +42,9 @@ public partial class SHDamage : SHInGame_Component
     #region Utility : Collision
     void CheckCollision(SHDamageObject pDamage)
     {
+        if (true == m_bIsLockCheckCollision)
+            return;
+
         if (null == pDamage)
             return;
 

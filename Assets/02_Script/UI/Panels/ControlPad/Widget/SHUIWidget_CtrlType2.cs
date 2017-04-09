@@ -140,10 +140,13 @@ public class SHUIWidget_CtrlType2 : SHMonoWrapper
     }
     public void Clear()
     {
-        m_pEventMove      = null;
-        m_pEventDirection = null;
-        m_pEventShoot     = null;
-        m_pEventDash      = null;
+        m_bIsLeftPress    = false;
+        m_bIsRightPress   = false;
+        m_bIsLeftDrag     = false;
+        m_bIsRightDrag    = false;
+
+        m_bIsLeftKeyDown  = new bool[4];
+        m_bIsRightKeyDown = new bool[4];
     }
     #endregion
 

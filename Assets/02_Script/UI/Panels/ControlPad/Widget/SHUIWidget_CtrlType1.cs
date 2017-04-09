@@ -11,10 +11,10 @@ public class SHUIWidget_CtrlType1 : SHMonoWrapper
 
 
     #region Members : Event
-    private Action<Vector3> m_pEventMove = null;
+    private Action<Vector3> m_pEventMove      = null;
     private Action<Vector3> m_pEventDirection = null;
-    private Action m_pEventShoot = null;
-    private Action<bool> m_pEventDash = null;
+    private Action          m_pEventShoot     = null;
+    private Action<bool>    m_pEventDash      = null;
     #endregion
 
 
@@ -39,10 +39,6 @@ public class SHUIWidget_CtrlType1 : SHMonoWrapper
     }
     public void Clear()
     {
-        m_pEventMove      = null;
-        m_pEventDirection = null;
-        m_pEventShoot     = null;
-        m_pEventDash      = null;
     }
     #endregion
 

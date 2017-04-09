@@ -40,16 +40,6 @@ public partial class SHCharPopolo : SHState
 
 
     #region System Functions
-    public override void OnEnable()
-    {
-        base.OnEnable();
-        AddBodyDamage();
-    }
-    public override void OnDisable()
-    {
-        base.OnDisable();
-        DelBodyDamage();
-    }
     public override void OnDestroy()
     {
         base.OnDestroy();
@@ -87,22 +77,35 @@ public partial class SHCharPopolo : SHState
     #region Interface Functions
     public void OnInitialize()
     {
+        InitControlValue();
+        InitPointValue();
+    }
+    public void InitControlValue()
+    {
         m_bIsDash        = false;
         m_bIsShoot       = false;
         m_vMoveDirection = Vector3.zero;
         m_vLookDirection = Vector3.zero;
-
-        m_fDashPoint     = 0.0f;
-        m_fHealthPoint   = SHHard.m_iCharMaxHealthPoint;
+    }
+    public void InitPointValue()
+    {
+        m_fDashPoint   = 0.0f;
+        m_fHealthPoint = SHHard.m_iCharMaxHealthPoint;
     }
     public void StartCharacter()
     {
         ChangeState(eState.Idle);
+
+        InitControlValue();
         ConnectControllerUI();
+
+        AddBodyDamage();
     }
     public void StopCharacter()
     {
+        InitControlValue();
         DeConnectControllerUI();
+        DelBodyDamage();
     }
     public bool IsDie()
     {

@@ -98,6 +98,12 @@ public partial class SHCharPopolo : SHState
             ChangeState(eState.Attack);
             return;
         }
+
+        if (false == IsPossibleMove())
+        {
+            ChangeState(eState.Idle);
+            return;
+        }
     }
     #endregion
 

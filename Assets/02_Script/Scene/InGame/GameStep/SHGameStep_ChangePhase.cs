@@ -12,11 +12,12 @@ public class SHGameStep_ChangePhase : SHGameStep_Component
         Single.UI.Close("Panel_CtrlPad");
 
         // 데미지 정리
-        Single.Damage.DelAllDamage();
-        
-        // 몬스터 터트리기
-        Single.Monster.AllKillMonster();
-        Single.Monster.StopMonster();
+        Single.Damage.SetLockCheckCollision(true);
+
+        // 유닛정리
+        Single.Monster.StopGen();
+        Single.Monster.AllDieMonster();
+        Single.Player.StopPlayer();
 
         // 스코어 출력
         Single.GameState.ShowCurrentScore();
