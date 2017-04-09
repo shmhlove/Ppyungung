@@ -152,11 +152,11 @@ public partial class SHApplicationInfo : SHSingleton<SHApplicationInfo>
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else
-        var pThreads = Process.GetCurrentProcess().Threads;
-        foreach(var pThread in pThreads)
-        {
-            pThread.Dispose();
-        }
+        // var pThreads = Process.GetCurrentProcess().Threads;
+        // foreach(var pThread in pThreads)
+        // {
+        //     pThread.Dispose();
+        // }
 
         // Process.GetCurrentProcess().Kill();
         Application.Quit();
