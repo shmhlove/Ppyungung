@@ -103,7 +103,7 @@ public partial class SHApplicationInfo : SHSingleton<SHApplicationInfo>
 				m_eIconType   = eNoticeIcon.Warning,
 				m_strTitle    = "게임 종료",
 				m_strMessage  = "정말 게임을 종료하시겠습니까?",
-				m_pEventToOK  = SHUtils.GameQuit,
+				m_pEventToOK  = SetApplicationQuit,
 			});
 		}
     }
@@ -146,6 +146,20 @@ public partial class SHApplicationInfo : SHSingleton<SHApplicationInfo>
 
 		UnityEngine.Debug.LogFormat ("ProcessID : {0}", GetProcessID());
 		UnityEngine.Debug.LogFormat ("DebugPort : {0}", GetDebugPort());
+    }
+    public static void SetApplicationQuit()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        //var pThreads = Process.GetCurrentProcess().Threads;
+        //foreach(var pThread in pThreads)
+        //{
+        //    pThread.Dispose();
+        //}
+
+        Process.GetCurrentProcess().Kill();
+#endif
     }
     public bool IsLandscape()
     {
@@ -282,7 +296,7 @@ public partial class SHApplicationInfo : SHSingleton<SHApplicationInfo>
         yield return new WaitForSeconds(1.0f);
 
         if (true == Single.Timer.IsPastTimeToLocal(m_pReleaseTime))
-            SHUtils.GameQuit();
+            SHApplicationInfo.SetApplicationQuit();
         else
             StartCoroutine(CheckReleaseTime());
     }

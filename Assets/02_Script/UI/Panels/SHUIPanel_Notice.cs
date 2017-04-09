@@ -111,6 +111,9 @@ public class SHUIPanel_Notice : SHUIBasePanel
     #region Event Handler
     public override void OnClickToClose()
     {
+        if (null == m_pInfo)
+            return;
+
         if (null != m_pInfo.m_pEventToClose)
             m_pInfo.m_pEventToClose();
 
@@ -118,6 +121,9 @@ public class SHUIPanel_Notice : SHUIBasePanel
     }
     public void OnClickToOK()
     {
+        if (null == m_pInfo)
+            return;
+
         if (null != m_pInfo.m_pEventToOK)
             m_pInfo.m_pEventToOK();
 
@@ -125,6 +131,9 @@ public class SHUIPanel_Notice : SHUIBasePanel
     }
     public void OnClickToCancel()
     {
+        if (null == m_pInfo)
+            return;
+
         if (null != m_pInfo.m_pEventToCancel)
             m_pInfo.m_pEventToCancel();
 
@@ -132,6 +141,9 @@ public class SHUIPanel_Notice : SHUIBasePanel
     }
     public void OnClickToRetry()
     {
+        if (null == m_pInfo)
+            return;
+
         if (null != m_pInfo.m_pEventToRetry)
             m_pInfo.m_pEventToRetry();
 

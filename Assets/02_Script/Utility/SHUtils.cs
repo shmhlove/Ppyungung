@@ -263,20 +263,6 @@ public static partial class SHUtils
         EditorApplication.isPaused = bToggle;
 #endif
     }
-    public static void GameQuit()
-    {
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
-        var pThreads = Process.GetCurrentProcess().Threads;
-        foreach(ProcessThread pThread in pThreads)
-        {
-            pThread.Dispose();
-        }
-
-        Process.GetCurrentProcess().Kill();
-#endif
-    }
     #endregion
 
 
