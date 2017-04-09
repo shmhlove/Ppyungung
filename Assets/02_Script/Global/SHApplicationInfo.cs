@@ -404,11 +404,9 @@ public partial class SHApplicationInfo : SHSingleton<SHApplicationInfo>
             strBuff += string.Format("supportsInstancing : {0}\n", SystemInfo.supportsInstancing);
             strBuff += string.Format("supportsLocationService : {0}\n", SystemInfo.supportsLocationService);
             strBuff += string.Format("supportsRawShadowDepthSampling : {0}\n", SystemInfo.supportsRawShadowDepthSampling);
-            strBuff += string.Format("supportsRenderTextures : {0}\n", SystemInfo.supportsRenderTextures);
             strBuff += string.Format("supportsRenderToCubemap : {0}\n", SystemInfo.supportsRenderToCubemap);
             strBuff += string.Format("supportsShadows : {0}\n", SystemInfo.supportsShadows);
             strBuff += string.Format("supportsSparseTextures : {0}\n", SystemInfo.supportsSparseTextures);
-            strBuff += string.Format("supportsStencil : {0}\n", SystemInfo.supportsStencil);
             strBuff += string.Format("supportsVibration : {0}\n", SystemInfo.supportsVibration);
             strBuff += string.Format("systemMemorySize : {0}\n", SystemInfo.systemMemorySize);
         }

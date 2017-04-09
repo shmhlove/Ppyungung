@@ -11,8 +11,6 @@ public class SHUIWidget_CtrlType2 : SHMonoWrapper
 
 
     #region Members : Info
-    private bool m_bIsLeftPress  = false;
-    private bool m_bIsRightPress = false;
     private bool m_bIsLeftDrag   = false;
     private bool m_bIsRightDrag  = false;
     #endregion
@@ -140,8 +138,6 @@ public class SHUIWidget_CtrlType2 : SHMonoWrapper
     }
     public void Clear()
     {
-        m_bIsLeftPress    = false;
-        m_bIsRightPress   = false;
         m_bIsLeftDrag     = false;
         m_bIsRightDrag    = false;
 
@@ -188,19 +184,16 @@ public class SHUIWidget_CtrlType2 : SHMonoWrapper
     }
     public void OnEventToPressOnLeft()
     {
-        m_bIsLeftPress = true;
         m_bIsLeftDrag  = false;
         m_pEventMove(Vector3.zero);
     }
     public void OnEventToPressOffLeft()
     {
-        m_bIsLeftPress = false;
         m_bIsLeftDrag  = false;
         m_pEventMove(Vector3.zero);
     }
     public void OnEventToPressOnRight()
     {
-        m_bIsRightPress = true;
         m_bIsRightDrag  = false;
         m_pEventDirection(Vector3.zero);
 
@@ -208,7 +201,6 @@ public class SHUIWidget_CtrlType2 : SHMonoWrapper
     }
     public void OnEventToPressOffRight()
     {
-        m_bIsRightPress = false;
         m_bIsRightDrag  = false;
         m_pEventDirection(Vector3.zero);
 
