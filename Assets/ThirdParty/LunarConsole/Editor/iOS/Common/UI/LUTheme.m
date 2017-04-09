@@ -41,7 +41,6 @@ static LUTheme * _mainTheme;
 @property (nonatomic, strong) UIFont *font;
 @property (nonatomic, strong) UIFont *fontOverlay;
 @property (nonatomic, strong) UIFont *fontSmall;
-
 @property (nonatomic, assign) NSLineBreakMode lineBreakMode;
 @property (nonatomic, assign) CGFloat cellHeight;
 @property (nonatomic, assign) CGFloat indentHor;
@@ -82,9 +81,6 @@ static LUTheme * _mainTheme;
 @property (nonatomic, strong) UIColor *switchTintColor;
 @property (nonatomic, strong) UIImage *settingsIconImage;
 @property (nonatomic, strong) UIColor *settingsTextColorUnavailable;
-
-@property (nonatomic, strong) UIFont  *logMessageDetailFont;
-@property (nonatomic, strong) UIColor *logMessageStacktraceColor;
 
 @end
 
@@ -206,8 +202,6 @@ static UIImage * CreateCollapseBackgroundImage()
         _mainTheme.variableEditFont = _mainTheme.actionsFont;
         _mainTheme.variableEditTextColor = LUColorMake(0xb4b4b4);
         _mainTheme.variableEditBackground = LUColorMake(0x4d4d4d);
-        _mainTheme.logMessageDetailFont = [self createCustomFontWithSize:12];
-        _mainTheme.logMessageStacktraceColor = LUColorMake(0x555555);
         
         LUButtonSkin *actionButtonLargeSkin = [LUButtonSkin buttonSkin];
         actionButtonLargeSkin.normalImage = LUGet3SlicedImage(@"lunar_console_action_button_large_normal");
@@ -216,9 +210,9 @@ static UIImage * CreateCollapseBackgroundImage()
     }
 }
 
-+ (UIFont *)createCustomFontWithName:(NSString *)name size:(CGFloat)size
++ (UIFont *)createCustomFontWithSize:(CGFloat)size
 {
-    UIFont *font = [UIFont fontWithName:name size:size];
+    UIFont *font = [UIFont fontWithName:@"Menlo-regular" size:size];
     if (font != nil)
     {
         return font;
@@ -227,30 +221,49 @@ static UIImage * CreateCollapseBackgroundImage()
     return [UIFont systemFontOfSize:size];
 }
 
-+ (UIFont *)createCustomFontWithSize:(CGFloat)size
-{
-    return [self createCustomFontWithName:@"Menlo-regular" size:size];
-}
-
 
 + (UIFont *)createDefaultFont
 {
-    return [self createCustomFontWithName:@"Menlo-regular" size:10];
+    UIFont *font = [UIFont fontWithName:@"Menlo-regular" size:10];
+    if (font != nil)
+    {
+        return font;
+    }
+    
+    return [UIFont systemFontOfSize:10];
 }
 
 + (UIFont *)createOverlayFont
 {
-    return [self createCustomFontWithName:@"Menlo-bold" size:10];
+    UIFont *font = [UIFont fontWithName:@"Menlo-bold" size:10];
+    if (font != nil)
+    {
+        return font;
+    }
+    
+    return [UIFont systemFontOfSize:10];
 }
 
 + (UIFont *)createSmallFont
 {
-    return [self createCustomFontWithName:@"Menlo-regular" size:8];
+    UIFont *font = [UIFont fontWithName:@"Menlo-regular" size:8];
+    if (font != nil)
+    {
+        return font;
+    }
+    
+    return [UIFont systemFontOfSize:8];
 }
 
 + (UIFont *)createContextMenuFont
 {
-    return [self createCustomFontWithName:@"Menlo-regular" size:12];
+    UIFont *font = [UIFont fontWithName:@"Menlo-regular" size:12];
+    if (font != nil)
+    {
+        return font;
+    }
+    
+    return [UIFont systemFontOfSize:12];
 }
 
 + (LUTheme *)mainTheme

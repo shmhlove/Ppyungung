@@ -1448,15 +1448,9 @@ namespace LunarConsolePluginInternal
                     payload.AppendFormat("&an={0}", productName);
                 }
             }
-
-            #if UNITY_5_6_OR_NEWER
-            var identifier = Application.identifier;
-            #else
-            var identifier = Application.bundleIdentifier;
-            #endif
-            if (!string.IsNullOrEmpty(identifier))
+            if (!string.IsNullOrEmpty(Application.bundleIdentifier))
             {
-                var bundleIdentifier = WWW.EscapeURL(identifier);
+                var bundleIdentifier = WWW.EscapeURL(Application.bundleIdentifier);
                 if (bundleIdentifier.Length <= 150)
                 {
                     payload.AppendFormat("&aid={0}", bundleIdentifier);

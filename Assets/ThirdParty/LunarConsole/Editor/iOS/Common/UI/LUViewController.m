@@ -40,14 +40,6 @@
 }
 
 #pragma mark -
-#pragma mark Interface Orientation
-
-- (BOOL)shouldAutorotate
-{
-    return NO;
-}
-
-#pragma mark -
 #pragma mark Popup controller
 
 - (CGSize)preferredPopupSize

@@ -202,7 +202,7 @@ public partial class SHApplicationInfo : SHSingleton<SHApplicationInfo>
     }
     public string GetAppName()
     {
-        return Application.identifier.Split('.')[2];
+        return Application.bundleIdentifier.Split('.')[2];
     }
     public int GetScreenWidth()
     {

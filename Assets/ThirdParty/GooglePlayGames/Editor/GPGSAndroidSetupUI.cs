@@ -352,13 +352,13 @@ namespace GooglePlayGames.Editor
         {
             string packageName = GPGSProjectSettings.Instance.Get(
                 GPGSUtil.ANDROIDBUNDLEIDKEY, string.Empty);
-            string currentId = PlayerSettings.applicationIdentifier;
+            string currentId = PlayerSettings.bundleIdentifier;
             if (!string.IsNullOrEmpty(packageName))
             {
                 if (string.IsNullOrEmpty(currentId) ||
                     currentId == "com.Company.ProductName")
                 {
-                    PlayerSettings.applicationIdentifier = packageName;
+                    PlayerSettings.bundleIdentifier = packageName;
                 }
                 else if (currentId != packageName)
                 {
@@ -371,7 +371,7 @@ namespace GooglePlayGames.Editor
                         "OK",
                         "Cancel"))
                     {
-                        PlayerSettings.applicationIdentifier = packageName;
+                        PlayerSettings.bundleIdentifier = packageName;
                     }
                 }
             }

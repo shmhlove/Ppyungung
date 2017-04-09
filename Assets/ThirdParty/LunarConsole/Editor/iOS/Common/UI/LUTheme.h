@@ -102,9 +102,6 @@
 @property (nonatomic, readonly) UIImage *settingsIconImage;
 @property (nonatomic, readonly) UIColor *settingsTextColorUnavailable;
 
-@property (nonatomic, readonly) UIFont  *logMessageDetailFont;
-@property (nonatomic, readonly) UIColor *logMessageStacktraceColor;
-
 + (LUTheme *)mainTheme;
 
 @end

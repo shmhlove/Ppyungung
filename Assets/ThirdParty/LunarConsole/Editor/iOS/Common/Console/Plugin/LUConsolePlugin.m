@@ -140,6 +140,7 @@ static NSString * const kSettingsFilename          = @"com.spacemadness.lunarmob
     if (_consoleWindow != nil)
     {
         [self unregisterNotifications];
+        [self enableGestureRecognition];
         
         CGRect windowFrame = _consoleWindow.frame;
         windowFrame.origin.y -= CGRectGetHeight(windowFrame);
@@ -149,7 +150,6 @@ static NSString * const kSettingsFilename          = @"com.spacemadness.lunarmob
             window.frame = windowFrame;
         } completion:^(BOOL finished) {
             window.hidden = YES;
-            [self enableGestureRecognition];
         }];
         
         _consoleWindow = nil;
