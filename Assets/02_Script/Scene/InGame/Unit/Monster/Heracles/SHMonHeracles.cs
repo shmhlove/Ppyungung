@@ -59,16 +59,8 @@ public partial class SHMonHeracles : SHBaseMonster
     #region Utility : Die State
     void OnFixedUpdateToDie(int iFixedTick)
     {
-        if (100 > iFixedTick)
+        if (25 > iFixedTick)
             return;
-        
-        SHUtils.For(0, 360, 60, (iValue) =>
-        {
-            SetAttack("Dmg_Mon_Bullet", new Vector3(
-                Mathf.Cos(iValue * Mathf.Deg2Rad),
-                Mathf.Sin(iValue * Mathf.Deg2Rad),
-                0.0f));
-        });
 
         SetExplosionDie();
     }
