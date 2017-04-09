@@ -35,6 +35,7 @@ public class SHNativeInputManager : SHSingleton<SHNativeInputManager>
     {
         base.Update();
 
+#if UNITY_EDITOR
         // Mobile
         if (0 < Input.touchCount)
         {
@@ -61,6 +62,7 @@ public class SHNativeInputManager : SHSingleton<SHNativeInputManager>
                 case TouchPhase.Moved:      SetTouchMove(0, new Vector2(Input.mousePosition.x, Input.mousePosition.y));  break;
             }
         }
+#endif
     }
     #endregion
 
