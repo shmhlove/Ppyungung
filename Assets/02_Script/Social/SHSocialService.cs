@@ -43,26 +43,23 @@ public class SHSocialService : SHSingleton<SHSocialService>
 
 
     #region Interface : Login
-    public void Login(Action<bool, string> pCallback)
+    public void Login(Action<bool> pCallback)
     {
         if (null == pCallback)
-            pCallback = (bIsSuccess, strMessage) => { };
+            pCallback = (bIsSuccess) => { };
 
         if (true == IsLogin())
         {
-            pCallback(true, "");
+            pCallback(true);
             return;
         }
 
 #if UNITY_EDITOR
-        pCallback(true, "");
+        pCallback(true);
 #else
-        Social.localUser.Authenticate((bIsSuccess, strMessage) => 
+        Social.localUser.Authenticate((bIsSuccess) => 
         {
-            if (false == string.IsNullOrEmpty(strMessage))
-                Debug.LogError(strMessage);
-        
-            pCallback(bIsSuccess, strMessage);
+            pCallback(bIsSuccess);
         });
 #endif
     }

@@ -267,9 +267,9 @@ public class SHUIPanel_Development : SHUIBasePanel
     public void OnClickToLogin()
     {
         Single.Social.Login(
-            (bIsSuccess, strMessage) => 
+            (bIsSuccess) => 
             {
-                Debug.LogFormat("Login : {0} - {1}", bIsSuccess, strMessage);
+                Debug.LogFormat("Login : {0}", bIsSuccess);
             });
     }
     public void OnClickToLogout()
