@@ -21,8 +21,8 @@ public class SHBaseMonster : SHState
     #endregion
 
 
-    #region Interface Functions
-    public void InitMonster(int iID)
+    #region Virtual Functions
+    public virtual void InitMonster(int iID)
     {
         m_iMonsterID    = iID;
         m_fHommingAngle = SHMath.Random(1.0f, 2.0f);
@@ -30,10 +30,6 @@ public class SHBaseMonster : SHState
 
         ChangeState(0);
     }
-    #endregion
-
-
-    #region Virtual Functions
     public virtual string GetState() { return m_iCurrentStateID.ToString(); }
     public virtual int GetDieState() { return 0; }
     public virtual int GetKillState() { return 0; }
