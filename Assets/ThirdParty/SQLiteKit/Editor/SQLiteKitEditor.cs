@@ -10,7 +10,7 @@ public class SQLiteKitEditor : EditorWindow {
 
 	const string default_url = "https://docs.google.com/spreadsheet/pub?key=0AhKBA3PeUOmddDhQNno2S09VYlpvUC1XdXdMb1NjeHc&output=html";
 	const string defautl_database = "import_test.db";
-	const string settings_path = "Assets/sqlitekit/Resources/editor_settings.asset";
+	const string settings_path = "Assets/ThirdParty/SQLiteKit/Resources/editor_settings.asset";
 	const string settings_name = "editor_settings";
 	
 	SQLiteKitEditorSettings settings;
