@@ -2,7 +2,7 @@
 	"PhaseInfo":
 	[
         {
-            "m_iPhaseCount": 100,
+            "m_iPhaseCount": 25,
             "m_fMonGenDaly": 1.0,
             "m_iMonMaxGen": 5,
             "m_iMonMaxCount": 20,
@@ -10,20 +10,20 @@
             [
                 {
                     "m_strName": "MonMouse",
-                    "m_fWeight": 0.5
+                    "m_fWeight": 0
                 },
                 {
                     "m_strName": "MonUsainBolt",
-                    "m_fWeight": 0.5
+                    "m_fWeight": 1
                 },
                 {
                     "m_strName": "MonHeracles",
-                    "m_fWeight": 0.5
+                    "m_fWeight": 0
                 }
             ]
         },
         {
-            "m_iPhaseCount": 200,
+            "m_iPhaseCount": 50,
             "m_fMonGenDaly": 0.9,
             "m_iMonMaxGen": 6,
             "m_iMonMaxCount": 21,
@@ -31,20 +31,20 @@
             [
                 {
                     "m_strName": "MonMouse",
-                    "m_fWeight": 0.5
+                    "m_fWeight": 0
                 },
                 {
                     "m_strName": "MonUsainBolt",
-                    "m_fWeight": 0.5
+                    "m_fWeight": 0.7
                 },
                 {
                     "m_strName": "MonHeracles",
-                    "m_fWeight": 0.5
+                    "m_fWeight": 0.3
                 }
             ]
         },
         {
-            "m_iPhaseCount": 300,
+            "m_iPhaseCount": 75,
             "m_fMonGenDaly": 0.8,
             "m_iMonMaxGen": 7,
             "m_iMonMaxCount": 22,
@@ -52,20 +52,20 @@
             [
                 {
                     "m_strName": "MonMouse",
-                    "m_fWeight": 0.5
+                    "m_fWeight": 0.1
                 },
                 {
                     "m_strName": "MonUsainBolt",
-                    "m_fWeight": 0.5
+                    "m_fWeight": 0.6
                 },
                 {
                     "m_strName": "MonHeracles",
-                    "m_fWeight": 0.5
+                    "m_fWeight": 0.3
                 }
             ]
         },
         {
-            "m_iPhaseCount": 400,
+            "m_iPhaseCount": 100,
             "m_fMonGenDaly": 0.7,
             "m_iMonMaxGen": 8,
             "m_iMonMaxCount": 23,
@@ -73,7 +73,7 @@
             [
                 {
                     "m_strName": "MonMouse",
-                    "m_fWeight": 0.5
+                    "m_fWeight": 0.2
                 },
                 {
                     "m_strName": "MonUsainBolt",
@@ -81,12 +81,12 @@
                 },
                 {
                     "m_strName": "MonHeracles",
-                    "m_fWeight": 0.5
+                    "m_fWeight": 0.3
                 }
             ]
         },
         {
-            "m_iPhaseCount": 500,
+            "m_iPhaseCount": 125,
             "m_fMonGenDaly": 0.6,
             "m_iMonMaxGen": 9,
             "m_iMonMaxCount": 24,
@@ -107,7 +107,7 @@
             ]
         },
         {
-            "m_iPhaseCount": 600,
+            "m_iPhaseCount": 150,
             "m_fMonGenDaly": 0.5,
             "m_iMonMaxGen": 10,
             "m_iMonMaxCount": 25,
@@ -119,7 +119,7 @@
                 },
                 {
                     "m_strName": "MonUsainBolt",
-                    "m_fWeight": 0.5
+                    "m_fWeight": 0.4
                 },
                 {
                     "m_strName": "MonHeracles",
@@ -128,7 +128,7 @@
             ]
         },
         {
-            "m_iPhaseCount": 700,
+            "m_iPhaseCount": 175,
             "m_fMonGenDaly": 0.4,
             "m_iMonMaxGen": 11,
             "m_iMonMaxCount": 26,
@@ -140,7 +140,7 @@
                 },
                 {
                     "m_strName": "MonUsainBolt",
-                    "m_fWeight": 0.5
+                    "m_fWeight": 0.3
                 },
                 {
                     "m_strName": "MonHeracles",
@@ -149,7 +149,7 @@
             ]
         },
         {
-            "m_iPhaseCount": 800,
+            "m_iPhaseCount": 200,
             "m_fMonGenDaly": 0.3,
             "m_iMonMaxGen": 12,
             "m_iMonMaxCount": 27,
@@ -161,16 +161,16 @@
                 },
                 {
                     "m_strName": "MonUsainBolt",
-                    "m_fWeight": 0.5
+                    "m_fWeight": 0.2
                 },
                 {
                     "m_strName": "MonHeracles",
-                    "m_fWeight": 0.5
+                    "m_fWeight": 0.4
                 }
             ]
         },
         {
-            "m_iPhaseCount": 900,
+            "m_iPhaseCount": 225,
             "m_fMonGenDaly": 0.2,
             "m_iMonMaxGen": 13,
             "m_iMonMaxCount": 28,
@@ -182,16 +182,16 @@
                 },
                 {
                     "m_strName": "MonUsainBolt",
-                    "m_fWeight": 0.5
+                    "m_fWeight": 0.1
                 },
                 {
                     "m_strName": "MonHeracles",
-                    "m_fWeight": 0.5
+                    "m_fWeight": 0.3
                 }
             ]
         },
         {
-            "m_iPhaseCount": 1000,
+            "m_iPhaseCount": 250,
             "m_fMonGenDaly": 0.1,
             "m_iMonMaxGen": 14,
             "m_iMonMaxCount": 29,
@@ -199,15 +199,15 @@
             [
                 {
                     "m_strName": "MonMouse",
-                    "m_fWeight": 0.5
+                    "m_fWeight": 0.6
                 },
                 {
                     "m_strName": "MonUsainBolt",
-                    "m_fWeight": 0.5
+                    "m_fWeight": 0
                 },
                 {
                     "m_strName": "MonHeracles",
-                    "m_fWeight": 0.5
+                    "m_fWeight": 0.3
                 }
             ]
         },
