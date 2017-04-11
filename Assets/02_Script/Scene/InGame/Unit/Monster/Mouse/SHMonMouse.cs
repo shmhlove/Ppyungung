@@ -29,19 +29,19 @@ public partial class SHMonMouse : SHBaseMonster
     {
         var pState = CreateState(eState.Move);
         {
-            pState.m_strAnimClip    = "Anim_Char_Move";
+            pState.m_strAnimClip    = "Anim_Mon_Mouse_Move";
             pState.m_OnFixedUpdate  = OnFixedUpdateToMove;
         }
 
         pState = CreateState(eState.Kill);
         {
-            pState.m_strAnimClip    = "Anim_Char_Die";
+            pState.m_strAnimClip    = "Anim_Mon_Mouse_Die";
             pState.m_OnFixedUpdate  = OnFixedUpdateToKill;
         }
 
         pState = CreateState(eState.Die);
         {
-            pState.m_strAnimClip    = "Anim_Char_Die";
+            pState.m_strAnimClip    = "Anim_Mon_Mouse_Die";
             pState.m_OnFixedUpdate  = OnFixedUpdateToDie;
         }
     }

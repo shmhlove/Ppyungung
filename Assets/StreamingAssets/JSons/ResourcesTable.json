@@ -20,8 +20,8 @@
 			"s_Name": "Dmg_Char_Body",
 			"s_FileName": "Dmg_Char_Body.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "14212",
-			"s_Hash": "9F75A3EF10C29696E324CA9800B60842",
+			"s_Size": "14092",
+			"s_Hash": "E5D4FF8CEF0A58A762296F55A82504A9",
 			"s_Path": "Prefab/Damage/Dmg_Char_Body"
 		},
 		{
@@ -101,7 +101,7 @@
 			"s_FileName": "UIRoot_Global.prefab",
 			"s_Extension": ".prefab",
 			"s_Size": "10552",
-			"s_Hash": "D397BA4B4FBC5AC6213BD8BC7C9EA223",
+			"s_Hash": "1AAEC0C47E980CA328E41EEEF12F19B5",
 			"s_Path": "Prefab/UI/Root/UIRoot_Global"
 		},
 		{
@@ -116,24 +116,24 @@
 			"s_Name": "MonHeracles",
 			"s_FileName": "MonHeracles.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "15844",
-			"s_Hash": "DC7625ACE30FC6A4A0936FD4D8D11551",
+			"s_Size": "13892",
+			"s_Hash": "80AC03DD67679036B8D63C7E71C70146",
 			"s_Path": "Prefab/Unit/MonHeracles"
 		},
 		{
 			"s_Name": "MonMouse",
 			"s_FileName": "MonMouse.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "15788",
-			"s_Hash": "B2EABD848F7DF0579F38FFBFC802B599",
+			"s_Size": "13884",
+			"s_Hash": "6BA877580548639F5EFA46BDC304BEE4",
 			"s_Path": "Prefab/Unit/MonMouse"
 		},
 		{
 			"s_Name": "MonUsainBolt",
 			"s_FileName": "MonUsainBolt.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "15844",
-			"s_Hash": "A00B0DE9BA8EF36EB8EE14DD6CC9BE29",
+			"s_Size": "13892",
+			"s_Hash": "A08869A246E7CA43A764EDDCADD59A33",
 			"s_Path": "Prefab/Unit/MonUsainBolt"
 		},
 		{
@@ -213,7 +213,7 @@
 			"s_FileName": "PhaseInfo.bytes",
 			"s_Extension": ".bytes",
 			"s_Size": "794",
-			"s_Hash": "E3BCBDCFDA6CBB8B78680F97DCD0F623",
+			"s_Hash": "FA504005E2C14C4827A7F3570A7C73CF",
 			"s_Path": "Table/Bytes/PhaseInfo"
 		}
 	]
