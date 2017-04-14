@@ -51,7 +51,7 @@ namespace GooglePlayGames.Editor
         /// <summary>
         /// The directory for the constants class.
         /// </summary>
-        private string mConstantDirectory = "Assets";
+        private string mConstantDirectory = "Assets/ThirdParty";
 
         /// <summary>
         /// The web client identifier.
