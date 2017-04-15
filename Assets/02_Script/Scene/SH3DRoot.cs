@@ -34,7 +34,7 @@ public class SH3DRoot : MonoBehaviour
 
 
     #region System Functions
-    void Start()
+    void Awake()
     {
         m_pRoot          = transform;
         m_pRootToDamage  = m_pLocalRootToDMG;
@@ -45,7 +45,7 @@ public class SH3DRoot : MonoBehaviour
         m_pRootToBG      = m_pLocalRootBG;
         m_pMainCamera    = m_pLocalMainCamera;
 
-        SetResoultion(m_pMainCamera.GetCamera());
+        SetResoultion(Single.MainCamera.GetCamera());
     }
     void OnDestroy()
     {
