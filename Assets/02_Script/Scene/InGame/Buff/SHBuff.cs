@@ -75,26 +75,38 @@ public class SHBuff : SHInGame_Component
                 Single.Player.ResetHP();
                 break;
             case eBuffType.Buff_UpgradeMaxHeath:
-                SHHard.m_iCharMaxHealthPoint += SHHard.m_iCharMaxHealthPoint * 0.5f;
+                SHHard.m_iCharMaxHealthPoint += 
+                    SHHard.m_iCharMaxHealthPoint *
+                    Single.Table.GetTable<JsonBuffInfo>().m_fRatioUpgradeMaxHeath;
                 break;
             case eBuffType.Buff_UpgradeAddDP:
-                SHHard.m_fCharAddDashPoint += SHHard.m_fCharAddDashPoint * 0.5f;
+                SHHard.m_fCharAddDashPoint += 
+                    SHHard.m_fCharAddDashPoint *
+                    Single.Table.GetTable<JsonBuffInfo>().m_fRatioUpgradeAddDP;
                 break;
             case eBuffType.Buff_UpgradeDecDP:
-                SHHard.m_fCharMaxDashPoint += SHHard.m_fCharMaxDashPoint * 0.5f;
+                SHHard.m_fCharMaxDashPoint += 
+                    SHHard.m_fCharMaxDashPoint *
+                    Single.Table.GetTable<JsonBuffInfo>().m_fRatioUpgradeDecDP;
                 break;
             case eBuffType.Buff_UpgradeDropCoin:
                 break;
             case eBuffType.Buff_Shield:
                 break;
             case eBuffType.Buff_UpgradeBulletSP:
-                SHHard.m_fCharDamageSpeed += SHHard.m_fCharDamageSpeed * 0.5f;
+                SHHard.m_fCharDamageSpeed += 
+                    SHHard.m_fCharDamageSpeed *
+                    Single.Table.GetTable<JsonBuffInfo>().m_fRatioUpgradeBulletSP;
                 break;
             case eBuffType.Buff_UpgradeMoveSP:
-                SHHard.m_fCharMoveSpeed += SHHard.m_fCharMoveSpeed * 0.5f;
+                SHHard.m_fCharMoveSpeed += 
+                    SHHard.m_fCharMoveSpeed *
+                    Single.Table.GetTable<JsonBuffInfo>().m_fRatioUpgradeMoveSP;
                 break;
             case eBuffType.Buff_DecreaseMonSP:
-                SHHard.m_fMonMoveSpeed -= SHHard.m_fMonMoveSpeed * 0.5f;
+                SHHard.m_fMonMoveSpeed -= 
+                    SHHard.m_fMonMoveSpeed *
+                    Single.Table.GetTable<JsonBuffInfo>().m_fRatioDecreaseMonSP;
                 break;
         }
     }
