@@ -178,22 +178,13 @@ public partial class SHTableData : SHBaseData
 
 
     #region PhaseInfo
-    public SHPhaseInfo GetPhaseInfo(int iCount)
+    public SHPhaseInfo GetPhaseInfo(int iKey)
     {
         var pTable = GetTable<JsonPhaseInfo>();
         if (null == pTable)
             return new SHPhaseInfo();
-
-        if (false == pTable.IsLoadTable())
-        {
-#if UNITY_EDITOR
-            pTable.LoadJson(pTable.m_strFileName);
-#else
-            pTable.LoadBytes(pTable.m_strByteFileName);
-#endif
-        }
-
-        return pTable.GetPhaseInfo(iCount);
+        
+        return pTable.GetPhaseInfo(iKey);
     }
     #endregion
 }

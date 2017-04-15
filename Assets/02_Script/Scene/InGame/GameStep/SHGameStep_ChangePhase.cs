@@ -9,8 +9,9 @@ public class SHGameStep_ChangePhase : SHGameStep_Component
     {
         // UI 정리
         Single.UI.Show("Panel_PhaseMenu", (Action)(() => MoveTo(eGameStep.Play)));
+        Single.UI.Close("Panel_StartMenu");
         Single.UI.Close("Panel_CtrlPad");
-
+        
         // 데미지 정리
         Single.Damage.SetLockCheckCollision(true);
 
@@ -20,8 +21,8 @@ public class SHGameStep_ChangePhase : SHGameStep_Component
         Single.Player.StopPlayer();
 
         // 스코어 출력
-        Single.GameState.ShowCurrentScore();
-        Single.GameState.ShowBestScore();
+        Single.GameState.ShowCurrentKillCount();
+        Single.GameState.ShowBestKillCount();
 
         Single.Sound.PlayBGM("Audio_BGM_OutGame");
     }

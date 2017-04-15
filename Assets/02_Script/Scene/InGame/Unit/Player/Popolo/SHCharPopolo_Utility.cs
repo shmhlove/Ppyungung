@@ -24,7 +24,7 @@ public partial class SHCharPopolo : SHState
                         {
                             if (0.0f == pTarget.m_fHealthPoint)
                             {
-                                Single.GameState.AddScore(1);
+                                Single.GameState.AddKillCount(1);
                                 AddDashGauge();
                             }
                         }));

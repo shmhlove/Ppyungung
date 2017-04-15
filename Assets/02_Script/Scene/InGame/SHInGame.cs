@@ -1,158 +1,65 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections;
+using System.Collections.Generic;
+
+using DicComponent = System.Collections.Generic.Dictionary<System.Type, SHInGame_Component>;
 
 public class SHInGame : SHSingleton<SHInGame>
 {
     #region Members
-    private SHGameStep   m_pGameStep   = new SHGameStep();
-    private SHGameState  m_pGameState  = new SHGameState();
-    private SHBalance    m_pBalance    = new SHBalance();
-    private SHPlayer     m_pPlayer     = new SHPlayer();
-    private SHMonster    m_pMonster    = new SHMonster();
-    private SHDamage     m_pDamage     = new SHDamage();
-    private SHBackGround m_pBackground = new SHBackGround();
+    private DicComponent m_dicComponent = new DicComponent();
     #endregion
 
 
     #region Virtual Functions
-    public override void OnInitialize() { }
+    public override void OnInitialize()
+    {
+        m_dicComponent.Clear();
+        m_dicComponent.Add(typeof(SHGameStep),   new SHGameStep());
+        m_dicComponent.Add(typeof(SHGameState),  new SHGameState());
+        m_dicComponent.Add(typeof(SHBalance),    new SHBalance());
+        m_dicComponent.Add(typeof(SHPlayer),     new SHPlayer());
+        m_dicComponent.Add(typeof(SHMonster),    new SHMonster());
+        m_dicComponent.Add(typeof(SHDamage),     new SHDamage());
+        m_dicComponent.Add(typeof(SHBackGround), new SHBackGround());
+        m_dicComponent.Add(typeof(SHBuff),       new SHBuff());
+    }
     public override void OnFinalize()
     {
-        if (null != m_pGameStep)
-            m_pGameStep.OnFinalize();
-
-        if (null != m_pGameState)
-            m_pGameState.OnFinalize();
-        
-        if (null != m_pBalance)
-            m_pBalance.OnFinalize();
-
-        if (null != m_pPlayer)
-            m_pPlayer.OnFinalize();
-
-        if (null != m_pMonster)
-            m_pMonster.OnFinalize();
-
-        if (null != m_pDamage)
-            m_pDamage.OnFinalize();
-
-        if (null != m_pBackground)
-            m_pBackground.OnFinalize();
+        SHUtils.ForToDic(m_dicComponent, (pKey, pValue) => pValue.OnFinalize());
     }
     #endregion
-
-
-    #region System Functions
-    #endregion
-
+    
 
     #region Interface : System
     public void StartInGame()
     {
-        if (null != m_pGameStep)
-            m_pGameStep.OnInitialize();
-        
-        if (null != m_pGameState)
-            m_pGameState.OnInitialize();
-        
-        if (null != m_pBalance)
-            m_pBalance.OnInitialize();
-
-        if (null != m_pPlayer)
-            m_pPlayer.OnInitialize();
-
-        if (null != m_pMonster)
-            m_pMonster.OnInitialize();
-        
-        if (null != m_pDamage)
-            m_pDamage.OnInitialize();
-
-        if (null != m_pBackground)
-            m_pBackground.OnInitialize();
+        SHUtils.ForToDic(m_dicComponent, (pKey, pValue) => pValue.OnInitialize());
     }
     public void PauseInGame(bool bIsPause)
     {
         SetPause(bIsPause);
-
-        if (null != m_pGameStep)
-            m_pGameStep.SetPause(bIsPause);
-        
-        if (null != m_pGameState)
-            m_pGameState.SetPause(bIsPause);
-        
-        if (null != m_pBalance)
-            m_pBalance.SetPause(bIsPause);
-
-        if (null != m_pPlayer)
-            m_pPlayer.SetPause(bIsPause);
-
-        if (null != m_pMonster)
-            m_pMonster.SetPause(bIsPause);
-
-        if (null != m_pDamage)
-            m_pDamage.SetPause(bIsPause);
-
-        if (null != m_pBackground)
-            m_pBackground.SetPause(bIsPause);
+        SHUtils.ForToDic(m_dicComponent, (pKey, pValue) => pValue.SetPause(bIsPause));
     }
     public void FrameMove()
     {
         if (true == m_bIsPause)
             return;
 
-        if (null != m_pGameStep)
-            m_pGameStep.OnFrameMove();
-        
-        if (null != m_pGameState)
-            m_pGameState.OnFrameMove();
-        
-        if (null != m_pBalance)
-            m_pBalance.OnFrameMove();
-
-        if (null != m_pPlayer)
-            m_pPlayer.OnFrameMove();
-
-        if (null != m_pMonster)
-            m_pMonster.OnFrameMove();
-
-        if (null != m_pDamage)
-            m_pDamage.OnFrameMove();
-
-        if (null != m_pBackground)
-            m_pBackground.OnFrameMove();
+        SHUtils.ForToDic(m_dicComponent, (pKey, pValue) => pValue.OnFrameMove());
     }
     #endregion
 
 
     #region Interface : Helpper
-    public SHGameStep GetGameStep()
+    public T GetIngameComponent<T>() where T : SHInGame_Component
     {
-        return m_pGameStep;
-    }
-    public SHGameState GetGameState()
-    {
-        return m_pGameState;
-    }
-    public SHBalance GetBalance()
-    {
-        return m_pBalance;
-    }
-    public SHPlayer GetPlayer()
-    {
-        return m_pPlayer;
-    }
-    public SHMonster GetMonster()
-    {
-        return m_pMonster;
-    }
-    public SHDamage GetDamage()
-    {
-        return m_pDamage;
-    }
-    public SHBackGround GetBackground()
-    {
-        return m_pBackground;
+        var pType = typeof(T);
+        if (false == m_dicComponent.ContainsKey(pType))
+            return default(T);
+
+        return m_dicComponent[pType] as T;
     }
     #endregion
 

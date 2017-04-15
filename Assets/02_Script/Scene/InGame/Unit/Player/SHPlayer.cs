@@ -80,6 +80,10 @@ public class SHPlayer : SHInGame_Component
 
         return SHMath.Divide(m_pCharacter.m_fDashPoint, SHHard.m_fCharMaxDashPoint) * 100.0f;
     }
+    public void ResetHP()
+    {
+        m_pCharacter.ResetHP();
+    }
     public bool IsActive()
     {
         if (null == m_pCharacter)

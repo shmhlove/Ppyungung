@@ -4,11 +4,6 @@ using System.Collections;
 
 public class SHMainToInGame : MonoBehaviour 
 {
-    #region Members
-    #endregion
-
-
-    #region System Functions
     void Start()
     {
         if (true == Single.AppInfo.IsDevelopment())
@@ -22,21 +17,10 @@ public class SHMainToInGame : MonoBehaviour
     {
         Single.InGame.FrameMove();
     }
-    #endregion
 
-
-    #region Virtual Functions
-    #endregion
-
-
-    #region Interface Functions
-    #endregion
-
-
-    #region Utility Functions
-    #endregion
-
-
-    #region Event Handler
-    #endregion
+    [FuncButton] void OnNextPhase()
+    {
+        Single.GameState.SetNextPhase();
+        Single.GameStep.MoveTo(eGameStep.ChangePhase);
+    }
 }

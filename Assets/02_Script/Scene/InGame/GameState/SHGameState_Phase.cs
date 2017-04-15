@@ -13,22 +13,31 @@ using UnityEngine;
 public partial class SHGameState : SHInGame_Component
 {
     #region Members
-    public int m_iPhaseID = 0;
+    public int m_iCurrentPhaseID    = -1;
     #endregion
     
+
     #region Interface Functions
-    public void SetUpdatePhase()
+    public void SetNextPhase()
     {
-        var pPhaseInfo        = Single.Table.GetPhaseInfo(Single.GameState.m_iScore);
-        m_iPhaseID            = pPhaseInfo.m_iPhaseID;
+        var pPhaseInfo        = Single.Table.GetPhaseInfo(m_iCurrentPhaseID += 1);
+        m_iCurrentPhaseID     = pPhaseInfo.m_iPhaseID;
         SHHard.m_fMonGenDaly  = pPhaseInfo.m_fMonGenDaly;
         SHHard.m_iMonMaxGen   = pPhaseInfo.m_iMonMaxGen;
         SHHard.m_iMonMaxCount = pPhaseInfo.m_iMonMaxCount;
     }
-    public bool IsNextPhase()
+    public bool IsPossibleNextPhase()
     {
-        var pPhaseInfo = Single.Table.GetPhaseInfo(Single.GameState.m_iScore);
-        return (m_iPhaseID != pPhaseInfo.m_iPhaseID);
+        var pPhaseInfo = Single.Table.GetPhaseInfo(m_iCurrentPhaseID + 1);
+        return (pPhaseInfo.m_iPhaseCount <= Single.GameState.GetCurrentKillCount());
+    }
+    public SHPhaseInfo GetCurrentPhaseInfo()
+    {
+        return Single.Table.GetPhaseInfo(m_iCurrentPhaseID);
+    }
+    public SHPhaseInfo GetNextPhaseInfo()
+    {
+        return Single.Table.GetPhaseInfo(m_iCurrentPhaseID + 1);
     }
     #endregion
 }

@@ -17,13 +17,14 @@ public static class Single
 
     // 인게임
     public static SHInGame                  InGame              { get { return SHInGame.Instance; } }
-    public static SHGameStep                GameStep            { get { return InGame.GetGameStep(); } }
-    public static SHGameState               GameState           { get { return InGame.GetGameState(); } }
-    public static SHBalance                 Balance             { get { return InGame.GetBalance(); } }
-    public static SHPlayer                  Player              { get { return InGame.GetPlayer(); } }
-    public static SHMonster                 Monster             { get { return InGame.GetMonster(); } }
-    public static SHDamage                  Damage              { get { return InGame.GetDamage(); } }
-    public static SHBackGround              Background          { get { return InGame.GetBackground(); } }
+    public static SHGameStep                GameStep            { get { return InGame.GetIngameComponent<SHGameStep>(); } }
+    public static SHGameState               GameState           { get { return InGame.GetIngameComponent<SHGameState>(); } }
+    public static SHBalance                 Balance             { get { return InGame.GetIngameComponent<SHBalance>(); } }
+    public static SHPlayer                  Player              { get { return InGame.GetIngameComponent<SHPlayer>(); } }
+    public static SHMonster                 Monster             { get { return InGame.GetIngameComponent<SHMonster>(); } }
+    public static SHDamage                  Damage              { get { return InGame.GetIngameComponent<SHDamage>(); } }
+    public static SHBackGround              Background          { get { return InGame.GetIngameComponent<SHBackGround>(); } }
+    public static SHBuff                    Buff                { get { return InGame.GetIngameComponent<SHBuff>(); } }
 
     // UI
     public static SHUIManager               UI                  { get { return SHUIManager.Instance; } }

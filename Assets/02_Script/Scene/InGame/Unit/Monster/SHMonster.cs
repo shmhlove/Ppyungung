@@ -147,8 +147,8 @@ public class SHMonster : SHInGame_Component
 
                 if (SHHard.m_iMonMaxCount <= m_pMonsters.Count)
                     break;
-
-                var pPhaseInfo = Single.Table.GetPhaseInfo(Single.GameState.m_iScore);
+                
+                var pPhaseInfo = Single.GameState.GetCurrentPhaseInfo();
                 var strMonster = SHMath.RandomW(pPhaseInfo.GetMonsterList(), pPhaseInfo.GetWeightList());
                 GenMonster(strMonster, GetGenPosition());
                 

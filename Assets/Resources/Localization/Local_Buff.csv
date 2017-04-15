@@ -1,0 +1,10 @@
+﻿KEY,Korean,English,Japanese,ChineseTraditional
+Buff_ResetHeath,ChargeHP,,,
+Buff_UpgradeMaxHeath,UpgradeHP,,,
+Buff_UpgradeAddDP,AddDP,,,
+Buff_UpgradeDecDP,DecreaseDP,,,
+Buff_UpgradeDropCoin,UpgradeCoin,,,
+Buff_Shield,CreateShield,,,
+Buff_UpgradeBulletSP,BulletSP,,,
+Buff_UpgradeMoveSP,MoveSP,,,
+Buff_DecreaseMonSP,DecreaseMonSP,,,

@@ -90,6 +90,10 @@ public partial class SHCharPopolo : SHState
     public void InitPointValue()
     {
         m_fDashPoint   = 0.0f;
+        ResetHP();
+    }
+    public void ResetHP()
+    {
         m_fHealthPoint = SHHard.m_iCharMaxHealthPoint;
     }
     public void StartCharacter()

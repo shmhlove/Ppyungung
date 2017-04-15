@@ -9,6 +9,7 @@ public class SHGameStep_Result : SHGameStep_Component
     {
         // UI 정리
         Single.UI.Show("Panel_ResultMenu", (Action)(() => MoveTo(eGameStep.Play)));
+        Single.UI.Close("Panel_StartMenu");
         Single.UI.Close("Panel_CtrlPad");
         Single.UI.Close("Panel_HUD");
 
@@ -21,8 +22,8 @@ public class SHGameStep_Result : SHGameStep_Component
         Single.Player.ClearPlayer();
 
         // 스코어 출력
-        Single.GameState.ShowCurrentScore();
-        Single.GameState.ShowBestScore();
+        Single.GameState.ShowCurrentKillCount();
+        Single.GameState.ShowBestKillCount();
 
         // 사운드 출력
         Single.Sound.PlayBGM("Audio_BGM_GameOver");

@@ -6,39 +6,45 @@ public class SHUIPanel_HUD : SHUIBasePanel
 {
     #region Members : Inspector
     [Header("HUD Widget")]
-    [SerializeField] private SHUIWidget_HP   m_pHP   = null;
-    [SerializeField] private SHUIWidget_Dash m_pDash = null;
+    [SerializeField] private UILabel         m_pLabelPurpose = null;
+    [SerializeField] private SHUIWidget_HP   m_pHP           = null;
+    [SerializeField] private SHUIWidget_Dash m_pDash         = null;
     #endregion
-
-
-    #region Members : Event
-    #endregion
-
+    
 
     #region System Functions
     public override void Update()
     {
-        if (null != m_pHP)
-            m_pHP.FrameMove();
-
-        if (null != m_pDash)
-            m_pDash.FrameMove();
+        UpdatePurpose();
+        UpdateHP();
+        UpdateDash();
     }
     #endregion
 
 
-    #region Virtual Functions
-    #endregion
-
-
-    #region Interface Functions
-    #endregion
-
-
     #region Utility Functions
-    #endregion
+    void UpdatePurpose()
+    {
+        if (null == m_pLabelPurpose)
+            return;
 
+        var pPhaseInfo   = Single.GameState.GetCurrentPhaseInfo();
+        var iRemainCount = pPhaseInfo.m_iPhaseCount - Single.GameState.GetCurrentKillCount();
+        m_pLabelPurpose.text = Mathf.Clamp(iRemainCount, 0, iRemainCount).ToString();
+    }
+    void UpdateHP()
+    {
+        if (null == m_pHP)
+            return;
 
-    #region Event Handler
+        m_pHP.FrameMove();
+    }
+    void UpdateDash()
+    {
+        if (null == m_pDash)
+            return;
+
+        m_pDash.FrameMove();
+    }
     #endregion
 }

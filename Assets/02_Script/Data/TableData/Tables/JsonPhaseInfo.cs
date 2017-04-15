@@ -106,7 +106,7 @@ public class JsonPhaseInfo : SHBaseTable
             pPhaseInfo.m_iMonMaxGen     = pSerializer.DeserializeInt();
             pPhaseInfo.m_iMonMaxCount   = pSerializer.DeserializeInt();
 
-            var iMonCount            = pSerializer.DeserializeInt();
+            var iMonCount               = pSerializer.DeserializeInt();
             for (int iMonLoop = 0; iMonLoop < iMonCount; ++iMonLoop)
             {
                 var pMonInfo = new SHPhaseMonsterGenInfo();
@@ -157,22 +157,30 @@ public class JsonPhaseInfo : SHBaseTable
         else
             m_dicPhaseInfo[iPhaseID] = pInfo;
     }
+    void LoadTable()
+    {
+#if UNITY_EDITOR
+        LoadJson(m_strFileName);
+#else
+        LoadBytes(m_strByteFileName);
+#endif
+    }
     #endregion
 
 
     #region Interface Functions
-    public SHPhaseInfo GetPhaseInfo(int iCount)
+    public SHPhaseInfo GetPhaseInfo(int iKey)
     {
-        SHPhaseInfo pPhaseInfo = null;
-        foreach (var kvp in m_dicPhaseInfo)
-        {
-            if (kvp.Value.m_iPhaseCount > iCount)
-                return kvp.Value;
+        if (false == IsLoadTable())
+            LoadTable();
 
-            pPhaseInfo = kvp.Value;
-        }
+        if (false == IsLoadTable())
+            return new SHPhaseInfo();
 
-        return pPhaseInfo;
+        if (false == m_dicPhaseInfo.ContainsKey(iKey))
+            return m_dicPhaseInfo[m_dicPhaseInfo.Count - 1];
+        
+        return m_dicPhaseInfo[iKey];
     }
     #endregion
 }

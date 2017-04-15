@@ -278,7 +278,7 @@ public class SHUIPanel_Development : SHUIBasePanel
     }
     public void OnClickToRank()
     {
-        Single.Social.SetLeaderboard((long)Single.GameState.GetBestScore(), eLeaderBoardType.BestScore, null);
+        Single.Social.SetLeaderboard((long)Single.GameState.GetBestKillCount(), eLeaderBoardType.BestScore, null);
     }
     public void OnClickToShowRank()
     {
