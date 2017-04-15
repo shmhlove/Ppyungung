@@ -32,7 +32,7 @@ public partial class SHGameState : SHInGame_Component
     }
     public bool IsPossibleNextPhase()
     {
-        var pPhaseInfo = Single.Table.GetPhaseInfo(m_iCurrentPhaseID + 1);
+        var pPhaseInfo = Single.Table.GetPhaseInfo(m_iCurrentPhaseID);
         return (pPhaseInfo.m_iPhaseCount <= Single.GameState.GetCurrentKillCount());
     }
     public SHPhaseInfo GetCurrentPhaseInfo()
