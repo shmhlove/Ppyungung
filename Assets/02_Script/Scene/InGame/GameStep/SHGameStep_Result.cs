@@ -12,7 +12,7 @@ public class SHGameStep_Result : SHGameStep_Component
         Single.UI.Close("Panel_StartMenu");
         Single.UI.Close("Panel_CtrlPad");
         Single.UI.Close("Panel_HUD");
-
+        
         // 데미지 정리
         Single.Damage.SetLockCheckCollision(true);
 
@@ -30,7 +30,8 @@ public class SHGameStep_Result : SHGameStep_Component
     }
     public override void FinalStep()
     {
-        // 스코어 보드 정리
+        // 게임상태 정리
+        Single.GameState.InitPhase();
         Single.GameState.ClearScoreBoard();
     }
     #endregion

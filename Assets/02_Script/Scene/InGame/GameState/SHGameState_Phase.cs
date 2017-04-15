@@ -18,6 +18,10 @@ public partial class SHGameState : SHInGame_Component
     
 
     #region Interface Functions
+    public void InitPhase()
+    {
+        m_iCurrentPhaseID = -1;
+    }
     public void SetNextPhase()
     {
         var pPhaseInfo        = Single.Table.GetPhaseInfo(m_iCurrentPhaseID += 1);
