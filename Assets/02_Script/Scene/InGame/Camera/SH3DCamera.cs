@@ -17,6 +17,9 @@ public class SH3DCamera : SHMonoWrapper
         if (false == Single.Scene.IsCurrentScene(eSceneType.InGame))
             return;
 
+        if (false == Single.GameStep.IsStep(eGameStep.Play))
+            return;
+
         var vPlayerPos = Single.Player.GetLocalPosition();
         SetLocalPositionX(vPlayerPos.x);
         SetLocalPositionY(vPlayerPos.y);
