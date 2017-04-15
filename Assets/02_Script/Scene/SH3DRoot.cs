@@ -2,99 +2,66 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SH3DRoot : MonoBehaviour
+public class SH3DRoot : SHSingleton<SH3DRoot>
 {
     #region Members : Inspector
-    [SerializeField] private float     m_fBasicWidth       = 1280.0f;
-    [SerializeField] private float     m_fBasicHeight      = 720.0f;
-    [SerializeField] private Transform m_pLocalRootToDMG   = null;
-    [SerializeField] private Transform m_pLocalRootCamera  = null;
-    [SerializeField] private Transform m_pLocalRootPlayer  = null;
-    [SerializeField] private Transform m_pLocalRootMonster = null;
-    [SerializeField] private Transform m_pLocalRootEffect  = null;
-    [SerializeField] private Transform m_pLocalRootBG      = null;
-    [SerializeField] private SH3DCamera m_pLocalMainCamera  = null;
+    [SerializeField]
+    private float m_fBasicWidth = 1280.0f;
+    [SerializeField]
+    private float m_fBasicHeight = 720.0f;
+    [SerializeField]
+    private Transform m_pRootToDMG = null;
+    [SerializeField]
+    private Transform m_pRootCamera = null;
+    [SerializeField]
+    private Transform m_pRootPlayer = null;
+    [SerializeField]
+    private Transform m_pRootMonster = null;
+    [SerializeField]
+    private Transform m_pRootEffect = null;
+    [SerializeField]
+    private Transform m_pRootBG = null;
+    [SerializeField]
+    private SH3DCamera m_pMainCamera = null;
     #endregion
 
 
-    #region Members : Root
-    [HideInInspector] private static Transform m_pRoot          = null;
-    [HideInInspector] private static Transform m_pRootToDamage  = null;
-    [HideInInspector] private static Transform m_pRootToCamera  = null;
-    [HideInInspector] private static Transform m_pRootToPlayer  = null;
-    [HideInInspector] private static Transform m_pRootToMonster = null;
-    [HideInInspector] private static Transform m_pRootToEffect  = null;
-    [HideInInspector] private static Transform m_pRootToBG      = null;
+    #region Override Functions
+    public override void Awake()
+    {
+        SetResoultion(GetMainCamera().GetCamera());
+    }
+    public override void OnInitialize() { }
+    public override void OnFinalize() { }
     #endregion
 
 
-    #region Members : Component
-    [HideInInspector] private static SH3DCamera m_pMainCamera = null;
-    #endregion
-
-
-    #region System Functions
-    void Awake()
+    #region Interface Function
+    public Transform GetRootToDMG()
     {
-        m_pRoot          = transform;
-        m_pRootToDamage  = m_pLocalRootToDMG;
-        m_pRootToCamera  = m_pLocalRootCamera;
-        m_pRootToPlayer  = m_pLocalRootPlayer;
-        m_pRootToMonster = m_pLocalRootMonster;
-        m_pRootToEffect  = m_pLocalRootEffect;
-        m_pRootToBG      = m_pLocalRootBG;
-        m_pMainCamera    = m_pLocalMainCamera;
-
-        SetResoultion(Single.MainCamera.GetCamera());
+        return m_pRootToDMG;
     }
-    void OnDestroy()
+    public Transform GetRootCamera()
     {
-        if (m_pRoot != transform)
-            return;
-
-        m_pRoot          = null;
-        m_pRootToDamage  = null;
-        m_pRootToCamera  = null;
-        m_pRootToPlayer  = null;
-        m_pRootToMonster = null;
-        m_pRootToEffect  = null;
-        m_pRootToBG      = null;
-        m_pMainCamera    = null;
+        return m_pRootCamera;
     }
-
-    #endregion
-
-
-    #region Interface Functions
-    public static Transform GetRoot()
+    public Transform GetRootPlayer()
     {
-        return m_pRoot;
+        return m_pRootPlayer;
     }
-    public static Transform GetRootToDMG()
+    public Transform GetRootMonster()
     {
-        return m_pRootToDamage;
+        return m_pRootMonster;
     }
-    public static Transform GetRootToCamera()
+    public Transform GetRootEffect()
     {
-        return m_pRootToCamera;
+        return m_pRootEffect;
     }
-    public static Transform GetRootToPlayer()
+    public Transform GetRootBG()
     {
-        return m_pRootToPlayer;
+        return m_pRootBG;
     }
-    public static Transform GetRootToMonster()
-    {
-        return m_pRootToMonster;
-    }
-    public static Transform GetRootToEffect()
-    {
-        return m_pRootToEffect;
-    }
-    public static Transform GetRootToBG()
-    {
-        return m_pRootToBG;
-    }
-    public static SH3DCamera GetMainCamera()
+    public SH3DCamera GetMainCamera()
     {
         return m_pMainCamera;
     }
@@ -106,27 +73,27 @@ public class SH3DRoot : MonoBehaviour
     {
         if (null == pCamera)
             return;
-        
+
         float fTargetAspect = m_fBasicWidth / m_fBasicHeight;
         float fWindowAspect = (float)Single.AppInfo.GetScreenWidth() / (float)Single.AppInfo.GetScreenHeight();
-        float fScaleHeight  = fWindowAspect / fTargetAspect;
-        
+        float fScaleHeight = fWindowAspect / fTargetAspect;
+
         if (1.0f > fScaleHeight)
         {
             var pRect = pCamera.rect;
-            pRect.width  = 1.0f;
+            pRect.width = 1.0f;
             pRect.height = fScaleHeight;
-            pRect.x      = 0.0f;
-            pRect.y      = (1.0f - fScaleHeight) / 2.0f;
+            pRect.x = 0.0f;
+            pRect.y = (1.0f - fScaleHeight) / 2.0f;
             pCamera.rect = pRect;
         }
         else
         {
             var pRect = pCamera.rect;
-            pRect.width  = fScaleHeight;
+            pRect.width = fScaleHeight;
             pRect.height = 1.0f;
-            pRect.x      = (1.0f - fScaleHeight) / 2.0f;
-            pRect.y      = 0.0f;
+            pRect.x = (1.0f - fScaleHeight) / 2.0f;
+            pRect.y = 0.0f;
             pCamera.rect = pRect;
         }
     }

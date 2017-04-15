@@ -65,8 +65,8 @@ public class SHGameStep_Play : SHGameStep_Component
         bool bIsDoneAction = false;
         switch(eNextStep)
         {
-            case eGameStep.Result:      Single.MainCamera.PlayCameraGameOver(() => bIsDoneAction = true); break;
-            case eGameStep.ChangePhase: Single.MainCamera.PlayCameraPhase(() => bIsDoneAction = true);    break;
+            case eGameStep.Result:      Single.Root3D.GetMainCamera().PlayCameraGameOver(() => bIsDoneAction = true); break;
+            case eGameStep.ChangePhase: Single.Root3D.GetMainCamera().PlayCameraPhase(() => bIsDoneAction = true);    break;
             default:                    bIsDoneAction = true; break;
         }
 

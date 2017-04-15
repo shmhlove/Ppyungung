@@ -101,7 +101,7 @@ public class SHMonster : SHInGame_Component
     {
         var pMonster = Single.ObjectPool.Get<SHBaseMonster>(strMonster);
         {
-            pMonster.SetParent(SH3DRoot.GetRootToMonster());
+            pMonster.SetParent(Single.Root3D.GetRootMonster());
             pMonster.SetLocalPosition(vGetPosition);
             pMonster.SetLocalScale(pMonster.m_vStartScale * SHHard.m_fUnitScale);
             pMonster.SetActive(true);
@@ -164,7 +164,7 @@ public class SHMonster : SHInGame_Component
     #region Utility Functions
     Vector3 GetGenPosition()
     {
-        var pMainCamera = Single.MainCamera.GetCamera();
+        var pMainCamera = Single.Root3D.GetMainCamera().GetCamera();
         if (null == pMainCamera)
             return Vector3.zero;
 

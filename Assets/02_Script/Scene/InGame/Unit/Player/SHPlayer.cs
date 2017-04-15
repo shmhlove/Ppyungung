@@ -44,7 +44,7 @@ public class SHPlayer : SHInGame_Component
         if (null == m_pCharacter)
         {
             m_pCharacter = Single.ObjectPool.Get<SHCharPopolo>("CharPopolo", true, ePoolReturnType.ChangeScene, ePoolDestroyType.Return);
-            m_pCharacter.SetParent(SH3DRoot.GetRootToPlayer());
+            m_pCharacter.SetParent(Single.Root3D.GetRootPlayer());
             m_pCharacter.SetLocalScale(m_pCharacter.m_vStartScale * SHHard.m_fUnitScale);
             m_pCharacter.OnInitialize();
         }

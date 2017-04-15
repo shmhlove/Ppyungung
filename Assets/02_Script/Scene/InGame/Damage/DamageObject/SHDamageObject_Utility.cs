@@ -9,7 +9,7 @@ public partial class SHDamageObject : SHMonoWrapper
     void SetupParent()
     {
         var pParentObject  = (true == m_pInfo.m_bIsParentToUI) ? 
-            Single.UI.GetRootToScene() : SH3DRoot.GetRootToDMG();
+            Single.UI.GetRootToScene() : Single.Root3D.GetRootToDMG();
         
         if (null != GetWho())
         {

@@ -25,7 +25,6 @@ public static class Single
     public static SHDamage                  Damage              { get { return InGame.GetIngameComponent<SHDamage>(); } }
     public static SHBackGround              Background          { get { return InGame.GetIngameComponent<SHBackGround>(); } }
     public static SHBuff                    Buff                { get { return InGame.GetIngameComponent<SHBuff>(); } }
-    public static SH3DCamera                MainCamera          { get { return SH3DRoot.GetMainCamera(); } }
 
     // UI
     public static SHUIManager               UI                  { get { return SHUIManager.Instance; } }
@@ -41,6 +40,7 @@ public static class Single
 
     // 유틸리티
     public static SHApplicationInfo         AppInfo             { get { return SHApplicationInfo.Instance; } }
+    public static SH3DRoot                  Root3D              { get { return SH3DRoot.Instance; } }
     public static SHEventUtil               Event               { get { return SHEventUtil.Instance; } }
     public static SHCoroutine               Coroutine           { get { return SHCoroutine.Instance; } }
     public static SHTimer                   Timer               { get { return SHTimer.Instance; } }

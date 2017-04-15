@@ -31,7 +31,7 @@ public partial class SHCharPopolo : SHState
         pAddDamage.SetDMGSpeed(SHHard.m_fCharDamageSpeed);
 
         // 카메라 흔들기
-        Single.MainCamera.PlayCameraShake(() => { });
+        Single.Root3D.GetMainCamera().PlayCameraShake(() => { });
 
         m_bIsShoot = false;
     }

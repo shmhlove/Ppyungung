@@ -96,7 +96,7 @@ public class SHBaseMonster : SHState
     }
     protected void SetExplosionDie()
     {
-        var pParticle = PlayParticle("Particle_Crash_Dust_Big", SH3DRoot.GetRootToEffect());
+        var pParticle = PlayParticle("Particle_Crash_Dust_Big", Single.Root3D.GetRootEffect());
         if (null != pParticle)
         {
             pParticle.transform.localPosition = GetLocalPosition();

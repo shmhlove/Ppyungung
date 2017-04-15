@@ -16,7 +16,7 @@ public class SHBackGround : SHInGame_Component
         {
             var pSpace = Single.ObjectPool.Get<SHBGBlock>("BGBlock");
             pSpace.SetActive(true);
-            pSpace.SetParent(SH3DRoot.GetRootToBG());
+            pSpace.SetParent(Single.Root3D.GetRootBG());
             pSpace.Initialize(iIndex);
             pSpace.SetName(string.Format("{0}_{1}", pSpace.GetName(), pSpace.m_iBlockID));
             m_pBlocks.Add(pSpace);
@@ -27,7 +27,7 @@ public class SHBackGround : SHInGame_Component
     }
     public override void OnFrameMove()
     {
-        Repositioning(Single.MainCamera.GetLocalPosition());
+        Repositioning(Single.Root3D.GetMainCamera().GetLocalPosition());
     }
     #endregion
 
