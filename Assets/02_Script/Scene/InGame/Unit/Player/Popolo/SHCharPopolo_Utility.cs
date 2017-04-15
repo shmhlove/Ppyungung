@@ -17,10 +17,10 @@ public partial class SHCharPopolo : SHState
         {
             SetLookNearMonster();
         }
-        
+
         // 데미지 생성
         var pAddDamage = Single.Damage.AddDamage("Dmg_Char_Bullet",
-                        new SHDamageParam(m_pShootPos, null, null, (pDamage, pTarget) => 
+                        new SHDamageParam(m_pShootPos, null, null, (pDamage, pTarget) =>
                         {
                             if (0.0f == pTarget.m_fHealthPoint)
                             {
@@ -31,7 +31,7 @@ public partial class SHCharPopolo : SHState
         pAddDamage.SetDMGSpeed(SHHard.m_fCharDamageSpeed);
 
         // 카메라 흔들기
-        SH3DRoot.PlayCameraShake();
+        Single.MainCamera.PlayCameraShake(() => { });
 
         m_bIsShoot = false;
     }

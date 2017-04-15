@@ -164,7 +164,7 @@ public class SHMonster : SHInGame_Component
     #region Utility Functions
     Vector3 GetGenPosition()
     {
-        var pMainCamera = SH3DRoot.GetMainCamera();
+        var pMainCamera = Single.MainCamera.GetCamera();
         if (null == pMainCamera)
             return Vector3.zero;
 

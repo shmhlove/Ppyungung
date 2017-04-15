@@ -4,7 +4,12 @@ using System.Collections;
 
 public class SHGameStep_Play : SHGameStep_Component
 {
-    #region Virtual Functions
+    #region Members
+    private IEnumerator m_pCoroutinAction = null;
+    #endregion
+
+
+    #region Override Functions
     public override void InitialStep()
     {
         // UI 정리
@@ -40,11 +45,40 @@ public class SHGameStep_Play : SHGameStep_Component
     {
         base.FrameMove(iCallCnt);
 
-        if (false == Single.Player.IsActive())
-            MoveTo(eGameStep.Result);
+        if (null != m_pCoroutinAction)
+            return;
+
+        if (true == Single.Player.IsDie())
+            SHCoroutine.Instance.StartCoroutine(
+                m_pCoroutinAction = CoroutineToAction(eGameStep.Result));
 
         if (true == Single.GameState.IsPossibleNextPhase())
-            MoveTo(eGameStep.ChangePhase);
+            SHCoroutine.Instance.StartCoroutine(
+                m_pCoroutinAction = CoroutineToAction(eGameStep.ChangePhase));
+    }
+    #endregion
+
+
+    #region Coroutine Functions
+    IEnumerator CoroutineToAction(eGameStep eNextStep)
+    {
+        bool bIsDoneAction = false;
+        switch(eNextStep)
+        {
+            case eGameStep.Result:      Single.MainCamera.PlayCameraGameOver(() => bIsDoneAction = true); break;
+            case eGameStep.ChangePhase: Single.MainCamera.PlayCameraPhase(() => bIsDoneAction = true);    break;
+            default:                    bIsDoneAction = true; break;
+        }
+
+        Single.Timer.SetTimeScale(0.5f);
+
+        while (false == bIsDoneAction)
+            yield return null;
+
+        Single.Timer.SetTimeScale(1.0f);
+
+        MoveTo(eNextStep);
+        m_pCoroutinAction = null;
     }
     #endregion
 }

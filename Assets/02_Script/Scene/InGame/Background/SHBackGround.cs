@@ -27,7 +27,7 @@ public class SHBackGround : SHInGame_Component
     }
     public override void OnFrameMove()
     {
-        Repositioning(SH3DRoot.GetRootToCamera().localPosition);
+        Repositioning(Single.MainCamera.GetLocalPosition());
     }
     #endregion
 
@@ -35,6 +35,8 @@ public class SHBackGround : SHInGame_Component
     #region Utility Functions
     void Repositioning(Vector3 vCenter)
     {
+        vCenter.z = 0.0f;
+
         SHBGBlock       pCenterBlock = null;
         List<SHBGBlock> pRemainders = new List<SHBGBlock>();
         GetDecompositionBlocks(vCenter, ref pCenterBlock, ref pRemainders);

@@ -40,10 +40,15 @@ public class SHTimer : SHSingleton<SHTimer>
     {
         base.SetPause(bIsPause);
 
-        if (true == bIsPause)
-            Time.timeScale = 0.0f;
-        else
-            Time.timeScale = 1.0f;
+        SetTimeScale((true == bIsPause) ? 0.0f : 1.0f);
+    }
+    #endregion
+
+
+    #region 타임스케일 컨트롤
+    public void SetTimeScale(float fValue)
+    {
+        Time.timeScale = fValue;
     }
     #endregion
 

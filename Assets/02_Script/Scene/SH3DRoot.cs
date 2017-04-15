@@ -13,7 +13,7 @@ public class SH3DRoot : MonoBehaviour
     [SerializeField] private Transform m_pLocalRootMonster = null;
     [SerializeField] private Transform m_pLocalRootEffect  = null;
     [SerializeField] private Transform m_pLocalRootBG      = null;
-    [SerializeField] private Camera    m_pLocalMainCamera  = null;
+    [SerializeField] private SH3DCamera m_pLocalMainCamera  = null;
     #endregion
 
 
@@ -29,7 +29,7 @@ public class SH3DRoot : MonoBehaviour
 
 
     #region Members : Component
-    [HideInInspector] private static Camera    m_pMainCamera = null;
+    [HideInInspector] private static SH3DCamera m_pMainCamera = null;
     #endregion
 
 
@@ -45,7 +45,7 @@ public class SH3DRoot : MonoBehaviour
         m_pRootToBG      = m_pLocalRootBG;
         m_pMainCamera    = m_pLocalMainCamera;
 
-        SetResoultion(m_pMainCamera);
+        SetResoultion(m_pMainCamera.GetCamera());
     }
     void OnDestroy()
     {
@@ -61,12 +61,7 @@ public class SH3DRoot : MonoBehaviour
         m_pRootToBG      = null;
         m_pMainCamera    = null;
     }
-    void Update()
-    {
-        var vPlayerPos = Single.Player.GetLocalPosition();
-        SetCameraPosX(vPlayerPos.x);
-        SetCameraPosY(vPlayerPos.y);
-    }
+
     #endregion
 
 
@@ -99,66 +94,14 @@ public class SH3DRoot : MonoBehaviour
     {
         return m_pRootToBG;
     }
-    public static Camera GetMainCamera()
+    public static SH3DCamera GetMainCamera()
     {
         return m_pMainCamera;
-    }
-    public static void PlayCameraShake()
-    {
-        if (null == m_pMainCamera)
-            return;
-
-        var pAnim = m_pMainCamera.GetComponent<Animation>();
-        if (null == pAnim)
-            return;
-
-        pAnim.Play();
     }
     #endregion
 
 
     #region Utility Functions
-    Vector3 GetCameraPos()
-    {
-        if (null == m_pRootToCamera)
-            return Vector3.zero;
-
-        return m_pRootToCamera.localPosition;
-    }
-    void SetCameraPos(Vector3 vPos)
-    {
-        if (null == m_pRootToCamera)
-            return;
-
-        m_pRootToCamera.localPosition = vPos;
-    }
-    void SetCameraPosX(float fX)
-    {
-        if (null == m_pRootToCamera)
-            return;
-
-        var vLocalPos = GetCameraPos();
-        vLocalPos.x = fX;
-        SetCameraPos(vLocalPos);
-    }
-    void SetCameraPosY(float fY)
-    {
-        if (null == m_pRootToCamera)
-            return;
-
-        var vLocalPos = GetCameraPos();
-        vLocalPos.y = fY;
-        SetCameraPos(vLocalPos);
-    }
-    void SetCameraPosZ(float fZ)
-    {
-        if (null == m_pRootToCamera)
-            return;
-
-        var vLocalPos = GetCameraPos();
-        vLocalPos.z = fZ;
-        SetCameraPos(vLocalPos);
-    }
     void SetResoultion(Camera pCamera)
     {
         if (null == pCamera)
@@ -168,7 +111,6 @@ public class SH3DRoot : MonoBehaviour
         float fWindowAspect = (float)Single.AppInfo.GetScreenWidth() / (float)Single.AppInfo.GetScreenHeight();
         float fScaleHeight  = fWindowAspect / fTargetAspect;
         
-        Debug.LogFormat("카메라 세팅 전 해상도 : {0}, {1}, {2}", pCamera.rect, fWindowAspect, fScaleHeight);
         if (1.0f > fScaleHeight)
         {
             var pRect = pCamera.rect;
@@ -187,7 +129,6 @@ public class SH3DRoot : MonoBehaviour
             pRect.y      = 0.0f;
             pCamera.rect = pRect;
         }
-        Debug.LogFormat("카메라 세팅 후 해상도 : {0}", pCamera.rect);
     }
     #endregion
 }

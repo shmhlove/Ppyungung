@@ -84,12 +84,12 @@ public class SHPlayer : SHInGame_Component
     {
         m_pCharacter.ResetHP();
     }
-    public bool IsActive()
+    public bool IsDie()
     {
         if (null == m_pCharacter)
             return false;
 
-        return m_pCharacter.IsActive();
+        return m_pCharacter.IsDie();
     }
     #endregion
 }
