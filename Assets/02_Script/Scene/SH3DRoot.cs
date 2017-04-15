@@ -34,7 +34,7 @@ public class SH3DRoot : MonoBehaviour
 
 
     #region System Functions
-    void Awake()
+    void Start()
     {
         m_pRoot          = transform;
         m_pRootToDamage  = m_pLocalRootToDMG;
