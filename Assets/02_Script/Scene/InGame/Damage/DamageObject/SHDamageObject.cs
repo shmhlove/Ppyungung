@@ -134,15 +134,7 @@ public partial class SHDamageObject : SHMonoWrapper
 
         if (0 < m_iCrashHitTick)
             return false;
-
-        // if ((0 != m_pInfo.m_iCheckDelayTickToStart) && 
-        //     (GetLeftTick() < m_pInfo.m_iCheckDelayTickToStart))
-        //     return false;
-
-        // if ((0 != m_pInfo.m_iCheckDelayTickToLate) &&
-        //     (GetLeftTick() > m_pInfo.m_iCheckDelayTickToLate))
-        //     return false;
-
+        
         return true;
     }
     public void DeleteDamage()

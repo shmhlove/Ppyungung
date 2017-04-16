@@ -19,7 +19,7 @@ public partial class SHCharPopolo : SHState
         }
 
         // 데미지 생성
-        var pAddDamage = Single.Damage.AddDamage("Dmg_Char_Bullet",
+        var pAddDamage = Single.Damage.AddDamage(Single.Player.GetDamageName(),
                         new SHDamageParam(this, m_pShootPos.GetPosition(), pEventCollision: (pDamage, pTarget) =>
                         {
                             if (0.0f == pTarget.m_fHealthPoint)

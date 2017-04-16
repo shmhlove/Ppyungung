@@ -94,16 +94,17 @@ public partial class SHDamage : SHInGame_Component
             return null;
         
         var strID = GetNewDamageID(strPrefabName);
-        pParam.AddEventToDelete(OnEventToDeleteDamage);
-        pDamage.OnInitialize(strID, strPrefabName, pParam);
-
-        if (false == pDamage.m_pInfo.m_bIsTraceToCreator)
-            pDamage.SetLocalScale(pDamage.m_vStartScale * SHHard.m_fUnitScale);
 
         if (false == m_dicAddDamages.ContainsKey(strID))
             m_dicAddDamages.Add(strID, pDamage);
         else
             m_dicAddDamages[strID] = pDamage;
+
+        pParam.AddEventToDelete(OnEventToDeleteDamage);
+        pDamage.OnInitialize(strID, strPrefabName, pParam);
+
+        if (false == pDamage.m_pInfo.m_bIsTraceToCreator)
+            pDamage.SetLocalScale(pDamage.m_vStartScale * SHHard.m_fUnitScale);
 
         return pDamage;
     }
@@ -136,16 +137,27 @@ public partial class SHDamage : SHInGame_Component
 
         m_dicDelDamages.Clear();
     }
+    public SHDamageObject GetDamage(string strID)
+    {
+        if (true == m_dicDamages.ContainsKey(strID))
+            return m_dicDamages[strID];
+
+        if (true == m_dicAddDamages.ContainsKey(strID))
+            return m_dicAddDamages[strID];
+
+        return null;
+    }
     public int GetDamageCount()
     {
         return m_dicDamages.Count;
     }
     public Vector3 GetDamagePosition(string strID)
     {
-        if (false == m_dicDamages.ContainsKey(strID))
+        var pDamage = GetDamage(strID);
+        if (null == pDamage)
             return Vector3.zero;
 
-        return m_dicDamages[strID].GetLocalPosition();
+        return pDamage.GetPosition();
     }
     public void SetLockCheckCollision(bool bIsLock)
     {

@@ -60,6 +60,11 @@ public partial class SHDamageObject : SHMonoWrapper
         else
             m_vDMGDirection = m_pInfo.m_vStartDirection;
 
+        if (0.0f != m_pInfo.m_fOffsetAngle)
+        {
+            m_vDMGDirection = (Quaternion.AngleAxis(m_pInfo.m_fOffsetAngle, Vector3.forward) * m_vDMGDirection).normalized;
+        }
+        
         m_vBeforePosition = GetPosition();
     }
     void SetupScaleInfo()
@@ -113,12 +118,7 @@ public partial class SHDamageObject : SHMonoWrapper
         if (null == pTarget)
             return;
 
-        var fAngle = m_pInfo.m_fGuideAngleSpeed;
-        if (true == m_pInfo.m_bIsUseCuvGuideAngleSpeed)
-        {
-            fAngle = m_pInfo.m_pGuideCuvAngleSpeed.Evaluate(GetLeftTimer());
-        }
-
+        var fAngle = m_pInfo.m_pGuideAngleSpeed.Evaluate(GetLeftTimer());
         var fSpeed = GetMoveSpeed();
         {
             SetPosition(
@@ -182,7 +182,7 @@ public partial class SHDamageObject : SHMonoWrapper
     }
     void AddDamage(eDamageEvent eEvent)
     {
-        SHUtils.ForToList(m_pInfo.m_pAddDamageInfo, (pInfo) =>
+        foreach(var pInfo in m_pInfo.m_pAddDamageInfo)
         {
             if (false == pInfo.m_pTimming.IsTimming(m_pInfo, eEvent))
                 return;
@@ -190,7 +190,7 @@ public partial class SHDamageObject : SHMonoWrapper
             var pParam = new SHDamageParam(m_pParam);
             pParam.m_pStartPosition = Single.Damage.GetDamagePosition(m_pInfo.m_strID);
             Single.Damage.AddDamage(pInfo.m_strPrefabName, pParam);
-        });
+        }
     }
     void ClearEffect()
     {
@@ -245,12 +245,31 @@ public partial class SHDamageObject : SHMonoWrapper
     {
         if (null == m_pParam)
             return null;
-        
-        return m_pParam.m_pGuideTarget;
+
+        if (null != m_pParam.m_pGuideTarget)
+            return m_pParam.m_pGuideTarget;
+
+        float      fMinDist    = float.MaxValue;
+        GameObject pNearObject = null;
+        foreach(var strTag in m_pInfo.m_pTargetUnitTags)
+        {
+            var pObjects = GameObject.FindGameObjectsWithTag(strTag);
+            foreach(var pObject in pObjects)
+            {
+                var fDist = Vector3.Distance(GetPosition(), pObject.transform.position);
+                if (fDist < fMinDist)
+                {
+                    fMinDist    = fDist;
+                    pNearObject = pObject;
+                }
+            }
+        }
+
+        return pNearObject;
     }
     float GetLeftTimer()
     {
-        return Single.Timer.GetSecToFixedTic(m_pSettingInfo.m_iLifeTick - m_pInfo.m_iLifeTick);
+        return Single.Timer.GetSecToFixedTic(GetLeftTick());
     }
     int GetLeftTick()
     {

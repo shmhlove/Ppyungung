@@ -90,12 +90,11 @@ public class SHDamageObjectInfo
 {
     [Header("- 각 속성의 자세한 설명은 SHDamageObject_Data.cs파일을 참고하세요.")]
     [Header("[데미지 ID (생성시 자동 발급됩니다.)]")]
-    [ReadOnlyField]
-    public string m_strID                               = string.Empty;
-    public string m_strPrefabName                       = string.Empty;
+    [ReadOnlyField] public string m_strID               = string.Empty;
+    [ReadOnlyField] public string m_strPrefabName       = string.Empty;
 
-    [Header("[충돌체크를 할 타켓 유닛의 태그 리스트]")][DamageTags]
-    public List<string>     m_pTargetUnitTags           = new List<string>();
+    [Header("[충돌체크를 할 타켓 유닛의 태그 리스트]")]
+    [DamageTags] public List<string> m_pTargetUnitTags  = new List<string>();
 
     [Header("[기본 정보 (1sec = 50Tick)]")]
     public bool             m_bIsLoopLifeTick           = false;            // 라이프 타임을 계속 반복할것인가?
@@ -104,10 +103,7 @@ public class SHDamageObjectInfo
     public int              m_iCheckDelayTickToCrash    = 0;                // 충돌시 얼마간 충돌체크를 하지 않을 것인가? (다단히트)
     public bool             m_bIsDeleteToCrash          = true;             // 충돌이 즉시 이 데미지를 제거할 것인가?
     public bool             m_bIsDeleteWithCreator      = true;             // 데미지 생성자가 Disable일때 데미지를 제거할 것인가?
-    // 사용안함
-    // public int              m_iCheckDelayTickToStart    = 0;                // 데미지 생성 후 얼마간 충돌체크를 하지 않을 것인가?
-    // public int              m_iCheckDelayTickToLate     = 0;                // 데미지 생성 뒤 얼마 후 부터 충돌체크를 하지 않을 것인가?
-        
+    
     [Header("[위치]")]
     public bool             m_bIsParentToUI             = false;            // UI Root를 부모 오브젝트로 설정할 것인가?
     public bool             m_bIsParentToCreator        = true;             // 데미지 발생자를 부모 오브젝트로 설정할 것인가?
@@ -130,6 +126,7 @@ public class SHDamageObjectInfo
     public float                m_fStartSpeed               = 0.0f;             // 데미지의 이동속도
     public float                m_fAddSpeed                 = 0.0f;             // 가산 속도
     public Vector3              m_vStartDirection           = Vector3.zero;     // 데미지의 이동방향
+    public float                m_fOffsetAngle              = 0.0f;             // 데미지의 추가 이동방향
     public bool                 m_bIsStartDirectionToCreator= true;             // 초기 방향을 데미지 생성자의 방향으로 할것인가?
     public bool                 m_bIsRandomStartDirection   = false;            // 초기 방향 랜덤으로 결정할 것인가?
     public Vector3              m_vForce                    = Vector3.zero;     // 힘
@@ -137,9 +134,7 @@ public class SHDamageObjectInfo
     [Header("[유도 움직임]")]
     public bool                 m_bIsUseGuideSystem         = false;            // 유도기능을 사용할 것인가?
     public int                  m_iNotGuideTick             = 0;                // 지정된 Tick동안 가이드하지 않는다.
-    public float                m_fGuideAngleSpeed          = 0.0f;             // 쫓아갈 회전속도
-    public bool                 m_bIsUseCuvGuideAngleSpeed  = false;            // 커브 이동속도를 사용할 것인가? (커브)
-    public AnimationCurve       m_pGuideCuvAngleSpeed       = AnimationCurve.Linear(0, 0, 1, 1); // 쫓아갈 회전 속도
+    public AnimationCurve       m_pGuideAngleSpeed          = AnimationCurve.Linear(0, 0, 10, 10); // 쫓아갈 회전 속도
 
     [Header("[애니메이션]")]
     public AnimationClip        m_pAnimationClip            = null;             // 데미지 애니메이션
@@ -174,8 +169,6 @@ public class SHDamageObjectInfo
         m_iCheckDelayTickToCrash    = pCopy.m_iCheckDelayTickToCrash;
         m_bIsDeleteToCrash          = pCopy.m_bIsDeleteToCrash;
         m_bIsDeleteWithCreator      = pCopy.m_bIsDeleteWithCreator;
-        // m_iCheckDelayTickToStart    = pCopy.m_iCheckDelayTickToStart;
-        // m_iCheckDelayTickToLate     = pCopy.m_iCheckDelayTickToLate;
 
         m_bIsParentToUI             = pCopy.m_bIsParentToUI;
         m_bIsParentToCreator        = pCopy.m_bIsParentToCreator;
@@ -194,15 +187,14 @@ public class SHDamageObjectInfo
         m_fStartSpeed               = pCopy.m_fStartSpeed;
         m_fAddSpeed                 = pCopy.m_fAddSpeed;
         m_vStartDirection           = pCopy.m_vStartDirection;
+        m_fOffsetAngle              = pCopy.m_fOffsetAngle;
         m_bIsStartDirectionToCreator= pCopy.m_bIsStartDirectionToCreator;
         m_bIsRandomStartDirection   = pCopy.m_bIsRandomStartDirection;
         m_vForce                    = pCopy.m_vForce;
 
         m_bIsUseGuideSystem         = pCopy.m_bIsUseGuideSystem;
         m_iNotGuideTick             = pCopy.m_iNotGuideTick;
-        m_fGuideAngleSpeed          = pCopy.m_fGuideAngleSpeed;
-        m_bIsUseCuvGuideAngleSpeed  = pCopy.m_bIsUseCuvGuideAngleSpeed;
-        m_pGuideCuvAngleSpeed       = pCopy.m_pGuideCuvAngleSpeed;
+        m_pGuideAngleSpeed          = pCopy.m_pGuideAngleSpeed;
 
         m_pAnimationClip            = pCopy.m_pAnimationClip;
         m_pAnimTarget               = pCopy.m_pAnimTarget;

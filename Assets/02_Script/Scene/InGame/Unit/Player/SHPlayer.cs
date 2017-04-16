@@ -6,7 +6,7 @@ public class SHPlayer : SHInGame_Component
 {
     #region Members
     public SHCharPopolo    m_pUnit   = null;
-    public SHCharWeapon    m_pWeapon = null;
+    public SHCharWeapon    m_pWeapon = new SHCharWeapon();
     #endregion
 
 
@@ -99,6 +99,18 @@ public class SHPlayer : SHInGame_Component
     public void ClearWeapon()
     {
         m_pWeapon.m_eType = eCharWeaponType.NormalBullet;
+    }
+    public void SetChangeWeapon(eCharWeaponType eType)
+    {
+        m_pWeapon.m_eType = eType;
+    }
+    public eCharWeaponType GetCurrentWeapon()
+    {
+        return m_pWeapon.m_eType;
+    }
+    public string GetDamageName()
+    {
+        return m_pWeapon.GetDamageName();
     }
     #endregion
 }

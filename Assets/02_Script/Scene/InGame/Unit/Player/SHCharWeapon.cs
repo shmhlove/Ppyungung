@@ -6,8 +6,8 @@ public enum eCharWeaponType
 {
     NormalBullet,
     ThreeBullet,
-    GuidedMissile,
-    SplashDamage,
+    GuidedBullet,
+    SplashBullet,
     Radiate,
 }
 
@@ -19,13 +19,13 @@ public class SHCharWeapon
     {
         switch(m_eType)
         {
-            case eCharWeaponType.NormalBullet:  return "";
-            case eCharWeaponType.ThreeBullet:   return "";
-            case eCharWeaponType.GuidedMissile: return "";
-            case eCharWeaponType.SplashDamage:  return "";
-            case eCharWeaponType.Radiate:       return "";
+            case eCharWeaponType.NormalBullet:  return "Dmg_Char_Bullet";
+            case eCharWeaponType.ThreeBullet:   return "Dmg_Char_Three_Bullet";
+            case eCharWeaponType.GuidedBullet:  return "Dmg_Char_Guided_Bullet";
+            case eCharWeaponType.SplashBullet:  return "Dmg_Char_Splash_Bullet";
+            case eCharWeaponType.Radiate:       return "Dmg_Char_Bullet";
         }
 
-        return "";
+        return "Dmg_Char_Bullet";
     }
 }
