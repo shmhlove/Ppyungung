@@ -28,32 +28,48 @@
 			"s_Name": "Dmg_Char_Body",
 			"s_FileName": "Dmg_Char_Body.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "14092",
-			"s_Hash": "E5D4FF8CEF0A58A762296F55A82504A9",
+			"s_Size": "14884",
+			"s_Hash": "FCE87CE7F31935F47C969D6186F6C7E8",
 			"s_Path": "Prefab/Damage/Dmg_Char_Body"
 		},
 		{
 			"s_Name": "Dmg_Char_Bullet",
 			"s_FileName": "Dmg_Char_Bullet.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "16756",
-			"s_Hash": "647D380119833C4C2C3D277D865C1436",
+			"s_Size": "17548",
+			"s_Hash": "F16BD4C05248B90D3A23986D372D705C",
 			"s_Path": "Prefab/Damage/Dmg_Char_Bullet"
+		},
+		{
+			"s_Name": "Dmg_Char_Splash_Bullet",
+			"s_FileName": "Dmg_Char_Splash_Bullet.prefab",
+			"s_Extension": ".prefab",
+			"s_Size": "17604",
+			"s_Hash": "0FAA385E4D956FB96E7F4D791CC0A2E3",
+			"s_Path": "Prefab/Damage/Dmg_Char_Splash_Bullet"
+		},
+		{
+			"s_Name": "Dmg_Char_Splash_Explosion",
+			"s_FileName": "Dmg_Char_Splash_Explosion.prefab",
+			"s_Extension": ".prefab",
+			"s_Size": "17620",
+			"s_Hash": "65147A13950E9DCCDB22043EB3110383",
+			"s_Path": "Prefab/Damage/Dmg_Char_Splash_Explosion"
 		},
 		{
 			"s_Name": "Dmg_Mon_Bullet",
 			"s_FileName": "Dmg_Mon_Bullet.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "16724",
-			"s_Hash": "823CED4E7AAA370CCCD6E6E4CAEE3CC4",
+			"s_Size": "17388",
+			"s_Hash": "FC6B85A7714DCF598D371B4A33B2C4F7",
 			"s_Path": "Prefab/Damage/Dmg_Mon_Bullet"
 		},
 		{
 			"s_Name": "Dmg_Mon_Explosion",
 			"s_FileName": "Dmg_Mon_Explosion.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "16732",
-			"s_Hash": "6E22B61EEE43DEFD8E267AC01A7C8E93",
+			"s_Size": "17396",
+			"s_Hash": "4D9B253CE177AA468F6CDCB847E2EE8A",
 			"s_Path": "Prefab/Damage/Dmg_Mon_Explosion"
 		},
 		{
@@ -76,8 +92,8 @@
 			"s_Name": "Panel_Development",
 			"s_FileName": "Panel_Development.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "125284",
-			"s_Hash": "A76F7CB03E683DC06BFE2056C4DDC8B7",
+			"s_Size": "125464",
+			"s_Hash": "CB3F4045F2B96233A1300E7AA30F8190",
 			"s_Path": "Prefab/UI/Panel/Panel_Development"
 		},
 		{
@@ -207,6 +223,14 @@
 			"s_Size": "3458",
 			"s_Hash": "BEE3219E8C57EA12A4B14056885A0A24",
 			"s_Path": "Sound/Effect/Audio_Effect_Shoot"
+		},
+		{
+			"s_Name": "BuffInfo",
+			"s_FileName": "BuffInfo.bytes",
+			"s_Extension": ".bytes",
+			"s_Size": "28",
+			"s_Hash": "72ED96E34A348D1225F4CD9E832E12FB",
+			"s_Path": "Table/Bytes/BuffInfo"
 		},
 		{
 			"s_Name": "Constants",

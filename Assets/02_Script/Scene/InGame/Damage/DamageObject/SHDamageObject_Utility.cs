@@ -187,18 +187,9 @@ public partial class SHDamageObject : SHMonoWrapper
             if (false == pInfo.m_pTimming.IsTimming(m_pInfo, eEvent))
                 return;
 
-            // m_pInfo.m_pParam
-
-            // pInfo.m_strPrefabName
-            // Single.Damage.AddDamage(pInfo.m_strPrefabName,
-            //                 new SHDamageParam(Single.Damage.GetDamagePosition(m_pInfo.m_strID), null, null, (pDamage, pTarget) =>
-            //                 {
-            //                     if (0.0f == pTarget.m_fHealthPoint)
-            //                     {
-            //                         Single.GameState.AddKillCount(1);
-            //                         AddDashGauge();
-            //                     }
-            //                 }));
+            var pParam = new SHDamageParam(m_pParam);
+            pParam.m_pStartPosition = Single.Damage.GetDamagePosition(m_pInfo.m_strID);
+            Single.Damage.AddDamage(pInfo.m_strPrefabName, pParam);
         });
     }
     void ClearEffect()

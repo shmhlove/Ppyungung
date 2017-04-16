@@ -207,5 +207,6 @@ public class SHDamageObjectInfo
 
         m_pSoundInfo                = new List<SHDamageSoundInfo>(pCopy.m_pSoundInfo);
         m_pEffectInfo               = new List<SHDamageEffectInfo>(pCopy.m_pEffectInfo);
+        m_pAddDamageInfo            = new List<SHAddDamageInfo>(pCopy.m_pAddDamageInfo);
     }
 }
