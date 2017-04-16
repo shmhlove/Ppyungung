@@ -6,9 +6,12 @@ using System.Collections.Generic;
 public class SHUIPanel_PhaseMenu : SHUIBasePanel
 {
     #region Members : Inspector
-    [SerializeField] private UILabel m_pLabelBuff_1 = null;
-    [SerializeField] private UILabel m_pLabelBuff_2 = null;
-    [SerializeField] private UILabel m_pLabelBuff_3 = null;
+    [SerializeField] private UIToggle   m_pToggleBuff_1 = null;
+    [SerializeField] private UIToggle   m_pToggleBuff_2 = null;
+    [SerializeField] private UIToggle   m_pToggleBuff_3 = null;
+    [SerializeField] private UILabel    m_pLabelBuff_1  = null;
+    [SerializeField] private UILabel    m_pLabelBuff_2  = null;
+    [SerializeField] private UILabel    m_pLabelBuff_3  = null;
     #endregion
 
 
@@ -41,6 +44,10 @@ public class SHUIPanel_PhaseMenu : SHUIBasePanel
     #region Utility Functions
     void ResetBuffSlot()
     {
+        m_pToggleBuff_1.Set(false);
+        m_pToggleBuff_2.Set(false);
+        m_pToggleBuff_3.Set(false);
+
         m_pBuffList = Single.Buff.GetRandomBuffList(3);
         m_pLabelBuff_1.text = Localization.Get(m_pBuffList[0].ToString());
         m_pLabelBuff_2.text = Localization.Get(m_pBuffList[1].ToString());
