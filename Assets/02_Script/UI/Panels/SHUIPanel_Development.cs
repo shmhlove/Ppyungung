@@ -418,7 +418,7 @@ public class SHUIPanel_Development : SHUIBasePanel
     {
         SHHard.m_fUnitScale = float.Parse(strValue);
 
-        var pPlayer = Single.Player.m_pCharacter;
+        var pPlayer = Single.Player.m_pUnit;
         if (null != pPlayer)
         {
             pPlayer.SetLocalScale(pPlayer.m_vStartScale * SHHard.m_fUnitScale);
