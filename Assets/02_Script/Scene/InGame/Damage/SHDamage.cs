@@ -140,6 +140,13 @@ public partial class SHDamage : SHInGame_Component
     {
         return m_dicDamages.Count;
     }
+    public Vector3 GetDamagePosition(string strID)
+    {
+        if (false == m_dicDamages.ContainsKey(strID))
+            return Vector3.zero;
+
+        return m_dicDamages[strID].GetLocalPosition();
+    }
     public void SetLockCheckCollision(bool bIsLock)
     {
         m_bIsLockCheckCollision = bIsLock;

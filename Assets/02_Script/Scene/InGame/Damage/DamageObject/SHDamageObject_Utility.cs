@@ -24,9 +24,13 @@ public partial class SHDamageObject : SHMonoWrapper
     }
     void SetupTransform()
     {
-        var vPosition = m_pInfo.m_vStaticStartPosition;
-
-        if (null != GetWho())
+        var vPosition = m_pParam.m_pStartPosition;
+        
+        if (Vector3.zero != m_pInfo.m_vStaticStartPosition)
+        {
+            vPosition = m_pInfo.m_vStaticStartPosition;
+        }
+        else if (null != GetWho())
         {
             if ((true == m_pInfo.m_bIsParentToCreator) ||
                 (true == m_pInfo.m_bIsTraceToCreator))
@@ -174,6 +178,27 @@ public partial class SHDamageObject : SHMonoWrapper
             pInfo.SetEffectObject(pEffect);
             SetupEffectTransform(pInfo, pEffect);
             pEffect.SetActive(true);
+        });
+    }
+    void AddDamage(eDamageEvent eEvent)
+    {
+        SHUtils.ForToList(m_pInfo.m_pAddDamageInfo, (pInfo) =>
+        {
+            if (false == pInfo.m_pTimming.IsTimming(m_pInfo, eEvent))
+                return;
+
+            // m_pInfo.m_pParam
+
+            // pInfo.m_strPrefabName
+            // Single.Damage.AddDamage(pInfo.m_strPrefabName,
+            //                 new SHDamageParam(Single.Damage.GetDamagePosition(m_pInfo.m_strID), null, null, (pDamage, pTarget) =>
+            //                 {
+            //                     if (0.0f == pTarget.m_fHealthPoint)
+            //                     {
+            //                         Single.GameState.AddKillCount(1);
+            //                         AddDashGauge();
+            //                     }
+            //                 }));
         });
     }
     void ClearEffect()

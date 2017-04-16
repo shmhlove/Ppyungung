@@ -24,7 +24,7 @@ public class SHRnD_Damage : SHMonoWrapper
     [FuncButton] void AddDamage()
     {
         Single.Damage.AddDamage("Dmg_Sample", 
-            new SHDamageParam(this, m_pTarget, OnEventToDelete, OnEventToCollision));
+            new SHDamageParam(this, GetPosition(), m_pTarget, OnEventToDelete, OnEventToCollision));
     }
     #endregion
 

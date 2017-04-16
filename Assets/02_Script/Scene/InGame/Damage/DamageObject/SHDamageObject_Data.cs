@@ -81,8 +81,8 @@ public class SHDamageEffectInfo
 [Serializable]
 public class SHAddDamageInfo
 {
-    public string              m_strClipName = string.Empty;
-    public SHDamageTimmingInfo m_pTimming    = new SHDamageTimmingInfo();
+    public string              m_strPrefabName = string.Empty;
+    public SHDamageTimmingInfo m_pTimming      = new SHDamageTimmingInfo();
 }
 
 [Serializable]

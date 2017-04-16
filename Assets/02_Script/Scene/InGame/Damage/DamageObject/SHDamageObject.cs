@@ -7,7 +7,7 @@ using System.Collections.Generic;
 public partial class SHDamageObject : SHMonoWrapper
 {
     #region Members : ParamInfo
-    [SerializeField]  private SHDamageParam  m_pParam        = null;
+    [SerializeField]  private SHDamageParam     m_pParam        = null;
     #endregion
 
 
@@ -48,6 +48,7 @@ public partial class SHDamageObject : SHMonoWrapper
         PlayAnimation();
         PlaySound(eDamageEvent.Start);
         PlayEffect(eDamageEvent.Start);
+        AddDamage(eDamageEvent.Start);
     }
     public void OnFrameMove()
     {
@@ -66,6 +67,7 @@ public partial class SHDamageObject : SHMonoWrapper
         MoveScale();
         PlaySound(eDamageEvent.Tick);
         PlayEffect(eDamageEvent.Tick);
+        AddDamage(eDamageEvent.Tick);
     }
     #endregion
 
@@ -89,6 +91,7 @@ public partial class SHDamageObject : SHMonoWrapper
 
         PlaySound(eDamageEvent.Crash);
         PlayEffect(eDamageEvent.Crash);
+        AddDamage(eDamageEvent.Crash);
 
         if (null != m_pParam)
             m_pParam.SendEventToCollision(this, pCrashObject);
@@ -144,6 +147,7 @@ public partial class SHDamageObject : SHMonoWrapper
     {
         PlaySound(eDamageEvent.Delete);
         PlayEffect(eDamageEvent.Delete);
+        AddDamage(eDamageEvent.Delete);
 
         m_bIsDieDamage = true;
 

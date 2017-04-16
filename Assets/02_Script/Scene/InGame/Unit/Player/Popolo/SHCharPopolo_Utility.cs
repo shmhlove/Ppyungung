@@ -20,7 +20,7 @@ public partial class SHCharPopolo : SHState
 
         // 데미지 생성
         var pAddDamage = Single.Damage.AddDamage("Dmg_Char_Bullet",
-                        new SHDamageParam(m_pShootPos, null, null, (pDamage, pTarget) =>
+                        new SHDamageParam(this, m_pShootPos.GetPosition(), pEventCollision: (pDamage, pTarget) =>
                         {
                             if (0.0f == pTarget.m_fHealthPoint)
                             {
@@ -67,7 +67,7 @@ public partial class SHCharPopolo : SHState
     {
         DelBodyDamage();
         m_pBodyDamage = Single.Damage.AddDamage("Dmg_Char_Body", 
-            new SHDamageParam(this, null, null, (pDamage, pTarget) => { OnCrashDamage(pDamage); }));
+            new SHDamageParam(this, Vector3.zero, pEventCollision: (pDamage, pTarget) => { OnCrashDamage(pDamage); }));
 
         m_pBodyDamage.SetStartTransform();
     }
