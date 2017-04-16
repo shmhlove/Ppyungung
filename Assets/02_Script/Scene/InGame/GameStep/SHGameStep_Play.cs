@@ -70,6 +70,7 @@ public class SHGameStep_Play : SHGameStep_Component
             default:                    bIsDoneAction = true; break;
         }
 
+        Single.Damage.SetLockCheckCollision(true);
         Single.Timer.SetTimeScale(0.5f);
 
         while (false == bIsDoneAction)
