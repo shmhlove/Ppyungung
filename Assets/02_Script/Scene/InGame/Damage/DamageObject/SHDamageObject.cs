@@ -25,7 +25,7 @@ public partial class SHDamageObject : SHMonoWrapper
     
 
     #region System Functions
-    public void OnInitialize(string strID, SHDamageParam pParam)
+    public void OnInitialize(string strID, string strPrefabName, SHDamageParam pParam)
     {
         if (null == pParam)
         {
@@ -33,7 +33,9 @@ public partial class SHDamageObject : SHMonoWrapper
             return;
         }
         
-        m_pSettingInfo.m_strID = strID;
+        m_pSettingInfo.m_strID         = strID;
+        m_pSettingInfo.m_strPrefabName = strPrefabName;
+
         m_pInfo         = new SHDamageObjectInfo(m_pSettingInfo);
         m_pParam        = pParam;
         m_bIsDieDamage  = false;

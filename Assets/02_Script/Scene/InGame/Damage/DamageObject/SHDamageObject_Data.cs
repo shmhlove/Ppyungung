@@ -92,6 +92,7 @@ public class SHDamageObjectInfo
     [Header("[데미지 ID (생성시 자동 발급됩니다.)]")]
     [ReadOnlyField]
     public string m_strID                               = string.Empty;
+    public string m_strPrefabName                       = string.Empty;
 
     [Header("[충돌체크를 할 타켓 유닛의 태그 리스트]")][DamageTags]
     public List<string>     m_pTargetUnitTags           = new List<string>();
@@ -164,6 +165,7 @@ public class SHDamageObjectInfo
             return;
 
         m_strID                     = pCopy.m_strID;
+        m_strPrefabName             = pCopy.m_strPrefabName;
         m_pTargetUnitTags           = new List<string>(pCopy.m_pTargetUnitTags);
 
         m_bIsLoopLifeTick           = pCopy.m_bIsLoopLifeTick;

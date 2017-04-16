@@ -39,7 +39,7 @@ public partial class SHCharPopolo : SHState
     #endregion
 
 
-    #region System Functions
+    #region override Functions
     public override void OnDestroy()
     {
         base.OnDestroy();
