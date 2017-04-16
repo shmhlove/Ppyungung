@@ -24,6 +24,9 @@ public partial class SHCharPopolo : SHState
                         {
                             if (0.0f == pTarget.m_fHealthPoint)
                             {
+                                var pHUD = Single.UI.GetPanel<SHUIPanel_HUD>("Panel_HUD");
+                                pHUD.SetCharScore("+1");
+
                                 Single.GameState.AddKillCount(1);
                                 AddDashGauge();
                             }
