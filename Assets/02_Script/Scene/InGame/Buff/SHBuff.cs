@@ -19,12 +19,33 @@ public enum eBuffType
 
 public class SHBuff : SHInGame_Component
 {
-    #region Members
+    #region Members : 
     private eBuffType m_eSelectBuff = eBuffType.None;
     #endregion
 
 
+    #region Members BuffValue
+    public float m_fMaxHeath      = 0.0f;
+    public float m_fAddDP         = 0.0f;
+    public float m_fDecDP         = 0.0f;
+    public float m_fDropCoin      = 0.0f;
+    public float m_fBulletSP      = 0.0f;
+    public float m_fMoveSP        = 0.0f;
+    public float m_fDecreaseMonSP = 0.0f;
+    #endregion
+
+
     #region Interface Functions
+    public void ClearBuffValue()
+    {
+        m_fMaxHeath      = 0.0f;
+        m_fAddDP         = 0.0f;
+        m_fDecDP         = 0.0f;
+        m_fDropCoin      = 0.0f;
+        m_fBulletSP      = 0.0f;
+        m_fMoveSP        = 0.0f;
+        m_fDecreaseMonSP = 0.0f;
+    }
     public void SetBuff(eBuffType eType)
     {
         m_eSelectBuff = eType;
@@ -75,18 +96,15 @@ public class SHBuff : SHInGame_Component
                 Single.Player.ResetHP();
                 break;
             case eBuffType.Buff_UpgradeMaxHeath:
-                SHHard.m_iCharMaxHealthPoint += 
-                    SHHard.m_iCharMaxHealthPoint *
+                m_fMaxHeath += SHHard.m_iCharMaxHealthPoint *
                     Single.Table.GetTable<JsonBuffInfo>().m_fRatioUpgradeMaxHeath;
                 break;
             case eBuffType.Buff_UpgradeAddDP:
-                SHHard.m_fCharAddDashPoint += 
-                    SHHard.m_fCharAddDashPoint *
+                m_fAddDP += SHHard.m_fCharAddDashPoint *
                     Single.Table.GetTable<JsonBuffInfo>().m_fRatioUpgradeAddDP;
                 break;
             case eBuffType.Buff_UpgradeDecDP:
-                SHHard.m_fCharMaxDashPoint += 
-                    SHHard.m_fCharMaxDashPoint *
+                m_fDecDP += SHHard.m_fCharMaxDashPoint *
                     Single.Table.GetTable<JsonBuffInfo>().m_fRatioUpgradeDecDP;
                 break;
             case eBuffType.Buff_UpgradeDropCoin:
@@ -94,18 +112,15 @@ public class SHBuff : SHInGame_Component
             case eBuffType.Buff_Shield:
                 break;
             case eBuffType.Buff_UpgradeBulletSP:
-                SHHard.m_fCharDamageSpeed += 
-                    SHHard.m_fCharDamageSpeed *
+                m_fBulletSP += SHHard.m_fCharDamageSpeed *
                     Single.Table.GetTable<JsonBuffInfo>().m_fRatioUpgradeBulletSP;
                 break;
             case eBuffType.Buff_UpgradeMoveSP:
-                SHHard.m_fCharMoveSpeed += 
-                    SHHard.m_fCharMoveSpeed *
+                m_fMoveSP += SHHard.m_fCharMoveSpeed *
                     Single.Table.GetTable<JsonBuffInfo>().m_fRatioUpgradeMoveSP;
                 break;
             case eBuffType.Buff_DecreaseMonSP:
-                SHHard.m_fMonMoveSpeed -= 
-                    SHHard.m_fMonMoveSpeed *
+                m_fDecreaseMonSP += SHHard.m_fMonMoveSpeed *
                     Single.Table.GetTable<JsonBuffInfo>().m_fRatioDecreaseMonSP;
                 break;
         }

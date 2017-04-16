@@ -15,7 +15,7 @@ public class SHGameStep_Result : SHGameStep_Component
         
         // 데미지 정리
         Single.Damage.SetLockCheckCollision(true);
-
+        
         // 유닛정리
         Single.Monster.StopGen();
         Single.Player.StopPlayer();
@@ -33,6 +33,7 @@ public class SHGameStep_Result : SHGameStep_Component
         // 게임상태 정리
         Single.GameState.InitPhase();
         Single.GameState.ClearScoreBoard();
+        Single.Buff.ClearBuffValue();
     }
     #endregion
 }

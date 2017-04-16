@@ -6,17 +6,17 @@ public static partial class SHHard
     // 캐릭터 관련
     public static float m_iCharMaxHealthPoint
     {
-        get { return GetTable().m_iCharMaxHP; }
+        get { return GetTable().m_iCharMaxHP + Single.Buff.m_fMaxHeath; }
         set { GetTable().m_iCharMaxHP = value; }
     }
     public static float m_fCharMoveSpeed
     {
-        get { return GetTable().m_fCharMoveSpeed; }
+        get { return GetTable().m_fCharMoveSpeed + Single.Buff.m_fMoveSP; }
         set { GetTable().m_fCharMoveSpeed = value; }
     }
     public static float m_fCharDamageSpeed
     {
-        get { return GetTable().m_fCharDamageSpeed; }
+        get { return GetTable().m_fCharDamageSpeed + Single.Buff.m_fBulletSP; }
         set { GetTable().m_fCharDamageSpeed = value; }
     }
     public static float m_fCharShootDelay
@@ -31,12 +31,16 @@ public static partial class SHHard
     }
     public static float m_fCharAddDashPoint
     {
-        get { return GetTable().m_fCharAddDashPoint; }
+        get { return GetTable().m_fCharAddDashPoint + Single.Buff.m_fAddDP; }
         set { GetTable().m_fCharAddDashPoint = value; }
     }
     public static float m_fCharDecDashPoint
     {
-        get { return GetTable().m_fCharDecDashPoint; }
+        get
+        {
+            var fDecDP = GetTable().m_fCharDecDashPoint - Single.Buff.m_fDecDP;
+            return Mathf.Clamp(fDecDP, 0.0f, fDecDP);
+        }
         set { GetTable().m_fCharDecDashPoint = value; }
     }
     public static float m_fCharMaxDashPoint
@@ -49,7 +53,11 @@ public static partial class SHHard
     // 몬스터 관련
     public static float m_fMonMoveSpeed
     {
-        get { return GetTable().m_fMonMoveSpeed; }
+        get
+        {
+            var fMoveSpeed = GetTable().m_fMonMoveSpeed - Single.Buff.m_fDecreaseMonSP;
+            return Mathf.Clamp(fMoveSpeed, 1.0f, fMoveSpeed);
+        }
         set { GetTable().m_fMonMoveSpeed = value; }
     }
     public static float m_fMonDamageSpeed

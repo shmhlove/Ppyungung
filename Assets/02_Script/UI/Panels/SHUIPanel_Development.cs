@@ -23,6 +23,7 @@ public class SHUIPanel_Development : SHUIBasePanel
     [SerializeField] private UILabel        m_pLabelToObjectPool        = null;
     [Header("[Player]")]
     [SerializeField] private UIPopupList    m_pPopupListToCtrl          = null;
+    [SerializeField] private UIInput        m_pInputToCharMaxHP         = null;
     [SerializeField] private UIInput        m_pInputToCharMoveSpeed     = null;
     [SerializeField] private UIInput        m_pInputToCharShootSpeed    = null;
     [SerializeField] private UIInput        m_pInputToCharDMGSpeed      = null;
@@ -149,7 +150,8 @@ public class SHUIPanel_Development : SHUIBasePanel
     }
     void SetInputInfo()
     {
-        if ((null == m_pInputToCharMoveSpeed)    ||
+        if ((null == m_pInputToCharMaxHP)        || 
+            (null == m_pInputToCharMoveSpeed)    ||
             (null == m_pInputToCharShootSpeed)   ||
             (null == m_pInputToCharDMGSpeed)     ||
             (null == m_pInputToCharDashSpeed)    ||
@@ -167,6 +169,7 @@ public class SHUIPanel_Development : SHUIBasePanel
             (null == m_pInputToMoveLimitY))
             return;
 
+        m_pInputToCharMaxHP.value           = SHHard.m_iCharMaxHealthPoint.ToString();
         m_pInputToCharMoveSpeed.value       = SHHard.m_fCharMoveSpeed.ToString();
         m_pInputToCharShootSpeed.value      = SHHard.m_fCharShootDelay.ToString();
         m_pInputToCharDMGSpeed.value        = SHHard.m_fCharDamageSpeed.ToString();
@@ -291,14 +294,17 @@ public class SHUIPanel_Development : SHUIBasePanel
     public void OnSubmitToMaxHealthPoint(string strValue)
     {
         SHHard.m_iCharMaxHealthPoint = float.Parse(strValue);
+        Single.Buff.m_fMaxHeath = 0.0f;
     }
     public void OnSubmitToMoveSpeed(string strValue)
     {
         SHHard.m_fCharMoveSpeed = float.Parse(strValue);
+        Single.Buff.m_fMoveSP = 0.0f;
     }
     public void OnSubmitToDamageSpeed(string strValue)
     {
         SHHard.m_fCharDamageSpeed = float.Parse(strValue);
+        Single.Buff.m_fBulletSP = 0.0f;
     }
     public void OnSubmitToShootSpeed(string strValue)
     {
@@ -311,10 +317,12 @@ public class SHUIPanel_Development : SHUIBasePanel
     public void OnSubmitToAddDashGauge(string strValue)
     {
         SHHard.m_fCharAddDashPoint = float.Parse(strValue);
+        Single.Buff.m_fAddDP = 0.0f;
     }
     public void OnSubmitToDecDashGauge(string strValue)
     {
         SHHard.m_fCharDecDashPoint = float.Parse(strValue);
+        Single.Buff.m_fDecDP = 0.0f;
     }
     public void OnSubmitToMaxDashGauge(string strValue)
     {
@@ -374,6 +382,7 @@ public class SHUIPanel_Development : SHUIBasePanel
     public void OnSubmitToMonMoveSpeed(string strValue)
     {
         SHHard.m_fMonMoveSpeed = float.Parse(strValue);
+        Single.Buff.m_fDecreaseMonSP = 0.0f;
     }
     public void OnSubmitToMonDamageSpeed(string strValue)
     {
