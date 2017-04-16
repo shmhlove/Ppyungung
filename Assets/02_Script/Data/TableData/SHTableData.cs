@@ -22,7 +22,7 @@ public partial class SHTableData : SHBaseData
     #endregion
 
 
-    #region Virtual Functions
+    #region Override Functions
     public override void OnInitialize()
     {
         m_dicTables.Clear();
@@ -78,28 +78,19 @@ public partial class SHTableData : SHBaseData
     public override void Load(SHLoadData pInfo, Action<string, SHLoadStartInfo> pStart,
                                                 Action<string, SHLoadEndInfo> pDone)
     {
-        SHBaseTable pTable = GetTable(pInfo.m_strName);
-        if (null == pTable)
+        if (0 == m_dicTables.Count)
+            OnInitialize();
+
+        var pType = GetTypeToFileName(pInfo.m_strName);
+        if (false == m_dicTables.ContainsKey(pType))
         {
             Debug.LogError(string.Format("[TableData] 등록된 테이블이 아닙니다.!!({0})", pInfo.m_strName));
             pDone(pInfo.m_strName, new SHLoadEndInfo(false, eLoadErrorCode.Load_Table));
             return;
         }
-
-        SHUtils.ForToList(GetLoadOrder(pTable), (pLambda) =>
-        {
-            bool? bIsSuccess = pLambda();
-            if (null != bIsSuccess)
-            {
-                if (true == bIsSuccess.Value)
-                    pDone(pInfo.m_strName, new SHLoadEndInfo(true, eLoadErrorCode.None));
-                else
-                    pDone(pInfo.m_strName, new SHLoadEndInfo(true, eLoadErrorCode.Load_Table));
-                return;
-            }
-        });
-
-        pDone(pInfo.m_strName, new SHLoadEndInfo(false, eLoadErrorCode.Load_Table));
+        
+        var eErrorCode = Load(m_dicTables[pType]);
+        pDone(pInfo.m_strName, new SHLoadEndInfo((eLoadErrorCode.None == eErrorCode), eErrorCode));
     }
     public override void Patch(SHLoadData pInfo, Action<string, SHLoadStartInfo> pStart,
                                                  Action<string, SHLoadEndInfo> pDone)
@@ -118,6 +109,25 @@ public partial class SHTableData : SHBaseData
             m_pLoadFunc = Load
         };
     }
+    public eLoadErrorCode Load(SHBaseTable pTable)
+    {
+        if (null == pTable)
+            return eLoadErrorCode.Load_Table;
+
+        foreach(var pLambda in GetLoadOrder(pTable))
+        {
+            bool? bIsSuccess = pLambda();
+            if (null != bIsSuccess)
+            {
+                if (true == bIsSuccess.Value)
+                    return eLoadErrorCode.None;
+                else
+                    return eLoadErrorCode.Load_Table;
+            }
+        }
+
+        return eLoadErrorCode.Load_Table;
+    }
     public T GetTable<T>() where T : SHBaseTable
     {
         return GetTable(typeof(T)) as T;
@@ -130,6 +140,9 @@ public partial class SHTableData : SHBaseData
         if (false == m_dicTables.ContainsKey(pType))
             return null;
 
+        if (false == m_dicTables[pType].IsLoadTable())
+            Load(m_dicTables[pType]);
+        
         return m_dicTables[pType];
     }
     public SHBaseTable GetTable(string strFileName)
@@ -175,16 +188,23 @@ public partial class SHTableData : SHBaseData
     {
         var pLoadOrder = new List<Func<bool?>>();
         pLoadOrder.Add(() => { return pTable.LoadStatic();                        });
-        pLoadOrder.Add(() => { return pTable.LoadBytes(pTable.m_strByteFileName); });
-        pLoadOrder.Add(() => { return pTable.LoadXML(pTable.m_strFileName);       });
+#if UNITY_EDITOR
         pLoadOrder.Add(() => { return pTable.LoadJson(pTable.m_strFileName);      });
+        pLoadOrder.Add(() => { return pTable.LoadXML(pTable.m_strFileName);       });
         pLoadOrder.Add(() => { return pTable.LoadDB(pTable.m_strFileName);        });
+        pLoadOrder.Add(() => { return pTable.LoadBytes(pTable.m_strByteFileName); });
+#else
+        pLoadOrder.Add(() => { return pTable.LoadBytes(pTable.m_strByteFileName); });
+        pLoadOrder.Add(() => { return pTable.LoadJson(pTable.m_strFileName);      });
+        pLoadOrder.Add(() => { return pTable.LoadXML(pTable.m_strFileName);       });
+        pLoadOrder.Add(() => { return pTable.LoadDB(pTable.m_strFileName);        });
+#endif
         return pLoadOrder;
     }
-    #endregion
+#endregion
 
 
-    #region FileMonitor Functions
+#region FileMonitor Functions
     void CheckFileMonitor()
     {
         foreach (var kvp in m_dicFMChangedList)
@@ -308,5 +328,5 @@ public partial class SHTableData : SHBaseData
 
         m_dicFMChangedList.Add(eTableType.Byte, pType);
     }
-    #endregion
+#endregion
 }

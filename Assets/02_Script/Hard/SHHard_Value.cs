@@ -115,17 +115,6 @@ public static partial class SHHard
     // 유틸
     static JsonConstants GetTable()
     {
-        var pTable = Single.Table.GetTable<JsonConstants>();
-
-        if (false == pTable.IsLoadTable())
-        {
-#if UNITY_EDITOR
-            pTable.LoadJson(pTable.m_strFileName);
-#else
-            pTable.LoadBytes(pTable.m_strByteFileName);
-#endif
-        }
-
         return Single.Table.GetTable<JsonConstants>();
     }
 }
