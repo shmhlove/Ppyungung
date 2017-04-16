@@ -146,59 +146,28 @@ public partial class SHDamageObject : SHMonoWrapper
     {
         SHUtils.ForToList(m_pInfo.m_pSoundInfo, (pInfo) =>
         {
-            switch (eEvent)
-            {
-                case eDamageEvent.Tick:
-                    if ((0 != pInfo.m_iPlayToLifeTick) &&
-                        (m_pInfo.m_iLifeTick == pInfo.m_iPlayToLifeTick))
-                        Single.Sound.PlayEffect(pInfo.m_strClipName);
-                    break;
-                case eDamageEvent.Start:
-                    if (true == pInfo.m_bIsPlayToStart)
-                        Single.Sound.PlayEffect(pInfo.m_strClipName);
-                    break;
-                case eDamageEvent.Delete:
-                    if (true == pInfo.m_bIsPlayToDelete)
-                        Single.Sound.PlayEffect(pInfo.m_strClipName);
-                    break;
-                case eDamageEvent.Crash:
-                    if (true == pInfo.m_bIsPlayToCrash)
-                        Single.Sound.PlayEffect(pInfo.m_strClipName);
-                    break;
-            }
+            if (false == pInfo.m_pTimming.IsTimming(m_pInfo, eEvent))
+                return;
+
+            Single.Sound.PlayEffect(pInfo.m_strClipName);
         });
     }
     void PlayEffect(eDamageEvent eEvent)
     {
         SHUtils.ForToList(m_pInfo.m_pEffectInfo, (pInfo) =>
         {
-            var strPrefabName = string.Empty;
-            switch (eEvent)
-            {
-                case eDamageEvent.Tick:
-                    if (m_pInfo.m_iLifeTick == pInfo.m_iPlayToLifeTick)
-                        strPrefabName = pInfo.m_strPrefabName;
-                    break;
-                case eDamageEvent.Start:
-                    if (true == pInfo.m_bIsPlayToStart)
-                        strPrefabName = pInfo.m_strPrefabName;
-                    break;
-                case eDamageEvent.Delete:
-                    if (true == pInfo.m_bIsPlayToDelete)
-                        strPrefabName = pInfo.m_strPrefabName;
-                    if (true == pInfo.m_bIsDeleteWithDamage)
-                        pInfo.SetDisableObject();
-                    break;
-                case eDamageEvent.Crash:
-                    if (true == pInfo.m_bIsPlayToCrash)
-                        strPrefabName = pInfo.m_strPrefabName;    
-                    break;
-            }
-
-            if (true == string.IsNullOrEmpty(strPrefabName))
+            if (false == pInfo.m_pTimming.IsTimming(m_pInfo, eEvent))
                 return;
 
-            var pEffect = CreateEffect(strPrefabName);
+            if (eDamageEvent.Delete == eEvent)
+            {
+                if (true == pInfo.m_bIsDeleteWithDamage)
+                    pInfo.SetDisableObject();
+
+                return;
+            }
+
+            var pEffect = CreateEffect(pInfo.m_strPrefabName);
             if (null == pEffect)
                 return;
 
