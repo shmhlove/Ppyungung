@@ -2,11 +2,11 @@
     "BuffInfo": 
     {
         "m_fRatioUpgradeMaxHeath": 0.5,
-        "m_fRatioUpgradeAddDP: 0.5,
-        "m_fRatioUpgradeDecDP: 0.5,
-        "m_fRatioUpgradeDropCoin: 0.5,
-        "m_fRatioUpgradeBulletSP: 0.5,
-        "m_fRatioUpgradeMoveSP: 0.5,
-        "m_fRatioDecreaseMonSP: 0.5
+        "m_fRatioUpgradeAddDP": 0.5,
+        "m_fRatioUpgradeDecDP": 0.5,
+        "m_fRatioUpgradeDropCoin": 0.5,
+        "m_fRatioUpgradeBulletSP": 0.5,
+        "m_fRatioUpgradeMoveSP": 0.5,
+        "m_fRatioDecreaseMonSP": 0.5
     }
 }
