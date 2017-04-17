@@ -35,7 +35,8 @@ public partial class SHCharPopolo : SHState
 
 
     #region Members : ETC
-    private SHDamageObject m_pBodyDamage = null;
+    private SHDamageObject m_pBodyDamage   = null;
+    private SHDamageObject m_pShieldDamage = null;
     #endregion
 
 

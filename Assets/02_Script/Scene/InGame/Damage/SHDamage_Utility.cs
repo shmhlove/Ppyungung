@@ -72,11 +72,24 @@ public partial class SHDamage : SHInGame_Component
                 continue;
 
             var pTarget = pHit.transform.GetComponent<SHMonoWrapper>();
-            if (true == pTarget.IsPassDMGCollision())
+            if (null == pTarget)
                 return;
 
+            if (true == pTarget.IsPassDMGCollision())
+                return;
+            
             pTarget.OnCrashDamage(pDamage);
             pDamage.OnCrashDamage(pTarget);
+
+            // 데미지HP 0이될때 Destroy처리
+            if (0 < pDamage.m_pInfo.m_iDamageHP)
+            {
+                if (0 == --pDamage.m_pInfo.m_iDamageHP)
+                {
+                    DelDamage(pDamage);
+                    break;
+                }
+            }
         }
     }
     #endregion

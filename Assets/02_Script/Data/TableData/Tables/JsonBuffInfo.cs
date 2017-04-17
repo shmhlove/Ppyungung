@@ -15,6 +15,7 @@ public class JsonBuffInfo : SHBaseTable
     public float m_fRatioUpgradeBulletSP = 0.0f;
     public float m_fRatioUpgradeMoveSP   = 0.0f;
     public float m_fRatioDecreaseMonSP   = 0.0f;
+    public int   m_iShieldCount          = 0;
     #endregion
 
 
@@ -52,6 +53,7 @@ public class JsonBuffInfo : SHBaseTable
         m_fRatioUpgradeBulletSP = GetFloatToJson(pDataNode, "m_fRatioUpgradeBulletSP");
         m_fRatioUpgradeMoveSP   = GetFloatToJson(pDataNode, "m_fRatioUpgradeMoveSP");
         m_fRatioDecreaseMonSP   = GetFloatToJson(pDataNode, "m_fRatioDecreaseMonSP");
+        m_iShieldCount          = GetIntToJson(pDataNode, "m_iShieldCount");
 
         return (m_bIsLoaded = true);
     }
@@ -69,7 +71,9 @@ public class JsonBuffInfo : SHBaseTable
         m_fRatioUpgradeBulletSP = pSerializer.DeserializeFloat();
         m_fRatioUpgradeMoveSP   = pSerializer.DeserializeFloat();
         m_fRatioDecreaseMonSP   = pSerializer.DeserializeFloat();
-        
+        m_iShieldCount          = pSerializer.DeserializeInt();
+
+
         return true;
     }
     public override byte[] GetBytesTable()
@@ -86,6 +90,7 @@ public class JsonBuffInfo : SHBaseTable
         pSerializer.Serialize(m_fRatioUpgradeBulletSP);
         pSerializer.Serialize(m_fRatioUpgradeMoveSP);
         pSerializer.Serialize(m_fRatioDecreaseMonSP);
+        pSerializer.Serialize(m_iShieldCount);
 
         return pSerializer.ByteArray;
     }

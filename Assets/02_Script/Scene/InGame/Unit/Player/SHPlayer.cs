@@ -113,4 +113,15 @@ public class SHPlayer : SHInGame_Component
         return m_pWeapon.GetDamageName();
     }
     #endregion
+
+
+    #region Interface Buff Functions
+    public SHDamageObject AddShieldDamage()
+    {
+        if (null == m_pUnit)
+            return null;
+
+        return m_pUnit.AddShieldDamage();
+    }
+    #endregion
 }

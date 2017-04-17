@@ -28,80 +28,88 @@
 			"s_Name": "Dmg_Char_Body",
 			"s_FileName": "Dmg_Char_Body.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "14884",
-			"s_Hash": "FCE87CE7F31935F47C969D6186F6C7E8",
+			"s_Size": "15124",
+			"s_Hash": "7F9C21E4161807C48200CDD0CE9DF1F0",
 			"s_Path": "Prefab/Damage/Dmg_Char_Body"
 		},
 		{
 			"s_Name": "Dmg_Char_Bullet",
 			"s_FileName": "Dmg_Char_Bullet.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "17748",
-			"s_Hash": "9C904AC0509A04D1E4BAA1F6CFABDEAC",
+			"s_Size": "17668",
+			"s_Hash": "029DE594297B3C519766F31CBB7F1FC2",
 			"s_Path": "Prefab/Damage/Dmg_Char_Bullet"
 		},
 		{
 			"s_Name": "Dmg_Char_Guided_Bullet",
 			"s_FileName": "Dmg_Char_Guided_Bullet.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "17620",
-			"s_Hash": "B80B9AD851D3C93381091C7165B5C5DC",
+			"s_Size": "17700",
+			"s_Hash": "66C3CED186EE249F8A0053FFE3678BA8",
 			"s_Path": "Prefab/Damage/Dmg_Char_Guided_Bullet"
+		},
+		{
+			"s_Name": "Dmg_Char_Shield",
+			"s_FileName": "Dmg_Char_Shield.prefab",
+			"s_Extension": ".prefab",
+			"s_Size": "17724",
+			"s_Hash": "60BCAFEE5A419E41CE243C10DF8A1EB9",
+			"s_Path": "Prefab/Damage/Dmg_Char_Shield"
 		},
 		{
 			"s_Name": "Dmg_Char_Splash_Bullet",
 			"s_FileName": "Dmg_Char_Splash_Bullet.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "17804",
-			"s_Hash": "FC5F3F88AE90A2F4E0477BDD442CDA97",
+			"s_Size": "17724",
+			"s_Hash": "5778D3414A65F143C223A806080E28FD",
 			"s_Path": "Prefab/Damage/Dmg_Char_Splash_Bullet"
 		},
 		{
 			"s_Name": "Dmg_Char_Splash_Explosion",
 			"s_FileName": "Dmg_Char_Splash_Explosion.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "17620",
-			"s_Hash": "65147A13950E9DCCDB22043EB3110383",
+			"s_Size": "17740",
+			"s_Hash": "0E4FEEF94315D97B8A0F297C5ED22C25",
 			"s_Path": "Prefab/Damage/Dmg_Char_Splash_Explosion"
 		},
 		{
 			"s_Name": "Dmg_Char_Three_Bullet",
 			"s_FileName": "Dmg_Char_Three_Bullet.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "17924",
-			"s_Hash": "FD9FDCF541ABDAE6604131085751A7B0",
+			"s_Size": "17772",
+			"s_Hash": "7BB2A0340E9AA2316646D1268639220E",
 			"s_Path": "Prefab/Damage/Dmg_Char_Three_Bullet"
 		},
 		{
 			"s_Name": "Dmg_Char_Three_Bullet_Left",
 			"s_FileName": "Dmg_Char_Three_Bullet_Left.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "17836",
-			"s_Hash": "BB49862A3D80C578E78EABC2FE699259",
+			"s_Size": "17684",
+			"s_Hash": "13735803FD8378B439B0012A81026DF7",
 			"s_Path": "Prefab/Damage/Dmg_Char_Three_Bullet_Left"
 		},
 		{
 			"s_Name": "Dmg_Char_Three_Bullet_Right",
 			"s_FileName": "Dmg_Char_Three_Bullet_Right.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "17836",
-			"s_Hash": "F535BBD90DFB96F1DAB31E1A9410D14D",
+			"s_Size": "17684",
+			"s_Hash": "0E354A1EA74588A490BEF6293DA2A2E3",
 			"s_Path": "Prefab/Damage/Dmg_Char_Three_Bullet_Right"
 		},
 		{
 			"s_Name": "Dmg_Mon_Bullet",
 			"s_FileName": "Dmg_Mon_Bullet.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "17716",
-			"s_Hash": "D743629C9EF2C03E828E42A69F104264",
+			"s_Size": "17636",
+			"s_Hash": "904F8155A378681AFCBFD0CE840BD932",
 			"s_Path": "Prefab/Damage/Dmg_Mon_Bullet"
 		},
 		{
 			"s_Name": "Dmg_Mon_Explosion",
 			"s_FileName": "Dmg_Mon_Explosion.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "17396",
-			"s_Hash": "4D9B253CE177AA468F6CDCB847E2EE8A",
+			"s_Size": "17644",
+			"s_Hash": "DD31D3F876B5C23EDA7D6CAD547AAB2F",
 			"s_Path": "Prefab/Damage/Dmg_Mon_Explosion"
 		},
 		{
@@ -260,8 +268,8 @@
 			"s_Name": "BuffInfo",
 			"s_FileName": "BuffInfo.bytes",
 			"s_Extension": ".bytes",
-			"s_Size": "28",
-			"s_Hash": "72ED96E34A348D1225F4CD9E832E12FB",
+			"s_Size": "32",
+			"s_Hash": "271D17F6683D4C9716B34847599BCB2B",
 			"s_Path": "Table/Bytes/BuffInfo"
 		},
 		{

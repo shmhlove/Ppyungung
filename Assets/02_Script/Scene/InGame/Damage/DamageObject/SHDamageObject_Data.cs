@@ -101,6 +101,7 @@ public class SHDamageObjectInfo
     public int              m_iLifeTick                 = 0;                // 라이프 타임
     public float            m_fDamageValue              = 0.0f;             // 데미지 값
     public int              m_iCheckDelayTickToCrash    = 0;                // 충돌시 얼마간 충돌체크를 하지 않을 것인가? (다단히트)
+    public int              m_iDamageHP                 = 0;                // 데미지 HP
     public bool             m_bIsDeleteToCrash          = true;             // 충돌이 즉시 이 데미지를 제거할 것인가?
     public bool             m_bIsDeleteWithCreator      = true;             // 데미지 생성자가 Disable일때 데미지를 제거할 것인가?
     
@@ -167,6 +168,7 @@ public class SHDamageObjectInfo
         m_iLifeTick                 = pCopy.m_iLifeTick;
         m_fDamageValue              = pCopy.m_fDamageValue;
         m_iCheckDelayTickToCrash    = pCopy.m_iCheckDelayTickToCrash;
+        m_iDamageHP                 = pCopy.m_iDamageHP;
         m_bIsDeleteToCrash          = pCopy.m_bIsDeleteToCrash;
         m_bIsDeleteWithCreator      = pCopy.m_bIsDeleteWithCreator;
 

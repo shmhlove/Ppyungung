@@ -89,6 +89,21 @@ public partial class SHCharPopolo : SHState
 
         m_pBodyDamage.m_bIsCrashLock = bIsLock;
     }
+    public SHDamageObject AddShieldDamage()
+    {
+        DelShieldDamage();
+        m_pShieldDamage = Single.Damage.AddDamage("Dmg_Char_Shield", new SHDamageParam(this, Vector3.zero));
+        m_pShieldDamage.SetStartTransform();
+        return m_pShieldDamage;
+    }
+    void DelShieldDamage()
+    {
+        if (true == SHApplicationInfo.m_bIsAppQuit)
+            return;
+
+        Single.Damage.DelDamage(m_pShieldDamage);
+        m_pShieldDamage = null;
+    }
     #endregion
 
 

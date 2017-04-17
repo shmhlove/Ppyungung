@@ -211,7 +211,7 @@ public partial class SHDamageObject : SHMonoWrapper
         if (null == GetWho())
             return true;
 
-        return (false == GetWho().IsActive());
+        return (0 >= GetWho().m_fHealthPoint);
     }
     bool DecreaseLifeTick()
     {

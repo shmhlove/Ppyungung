@@ -7,6 +7,7 @@
         "m_fRatioUpgradeDropCoin": 0.5,
         "m_fRatioUpgradeBulletSP": 0.5,
         "m_fRatioUpgradeMoveSP": 0.5,
-        "m_fRatioDecreaseMonSP": 0.5
+        "m_fRatioDecreaseMonSP": 0.5,
+        "m_iShieldCount": 5
     }
 }

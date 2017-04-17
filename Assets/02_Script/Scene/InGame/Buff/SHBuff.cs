@@ -110,6 +110,8 @@ public class SHBuff : SHInGame_Component
             case eBuffType.Buff_UpgradeDropCoin:
                 break;
             case eBuffType.Buff_Shield:
+                var pDamage = Single.Player.AddShieldDamage();
+                pDamage.m_pInfo.m_iDamageHP = Single.Table.GetTable<JsonBuffInfo>().m_iShieldCount;
                 break;
             case eBuffType.Buff_UpgradeBulletSP:
                 m_fBulletSP += SHHard.m_fCharDamageSpeed *
