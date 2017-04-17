@@ -24,6 +24,7 @@ public class SHUIPanel_Development : SHUIBasePanel
     [Header("[Player]")]
     [SerializeField] private UIPopupList    m_pPopupListToCtrl          = null;
     [SerializeField] private UIPopupList    m_pPopupListToWeapon        = null;
+    [SerializeField] private UIPopupList    m_pPopupListToBuff          = null;
     [SerializeField] private UIInput        m_pInputToCharMaxHP         = null;
     [SerializeField] private UIInput        m_pInputToCharMoveSpeed     = null;
     [SerializeField] private UIInput        m_pInputToCharShootSpeed    = null;
@@ -159,6 +160,14 @@ public class SHUIPanel_Development : SHUIBasePanel
         
         m_pPopupListToWeapon.Set(Single.Player.GetCurrentWeapon().ToString());
     }
+    void SetPlayerBuffType()
+    {
+        if (null == m_pPopupListToBuff)
+            return;
+
+        m_pPopupListToBuff.Clear();
+        SHUtils.ForToEnum<eBuffType>((eType) => m_pPopupListToBuff.AddItem(eType.ToString()));
+    }
     void SetInputInfo()
     {
         if ((null == m_pInputToCharMaxHP)        || 
@@ -228,6 +237,7 @@ public class SHUIPanel_Development : SHUIBasePanel
         
         SetPlayerCtrlType();
         SetPlayerWeaponType();
+        SetPlayerBuffType();
         SetInputInfo();
     }
     IEnumerator CoroutineToPauseGame()
@@ -353,6 +363,15 @@ public class SHUIPanel_Development : SHUIBasePanel
     {
         var eType = SHUtils.GetStringToEnum<eCharWeaponType>(strType);
         Single.Player.SetChangeWeapon(eType);
+    }
+    public void OnSelectToBuffType(string strBuff)
+    {
+        if (false == Single.GameStep.IsStep(eGameStep.Play))
+            return;
+
+        var eType = SHUtils.GetStringToEnum<eBuffType>(strBuff);
+        Single.Buff.SetBuff(eType);
+        Single.Buff.ApplyBuff();
     }
     #endregion
 
