@@ -97,6 +97,14 @@
 			"s_Path": "Prefab/Damage/Dmg_Char_Three_Bullet_Right"
 		},
 		{
+			"s_Name": "Dmg_Item_Weapon",
+			"s_FileName": "Dmg_Item_Weapon.prefab",
+			"s_Extension": ".prefab",
+			"s_Size": "22500",
+			"s_Hash": "8F68C6F2D007E2D97DB8E1DFDE77E347",
+			"s_Path": "Prefab/Damage/Dmg_Item_Weapon"
+		},
+		{
 			"s_Name": "Dmg_Mon_Bullet",
 			"s_FileName": "Dmg_Mon_Bullet.prefab",
 			"s_Extension": ".prefab",
@@ -132,8 +140,8 @@
 			"s_Name": "Panel_Development",
 			"s_FileName": "Panel_Development.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "128248",
-			"s_Hash": "9AF50769349B8111DED0D44C3C6D9BCD",
+			"s_Size": "131000",
+			"s_Hash": "7A1776CAAE72747E8DD1CDBD7EC6B28E",
 			"s_Path": "Prefab/UI/Panel/Panel_Development"
 		},
 		{
@@ -269,7 +277,7 @@
 			"s_FileName": "BuffInfo.bytes",
 			"s_Extension": ".bytes",
 			"s_Size": "32",
-			"s_Hash": "271D17F6683D4C9716B34847599BCB2B",
+			"s_Hash": "9407E3922D4A8AB2C4C7A8B80C350ADA",
 			"s_Path": "Table/Bytes/BuffInfo"
 		},
 		{

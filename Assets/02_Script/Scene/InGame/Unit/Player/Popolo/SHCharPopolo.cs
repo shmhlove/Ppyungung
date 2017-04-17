@@ -61,6 +61,9 @@ public partial class SHCharPopolo : SHState
         if (null == pObject)
             return;
 
+        if ("DropItem" == pObject.transform.tag)
+            return;
+
         var pDamage = pObject as SHDamageObject;
         {
             AddHP(-pDamage.m_pInfo.m_fDamageValue);

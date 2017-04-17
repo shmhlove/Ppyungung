@@ -25,7 +25,8 @@ public static class Single
     public static SHDamage                  Damage              { get { return InGame.GetIngameComponent<SHDamage>(); } }
     public static SHBackGround              Background          { get { return InGame.GetIngameComponent<SHBackGround>(); } }
     public static SHBuff                    Buff                { get { return InGame.GetIngameComponent<SHBuff>(); } }
-
+    public static SHDropItem                DropItem            { get { return InGame.GetIngameComponent<SHDropItem>(); } }
+    
     // UI
     public static SHUIManager               UI                  { get { return SHUIManager.Instance; } }
 

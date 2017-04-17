@@ -173,20 +173,26 @@ public static class SHMath
     }
 
     // Random
+    public static float Random()
+    {
+        return Random(0.0f, 1.0f);
+    }
     public static int Random(int iMin, int iMax)
     {
         return UnityEngine.Random.Range(iMin, iMax);
     }
-    public static Vector3 RandomDirection()
-    {
-        return new Vector3(
-            UnityEngine.Random.Range(-1.0f, 1.0f),
-            UnityEngine.Random.Range(-1.0f, 1.0f),
-            UnityEngine.Random.Range(-1.0f, 1.0f));
-    }
     public static float Random(float fMin, float fMax)
     {
         return UnityEngine.Random.Range(fMin, fMax);
+    }
+    public static bool RandomTrue()
+    {
+        return (0 == Random(0, 2));
+    }
+    public static T RandomEnum<T>()
+    {
+        var eValues = Enum.GetValues(typeof(T));
+        return (T)eValues.GetValue(Random(0, eValues.Length));
     }
     public static T RandomN<T>(List<T> pItems)
     {
@@ -214,8 +220,11 @@ public static class SHMath
         var fSelect = Random(0.0f, pSum);
         return pItems[pSubSums.FindIndex(fSum => (fSelect < fSum))];
     }
-    public static bool RandomTrue()
+    public static Vector3 RandomDirection()
     {
-        return (0 == Random(0, 2));
+        return new Vector3(
+            UnityEngine.Random.Range(-1.0f, 1.0f),
+            UnityEngine.Random.Range(-1.0f, 1.0f),
+            UnityEngine.Random.Range(-1.0f, 1.0f));
     }
 }

@@ -24,6 +24,7 @@ public class SHInGame : SHSingleton<SHInGame>
         m_dicComponent.Add(typeof(SHDamage),     new SHDamage());
         m_dicComponent.Add(typeof(SHBackGround), new SHBackGround());
         m_dicComponent.Add(typeof(SHBuff),       new SHBuff());
+        m_dicComponent.Add(typeof(SHDropItem),   new SHDropItem());
     }
     public override void OnFinalize()
     {

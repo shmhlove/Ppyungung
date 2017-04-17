@@ -1,13 +1,15 @@
 {
 	"PreLoadResourcesList": [
         {
-             "Restaurant": [
-                "Image_FrontBG"
+             "Entry": [
+                "Panel_Development"
             ]
         },
         {
-            "Town": [
-                "Plantation_HarvestUI"
+            "InGame": [
+                "Audio_BGM_InGame",
+                "Audio_BGM_OutGame",
+                "Audio_BGM_GameOver"
             ]
         }
     ]

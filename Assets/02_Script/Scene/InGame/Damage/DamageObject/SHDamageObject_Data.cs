@@ -95,6 +95,8 @@ public class SHDamageObjectInfo
 
     [Header("[충돌체크를 할 타켓 유닛의 태그 리스트]")]
     [DamageTags] public List<string> m_pTargetUnitTags  = new List<string>();
+    [Header("[충돌체크를 무시할 타켓 유닛의 이름(프리팹) 리스트]")]
+    public List<string>     m_pIgnoreTargetName         = new List<string>();
 
     [Header("[기본 정보 (1sec = 50Tick)]")]
     public bool             m_bIsLoopLifeTick           = false;            // 라이프 타임을 계속 반복할것인가?
@@ -163,6 +165,7 @@ public class SHDamageObjectInfo
         m_strID                     = pCopy.m_strID;
         m_strPrefabName             = pCopy.m_strPrefabName;
         m_pTargetUnitTags           = new List<string>(pCopy.m_pTargetUnitTags);
+        m_pIgnoreTargetName         = new List<string>(pCopy.m_pIgnoreTargetName);
 
         m_bIsLoopLifeTick           = pCopy.m_bIsLoopLifeTick;
         m_iLifeTick                 = pCopy.m_iLifeTick;

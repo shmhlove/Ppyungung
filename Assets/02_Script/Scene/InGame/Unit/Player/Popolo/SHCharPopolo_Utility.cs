@@ -22,6 +22,9 @@ public partial class SHCharPopolo : SHState
         var pAddDamage = Single.Damage.AddDamage(Single.Player.GetDamageName(),
                         new SHDamageParam(this, m_pShootPos.GetPosition(), pEventCollision: (pDamage, pTarget) =>
                         {
+                            if ("DropItem" == pTarget.transform.tag)
+                                return;
+
                             if (0.0f == pTarget.m_fHealthPoint)
                             {
                                 var pHUD = Single.UI.GetPanel<SHUIPanel_HUD>("Panel_HUD");
@@ -69,8 +72,9 @@ public partial class SHCharPopolo : SHState
     void AddBodyDamage()
     {
         DelBodyDamage();
-        m_pBodyDamage = Single.Damage.AddDamage("Dmg_Char_Body", 
-            new SHDamageParam(this, Vector3.zero, pEventCollision: (pDamage, pTarget) => { OnCrashDamage(pDamage); }));
+        m_pBodyDamage = Single.Damage.AddDamage("Dmg_Char_Body",
+            new SHDamageParam(this, Vector3.zero));
+          //new SHDamageParam(this, Vector3.zero, pEventCollision: (pDamage, pTarget) => { OnCrashDamage(pDamage); }));
 
         m_pBodyDamage.SetStartTransform();
     }

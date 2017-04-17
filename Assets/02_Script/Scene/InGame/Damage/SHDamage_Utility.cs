@@ -71,6 +71,9 @@ public partial class SHDamage : SHInGame_Component
             if (false == pDamage.IsTarget(pHit.transform.tag))
                 continue;
 
+            if (true == pDamage.IsIgnoreTarget(pHit.transform.name))
+                continue;
+
             var pTarget = pHit.transform.GetComponent<SHMonoWrapper>();
             if (null == pTarget)
                 return;

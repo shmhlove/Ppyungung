@@ -118,6 +118,19 @@ public partial class SHDamageObject : SHMonoWrapper
 
         return false;
     }
+    public bool IsIgnoreTarget(string strName)
+    {
+        if (true == string.IsNullOrEmpty(strName))
+            return false;
+
+        foreach (var strTarget in m_pInfo.m_pIgnoreTargetName)
+        {
+            if (true == strTarget.Contains(strName))
+                return true;
+        }
+
+        return false;
+    }
     public int GetTargetLayerMask()
     {
         int iLayerMask = 0;

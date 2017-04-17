@@ -59,6 +59,11 @@ public class SHBaseMonster : SHState
 
         if (false == IsRemainHP())
         {
+            if (0.3f > SHMath.Random())
+            {
+                Single.DropItem.AddDropItem(eDropItemType.Weapon, GetPosition());
+            }
+
             ChangeState(GetDieState());
         }
     }

@@ -1,0 +1,862 @@
+fileFormatVersion: 2
+guid: f0888d5aa26833c4789196280e23ff77
+timeCreated: 1492452674
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Temp_NCUI_Item_0
+    21300002: Temp_NCUI_Item_1
+    21300004: Temp_NCUI_Item_2
+    21300006: Temp_NCUI_Item_3
+    21300008: Temp_NCUI_Item_4
+    21300010: Temp_NCUI_Item_5
+    21300012: Temp_NCUI_Item_6
+    21300014: Temp_NCUI_Item_7
+    21300016: Temp_NCUI_Item_8
+    21300018: Temp_NCUI_Item_9
+    21300020: Temp_NCUI_Item_10
+    21300022: Temp_NCUI_Item_11
+    21300024: Temp_NCUI_Item_12
+    21300026: Temp_NCUI_Item_13
+    21300028: Temp_NCUI_Item_14
+    21300030: Temp_NCUI_Item_15
+    21300032: Temp_NCUI_Item_16
+    21300034: Temp_NCUI_Item_17
+    21300036: Temp_NCUI_Item_18
+    21300038: Temp_NCUI_Item_19
+    21300040: Temp_NCUI_Item_20
+    21300042: Temp_NCUI_Item_21
+    21300044: Temp_NCUI_Item_22
+    21300046: Temp_NCUI_Item_23
+    21300048: Temp_NCUI_Item_24
+    21300050: Temp_NCUI_Item_25
+    21300052: Temp_NCUI_Item_26
+    21300054: Temp_NCUI_Item_27
+    21300056: Temp_NCUI_Item_28
+    21300058: Temp_NCUI_Item_29
+    21300060: Temp_NCUI_Item_30
+    21300062: Temp_NCUI_Item_31
+    21300064: Temp_NCUI_Item_32
+    21300066: Temp_NCUI_Item_33
+    21300068: Temp_NCUI_Item_34
+    21300070: Temp_NCUI_Item_35
+    21300072: Temp_NCUI_Item_36
+    21300074: Temp_NCUI_Item_37
+    21300076: Temp_NCUI_Item_38
+    21300078: Temp_NCUI_Item_39
+    21300080: Temp_NCUI_Item_40
+    21300082: Temp_NCUI_Item_41
+    21300084: Temp_NCUI_Item_42
+    21300086: Temp_NCUI_Item_43
+    21300088: Temp_NCUI_Item_44
+    21300090: Temp_NCUI_Item_45
+    21300092: Temp_NCUI_Item_46
+    21300094: Temp_NCUI_Item_47
+    21300096: Temp_NCUI_Item_48
+    21300098: Temp_NCUI_Item_49
+    21300100: Temp_NCUI_Item_50
+    21300102: Temp_NCUI_Item_51
+    21300104: Temp_NCUI_Item_52
+    21300106: Temp_NCUI_Item_53
+    21300108: Temp_NCUI_Item_54
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 4
+  maxTextureSize: 4096
+  textureSettings:
+    filterMode: 1
+    aniso: 4
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 512
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 512
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: iPhone
+    maxTextureSize: 512
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 512
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Temp_NCUI_Item_0
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 472
+        width: 54
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Temp_NCUI_Item_1
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 472
+        width: 32
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Temp_NCUI_Item_2
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 500
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Temp_NCUI_Item_3
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 500
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Temp_NCUI_Item_4
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 440
+        width: 30
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Temp_NCUI_Item_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 474
+        width: 42
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Temp_NCUI_Item_6
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 474
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Temp_NCUI_Item_7
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 472
+        width: 42
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Temp_NCUI_Item_8
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 472
+        width: 17
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Temp_NCUI_Item_9
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 440
+        width: 27
+        height: 43
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Temp_NCUI_Item_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 418
+        width: 54
+        height: 54
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Temp_NCUI_Item_11
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 418
+        width: 51
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Temp_NCUI_Item_12
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 418
+        width: 51
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Temp_NCUI_Item_13
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 418
+        width: 48
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Temp_NCUI_Item_14
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 394
+        width: 54
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Temp_NCUI_Item_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 340
+        width: 52
+        height: 54
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Temp_NCUI_Item_16
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 340
+        width: 52
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Temp_NCUI_Item_17
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 340
+        width: 51
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Temp_NCUI_Item_18
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 340
+        width: 51
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Temp_NCUI_Item_19
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 385
+        width: 32
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Temp_NCUI_Item_20
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 375
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Temp_NCUI_Item_21
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 374
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Temp_NCUI_Item_22
+      rect:
+        serializedVersion: 2
+        x: 365
+        y: 370
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Temp_NCUI_Item_23
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 287
+        width: 44
+        height: 129
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Temp_NCUI_Item_24
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 340
+        width: 52
+        height: 43
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Temp_NCUI_Item_25
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 340
+        width: 27
+        height: 43
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Temp_NCUI_Item_26
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: 340
+        width: 32
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Temp_NCUI_Item_27
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 340
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Temp_NCUI_Item_28
+      rect:
+        serializedVersion: 2
+        x: 365
+        y: 341
+        width: 34
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Temp_NCUI_Item_29
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 349
+        width: 21
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Temp_NCUI_Item_30
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 340
+        width: 21
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Temp_NCUI_Item_31
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 312
+        width: 444
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Temp_NCUI_Item_32
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 269
+        width: 62
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Temp_NCUI_Item_33
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 269
+        width: 44
+        height: 37
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Temp_NCUI_Item_34
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 259
+        width: 64
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Temp_NCUI_Item_35
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 259
+        width: 64
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Temp_NCUI_Item_36
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 190
+        width: 120
+        height: 120
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Temp_NCUI_Item_37
+      rect:
+        serializedVersion: 2
+        x: 366
+        y: 287
+        width: 32
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Temp_NCUI_Item_38
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 287
+        width: 23
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Temp_NCUI_Item_39
+      rect:
+        serializedVersion: 2
+        x: 425
+        y: 287
+        width: 16
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Temp_NCUI_Item_40
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 191
+        width: 108
+        height: 76
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Temp_NCUI_Item_41
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 191
+        width: 102
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Temp_NCUI_Item_42
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 236
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Temp_NCUI_Item_43
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 236
+        width: 4
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Temp_NCUI_Item_44
+      rect:
+        serializedVersion: 2
+        x: 366
+        y: 190
+        width: 126
+        height: 95
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Temp_NCUI_Item_45
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 191
+        width: 27
+        height: 43
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Temp_NCUI_Item_46
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 69
+        width: 120
+        height: 120
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Temp_NCUI_Item_47
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 69
+        width: 120
+        height: 120
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Temp_NCUI_Item_48
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 165
+        width: 11
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Temp_NCUI_Item_49
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 68
+        width: 120
+        height: 120
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Temp_NCUI_Item_50
+      rect:
+        serializedVersion: 2
+        x: 379
+        y: 68
+        width: 120
+        height: 120
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Temp_NCUI_Item_51
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 147
+        width: 11
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Temp_NCUI_Item_52
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 69
+        width: 8
+        height: 76
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Temp_NCUI_Item_53
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 255
+        height: 67
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Temp_NCUI_Item_54
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 0
+        width: 240
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
