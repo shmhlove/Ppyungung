@@ -25,7 +25,8 @@ public partial class SHDamageObject : SHMonoWrapper
     void SetupTransform()
     {
         var vPosition = m_pParam.m_pStartPosition;
-        
+        SetStartTransform();
+
         if (Vector3.zero != m_pInfo.m_vStaticStartPosition)
         {
             vPosition = m_pInfo.m_vStaticStartPosition;
@@ -41,9 +42,10 @@ public partial class SHDamageObject : SHMonoWrapper
             {
                 vPosition = GetWho().GetPosition();
             }
+
+            SetRotate(GetWho().GetRotate());
         }
         
-        SetStartTransform();
         SetPosition(vPosition + m_pInfo.m_vPositionOffset);
         SetupScaleInfo();
     }

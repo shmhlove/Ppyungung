@@ -50,7 +50,7 @@ public class JsonPhaseInfo : SHBaseTable
     #endregion
 
 
-    #region Virtual Functions
+    #region Override Functions
     public override void Initialize()
     {
         m_dicPhaseInfo.Clear();

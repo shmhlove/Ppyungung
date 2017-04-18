@@ -8,7 +8,7 @@ public enum eCharWeaponType
     ThreeBullet,
     GuidedBullet,
     SplashBullet,
-    Radiate,
+    Laser,
 }
 
 public class SHCharWeapon
@@ -23,7 +23,7 @@ public class SHCharWeapon
             case eCharWeaponType.ThreeBullet:   return "Dmg_Char_Three_Bullet";
             case eCharWeaponType.GuidedBullet:  return "Dmg_Char_Guided_Bullet";
             case eCharWeaponType.SplashBullet:  return "Dmg_Char_Splash_Bullet";
-            case eCharWeaponType.Radiate:       return "Dmg_Char_Bullet";
+            case eCharWeaponType.Laser:         return "Dmg_Char_Laser";
         }
 
         return "Dmg_Char_Bullet";

@@ -1,19 +1,27 @@
 {
 	"ResourcesList": [
 		{
+			"s_Name": "",
+			"s_FileName": ".DS_Store",
+			"s_Extension": ".DS_Store",
+			"s_Size": "6148",
+			"s_Hash": "D9FBC4632220715BF5CCE585CD5191E5",
+			"s_Path": "Prefab/"
+		},
+		{
 			"s_Name": "Local_Buff",
 			"s_FileName": "Local_Buff.csv",
 			"s_Extension": ".csv",
-			"s_Size": "341",
-			"s_Hash": "FFB6C189B8668F7A97C0DCBE7F28DC6F",
+			"s_Size": "332",
+			"s_Hash": "D7EBB1946E77600DE461FF2BE8D4CD76",
 			"s_Path": "Localization/Local_Buff"
 		},
 		{
 			"s_Name": "Local_Common",
 			"s_FileName": "Local_Common.csv",
 			"s_Extension": ".csv",
-			"s_Size": "388",
-			"s_Hash": "C44059A26C1728334FEA41E57625091B",
+			"s_Size": "383",
+			"s_Hash": "5B2EABFCAE548608CD5F753606789D26",
 			"s_Path": "Localization/Local_Common"
 		},
 		{
@@ -28,8 +36,8 @@
 			"s_Name": "Dmg_Char_Body",
 			"s_FileName": "Dmg_Char_Body.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "15124",
-			"s_Hash": "7F9C21E4161807C48200CDD0CE9DF1F0",
+			"s_Size": "15580",
+			"s_Hash": "E7BC4330A356FFA0E6343DD0E1B64568",
 			"s_Path": "Prefab/Damage/Dmg_Char_Body"
 		},
 		{
@@ -47,6 +55,14 @@
 			"s_Size": "17700",
 			"s_Hash": "66C3CED186EE249F8A0053FFE3678BA8",
 			"s_Path": "Prefab/Damage/Dmg_Char_Guided_Bullet"
+		},
+		{
+			"s_Name": "Dmg_Char_Laser",
+			"s_FileName": "Dmg_Char_Laser.prefab",
+			"s_Extension": ".prefab",
+			"s_Size": "18100",
+			"s_Hash": "25E525AFDFC817140981B50441569FA2",
+			"s_Path": "Prefab/Damage/Dmg_Char_Laser"
 		},
 		{
 			"s_Name": "Dmg_Char_Shield",
@@ -295,6 +311,14 @@
 			"s_Size": "794",
 			"s_Hash": "FA504005E2C14C4827A7F3570A7C73CF",
 			"s_Path": "Table/Bytes/PhaseInfo"
+		},
+		{
+			"s_Name": "WeaponInfo",
+			"s_FileName": "WeaponInfo.bytes",
+			"s_Extension": ".bytes",
+			"s_Size": "4",
+			"s_Hash": "F1D3FF8443297732862DF21DC4E57262",
+			"s_Path": "Table/Bytes/WeaponInfo"
 		}
 	]
 }

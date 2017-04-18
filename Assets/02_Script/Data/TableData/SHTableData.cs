@@ -35,6 +35,7 @@ public partial class SHTableData : SHBaseData
         m_dicTables.Add(typeof(JsonConstants),                    new JsonConstants());
         m_dicTables.Add(typeof(JsonPhaseInfo),                    new JsonPhaseInfo());
         m_dicTables.Add(typeof(JsonBuffInfo),                     new JsonBuffInfo());
+        m_dicTables.Add(typeof(JsonWeaponInfo),                   new JsonWeaponInfo());
 
 #if UNITY_EDITOR
         RegisterFileMonitor();
