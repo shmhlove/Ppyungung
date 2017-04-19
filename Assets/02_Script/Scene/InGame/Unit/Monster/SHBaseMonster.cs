@@ -95,7 +95,7 @@ public class SHBaseMonster : SHState
     {
         var pDamage = Single.Damage.AddDamage(strDmgName, new SHDamageParam(this, m_pShootPos.GetPosition()));
         {
-            pDamage.SetDMGSpeed(SHHard.m_fMonDamageSpeed);
+            //pDamage.SetDMGSpeed(SHHard.m_fMonDamageSpeed);
             pDamage.SetDMGDirection(vDirection);
         }
     }

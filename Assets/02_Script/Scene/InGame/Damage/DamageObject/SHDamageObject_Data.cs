@@ -109,7 +109,6 @@ public class SHDamageObjectInfo
     
     [Header("[위치]")]
     public bool             m_bIsParentToUI             = false;            // UI Root를 부모 오브젝트로 설정할 것인가?
-    public bool             m_bIsParentToCreator        = true;             // 데미지 발생자를 부모 오브젝트로 설정할 것인가?
     public bool             m_bIsTraceToCreator         = false;            // 데미지 발생자를 따라다닐 것인가?
     public bool             m_bIsStartPosToCreator      = true;             // 데미지 발생자위치에서 시작하게 할것인가?
     public Vector3          m_vStaticStartPosition      = Vector3.zero;     // 고정된 시작위치
@@ -176,7 +175,6 @@ public class SHDamageObjectInfo
         m_bIsDeleteWithCreator      = pCopy.m_bIsDeleteWithCreator;
 
         m_bIsParentToUI             = pCopy.m_bIsParentToUI;
-        m_bIsParentToCreator        = pCopy.m_bIsParentToCreator;
         m_bIsTraceToCreator         = pCopy.m_bIsTraceToCreator;
         m_bIsStartPosToCreator      = pCopy.m_bIsStartPosToCreator;
         m_vStaticStartPosition      = pCopy.m_vStaticStartPosition;

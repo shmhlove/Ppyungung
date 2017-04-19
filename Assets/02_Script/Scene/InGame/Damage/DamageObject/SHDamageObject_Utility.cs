@@ -13,41 +13,13 @@ public partial class SHDamageObject : SHMonoWrapper
         
         if (null != GetWho())
         {
-            if ((true == m_pInfo.m_bIsParentToCreator) ||
-                (true == m_pInfo.m_bIsTraceToCreator))
+            if (true == m_pInfo.m_bIsTraceToCreator)
             {
                 pParentObject  = GetWho().GetTransform();
             }
         }
 
         SHGameObject.SetParent(GetTransform(), pParentObject);
-    }
-    void SetupTransform()
-    {
-        var vPosition = m_pParam.m_pStartPosition;
-        SetStartTransform();
-
-        if (Vector3.zero != m_pInfo.m_vStaticStartPosition)
-        {
-            vPosition = m_pInfo.m_vStaticStartPosition;
-        }
-        else if (null != GetWho())
-        {
-            if ((true == m_pInfo.m_bIsParentToCreator) ||
-                (true == m_pInfo.m_bIsTraceToCreator))
-            {
-                vPosition = Vector3.zero;
-            }
-            else if (true == m_pInfo.m_bIsStartPosToCreator)
-            {
-                vPosition = GetWho().GetPosition();
-            }
-
-            SetRotate(GetWho().GetRotate());
-        }
-        
-        SetPosition(vPosition + m_pInfo.m_vPositionOffset);
-        SetupScaleInfo();
     }
     void SetupPhysics()
     {
@@ -66,8 +38,39 @@ public partial class SHDamageObject : SHMonoWrapper
         {
             m_vDMGDirection = (Quaternion.AngleAxis(m_pInfo.m_fOffsetAngle, Vector3.forward) * m_vDMGDirection).normalized;
         }
-        
+    }
+    void SetupTransform()
+    {
+        var vPosition = m_pParam.m_pStartPosition;
+        SetStartTransform();
+
+        if (Vector3.zero != m_pInfo.m_vStaticStartPosition)
+        {
+            vPosition = m_pInfo.m_vStaticStartPosition;
+        }
+        else if (null != GetWho())
+        {
+            if (true == m_pInfo.m_bIsTraceToCreator)
+            {
+                vPosition = (GetWho().GetPosition() - m_pParam.m_pStartPosition);
+            }
+            else if (true == m_pInfo.m_bIsStartPosToCreator)
+            {
+                vPosition = GetWho().GetPosition();
+            }
+
+            SetRotate(GetWho().GetRotate());
+        }
+
+        var vOffset = m_pInfo.m_vPositionOffset;
+        var fAngle  = Mathf.Acos(Vector3.Dot(Vector3.up, m_vDMGDirection));
+        //vOffset.x = (vPosition.x + vOffset.x) * Mathf.Sin(fAngle * Mathf.Deg2Rad);
+        //vOffset.y = (vPosition.y + vOffset.y) * Mathf.Cos(fAngle * Mathf.Deg2Rad);
+        //vOffset = (Quaternion.AngleAxis(fAngle, vOffset.normalized).eulerAngles.normalized * vOffset.magnitude);
+
         m_vBeforePosition = GetPosition();
+        SetPosition(vOffset);
+        SetupScaleInfo();
     }
     void SetupScaleInfo()
     {

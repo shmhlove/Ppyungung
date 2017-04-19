@@ -34,7 +34,7 @@ public partial class SHCharPopolo : SHState
                                 AddDashGauge();
                             }
                         }));
-        pAddDamage.SetDMGSpeed(SHHard.m_fCharDamageSpeed);
+        // pAddDamage.SetDMGSpeed(SHHard.m_fCharDamageSpeed);
 
         // 카메라 흔들기
         Single.Root3D.GetMainCamera().PlayCameraShake(() => { });

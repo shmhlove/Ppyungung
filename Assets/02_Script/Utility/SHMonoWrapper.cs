@@ -372,7 +372,7 @@ public class SHMonoWrapper : MonoBehaviour
     }
     public Vector3 GetLocalDirection()
     {
-        return GetLocalRotate() * Vector3.forward;
+        return GetLocalRotate() * Vector3.up;
     }
     #endregion
 
