@@ -112,6 +112,14 @@ public class SHPlayer : SHInGame_Component
     {
         return m_pWeapon.GetDamageName();
     }
+    public float GetShootDelay()
+    {
+        return m_pWeapon.GetShootDelay();
+    }
+    public JsonWeaponData GetWeaponData()
+    {
+        return m_pWeapon.GetWeaponData();
+    }
     #endregion
 
 

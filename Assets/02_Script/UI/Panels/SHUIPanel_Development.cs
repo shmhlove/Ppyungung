@@ -57,9 +57,6 @@ public class SHUIPanel_Development : SHUIBasePanel
 
 
     #region System Functions
-    public override void Start()
-    {
-    }
     public override void Update()
     {
         m_bIsUpdated = true;
@@ -76,15 +73,7 @@ public class SHUIPanel_Development : SHUIBasePanel
         }
     }
     #endregion
-
-
-    #region Virtual Functions
-    #endregion
-
-
-    #region Interface Functions
-    #endregion
-
+    
 
     # region Utility Functions
     void SetLogToID()
@@ -368,6 +357,7 @@ public class SHUIPanel_Development : SHUIBasePanel
     {
         var eType = SHUtils.GetStringToEnum<eCharWeaponType>(strType);
         Single.Player.SetChangeWeapon(eType);
+        SetInputInfo();
     }
     public void OnSelectToBuffType(string strBuff)
     {

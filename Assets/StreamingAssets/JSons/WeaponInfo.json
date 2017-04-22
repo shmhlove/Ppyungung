@@ -4,27 +4,27 @@
         {
 	    	"m_eWeaponType": "NormalBullet",
 			"m_strDamageName": "Dmg_Char_Bullet",
-	    	"m_fShotDelay": 0.2
+	    	"m_fShootDelay": 0.2
         },
 		{
 			"m_eWeaponType": "ThreeBullet",
 			"m_strDamageName": "Dmg_Char_Three_Bullet",
-			"m_fShotDelay": 0.2
+			"m_fShootDelay": 0.2
 		},
 		{
 			"m_eWeaponType": "GuidedBullet",
 			"m_strDamageName": "Dmg_Char_Guided_Bullet",
-			"m_fShotDelay": 0.2
+			"m_fShootDelay": 0.15
 		},
 		{
 			"m_eWeaponType": "SplashBullet",
 			"m_strDamageName": "Dmg_Char_Splash_Bullet",
-			"m_fShotDelay": 0.2
+			"m_fShootDelay": 0.3
 		},
 		{
 	    	"m_eWeaponType": "Laser",
 			"m_strDamageName": "Dmg_Char_Laser",
-	    	"m_fShotDelay": 0.5
+	    	"m_fShootDelay": 0.6
         }
     ]
 }

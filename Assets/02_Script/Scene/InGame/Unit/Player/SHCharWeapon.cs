@@ -17,15 +17,17 @@ public class SHCharWeapon
 
     public string GetDamageName()
     {
-        switch(m_eType)
-        {
-            case eCharWeaponType.NormalBullet:  return "Dmg_Char_Bullet";
-            case eCharWeaponType.ThreeBullet:   return "Dmg_Char_Three_Bullet";
-            case eCharWeaponType.GuidedBullet:  return "Dmg_Char_Guided_Bullet";
-            case eCharWeaponType.SplashBullet:  return "Dmg_Char_Splash_Bullet";
-            case eCharWeaponType.Laser:         return "Dmg_Char_Laser";
-        }
+        return GetWeaponData().m_strDamageName;
+    }
 
-        return "Dmg_Char_Bullet";
+    public float GetShootDelay()
+    {
+        return GetWeaponData().m_fShootDelay;
+    }
+
+    public JsonWeaponData GetWeaponData()
+    {
+        var pTable = Single.Table.GetTable<JsonWeaponInfo>();
+        return pTable.GetWeaponData(m_eType);
     }
 }

@@ -1,27 +1,19 @@
 {
 	"ResourcesList": [
 		{
-			"s_Name": "",
-			"s_FileName": ".DS_Store",
-			"s_Extension": ".DS_Store",
-			"s_Size": "6148",
-			"s_Hash": "D9FBC4632220715BF5CCE585CD5191E5",
-			"s_Path": "Prefab/"
-		},
-		{
 			"s_Name": "Local_Buff",
 			"s_FileName": "Local_Buff.csv",
 			"s_Extension": ".csv",
-			"s_Size": "332",
-			"s_Hash": "D7EBB1946E77600DE461FF2BE8D4CD76",
+			"s_Size": "341",
+			"s_Hash": "FFB6C189B8668F7A97C0DCBE7F28DC6F",
 			"s_Path": "Localization/Local_Buff"
 		},
 		{
 			"s_Name": "Local_Common",
 			"s_FileName": "Local_Common.csv",
 			"s_Extension": ".csv",
-			"s_Size": "383",
-			"s_Hash": "5B2EABFCAE548608CD5F753606789D26",
+			"s_Size": "388",
+			"s_Hash": "C44059A26C1728334FEA41E57625091B",
 			"s_Path": "Localization/Local_Common"
 		},
 		{
@@ -44,24 +36,24 @@
 			"s_Name": "Dmg_Char_Bullet",
 			"s_FileName": "Dmg_Char_Bullet.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "17668",
-			"s_Hash": "029DE594297B3C519766F31CBB7F1FC2",
+			"s_Size": "18028",
+			"s_Hash": "B5373D10EF84C7C7E66F83DA237676D5",
 			"s_Path": "Prefab/Damage/Dmg_Char_Bullet"
 		},
 		{
 			"s_Name": "Dmg_Char_Guided_Bullet",
 			"s_FileName": "Dmg_Char_Guided_Bullet.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "17700",
-			"s_Hash": "66C3CED186EE249F8A0053FFE3678BA8",
+			"s_Size": "18060",
+			"s_Hash": "F9C3E5267DD4E1964398B7D66C971F34",
 			"s_Path": "Prefab/Damage/Dmg_Char_Guided_Bullet"
 		},
 		{
 			"s_Name": "Dmg_Char_Laser",
 			"s_FileName": "Dmg_Char_Laser.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "18100",
-			"s_Hash": "25E525AFDFC817140981B50441569FA2",
+			"s_Size": "18260",
+			"s_Hash": "3D051FD2845FEA560A051E533E06ACA9",
 			"s_Path": "Prefab/Damage/Dmg_Char_Laser"
 		},
 		{
@@ -76,8 +68,8 @@
 			"s_Name": "Dmg_Char_Splash_Bullet",
 			"s_FileName": "Dmg_Char_Splash_Bullet.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "17724",
-			"s_Hash": "5778D3414A65F143C223A806080E28FD",
+			"s_Size": "18084",
+			"s_Hash": "7F3ADCC5C7FD8816E24C64E795BAF682",
 			"s_Path": "Prefab/Damage/Dmg_Char_Splash_Bullet"
 		},
 		{
@@ -92,40 +84,40 @@
 			"s_Name": "Dmg_Char_Three_Bullet",
 			"s_FileName": "Dmg_Char_Three_Bullet.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "17772",
-			"s_Hash": "7BB2A0340E9AA2316646D1268639220E",
+			"s_Size": "18132",
+			"s_Hash": "3E394FF71811E939584D75348ECF86F8",
 			"s_Path": "Prefab/Damage/Dmg_Char_Three_Bullet"
 		},
 		{
 			"s_Name": "Dmg_Char_Three_Bullet_Left",
 			"s_FileName": "Dmg_Char_Three_Bullet_Left.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "17684",
-			"s_Hash": "13735803FD8378B439B0012A81026DF7",
+			"s_Size": "18044",
+			"s_Hash": "730EC6FDD9E707452B8F93A0CFBCDBC5",
 			"s_Path": "Prefab/Damage/Dmg_Char_Three_Bullet_Left"
 		},
 		{
 			"s_Name": "Dmg_Char_Three_Bullet_Right",
 			"s_FileName": "Dmg_Char_Three_Bullet_Right.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "17684",
-			"s_Hash": "0E354A1EA74588A490BEF6293DA2A2E3",
+			"s_Size": "18044",
+			"s_Hash": "95F79E54A936A4DB99DFC474E98FA72E",
 			"s_Path": "Prefab/Damage/Dmg_Char_Three_Bullet_Right"
 		},
 		{
 			"s_Name": "Dmg_Item_Weapon",
 			"s_FileName": "Dmg_Item_Weapon.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "22500",
-			"s_Hash": "8F68C6F2D007E2D97DB8E1DFDE77E347",
+			"s_Size": "22660",
+			"s_Hash": "811099B9594886B8DD93E91D5C52967A",
 			"s_Path": "Prefab/Damage/Dmg_Item_Weapon"
 		},
 		{
 			"s_Name": "Dmg_Mon_Bullet",
 			"s_FileName": "Dmg_Mon_Bullet.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "17636",
-			"s_Hash": "904F8155A378681AFCBFD0CE840BD932",
+			"s_Size": "17996",
+			"s_Hash": "EF00BD01041958A5D07D9435E4D1BDD9",
 			"s_Path": "Prefab/Damage/Dmg_Mon_Bullet"
 		},
 		{
@@ -156,8 +148,8 @@
 			"s_Name": "Panel_Development",
 			"s_FileName": "Panel_Development.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "131000",
-			"s_Hash": "7A1776CAAE72747E8DD1CDBD7EC6B28E",
+			"s_Size": "133552",
+			"s_Hash": "D28F2252BA2B9624DDF4934FA4288308",
 			"s_Path": "Prefab/UI/Panel/Panel_Development"
 		},
 		{
@@ -196,8 +188,8 @@
 			"s_Name": "CharPopolo",
 			"s_FileName": "CharPopolo.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "15724",
-			"s_Hash": "F94A1828BAE6F1FDDE2DB28BC99DD7B7",
+			"s_Size": "17588",
+			"s_Hash": "D1C692C7B33EB04EC6B16B3C322C7529",
 			"s_Path": "Prefab/Unit/CharPopolo"
 		},
 		{
@@ -300,8 +292,8 @@
 			"s_Name": "Constants",
 			"s_FileName": "Constants.bytes",
 			"s_Extension": ".bytes",
-			"s_Size": "72",
-			"s_Hash": "580C8E96D40656112031BD71E44B4BA3",
+			"s_Size": "68",
+			"s_Hash": "BE4A9906F57DFD8AA8F3737041893D36",
 			"s_Path": "Table/Bytes/Constants"
 		},
 		{
