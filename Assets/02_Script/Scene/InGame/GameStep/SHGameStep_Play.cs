@@ -76,6 +76,7 @@ public class SHGameStep_Play : SHGameStep_Component
         while (false == bIsDoneAction)
             yield return null;
 
+        yield return null;
         // Single.Timer.SetTimeScale(1.0f);
 
         MoveTo(eNextStep);
