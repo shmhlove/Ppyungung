@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ public class JsonWeaponData
 {
     public eCharWeaponType m_eWeaponType   = eCharWeaponType.NormalBullet;
     public string          m_strDamageName = string.Empty;
-    public float           m_fShotDelay    = 0.0f;
+    public float           m_fShootDelay   = 0.0f;
 }
 
 public class JsonWeaponInfo : SHBaseTable
@@ -32,7 +32,7 @@ public class JsonWeaponInfo : SHBaseTable
     public override void Initialize() { }
     public override bool IsLoadTable()
     {
-        return (0 == m_dicWeaponInfo.Count);
+        return (0 != m_dicWeaponInfo.Count);
     }
     public override bool? LoadJsonTable(JSONNode pJson, string strFileName)
     {
@@ -46,7 +46,7 @@ public class JsonWeaponInfo : SHBaseTable
             var pData = new JsonWeaponData();
             pData.m_eWeaponType   = SHUtils.GetStringToEnum<eCharWeaponType>(GetStrToJson(pWeaponNode, "m_eWeaponType"));
             pData.m_strDamageName = GetStrToJson(pWeaponNode, "m_strDamageName");
-            pData.m_fShotDelay    = GetFloatToJson(pWeaponNode, "m_fShotDelay");
+            pData.m_fShootDelay   = GetFloatToJson(pWeaponNode, "m_fShootDelay");
 
             AddData(pData.m_eWeaponType, pData);
         }
@@ -58,13 +58,13 @@ public class JsonWeaponInfo : SHBaseTable
             return false;
         
         var pSerializer  = new SHSerializer(pByte);
-        var iWeaponCount = pSerializer.DeserializeInt();
-        for(int iWeaponLoop = 0; iWeaponLoop < iWeaponCount; ++iWeaponLoop)
+        var iMaxLoop = pSerializer.DeserializeInt();
+        for (int iLoop = 0; iLoop < iMaxLoop; ++iLoop)
         {
             var pData = new JsonWeaponData();
             pData.m_eWeaponType   = SHUtils.GetStringToEnum<eCharWeaponType>(pSerializer.DeserializeString());
             pData.m_strDamageName = pSerializer.DeserializeString();
-            pData.m_fShotDelay    = pSerializer.DeserializeFloat();
+            pData.m_fShootDelay   = pSerializer.DeserializeFloat();
             AddData(pData.m_eWeaponType, pData);
         }
 
@@ -81,7 +81,7 @@ public class JsonWeaponInfo : SHBaseTable
         {
             pSerializer.Serialize(kvp.Value.m_eWeaponType.ToString());
             pSerializer.Serialize(kvp.Value.m_strDamageName);
-            pSerializer.Serialize(kvp.Value.m_fShotDelay);
+            pSerializer.Serialize(kvp.Value.m_fShootDelay);
         }
         return pSerializer.ByteArray;
     }

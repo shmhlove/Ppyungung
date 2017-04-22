@@ -4,7 +4,6 @@
         "m_iCharMaxHP": 3.0,
         "m_fCharMoveSpeed": 300.0,
         "m_fCharDamageSpeed": 450.0,
-        "m_fCharShootDelay": 0.2,
         "m_fCharDashSpeed": 500.0,
         "m_fCharAddDashPoint": 3.5,
         "m_fCharDecDashPoint": 0.8,
