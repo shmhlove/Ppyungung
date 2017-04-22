@@ -278,6 +278,51 @@ public class SHMonoWrapper : MonoBehaviour
 
         gameObject.transform.rotation = qRotate;
     }
+    public void SetRotateX(float fValue)
+    {
+        Quaternion  qRot = GetRotate();
+        Vector3     vRet = qRot.eulerAngles;
+        vRet.x = fValue;
+        SetRotate(vRet);
+    }
+    public void AddRotateX(float fValue)
+    {
+        SetRotateX(GetRotateX() + fValue);
+    }
+    public float GetRotateX()
+    {
+        return GetRotate().eulerAngles.x;
+    }
+    public void SetRotateY(float fValue)
+    {
+        Quaternion  qRot = GetRotate();
+        Vector3     vRet = qRot.eulerAngles;
+        vRet.y = fValue;
+        SetRotate(vRet);
+    }
+    public void AddRotateY(float fValue)
+    {
+        SetRotateY(GetRotateY() + fValue);
+    }
+    public float GetRotateY()
+    {
+        return GetRotate().eulerAngles.y;
+    }
+    public void SetRotateZ(float fValue)
+    {
+        Quaternion  qRot = GetRotate();
+        Vector3     vRet = qRot.eulerAngles;
+        vRet.z = fValue;
+        SetRotate(vRet);
+    }
+    public void AddRotateZ(float fValue)
+    {
+        SetRotateZ(GetRotateZ() + fValue);
+    }
+    public float GetRotateZ()
+    {
+        return GetRotate().eulerAngles.z;
+    }
     public void SetLocalRotate(Vector3 vRotate)
     {
         var pRotation = GetLocalRotate();
@@ -287,21 +332,6 @@ public class SHMonoWrapper : MonoBehaviour
     public void SetLocalRotate(Quaternion qRotate)
     {
         gameObject.transform.localRotation = qRotate;
-    }
-    public void SetLocalRotateZ(float fValue)
-    {
-        Quaternion  qRot = GetLocalRotate();
-        Vector3     vRet = qRot.eulerAngles;
-        vRet.z = fValue;
-        SetLocalRotate(vRet);
-    }
-    public void AddLocalRotateZ(float fValue)
-    {
-        SetLocalRotateZ(GetLocalRotateZ() + fValue);
-    }
-    public float GetLocalRotateZ()
-    {
-        return GetLocalRotate().eulerAngles.z;
     }
     public void SetLocalRotateX(float fValue)
     {
@@ -333,6 +363,21 @@ public class SHMonoWrapper : MonoBehaviour
     {
         return GetLocalRotate().eulerAngles.y;
     }
+    public void SetLocalRotateZ(float fValue)
+    {
+        Quaternion  qRot = GetLocalRotate();
+        Vector3     vRet = qRot.eulerAngles;
+        vRet.z = fValue;
+        SetLocalRotate(vRet);
+    }
+    public void AddLocalRotateZ(float fValue)
+    {
+        SetLocalRotateZ(GetLocalRotateZ() + fValue);
+    }
+    public float GetLocalRotateZ()
+    {
+        return GetLocalRotate().eulerAngles.z;
+    }
     public Quaternion GetRotate()
     {
         return gameObject.transform.rotation;
@@ -345,6 +390,27 @@ public class SHMonoWrapper : MonoBehaviour
 
 
     #region Interface : Direction
+    public void SetLook(Vector3 vDirection)
+    {
+        if (Vector3.zero == vDirection)
+            return;
+
+        SetRotate(vDirection);
+    }
+    public void SetLookY(Vector3 vDirection)
+    {
+        if (Vector3.zero == vDirection)
+            return;
+
+        SetRotateY(SHMath.GetAngleToPosition(Vector3.up, 1.0f, Vector3.forward, vDirection));
+    }
+    public void SetLookZ(Vector3 vDirection)
+    {
+        if (Vector3.zero == vDirection)
+            return;
+
+        SetRotateZ(SHMath.GetAngleToPosition(Vector3.forward, 1.0f, Vector3.up, vDirection));
+    }
     public void SetLocalLook(Vector3 vDirection)
     {
         if (Vector3.zero == vDirection)

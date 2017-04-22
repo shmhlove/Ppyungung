@@ -10,6 +10,7 @@ public class SHUIPanel_Development : SHUIBasePanel
     [Header("[Cheat Open]")]
     [SerializeField] private AnimationClip  m_pAnimOpen                 = null;
     [SerializeField] private AnimationClip  m_pAnimClose                = null;
+    [SerializeField] private UIToggle       m_pOpener                   = null;
     [Header("[Game Locker]")]
     [SerializeField] private GameObject     m_pLocker                   = null;
     [SerializeField] private UILabel        m_pResumeCounter            = null;
@@ -218,6 +219,10 @@ public class SHUIPanel_Development : SHUIBasePanel
 
 
     #region Event : Opener
+    public void OnClickClose()
+    {
+        m_pOpener.Set(false);
+    }
     public void OnClickToOpener(bool bIsOpen)
     {
         if (false == m_bIsUpdated)

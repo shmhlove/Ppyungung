@@ -71,12 +71,12 @@ public class SHGameStep_Play : SHGameStep_Component
         }
 
         Single.Damage.SetLockCheckCollision(true);
-        Single.Timer.SetTimeScale(0.5f);
+        // Single.Timer.SetTimeScale(0.5f);
 
         while (false == bIsDoneAction)
             yield return null;
 
-        Single.Timer.SetTimeScale(1.0f);
+        // Single.Timer.SetTimeScale(1.0f);
 
         MoveTo(eNextStep);
         m_pCoroutinAction = null;

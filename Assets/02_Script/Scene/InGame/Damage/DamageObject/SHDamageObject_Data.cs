@@ -113,6 +113,7 @@ public class SHDamageObjectInfo
     public bool             m_bIsStartPosToCreator      = true;             // 데미지 발생자위치에서 시작하게 할것인가?
     public Vector3          m_vStaticStartPosition      = Vector3.zero;     // 고정된 시작위치
     public Vector3          m_vPositionOffset           = Vector3.zero;     // 위치 오프셋
+    public Vector3          m_vRotationOffset           = Vector3.zero;     // 위치 오프셋 (회전적용)
 
     [Header("[스케일]")]
     public int              m_iScaleLifeTic             = 0;                // 스케일링 속도
@@ -179,6 +180,7 @@ public class SHDamageObjectInfo
         m_bIsStartPosToCreator      = pCopy.m_bIsStartPosToCreator;
         m_vStaticStartPosition      = pCopy.m_vStaticStartPosition;
         m_vPositionOffset           = pCopy.m_vPositionOffset;
+        m_vRotationOffset           = pCopy.m_vRotationOffset;
 
         m_iScaleLifeTic             = pCopy.m_iScaleLifeTic;
         m_vStartScale               = pCopy.m_vStartScale;

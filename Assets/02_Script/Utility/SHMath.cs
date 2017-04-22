@@ -84,6 +84,14 @@ public static class SHMath
         return (Mathf.Acos(fDot) * Mathf.Rad2Deg) * ((0.0f > fAxis) ? -fSign : fSign);
     }
 
+    // 벡터 : 회전
+    public static Vector3 GetRotationOfVector(float fAngle, Vector3 vAxis, Vector3 vPos)
+    {
+        vPos.x = (vPos.x * -Mathf.Sin(fAngle * Mathf.Deg2Rad));
+        vPos.y = (vPos.y * Mathf.Cos(fAngle * Mathf.Deg2Rad));
+        return vPos;
+    }
+
     // 보간 : 두 지점 사이의 X비율에 해당하는 값 구하기
     public static int Lerp(int iMin, int iMax, float fRatio)
 	{
