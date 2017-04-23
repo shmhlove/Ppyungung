@@ -61,8 +61,8 @@ public partial class SHDamage : SHInGame_Component
         var fDistance       = Vector3.Distance(vPosition, vBeforePosition);
         var vDirection      = (vBeforePosition - vPosition).normalized;
         vDirection          = (Vector3.zero == vDirection) ? Vector3.forward : vDirection;
+
         var pHits           = Physics.BoxCastAll(vPosition, vExtents, vDirection, Quaternion.identity, fDistance, iLayerMask);
-        
         if ((null == pHits) || (0 == pHits.Length))
             return;
         
@@ -78,11 +78,18 @@ public partial class SHDamage : SHInGame_Component
             if (null == pTarget)
                 return;
 
+            if (0 < pTarget.GetDMGCrashHitTick(pDamage.m_pInfo.m_strID))
+                return;
+
             if (true == pTarget.IsPassDMGCollision())
                 return;
             
             pTarget.OnCrashDamage(pDamage);
             pDamage.OnCrashDamage(pTarget);
+
+            pTarget.SetDMGCrashHitTick(
+                pDamage.m_pInfo.m_strID, 
+                pDamage.m_pInfo.m_iCheckDelayTickToCrash);
 
             // 데미지HP 0이될때 Destroy처리
             if (0 < pDamage.m_pInfo.m_iDamageHP)

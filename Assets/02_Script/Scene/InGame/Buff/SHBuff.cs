@@ -12,7 +12,6 @@ public enum eBuffType
     Buff_UpgradeDecDP,       // 대시 게이지 소모량 감소
     Buff_UpgradeDropCoin,    // 드랍 코인 증가
     Buff_Shield,             // 보호막 생성
-    Buff_UpgradeBulletSP,    // 총알 속도 증가
     Buff_UpgradeMoveSP,      // 이동 속도 증가
     Buff_DecreaseMonSP,      // 몬스터 이동 속도 감소
 }
@@ -29,7 +28,6 @@ public class SHBuff : SHInGame_Component
     public float m_fAddDP         = 0.0f;
     public float m_fDecDP         = 0.0f;
     public float m_fDropCoin      = 0.0f;
-    public float m_fBulletSP      = 0.0f;
     public float m_fMoveSP        = 0.0f;
     public float m_fDecreaseMonSP = 0.0f;
     #endregion
@@ -42,7 +40,6 @@ public class SHBuff : SHInGame_Component
         m_fAddDP         = 0.0f;
         m_fDecDP         = 0.0f;
         m_fDropCoin      = 0.0f;
-        m_fBulletSP      = 0.0f;
         m_fMoveSP        = 0.0f;
         m_fDecreaseMonSP = 0.0f;
     }
@@ -112,10 +109,6 @@ public class SHBuff : SHInGame_Component
             case eBuffType.Buff_Shield:
                 var pDamage = Single.Player.AddShieldDamage();
                 pDamage.m_pInfo.m_iDamageHP = Single.Table.GetTable<JsonBuffInfo>().m_iShieldCount;
-                break;
-            case eBuffType.Buff_UpgradeBulletSP:
-                m_fBulletSP += SHHard.m_fCharDamageSpeed *
-                    Single.Table.GetTable<JsonBuffInfo>().m_fRatioUpgradeBulletSP;
                 break;
             case eBuffType.Buff_UpgradeMoveSP:
                 m_fMoveSP += SHHard.m_fCharMoveSpeed *

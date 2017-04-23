@@ -8,7 +8,6 @@ public class SHUIPanel_HUD : SHUIBasePanel
     [Header("HUD Widget")]
     [SerializeField] private UILabel         m_pLabelPurpose = null;
     [SerializeField] private SHMonoWrapper   m_pObjectScore  = null;
-    [SerializeField] private UILabel         m_pLabelScore   = null;
     [SerializeField] private SHUIWidget_HP   m_pHP           = null;
     [SerializeField] private SHUIWidget_Dash m_pDash         = null;
     #endregion
@@ -20,18 +19,6 @@ public class SHUIPanel_HUD : SHUIBasePanel
         UpdatePurpose();
         UpdateHP();
         UpdateDash();
-    }
-    #endregion
-
-
-    #region Interface Functions
-    public void SetCharScore(string strValue)
-    {
-        m_pLabelScore.text = strValue;
-
-        m_pObjectScore.SetActive(true);
-        m_pObjectScore.PlayAnim(eDirection.Front, m_pObjectScore.gameObject, "Anim_Label_CharScore",
-            () => m_pObjectScore.SetActive(false));
     }
     #endregion
 

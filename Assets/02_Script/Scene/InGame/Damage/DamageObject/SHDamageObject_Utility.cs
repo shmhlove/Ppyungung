@@ -13,23 +13,29 @@ public partial class SHDamageObject : SHMonoWrapper
         
         if (true == m_pInfo.m_bIsTraceToCreator)
         {
-            pParentObject  = GetWho().GetTransform();
+            pParentObject = GetTraceTarget().GetTransform();
         }
 
         SHGameObject.SetParent(GetTransform(), pParentObject);
     }
     void SetupPhysics()
     {
-        InitPhysics();
+        InitDamageValue();
 
         m_fDMGSpeed = m_pInfo.m_fStartSpeed;
 
         if (true == m_pInfo.m_bIsStartDirectionToCreator)
-            m_vDMGDirection = GetWho().GetDirection();
+        {
+            m_vDMGDirection = GetTraceTarget().GetDirection();
+        }
         else if (true == m_pInfo.m_bIsRandomStartDirection)
+        {
             m_vDMGDirection = SHMath.RandomDirection();
+        }
         else
+        {
             m_vDMGDirection = m_pInfo.m_vStartDirection;
+        }
 
         if (0.0f != m_pInfo.m_fOffsetAngle)
         {
@@ -41,24 +47,23 @@ public partial class SHDamageObject : SHMonoWrapper
         SetStartTransform();
 
         var vPosition = m_pParam.m_pStartPosition;
-        
-        if (Vector3.zero != m_pInfo.m_vStaticStartPosition)
         {
-            vPosition = m_pInfo.m_vStaticStartPosition;
-        }
-        else if (true == m_pInfo.m_bIsTraceToCreator)
-        {
-            vPosition = (GetWho().GetPosition() - m_pParam.m_pStartPosition);
-        }
-        else if (true == m_pInfo.m_bIsStartPosToCreator)
-        {
-            vPosition = GetWho().GetPosition();
-        }
+            if (Vector3.zero != m_pInfo.m_vStaticStartPosition)
+            {
+                vPosition = m_pInfo.m_vStaticStartPosition;
+            }
+            else if (true == m_pInfo.m_bIsTraceToCreator)
+            {
+                vPosition = m_vStartPosition;
+            }
+            else if (true == m_pInfo.m_bIsStartPosToCreator)
+            {
+                vPosition = GetTraceTarget().GetPosition();
+            }
 
-        var fAngle = SHMath.GetAngleToPosition(Vector3.forward, 1.0f, Vector3.up, m_vDMGDirection);
-        vPosition = vPosition + SHMath.GetRotationOfVector(fAngle, Vector3.up, m_pInfo.m_vRotationOffset);
-        
-        m_vBeforePosition = GetPosition();
+            var fAngle = SHMath.GetAngleToPosition(Vector3.forward, 1.0f, Vector3.up, m_vDMGDirection);
+            vPosition += SHMath.GetRotationOfVector(fAngle, Vector3.up, m_pInfo.m_vRotationOffset);
+        }
         
         SetupScaleInfo();
         SetPosition(vPosition + m_pInfo.m_vPositionOffset);
@@ -220,13 +225,6 @@ public partial class SHDamageObject : SHMonoWrapper
 
         return (0 >= m_pInfo.m_iLifeTick);
     }
-    void DecreaseCrashHitTick()
-    {
-        if (0 == m_iCrashHitTick)
-            return;
-
-        --m_iCrashHitTick;
-    }
     #endregion
 
 
@@ -234,9 +232,19 @@ public partial class SHDamageObject : SHMonoWrapper
     SHMonoWrapper GetWho()
     {
         if (null == m_pParam)
-            return null;
+            return this;
 
         return m_pParam.m_pWho;
+    }
+    SHMonoWrapper GetTraceTarget()
+    {
+        if (null == m_pParam)
+            return this;
+
+        if (null == m_pParam.m_pTraceTarget)
+            return GetWho();
+        else
+            return m_pParam.m_pTraceTarget;
     }
     GameObject GetGuideTarget()
     {

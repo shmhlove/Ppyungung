@@ -96,29 +96,9 @@ public class SHPlayer : SHInGame_Component
 
 
     #region Interface Weapon Functions
-    public void ClearWeapon()
+    public SHCharWeapon GetWeapon()
     {
-        m_pWeapon.m_eType = eCharWeaponType.NormalBullet;
-    }
-    public void SetChangeWeapon(eCharWeaponType eType)
-    {
-        m_pWeapon.m_eType = eType;
-    }
-    public eCharWeaponType GetCurrentWeapon()
-    {
-        return m_pWeapon.m_eType;
-    }
-    public string GetDamageName()
-    {
-        return m_pWeapon.GetDamageName();
-    }
-    public float GetShootDelay()
-    {
-        return m_pWeapon.GetShootDelay();
-    }
-    public JsonWeaponData GetWeaponData()
-    {
-        return m_pWeapon.GetWeaponData();
+        return m_pWeapon;
     }
     #endregion
 

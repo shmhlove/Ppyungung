@@ -4,17 +4,51 @@ using UnityEngine;
 
 public enum eCharWeaponType
 {
-    NormalBullet,
-    ThreeBullet,
-    GuidedBullet,
-    SplashBullet,
-    Laser,
+    FlameThrower,       // 화염 방사기
+    Laser,              // 레이져건
+    Commando,           // 코만도
+    RPG,                // RPG
+    Shotgun,            // 샷건
+    Rifle,              // 돌격소총
+    Snipe,              // 저격총    
+    Stingermissile,     // 스팅어미사일
+    PhlegmaticSplash,   // 점액질 분열탄
+    FireBomb,           // 화염병 발사기
 }
 
 public class SHCharWeapon
 {
-    public eCharWeaponType m_eType = eCharWeaponType.NormalBullet;
+    public eCharWeaponType m_eType = eCharWeaponType.FlameThrower;
 
+    #region Insterface : WeaponType
+    public void ClearWeapon()
+    {
+        m_eType = eCharWeaponType.Rifle;
+    }
+
+    public void SetWeapon(eCharWeaponType eType)
+    {
+        m_eType = eType;
+    }
+
+    public eCharWeaponType GetWeaponType()
+    {
+        return m_eType;
+    }
+    #endregion
+
+
+    #region Insterface : WeaponType
+    public SHDamageObject AddDamage(SHDamageParam pParam)
+    {
+        var pDamage = Single.Damage.AddDamage(GetDamageName(), pParam);
+        pDamage.m_pInfo.m_fDamageValue = GetWeaponData().m_fDamageValue;
+        return pDamage;
+    }
+    #endregion
+
+
+    #region Insterface : Json Data
     public string GetDamageName()
     {
         return GetWeaponData().m_strDamageName;
@@ -30,4 +64,5 @@ public class SHCharWeapon
         var pTable = Single.Table.GetTable<JsonWeaponInfo>();
         return pTable.GetWeaponData(m_eType);
     }
+    #endregion
 }

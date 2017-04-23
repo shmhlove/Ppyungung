@@ -7,9 +7,10 @@ using SimpleJSON;
 
 public class JsonWeaponData
 {
-    public eCharWeaponType m_eWeaponType   = eCharWeaponType.NormalBullet;
+    public eCharWeaponType m_eWeaponType   = eCharWeaponType.Rifle;
     public string          m_strDamageName = string.Empty;
     public float           m_fShootDelay   = 0.0f;
+    public float           m_fDamageValue  = 0.0f;
 }
 
 public class JsonWeaponInfo : SHBaseTable
@@ -45,8 +46,9 @@ public class JsonWeaponInfo : SHBaseTable
             var pWeaponNode = pDataNode[iLoop];
             var pData = new JsonWeaponData();
             pData.m_eWeaponType   = SHUtils.GetStringToEnum<eCharWeaponType>(GetStrToJson(pWeaponNode, "m_eWeaponType"));
-            pData.m_strDamageName = GetStrToJson(pWeaponNode, "m_strDamageName");
+            pData.m_strDamageName = GetStrToJson(pWeaponNode,   "m_strDamageName");
             pData.m_fShootDelay   = GetFloatToJson(pWeaponNode, "m_fShootDelay");
+            pData.m_fDamageValue  = GetFloatToJson(pWeaponNode, "m_fDamageValue");
 
             AddData(pData.m_eWeaponType, pData);
         }
@@ -65,6 +67,8 @@ public class JsonWeaponInfo : SHBaseTable
             pData.m_eWeaponType   = SHUtils.GetStringToEnum<eCharWeaponType>(pSerializer.DeserializeString());
             pData.m_strDamageName = pSerializer.DeserializeString();
             pData.m_fShootDelay   = pSerializer.DeserializeFloat();
+            pData.m_fDamageValue  = pSerializer.DeserializeFloat();
+
             AddData(pData.m_eWeaponType, pData);
         }
 
@@ -82,6 +86,7 @@ public class JsonWeaponInfo : SHBaseTable
             pSerializer.Serialize(kvp.Value.m_eWeaponType.ToString());
             pSerializer.Serialize(kvp.Value.m_strDamageName);
             pSerializer.Serialize(kvp.Value.m_fShootDelay);
+            pSerializer.Serialize(kvp.Value.m_fDamageValue);
         }
         return pSerializer.ByteArray;
     }

@@ -21,6 +21,7 @@ public static class Single
     public static SHGameState               GameState           { get { return InGame.GetIngameComponent<SHGameState>(); } }
     public static SHBalance                 Balance             { get { return InGame.GetIngameComponent<SHBalance>(); } }
     public static SHPlayer                  Player              { get { return InGame.GetIngameComponent<SHPlayer>(); } }
+    public static SHCharWeapon              Weapon              { get { return Player.GetWeapon(); } }
     public static SHMonster                 Monster             { get { return InGame.GetIngameComponent<SHMonster>(); } }
     public static SHDamage                  Damage              { get { return InGame.GetIngameComponent<SHDamage>(); } }
     public static SHBackGround              Background          { get { return InGame.GetIngameComponent<SHBackGround>(); } }

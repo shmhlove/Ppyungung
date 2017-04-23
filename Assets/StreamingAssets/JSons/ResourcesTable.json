@@ -33,12 +33,12 @@
 			"s_Path": "Prefab/Damage/Dmg_Char_Body"
 		},
 		{
-			"s_Name": "Dmg_Char_Bullet",
-			"s_FileName": "Dmg_Char_Bullet.prefab",
+			"s_Name": "Dmg_Char_FlameThrower",
+			"s_FileName": "Dmg_Char_FlameThrower.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "18028",
-			"s_Hash": "B5373D10EF84C7C7E66F83DA237676D5",
-			"s_Path": "Prefab/Damage/Dmg_Char_Bullet"
+			"s_Size": "18268",
+			"s_Hash": "A8627F568C29825199B3142212A392F8",
+			"s_Path": "Prefab/Damage/Dmg_Char_FlameThrower"
 		},
 		{
 			"s_Name": "Dmg_Char_Guided_Bullet",
@@ -53,7 +53,7 @@
 			"s_FileName": "Dmg_Char_Laser.prefab",
 			"s_Extension": ".prefab",
 			"s_Size": "18260",
-			"s_Hash": "3D051FD2845FEA560A051E533E06ACA9",
+			"s_Hash": "F693F559EFDC7B5B6AA3715F5180E8F7",
 			"s_Path": "Prefab/Damage/Dmg_Char_Laser"
 		},
 		{
@@ -108,8 +108,8 @@
 			"s_Name": "Dmg_Item_Weapon",
 			"s_FileName": "Dmg_Item_Weapon.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "22660",
-			"s_Hash": "811099B9594886B8DD93E91D5C52967A",
+			"s_Size": "25156",
+			"s_Hash": "11030C4C58991F85FF3E45817DA824CE",
 			"s_Path": "Prefab/Damage/Dmg_Item_Weapon"
 		},
 		{
@@ -148,8 +148,8 @@
 			"s_Name": "Panel_Development",
 			"s_FileName": "Panel_Development.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "133552",
-			"s_Hash": "D28F2252BA2B9624DDF4934FA4288308",
+			"s_Size": "130744",
+			"s_Hash": "ACCE03AED759FBAE78A25B19A98CF061",
 			"s_Path": "Prefab/UI/Panel/Panel_Development"
 		},
 		{
@@ -285,15 +285,15 @@
 			"s_FileName": "BuffInfo.bytes",
 			"s_Extension": ".bytes",
 			"s_Size": "32",
-			"s_Hash": "9407E3922D4A8AB2C4C7A8B80C350ADA",
+			"s_Hash": "BA202FAD3CB7F795CD2DA048297638A5",
 			"s_Path": "Table/Bytes/BuffInfo"
 		},
 		{
 			"s_Name": "Constants",
 			"s_FileName": "Constants.bytes",
 			"s_Extension": ".bytes",
-			"s_Size": "68",
-			"s_Hash": "BE4A9906F57DFD8AA8F3737041893D36",
+			"s_Size": "64",
+			"s_Hash": "4AD028866B8A7F10AB9F62542C9DCCB7",
 			"s_Path": "Table/Bytes/Constants"
 		},
 		{
@@ -308,8 +308,8 @@
 			"s_Name": "WeaponInfo",
 			"s_FileName": "WeaponInfo.bytes",
 			"s_Extension": ".bytes",
-			"s_Size": "4",
-			"s_Hash": "F1D3FF8443297732862DF21DC4E57262",
+			"s_Size": "417",
+			"s_Hash": "1FD632BD7D29040E3F26DB6D9C9FCE58",
 			"s_Path": "Table/Bytes/WeaponInfo"
 		}
 	]

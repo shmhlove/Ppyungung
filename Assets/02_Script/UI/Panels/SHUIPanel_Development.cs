@@ -29,7 +29,6 @@ public class SHUIPanel_Development : SHUIBasePanel
     [SerializeField] private UIInput        m_pInputToCharMaxHP         = null;
     [SerializeField] private UIInput        m_pInputToCharMoveSpeed     = null;
     [SerializeField] private UIInput        m_pInputToCharShootSpeed    = null;
-    [SerializeField] private UIInput        m_pInputToCharDMGSpeed      = null;
     [SerializeField] private UIInput        m_pInputToCharDashSpeed     = null;
     [SerializeField] private UIInput        m_pInputToCharAddDashGauge  = null;
     [SerializeField] private UIInput        m_pInputToCharDecDashGauge  = null;
@@ -148,7 +147,7 @@ public class SHUIPanel_Development : SHUIBasePanel
         m_pPopupListToWeapon.Clear();
         SHUtils.ForToEnum<eCharWeaponType>((eType) => m_pPopupListToWeapon.AddItem(eType.ToString()));
         
-        m_pPopupListToWeapon.Set(Single.Player.GetCurrentWeapon().ToString());
+        m_pPopupListToWeapon.Set(Single.Weapon.GetWeaponType().ToString());
     }
     void SetPlayerBuffType()
     {
@@ -163,7 +162,6 @@ public class SHUIPanel_Development : SHUIBasePanel
         if ((null == m_pInputToCharMaxHP)        || 
             (null == m_pInputToCharMoveSpeed)    ||
             (null == m_pInputToCharShootSpeed)   ||
-            (null == m_pInputToCharDMGSpeed)     ||
             (null == m_pInputToCharDashSpeed)    ||
             (null == m_pInputToCharAddDashGauge) ||
             (null == m_pInputToCharDecDashGauge) ||
@@ -182,7 +180,6 @@ public class SHUIPanel_Development : SHUIBasePanel
         m_pInputToCharMaxHP.value           = SHHard.m_iCharMaxHealthPoint.ToString();
         m_pInputToCharMoveSpeed.value       = SHHard.m_fCharMoveSpeed.ToString();
         m_pInputToCharShootSpeed.value      = SHHard.m_fCharShootDelay.ToString();
-        m_pInputToCharDMGSpeed.value        = SHHard.m_fCharDamageSpeed.ToString();
         m_pInputToCharDashSpeed.value       = SHHard.m_fCharDashSpeed.ToString();
         m_pInputToCharAddDashGauge.value    = SHHard.m_fCharAddDashPoint.ToString();
         m_pInputToCharDecDashGauge.value    = SHHard.m_fCharDecDashPoint.ToString();
@@ -317,11 +314,6 @@ public class SHUIPanel_Development : SHUIBasePanel
         SHHard.m_fCharMoveSpeed = float.Parse(strValue);
         Single.Buff.m_fMoveSP = 0.0f;
     }
-    public void OnSubmitToDamageSpeed(string strValue)
-    {
-        SHHard.m_fCharDamageSpeed = float.Parse(strValue);
-        Single.Buff.m_fBulletSP = 0.0f;
-    }
     public void OnSubmitToShootSpeed(string strValue)
     {
         SHHard.m_fCharShootDelay = float.Parse(strValue);
@@ -356,7 +348,7 @@ public class SHUIPanel_Development : SHUIBasePanel
     public void OnSelectToWeaponType(string strType)
     {
         var eType = SHUtils.GetStringToEnum<eCharWeaponType>(strType);
-        Single.Player.SetChangeWeapon(eType);
+        Single.Weapon.SetWeapon(eType);
         SetInputInfo();
     }
     public void OnSelectToBuffType(string strBuff)

@@ -20,7 +20,6 @@ public partial class SHDamageObject : SHMonoWrapper
     #region Members : ETC
     [HideInInspector] public bool    m_bIsDieDamage  = false;  // 데미지 라이프가 끝난 상태
     [HideInInspector] public bool    m_bIsCrashLock  = false;  // 데미지 충돌체크를 하지 않을 상태
-    [HideInInspector] public int     m_iCrashHitTick = 0;      // 충돌 후 시간체크 (다단히트)
     #endregion
     
 
@@ -63,8 +62,7 @@ public partial class SHDamageObject : SHMonoWrapper
             DeleteDamage();
             return;
         }
-
-        DecreaseCrashHitTick();
+        
         MovePosition();
         MoveScale();
         PlaySound(eDamageEvent.Tick);
@@ -88,9 +86,7 @@ public partial class SHDamageObject : SHMonoWrapper
     {
         if (true == m_bIsDieDamage)
             return;
-
-        m_iCrashHitTick = m_pInfo.m_iCheckDelayTickToCrash;
-
+        
         PlaySound(eDamageEvent.Crash);
         PlayEffect(eDamageEvent.Crash);
         AddDamage(eDamageEvent.Crash);
@@ -143,9 +139,6 @@ public partial class SHDamageObject : SHMonoWrapper
     public bool IsCheckCrash()
     {
         if (true == m_bIsCrashLock)
-            return false;
-
-        if (0 < m_iCrashHitTick)
             return false;
         
         return true;

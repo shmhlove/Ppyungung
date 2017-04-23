@@ -45,7 +45,7 @@ public class SHDropItem : SHInGame_Component
                 switch (pTarget.transform.tag)
                 {
                     case "Character":
-                        Single.Player.SetChangeWeapon(pStyle.m_eActiveType);
+                        Single.Weapon.SetWeapon(pStyle.m_eActiveType);
                         Single.Damage.DelDamage(pDamage);
                         break;
                     case "CharacterDamage":

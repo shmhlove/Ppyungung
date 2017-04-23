@@ -63,15 +63,4 @@ public class SHInGame : SHSingleton<SHInGame>
         return m_dicComponent[pType] as T;
     }
     #endregion
-
-
-    #region Test Functions
-    public GameObject   m_pTestDamageTarget = null;
-    public string       m_strTestDamageName = string.Empty;
-    [FuncButton] public void TestAddDamage()
-    {
-        Single.Damage.AddDamage(m_strTestDamageName,
-            new SHDamageParam(this, GetPosition(), m_pTestDamageTarget));
-    }
-    #endregion
 }

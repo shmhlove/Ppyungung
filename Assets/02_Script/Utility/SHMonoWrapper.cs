@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 
 public class SHMonoWrapper : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class SHMonoWrapper : MonoBehaviour
     [HideInInspector] public float       m_fDMGSpeed     = 0.0f;
     [HideInInspector] public Vector3     m_vDMGDirection = Vector3.zero;
     [HideInInspector] public Collider    m_pDMGCollider  = null;
+    [HideInInspector] public Dictionary<string, int> m_dicCrashHitTick = new Dictionary<string, int>();
     #endregion
 
 
@@ -48,7 +50,13 @@ public class SHMonoWrapper : MonoBehaviour
     public virtual void OnDisable() { }
     public virtual void OnDestroy() { }
     public virtual void Update() { }
-    public virtual void FixedUpdate() { }
+    public virtual void FixedUpdate()
+    {
+        if (true == m_bIsPause)
+            return;
+
+        DecDMGCrashHitTick();
+    }
     public virtual void LateUpdate() { }
     public virtual bool IsPassDMGCollision() { return false; }
     public virtual void OnCrashDamage(SHMonoWrapper pObject)
@@ -61,10 +69,11 @@ public class SHMonoWrapper : MonoBehaviour
 
 
     #region Interface : Physics
-    public void InitPhysics()
+    public void InitDamageValue()
     {
         m_fDMGSpeed     = 0.0f;
         m_vDMGDirection = Vector3.zero;
+        m_dicCrashHitTick.Clear();
     }
     public Vector3 GetDMGSpeed()
     {
@@ -89,6 +98,29 @@ public class SHMonoWrapper : MonoBehaviour
             m_pDMGCollider = SHGameObject.GetComponent<Collider>(gameObject);
 
         return m_pDMGCollider;
+    }
+    public void SetDMGCrashHitTick(string strDamage, int iTick)
+    {
+        if (false == m_dicCrashHitTick.ContainsKey(strDamage))
+            m_dicCrashHitTick.Add(strDamage, iTick);
+
+        m_dicCrashHitTick[strDamage] = iTick;
+    }
+    public void DecDMGCrashHitTick()
+    {
+        var pKeys = m_dicCrashHitTick.Keys;
+        foreach (var strKey in pKeys)
+        {
+            if (0 >= --m_dicCrashHitTick[strKey])
+                m_dicCrashHitTick.Remove(strKey);
+        }
+    }
+    public int GetDMGCrashHitTick(string strDamage)
+    {
+        if (false == m_dicCrashHitTick.ContainsKey(strDamage))
+            return 0;
+
+        return m_dicCrashHitTick[strDamage];
     }
     #endregion
 

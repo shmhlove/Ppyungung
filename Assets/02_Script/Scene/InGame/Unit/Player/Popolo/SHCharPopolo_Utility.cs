@@ -19,23 +19,22 @@ public partial class SHCharPopolo : SHState
         }
 
         // 데미지 생성
-        var pAddDamage = Single.Damage.AddDamage(Single.Player.GetDamageName(),
-                        new SHDamageParam(this, m_pShootPos.GetPosition(), pEventCollision: (pDamage, pTarget) =>
-                        {
-                            if ("DropItem" == pTarget.transform.tag)
-                                return;
+        Single.Weapon.AddDamage(new SHDamageParam(
+            pWho:            this,
+            vStartPos:       m_pShootPos.GetPosition(),
+            pTraceTarget:    m_pShootPos,
+            pEventCollision: (pDamage, pTarget) =>
+            {
+                if ("DropItem" == pTarget.transform.tag)
+                    return;
 
-                            if (0.0f == pTarget.m_fHealthPoint)
-                            {
-                                var pHUD = Single.UI.GetPanel<SHUIPanel_HUD>("Panel_HUD");
-                                pHUD.SetCharScore("+1");
-
-                                Single.GameState.AddKillCount(1);
-                                AddDashGauge();
-                            }
-                        }));
-        // pAddDamage.SetDMGSpeed(SHHard.m_fCharDamageSpeed);
-
+                if (0.0f != pTarget.m_fHealthPoint)
+                    return;
+                
+                Single.GameState.AddKillCount(1);
+                AddDashGauge();
+            }));
+        
         // 카메라 흔들기
         Single.Root3D.GetMainCamera().PlayCameraShake(() => { });
 
@@ -73,9 +72,10 @@ public partial class SHCharPopolo : SHState
     {
         DelBodyDamage();
         m_pBodyDamage = Single.Damage.AddDamage("Dmg_Char_Body",
-          new SHDamageParam(this, Vector3.zero, pEventCollision: (pDamage, pTarget) => { OnCrashDamage(pDamage); }));
-
-        m_pBodyDamage.SetStartTransform();
+          new SHDamageParam(
+              pWho:             this,
+              vStartPos:        Vector3.zero, 
+              pEventCollision: (pDamage, pTarget) => { OnCrashDamage(pDamage); }));
     }
     void DelBodyDamage()
     {
@@ -95,8 +95,9 @@ public partial class SHCharPopolo : SHState
     public SHDamageObject AddShieldDamage()
     {
         DelShieldDamage();
-        m_pShieldDamage = Single.Damage.AddDamage("Dmg_Char_Shield", new SHDamageParam(this, Vector3.zero));
-        m_pShieldDamage.SetStartTransform();
+        m_pShieldDamage = Single.Damage.AddDamage("Dmg_Char_Shield", new SHDamageParam(
+            pWho:       this,
+            vStartPos:  Vector3.zero));
         return m_pShieldDamage;
     }
     void DelShieldDamage()

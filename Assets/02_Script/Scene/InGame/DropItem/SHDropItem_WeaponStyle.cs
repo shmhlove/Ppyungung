@@ -6,7 +6,7 @@ using System.Collections.Generic;
 [Serializable]
 public class SHWeaponStyleSlot
 {
-    public eCharWeaponType m_eType   = eCharWeaponType.NormalBullet;
+    public eCharWeaponType m_eType   = eCharWeaponType.Rifle;
     public GameObject      m_pObject = null;
 }
 
@@ -18,8 +18,9 @@ public class SHDropItem_WeaponStyle : SHMonoWrapper
 
 
     #region Members : Info
-    public eCharWeaponType m_eActiveType = eCharWeaponType.NormalBullet;
+    public eCharWeaponType m_eActiveType = eCharWeaponType.Rifle;
     #endregion
+
 
     #region Interface Functions
     public void SetActiveType(eCharWeaponType eType)

@@ -14,11 +14,6 @@ public static partial class SHHard
         get { return GetTable().m_fCharMoveSpeed + Single.Buff.m_fMoveSP; }
         set { GetTable().m_fCharMoveSpeed = value; }
     }
-    public static float m_fCharDamageSpeed
-    {
-        get { return GetTable().m_fCharDamageSpeed + Single.Buff.m_fBulletSP; }
-        set { GetTable().m_fCharDamageSpeed = value; }
-    }
     public static float m_fCharShootDelay
     {
         get { return GetWeaponInfo().m_fShootDelay; }
@@ -119,6 +114,6 @@ public static partial class SHHard
     }
     static JsonWeaponData GetWeaponInfo()
     {
-        return Single.Player.GetWeaponData();
+        return Single.Weapon.GetWeaponData();
     }
 }
