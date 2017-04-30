@@ -108,7 +108,8 @@ public class SHMonoWrapper : MonoBehaviour
     }
     public void DecDMGCrashHitTick()
     {
-        var pKeys = m_dicCrashHitTick.Keys;
+        var pKeys = new string[m_dicCrashHitTick.Count];
+        m_dicCrashHitTick.Keys.CopyTo(pKeys, 0);
         foreach (var strKey in pKeys)
         {
             if (0 >= --m_dicCrashHitTick[strKey])

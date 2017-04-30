@@ -8,33 +8,35 @@ public partial class SHDamageObject : SHMonoWrapper
     #region Utility : Transform
     void SetupParent()
     {
-        var pParentObject  = (true == m_pInfo.m_bIsParentToUI) ? 
-            Single.UI.GetRootToScene() : Single.Root3D.GetRootToDMG();
+        var pParentObject = Single.Root3D.GetRootToDMG();
+
+        if (true == m_pInfo.m_bIsParentToUI)
+        {
+            pParentObject = Single.UI.GetRootToScene();
+        }
         
         if (true == m_pInfo.m_bIsTraceToCreator)
         {
             pParentObject = GetTraceTarget().GetTransform();
         }
 
-        SHGameObject.SetParent(GetTransform(), pParentObject);
+        SetParent(pParentObject);
     }
     void SetupPhysics()
     {
         InitDamageValue();
 
-        m_fDMGSpeed = m_pInfo.m_fStartSpeed;
+        m_fDMGSpeed     = m_pInfo.m_fStartSpeed;
+        m_vDMGDirection = m_pInfo.m_vStartDirection;
+
+        if (true == m_pInfo.m_bIsRandomStartDirection)
+        {
+            m_vDMGDirection = SHMath.RandomDirection();
+        }
 
         if (true == m_pInfo.m_bIsStartDirectionToCreator)
         {
             m_vDMGDirection = GetTraceTarget().GetDirection();
-        }
-        else if (true == m_pInfo.m_bIsRandomStartDirection)
-        {
-            m_vDMGDirection = SHMath.RandomDirection();
-        }
-        else
-        {
-            m_vDMGDirection = m_pInfo.m_vStartDirection;
         }
 
         if (0.0f != m_pInfo.m_fOffsetAngle)
@@ -46,19 +48,26 @@ public partial class SHDamageObject : SHMonoWrapper
     {
         SetStartTransform();
 
-        var vPosition = m_pParam.m_pStartPosition;
+        var vPosition = Vector3.zero;
         {
             if (Vector3.zero != m_pInfo.m_vStaticStartPosition)
             {
                 vPosition = m_pInfo.m_vStaticStartPosition;
             }
-            else if (true == m_pInfo.m_bIsTraceToCreator)
-            {
-                vPosition = m_vStartPosition;
-            }
-            else if (true == m_pInfo.m_bIsStartPosToCreator)
+
+            if (true == m_pInfo.m_bIsStartPosToCreator)
             {
                 vPosition = GetTraceTarget().GetPosition();
+            }
+
+            if (Vector3.zero != m_pParam.m_pStartPosition)
+            {
+                vPosition = m_pParam.m_pStartPosition;
+            }
+
+            if (true == m_pInfo.m_bIsTraceToCreator)
+            {
+                vPosition = Vector3.zero;
             }
 
             var fAngle = SHMath.GetAngleToPosition(Vector3.forward, 1.0f, Vector3.up, m_vDMGDirection);
@@ -66,7 +75,7 @@ public partial class SHDamageObject : SHMonoWrapper
         }
         
         SetupScaleInfo();
-        SetPosition(vPosition + m_pInfo.m_vPositionOffset);
+        SetLocalPosition(vPosition + m_pInfo.m_vPositionOffset);
         SetLookZ(m_vDMGDirection);
     }
     void SetupScaleInfo()
