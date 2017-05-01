@@ -31,7 +31,7 @@ public class SHUIPanel_CtrlPad : SHUIBasePanel
     #region Members : Event
     private Action<Vector3> m_pEventMove      = null;
     private Action<Vector3> m_pEventDirection = null;
-    private Action          m_pEventShoot     = null;
+    private Action<bool>    m_pEventShoot     = null;
     private Action<bool>    m_pEventDash      = null;
     #endregion
 
@@ -68,7 +68,7 @@ public class SHUIPanel_CtrlPad : SHUIBasePanel
     {
         m_pEventDirection = pEvent;
     }
-    public void AddEventToShoot(Action pEvent)
+    public void AddEventToShoot(Action<bool> pEvent)
     {
         m_pEventShoot = pEvent;
     }
@@ -162,12 +162,12 @@ public class SHUIPanel_CtrlPad : SHUIBasePanel
 
         m_pEventDirection(vDirection);
     }
-    public void OnEventToShoot()
+    public void OnEventToShoot(bool bIsOn)
     {
         if (null == m_pEventShoot)
             return;
 
-        m_pEventShoot();
+        m_pEventShoot(bIsOn);
     }
     public void OnEventToDash(bool bIsOn)
     {

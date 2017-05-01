@@ -12,7 +12,7 @@ public class SHUIWidget_CtrlType4 : SHMonoWrapper
     #region Members : Event
     private Action<Vector3> m_pEventMove      = null;
     private Action<Vector3> m_pEventDirection = null;
-    private Action          m_pEventShoot     = null;
+    private Action<bool>    m_pEventShoot     = null;
     private Action<bool>    m_pEventDash      = null;
     #endregion
 
@@ -24,23 +24,22 @@ public class SHUIWidget_CtrlType4 : SHMonoWrapper
         {
             m_pJoyStick.m_pEventToDrag = OnEventToDrag;
         }
-        
-        StartCoroutine(CoroutineToShoot());
+
+        if (null != m_pEventShoot)
+            m_pEventShoot(true);
     }
     public override void OnDisable()
     {
         base.OnDisable();
-
-        if (true == SHApplicationInfo.m_bIsAppQuit)
-            return;
         
-        StopAllCoroutines();
+        if (null != m_pEventShoot)
+            m_pEventShoot(false);
     }
     #endregion
 
 
     #region Interface Functions
-    public void Initialize(Action<Vector3> pMove, Action<Vector3> pDirection, Action pShoot, Action<bool> pDash)
+    public void Initialize(Action<Vector3> pMove, Action<Vector3> pDirection, Action<bool> pShoot, Action<bool> pDash)
     {
         m_pEventMove      = pMove;
         m_pEventDirection = pDirection;
@@ -49,20 +48,6 @@ public class SHUIWidget_CtrlType4 : SHMonoWrapper
     }
     public void Clear()
     {
-    }
-    #endregion
-
-
-    #region Coroutine Functions
-    IEnumerator CoroutineToShoot()
-    {
-        while (true)
-        {
-            if (null != m_pEventShoot)
-                m_pEventShoot();
-
-            yield return new WaitForSeconds(SHHard.m_fCharShootDelay);
-        }
     }
     #endregion
 

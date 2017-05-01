@@ -7,9 +7,6 @@ public partial class SHCharPopolo : SHState
     #region Utility : Action
     void SetAttack()
     {
-        if (false == m_bIsShoot)
-            return;
-
         // 컨트롤러 5번과 6번은 자동 타켓팅이다.
         var pCtrlPad = Single.UI.GetPanel<SHUIPanel_CtrlPad>("Panel_CtrlPad");
         if ((true == pCtrlPad.IsCtrlType(eControlType.Type_5)) ||
@@ -37,8 +34,6 @@ public partial class SHCharPopolo : SHState
         
         // 카메라 흔들기
         Single.Root3D.GetMainCamera().PlayCameraShake(() => { });
-
-        m_bIsShoot = false;
     }
     void SetMove(float fSpeed)
     {

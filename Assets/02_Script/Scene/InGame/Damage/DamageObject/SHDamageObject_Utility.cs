@@ -67,7 +67,7 @@ public partial class SHDamageObject : SHMonoWrapper
 
             if (true == m_pInfo.m_bIsTraceToCreator)
             {
-                vPosition = Vector3.zero;
+                vPosition = m_vStartPosition;
             }
 
             var fAngle = SHMath.GetAngleToPosition(Vector3.forward, 1.0f, Vector3.up, m_vDMGDirection);

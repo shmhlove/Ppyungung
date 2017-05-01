@@ -19,7 +19,7 @@ public class SHUIWidget_CtrlType2 : SHMonoWrapper
     #region Members : Event
     private Action<Vector3> m_pEventMove      = null;
     private Action<Vector3> m_pEventDirection = null;
-    private Action          m_pEventShoot     = null;
+    private Action<bool>    m_pEventShoot     = null;
     private Action<bool>    m_pEventDash      = null;
     #endregion
 
@@ -129,7 +129,7 @@ public class SHUIWidget_CtrlType2 : SHMonoWrapper
 
 
     #region Interface Functions
-    public void Initialize(Action<Vector3> pMove, Action<Vector3> pDirection, Action pShoot, Action<bool> pDash)
+    public void Initialize(Action<Vector3> pMove, Action<Vector3> pDirection, Action<bool> pShoot, Action<bool> pDash)
     {
         m_pEventMove      = pMove;
         m_pEventDirection = pDirection;
@@ -143,20 +143,6 @@ public class SHUIWidget_CtrlType2 : SHMonoWrapper
 
         m_bIsLeftKeyDown  = new bool[4];
         m_bIsRightKeyDown = new bool[4];
-    }
-    #endregion
-
-
-    #region Coroutine Functions
-    IEnumerator CoroutineToShoot()
-    {
-        while (true)
-        {
-            if (null != m_pEventShoot)
-                m_pEventShoot();
-
-            yield return new WaitForSeconds(SHHard.m_fCharShootDelay);
-        }
     }
     #endregion
 
@@ -197,14 +183,16 @@ public class SHUIWidget_CtrlType2 : SHMonoWrapper
         m_bIsRightDrag  = false;
         m_pEventDirection(Vector3.zero);
 
-        StartCoroutine(CoroutineToShoot());
+        if (null != m_pEventShoot)
+            m_pEventShoot(true);
     }
     public void OnEventToPressOffRight()
     {
         m_bIsRightDrag  = false;
         m_pEventDirection(Vector3.zero);
 
-        StopAllCoroutines();
+        if (null != m_pEventShoot)
+            m_pEventShoot(false);
     }
     public void OnPressOnDash()
     {
