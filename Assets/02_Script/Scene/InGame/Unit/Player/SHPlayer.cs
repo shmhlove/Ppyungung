@@ -39,6 +39,7 @@ public class SHPlayer : SHInGame_Component
             return;
 
         m_pUnit.OnInitialize();
+        m_pWeapon.ClearWeapon();
     }
     public void StartPlayer()
     {

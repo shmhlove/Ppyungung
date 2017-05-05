@@ -23,7 +23,7 @@ public class SHCharWeapon
     #region Insterface : WeaponType
     public void ClearWeapon()
     {
-        m_eType = eCharWeaponType.Rifle;
+        m_eType = eCharWeaponType.FlameThrower;
     }
 
     public void SetWeapon(eCharWeaponType eType)
