@@ -38,12 +38,16 @@ public class SHCharWeapon
     #endregion
 
 
-    #region Insterface : WeaponType
+    #region Insterface : Damage
     public SHDamageObject AddDamage(SHDamageParam pParam)
     {
         var pDamage = Single.Damage.AddDamage(GetDamageName(), pParam);
         pDamage.m_pInfo.m_fDamageValue = GetWeaponData().m_fDamageValue;
         return pDamage;
+    }
+    public void DelDamage(SHDamageObject pDamage)
+    {
+        Single.Damage.DelDamage(pDamage);
     }
     #endregion
 

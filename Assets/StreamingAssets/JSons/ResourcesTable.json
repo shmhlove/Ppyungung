@@ -36,8 +36,8 @@
 			"s_Name": "Dmg_Char_FlameThrower",
 			"s_FileName": "Dmg_Char_FlameThrower.prefab",
 			"s_Extension": ".prefab",
-			"s_Size": "18268",
-			"s_Hash": "A8627F568C29825199B3142212A392F8",
+			"s_Size": "90316",
+			"s_Hash": "9E5A5A69B3AE067164A0BA82AEDBC3FB",
 			"s_Path": "Prefab/Damage/Dmg_Char_FlameThrower"
 		},
 		{
@@ -308,8 +308,8 @@
 			"s_Name": "WeaponInfo",
 			"s_FileName": "WeaponInfo.bytes",
 			"s_Extension": ".bytes",
-			"s_Size": "417",
-			"s_Hash": "1FD632BD7D29040E3F26DB6D9C9FCE58",
+			"s_Size": "457",
+			"s_Hash": "445F590DF21950B1C46F682933290412",
 			"s_Path": "Table/Bytes/WeaponInfo"
 		}
 	]

@@ -9,55 +9,55 @@
         },
 		{
 			"m_eWeaponType": "Laser",
-			"m_strDamageName": "Dmg_Char_FlameThrower",
+			"m_strDamageName": "Dmg_Char_Laser",
 			"m_fShootDelay": 0.2,
             "m_fDamageValue": 1
 		},
 		{
 			"m_eWeaponType": "Commando",
-			"m_strDamageName": "Dmg_Char_FlameThrower",
+			"m_strDamageName": "Dmg_Char_Laser",
 			"m_fShootDelay": 0.15,
             "m_fDamageValue": 1
 		},
 		{
 			"m_eWeaponType": "RPG",
-			"m_strDamageName": "Dmg_Char_FlameThrower",
+			"m_strDamageName": "Dmg_Char_Laser",
 			"m_fShootDelay": 0.3,
             "m_fDamageValue": 1
 		},
 		{
 	    	"m_eWeaponType": "Shotgun",
-			"m_strDamageName": "Dmg_Char_FlameThrower",
+			"m_strDamageName": "Dmg_Char_Laser",
 	    	"m_fShootDelay": 0.6,
             "m_fDamageValue": 1
         }
 		{
 	    	"m_eWeaponType": "Rifle",
-			"m_strDamageName": "Dmg_Char_FlameThrower",
+			"m_strDamageName": "Dmg_Char_Laser",
 	    	"m_fShootDelay": 0.6,
             "m_fDamageValue": 1
         },
 		{
 	    	"m_eWeaponType": "Snipe",
-			"m_strDamageName": "Dmg_Char_FlameThrower",
+			"m_strDamageName": "Dmg_Char_Laser",
 	    	"m_fShootDelay": 0.6,
             "m_fDamageValue": 1
         },
 		{
 	    	"m_eWeaponType": "Stingermissile",
-			"m_strDamageName": "Dmg_Char_FlameThrower",
+			"m_strDamageName": "Dmg_Char_Laser",
 	    	"m_fShootDelay": 0.6,
             "m_fDamageValue": 1
         },
 		{
 	    	"m_eWeaponType": "PhlegmaticSplash",
-			"m_strDamageName": "Dmg_Char_FlameThrower",
+			"m_strDamageName": "Dmg_Char_Laser",
 	    	"m_fShootDelay": 0.6,
             "m_fDamageValue": 1
         },
 		{
 	    	"m_eWeaponType": "FireBomb",
-			"m_strDamageName": "Dmg_Char_FlameThrower",
+			"m_strDamageName": "Dmg_Char_Laser",
 	    	"m_fShootDelay": 0.6,
             "m_fDamageValue": 1
         }

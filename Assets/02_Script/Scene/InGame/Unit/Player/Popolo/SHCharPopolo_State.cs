@@ -32,6 +32,7 @@ public partial class SHCharPopolo : SHState
         pState = CreateState(eState.Attack);
         {
             pState.m_strAnimClip   = "Anim_Char_Attack";
+            pState.m_OnEnter       = OnEnterAttack;
             pState.m_OnFixedUpdate = OnFixedUpdateToAttack;
         }
         
@@ -85,7 +86,7 @@ public partial class SHCharPopolo : SHState
     {
         SetMove(SHHard.m_fCharMoveSpeed);
         SetLookRotation();
-
+        
         if (true == IsPossibleDash())
         {
             ChangeState(eState.Dash);
@@ -108,15 +109,14 @@ public partial class SHCharPopolo : SHState
 
 
     #region State : Attack
+    void OnEnterAttack(int iBeforeState)
+    {
+        StartCoroutine(CoroutineToAttack());
+    }
     void OnFixedUpdateToAttack(int iFixedTick)
     {
         SetMove(SHHard.m_fCharMoveSpeed);
-        SetLookRotation();
-        
-        if (true == IsPossibleAttack())
-        {
-            SetAttack();
-        }
+        LookAttackDirection();
 
         if (true == IsPossibleDash())
         {
@@ -124,7 +124,8 @@ public partial class SHCharPopolo : SHState
             return;
         }
 
-        if (false == IsAnimPlaying(m_iCurrentStateID))
+        //if (false == IsAnimPlaying(m_iCurrentStateID))
+        if (false == IsPossibleAttack())
         {
             if (true == IsPossibleMove())
                 ChangeState(eState.Move);
@@ -165,6 +166,7 @@ public partial class SHCharPopolo : SHState
     void OnEnterToDie(int iBeforeState)
     {
         DelBodyDamage();
+        InitControlValue();
     }
     #endregion
 }

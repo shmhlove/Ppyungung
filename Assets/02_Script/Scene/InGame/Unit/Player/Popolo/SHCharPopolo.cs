@@ -113,6 +113,7 @@ public partial class SHCharPopolo : SHState
     {
         InitControlValue();
         DeConnectControllerUI();
+
         DelBodyDamage();
     }
     public bool IsDie()

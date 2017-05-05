@@ -4,22 +4,39 @@ using System.Collections;
 
 public partial class SHCharPopolo : SHState
 {
-    #region Utility : Action
-    void SetAttack()
+    #region Utility : Attack
+    IEnumerator CoroutineToAttack()
     {
-        // 컨트롤러 5번과 6번은 자동 타켓팅이다.
-        var pCtrlPad = Single.UI.GetPanel<SHUIPanel_CtrlPad>("Panel_CtrlPad");
-        if ((true == pCtrlPad.IsCtrlType(eControlType.Type_5)) ||
-            (true == pCtrlPad.IsCtrlType(eControlType.Type_6)))
+        if (eCharWeaponType.FlameThrower == Single.Weapon.m_eType)
+            yield return StartCoroutine(CoroutineToFlameThrowerAttack());
+        else
+            yield return StartCoroutine(CoroutineToNormalAttack());
+    }
+    IEnumerator CoroutineToNormalAttack()
+    {
+        while(true == IsPossibleAttack())
         {
-            SetLookNearMonster();
+            SetAttack();
+            Single.Root3D.GetMainCamera().PlayCameraShake(() => { });
+            yield return new WaitForSeconds(SHHard.m_fCharShootDelay);
         }
-
-        // 데미지 생성
-        Single.Weapon.AddDamage(new SHDamageParam(
-            pWho:            this,
-            vStartPos:       m_pShootPos.GetPosition(),
-            pTraceTarget:    m_pShootPos,
+    }
+    IEnumerator CoroutineToFlameThrowerAttack()
+    {
+        var pAddDamage = SetAttack();
+        while (true == IsPossibleAttack())
+        {
+            Single.Root3D.GetMainCamera().PlayCameraShake(() => { });
+            yield return new WaitForSeconds(SHHard.m_fCharShootDelay);
+        }
+        Single.Weapon.DelDamage(pAddDamage);
+    }
+    SHDamageObject SetAttack()
+    {
+        return Single.Weapon.AddDamage(new SHDamageParam(
+            pWho:               this,
+            vStartPos:          m_pShootPos.GetPosition(),
+            pTraceTarget:       m_pShootPos,
             pEventCollision: (pDamage, pTarget) =>
             {
                 if ("DropItem" == pTarget.transform.tag)
@@ -27,14 +44,29 @@ public partial class SHCharPopolo : SHState
 
                 if (0.0f != pTarget.m_fHealthPoint)
                     return;
-                
+
                 Single.GameState.AddKillCount(1);
                 AddDashGauge();
             }));
-        
-        // 카메라 흔들기
-        Single.Root3D.GetMainCamera().PlayCameraShake(() => { });
     }
+    void LookAttackDirection()
+    {
+        // 컨트롤러 5번과 6번은 가까운 적 자동 타켓팅이다.
+        var pCtrlPad = Single.UI.GetPanel<SHUIPanel_CtrlPad>("Panel_CtrlPad");
+        if ((true == pCtrlPad.IsCtrlType(eControlType.Type_5)) ||
+            (true == pCtrlPad.IsCtrlType(eControlType.Type_6)))
+        {
+            SetLookNearMonster();
+        }
+        else
+        {
+            SetLookRotation();
+        }
+    }
+    #endregion
+
+
+    #region Utility : Move
     void SetMove(float fSpeed)
     {
         if (false == IsPossibleMove())

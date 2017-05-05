@@ -102,7 +102,7 @@ public class SHNativeInputManager : SHSingleton<SHNativeInputManager>
     }
     public bool IsTouch()
     {
-        return (0 != m_pTouchOrders.Count);
+        return (0 != m_pTouchOrders.Count) || (0 != m_dicTouchEnter.Count);
     }
     #endregion
 
