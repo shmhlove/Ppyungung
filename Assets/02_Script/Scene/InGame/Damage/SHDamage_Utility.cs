@@ -59,10 +59,13 @@ public partial class SHDamage : SHInGame_Component
         var vBeforePosition = pDamage.GetBeforePosition();
         var vExtents        = pDamage.GetDMGCollider().bounds.extents;
         var fDistance       = Vector3.Distance(vPosition, vBeforePosition);
+        fDistance           = (0.0f == fDistance) ? 1.0f : fDistance;
         var vDirection      = (vBeforePosition - vPosition).normalized;
-        vDirection          = (Vector3.zero == vDirection) ? Vector3.forward : vDirection;
+        vDirection          = (Vector3.zero == vDirection) ? Vector3.up : vDirection;
 
-        var pHits           = Physics.BoxCastAll(vPosition, vExtents, vDirection, Quaternion.identity, fDistance, iLayerMask);
+        vDirection.z = vPosition.z = 0.0f;
+        
+        var pHits           = Physics.BoxCastAll(vPosition, vExtents, vDirection, pDamage.GetRotate(), fDistance, iLayerMask);
         if ((null == pHits) || (0 == pHits.Length))
             return;
         
